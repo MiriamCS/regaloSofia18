@@ -477,7 +477,8 @@ export class Checkpoint {
     this.x = o.pieX;
     this.y = o.pieY;
     this.img = scene.add.image(this.x, this.y, 'atril-off').setOrigin(0.5, 1).setScale(ESC).setDepth(24);
-    this.zona = scene.add.zone(this.x, this.y - 50, 60, 100);
+    // zona alta: no se puede pasar por encima de un atril sin activarlo
+    this.zona = scene.add.zone(this.x, this.y - 200, 60, 400);
     scene.physics.add.existing(this.zona, true);
     this.activo = false;
   }
