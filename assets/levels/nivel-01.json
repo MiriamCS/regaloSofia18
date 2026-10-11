@@ -1,0 +1,964 @@
+{
+ "type": "map",
+ "version": "1.10",
+ "tiledversion": "1.11.0",
+ "orientation": "orthogonal",
+ "renderorder": "right-down",
+ "width": 212,
+ "height": 15,
+ "tilewidth": 48,
+ "tileheight": 48,
+ "infinite": false,
+ "nextlayerid": 4,
+ "nextobjectid": 57,
+ "properties": [
+  {
+   "name": "nivel",
+   "type": "int",
+   "value": 1
+  },
+  {
+   "name": "tema",
+   "type": "string",
+   "value": "parque"
+  },
+  {
+   "name": "edad",
+   "type": "int",
+   "value": 1
+  }
+ ],
+ "layers": [
+  {
+   "id": 1,
+   "name": "solidos",
+   "type": "objectgroup",
+   "draworder": "topdown",
+   "opacity": 1,
+   "visible": true,
+   "x": 0,
+   "y": 0,
+   "objects": [
+    {
+     "id": 1,
+     "name": "",
+     "type": "solido",
+     "x": 0,
+     "y": 0,
+     "width": 48,
+     "height": 576,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 2,
+     "name": "",
+     "type": "solido",
+     "x": 10128,
+     "y": 0,
+     "width": 48,
+     "height": 576,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 4,
+     "name": "",
+     "type": "solido",
+     "x": 8160,
+     "y": 192,
+     "width": 384,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 5,
+     "name": "",
+     "type": "solido",
+     "x": 8160,
+     "y": 240,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 6,
+     "name": "",
+     "type": "solido",
+     "x": 8064,
+     "y": 288,
+     "width": 192,
+     "height": 96,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 7,
+     "name": "",
+     "type": "solido",
+     "x": 8688,
+     "y": 288,
+     "width": 192,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 8,
+     "name": "",
+     "type": "solido",
+     "x": 4032,
+     "y": 384,
+     "width": 240,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 9,
+     "name": "",
+     "type": "solido",
+     "x": 7968,
+     "y": 384,
+     "width": 288,
+     "height": 96,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 10,
+     "name": "",
+     "type": "plataforma-cae",
+     "x": 8976,
+     "y": 384,
+     "width": 192,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 12,
+     "name": "",
+     "type": "nube",
+     "x": 8688,
+     "y": 432,
+     "width": 240,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 13,
+     "name": "",
+     "type": "solido",
+     "x": 672,
+     "y": 480,
+     "width": 144,
+     "height": 96,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 14,
+     "name": "",
+     "type": "solido",
+     "x": 1584,
+     "y": 480,
+     "width": 96,
+     "height": 96,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 17,
+     "name": "",
+     "type": "solido",
+     "x": 7872,
+     "y": 480,
+     "width": 384,
+     "height": 96,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 18,
+     "name": "",
+     "type": "solido",
+     "x": 8448,
+     "y": 480,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 19,
+     "name": "",
+     "type": "solido",
+     "x": 9312,
+     "y": 480,
+     "width": 192,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 23,
+     "name": "",
+     "type": "solido",
+     "x": 480,
+     "y": 528,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 24,
+     "name": "",
+     "type": "solido",
+     "x": 1104,
+     "y": 528,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 25,
+     "name": "",
+     "type": "solido",
+     "x": 1344,
+     "y": 528,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 34,
+     "name": "",
+     "type": "solido",
+     "x": 6192,
+     "y": 528,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 35,
+     "name": "",
+     "type": "nube",
+     "x": 6720,
+     "y": 528,
+     "width": 240,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 41,
+     "name": "",
+     "type": "solido",
+     "x": 0,
+     "y": 576,
+     "width": 912,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 42,
+     "name": "",
+     "type": "solido",
+     "x": 1008,
+     "y": 576,
+     "width": 240,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 43,
+     "name": "",
+     "type": "solido",
+     "x": 1344,
+     "y": 576,
+     "width": 336,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 44,
+     "name": "",
+     "type": "solido",
+     "x": 1824,
+     "y": 576,
+     "width": 384,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 45,
+     "name": "",
+     "type": "solido",
+     "x": 2352,
+     "y": 576,
+     "width": 528,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 46,
+     "name": "",
+     "type": "solido",
+     "x": 3408,
+     "y": 576,
+     "width": 144,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 47,
+     "name": "",
+     "type": "solido",
+     "x": 4656,
+     "y": 576,
+     "width": 768,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 48,
+     "name": "",
+     "type": "solido",
+     "x": 5520,
+     "y": 576,
+     "width": 432,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 49,
+     "name": "",
+     "type": "solido",
+     "x": 6048,
+     "y": 576,
+     "width": 288,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 50,
+     "name": "",
+     "type": "solido",
+     "x": 6480,
+     "y": 576,
+     "width": 144,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 51,
+     "name": "",
+     "type": "solido",
+     "x": 7056,
+     "y": 576,
+     "width": 1248,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 52,
+     "name": "",
+     "type": "solido",
+     "x": 9552,
+     "y": 576,
+     "width": 624,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "name": "entidades",
+   "type": "objectgroup",
+   "draworder": "topdown",
+   "opacity": 1,
+   "visible": true,
+   "x": 0,
+   "y": 0,
+   "objects": [
+    {
+     "id": 3,
+     "name": "",
+     "type": "foto",
+     "x": 4656,
+     "y": 96,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 11,
+     "name": "",
+     "type": "objeto",
+     "x": 8496,
+     "y": 432,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 15,
+     "name": "",
+     "type": "enemigo",
+     "x": 6240,
+     "y": 480,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "patrullero"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "cochecito"
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 80
+      }
+     ]
+    },
+    {
+     "id": 16,
+     "name": "",
+     "type": "enemigo",
+     "x": 6816,
+     "y": 480,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "patrullero"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "pato"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 60
+      }
+     ]
+    },
+    {
+     "id": 20,
+     "name": "",
+     "type": "inicio",
+     "x": 96,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 21,
+     "name": "",
+     "type": "miriam",
+     "x": 192,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "hola"
+      }
+     ]
+    },
+    {
+     "id": 22,
+     "name": "",
+     "type": "cartel",
+     "x": 336,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "arenero"
+      }
+     ]
+    },
+    {
+     "id": 27,
+     "name": "",
+     "type": "checkpoint",
+     "x": 2496,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 28,
+     "name": "",
+     "type": "miriam",
+     "x": 2688,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "columpio"
+      },
+      {
+       "name": "radio",
+       "type": "int",
+       "value": 200
+      }
+     ]
+    },
+    {
+     "id": 29,
+     "name": "",
+     "type": "checkpoint",
+     "x": 4944,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 30,
+     "name": "",
+     "type": "cartel",
+     "x": 5088,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "patos"
+      }
+     ]
+    },
+    {
+     "id": 31,
+     "name": "",
+     "type": "enemigo",
+     "x": 5232,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "patrullero"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "pato"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 60
+      }
+     ]
+    },
+    {
+     "id": 32,
+     "name": "",
+     "type": "enemigo",
+     "x": 5712,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "patrullero"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "cochecito"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 4
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 95
+      }
+     ]
+    },
+    {
+     "id": 33,
+     "name": "",
+     "type": "cartel",
+     "x": 6096,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "aparcado"
+      }
+     ]
+    },
+    {
+     "id": 36,
+     "name": "",
+     "type": "enemigo",
+     "x": 7248,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "patrullero"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "pato"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 60
+      }
+     ]
+    },
+    {
+     "id": 37,
+     "name": "",
+     "type": "enemigo",
+     "x": 7488,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "patrullero"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "cochecito"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 4
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 95
+      }
+     ]
+    },
+    {
+     "id": 38,
+     "name": "",
+     "type": "checkpoint",
+     "x": 7680,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 39,
+     "name": "",
+     "type": "cartel",
+     "x": 7776,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "tobogan"
+      }
+     ]
+    },
+    {
+     "id": 40,
+     "name": "",
+     "type": "meta",
+     "x": 9840,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 53,
+     "name": "",
+     "type": "plataforma-movil",
+     "x": 2880,
+     "y": 576,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "dx",
+       "type": "int",
+       "value": 6
+      },
+      {
+       "name": "duracion",
+       "type": "int",
+       "value": 2200
+      }
+     ]
+    },
+    {
+     "id": 54,
+     "name": "",
+     "type": "plataforma-movil",
+     "x": 3600,
+     "y": 480,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "dx",
+       "type": "int",
+       "value": 5
+      },
+      {
+       "name": "duracion",
+       "type": "int",
+       "value": 2000
+      },
+      {
+       "name": "desfase",
+       "type": "int",
+       "value": 700
+      }
+     ]
+    },
+    {
+     "id": 55,
+     "name": "",
+     "type": "plataforma-movil",
+     "x": 4272,
+     "y": 480,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "dx",
+       "type": "int",
+       "value": 4
+      },
+      {
+       "name": "duracion",
+       "type": "int",
+       "value": 1800
+      },
+      {
+       "name": "desfase",
+       "type": "int",
+       "value": 400
+      }
+     ]
+    },
+    {
+     "id": 56,
+     "name": "",
+     "type": "plataforma-movil",
+     "x": 4272,
+     "y": 288,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "dx",
+       "type": "int",
+       "value": 6
+      },
+      {
+       "name": "duracion",
+       "type": "int",
+       "value": 1700
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "name": "zonas",
+   "type": "objectgroup",
+   "draworder": "topdown",
+   "opacity": 1,
+   "visible": true,
+   "x": 0,
+   "y": 0,
+   "objects": [
+    {
+     "id": 26,
+     "name": "",
+     "type": "pinchos",
+     "x": 1920,
+     "y": 528,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 1
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "tilesets": []
+}

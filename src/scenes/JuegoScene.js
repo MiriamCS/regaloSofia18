@@ -258,7 +258,8 @@ export class JuegoScene extends Phaser.Scene {
         this.cajas.add(c);
         c.body.setDragX(3000);
         c.body.setMaxVelocity(400, 1000);
-        c.body.setSize(c.width - 4, c.height - 2).setOffset(2, 2);
+        // cuerpo algo más estrecho que el dibujo (cae por huecos de 1) y de alto exacto (pilas rectas)
+        c.body.setSize(c.width - 16, c.height).setOffset(8, 0);
         c.pesada = o.tipo === 'mueble' || !!o.p.pesada;
         c.inicio = { x: o.pieX, y: o.pieY };
         if (o.p.fija) c.body.setImmovable(true);
@@ -335,7 +336,8 @@ export class JuegoScene extends Phaser.Scene {
       const b = cuerpo.body;
       return b.velocity.y >= 0 && b.prev.y + b.height <= z.body.top + 8;
     };
-    const unaDireccionMovil = (cuerpo, z) => cuerpo.body.velocity.y >= 0 && cuerpo.body.prev.y + cuerpo.body.height <= z.body.top + 8;
+    // en plataformas que se mueven, se compara con la velocidad de la plataforma (al subir, quien va encima sube con ella)
+    const unaDireccionMovil = (cuerpo, z) => cuerpo.body.velocity.y >= z.body.velocity.y - 5 && cuerpo.body.prev.y + cuerpo.body.height <= z.body.prev.y + 10;
     fis.add.collider(s, this.solidos, (sofia, z) => this.alPisar(z));
     fis.add.collider(s, this.nubes, null, unaDireccion);
     fis.add.collider(this.cajas, this.solidos);
@@ -364,7 +366,10 @@ export class JuegoScene extends Phaser.Scene {
     }
     fis.add.overlap(s, this.zonasPeligro, (sofia, z) => this.morir(z.danio));
     fis.add.overlap(s, this.peligros, (sofia, p) => this.morir(p.danio || 1));
-    fis.add.collider(this.peligros, this.solidos, (p) => p.destroy());
+    fis.add.collider(this.peligros, this.solidos, (a, b) => {
+      const p = this.peligros.contains(a) ? a : b;
+      if (p.body.blocked.down || p.body.touching.down) p.destroy();
+    });
     for (const c of this.checkpoints) fis.add.overlap(s, c.zona, () => this.activarCheckpoint(c));
     if (this.foto) fis.add.overlap(s, this.foto.zona, () => this.coger('foto'));
     if (this.objeto) fis.add.overlap(s, this.objeto.zona, () => this.coger('objeto'));
@@ -393,7 +398,8 @@ export class JuegoScene extends Phaser.Scene {
   }
 
   cajaSobreEnemigo(caja, e) {
-    if (caja.body.velocity.y > 120 && caja.body.bottom <= e.body.top + 14 && e.eliminable.includes('caja')) e.derrotar();
+    // la velocidad ya es 0 tras el choque: se usa la que llevaba en el fotograma anterior
+    if ((caja.vyAntes || 0) > 120 && caja.body.bottom <= e.body.top + 16 && e.eliminable.includes('caja')) e.derrotar();
   }
 
   tocarEnemigo(e) {
@@ -501,7 +507,10 @@ export class JuegoScene extends Phaser.Scene {
     // caída al vacío
     if ((s.y > this.datos.alto + 120 || s.y < -300) && !this.muriendo) this.morir(1, undefined, true);
     // cajas caídas al vacío vuelven a su sitio
-    for (const c of this.cajas.getChildren()) if (c.y > this.datos.alto + 200) this.recolocarCaja(c);
+    for (const c of this.cajas.getChildren()) {
+      c.vyAntes = c.body.velocity.y;
+      if (c.y > this.datos.alto + 200) this.recolocarCaja(c);
+    }
 
     // música más rápida con una sola vela
     if (this.velasTotal !== Infinity && !this.enFinal) Audio.setVelocidad(this.velas === 1 ? JUEGO.musica.aceleracionUltimaVela : 1);

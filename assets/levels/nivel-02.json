@@ -1,0 +1,753 @@
+{
+ "type": "map",
+ "version": "1.10",
+ "tiledversion": "1.11.0",
+ "orientation": "orthogonal",
+ "renderorder": "right-down",
+ "width": 232,
+ "height": 15,
+ "tilewidth": 48,
+ "tileheight": 48,
+ "infinite": false,
+ "nextlayerid": 4,
+ "nextobjectid": 50,
+ "properties": [
+  {
+   "name": "nivel",
+   "type": "int",
+   "value": 2
+  },
+  {
+   "name": "tema",
+   "type": "string",
+   "value": "casa"
+  },
+  {
+   "name": "edad",
+   "type": "int",
+   "value": 2
+  }
+ ],
+ "layers": [
+  {
+   "id": 1,
+   "name": "solidos",
+   "type": "objectgroup",
+   "draworder": "topdown",
+   "opacity": 1,
+   "visible": true,
+   "x": 0,
+   "y": 0,
+   "objects": [
+    {
+     "id": 1,
+     "name": "",
+     "type": "solido",
+     "x": 0,
+     "y": 0,
+     "width": 48,
+     "height": 576,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 2,
+     "name": "",
+     "type": "solido",
+     "x": 3072,
+     "y": 0,
+     "width": 2352,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 3,
+     "name": "",
+     "type": "solido",
+     "x": 11088,
+     "y": 0,
+     "width": 48,
+     "height": 432,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 5,
+     "name": "",
+     "type": "plataforma-cae",
+     "x": 7344,
+     "y": 96,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 6,
+     "name": "",
+     "type": "solido",
+     "x": 5952,
+     "y": 144,
+     "width": 48,
+     "height": 192,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 7,
+     "name": "",
+     "type": "nube",
+     "x": 7248,
+     "y": 192,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 9,
+     "name": "",
+     "type": "solido",
+     "x": 7056,
+     "y": 288,
+     "width": 192,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 10,
+     "name": "",
+     "type": "solido",
+     "x": 7488,
+     "y": 288,
+     "width": 240,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 11,
+     "name": "",
+     "type": "solido",
+     "x": 5424,
+     "y": 336,
+     "width": 576,
+     "height": 96,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 12,
+     "name": "",
+     "type": "solido",
+     "x": 7680,
+     "y": 336,
+     "width": 48,
+     "height": 240,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 13,
+     "name": "",
+     "type": "solido",
+     "x": 3744,
+     "y": 384,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 14,
+     "name": "",
+     "type": "solido",
+     "x": 4512,
+     "y": 384,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 15,
+     "name": "",
+     "type": "nube",
+     "x": 5280,
+     "y": 384,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 18,
+     "name": "",
+     "type": "solido",
+     "x": 6720,
+     "y": 432,
+     "width": 528,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 19,
+     "name": "",
+     "type": "solido",
+     "x": 9600,
+     "y": 432,
+     "width": 192,
+     "height": 288,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 20,
+     "name": "",
+     "type": "plataforma-cae",
+     "x": 9888,
+     "y": 432,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 21,
+     "name": "",
+     "type": "solido",
+     "x": 10176,
+     "y": 432,
+     "width": 960,
+     "height": 288,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 23,
+     "name": "",
+     "type": "nube",
+     "x": 5040,
+     "y": 480,
+     "width": 240,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 24,
+     "name": "",
+     "type": "solido",
+     "x": 8832,
+     "y": 480,
+     "width": 192,
+     "height": 240,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 25,
+     "name": "",
+     "type": "solido",
+     "x": 9264,
+     "y": 480,
+     "width": 144,
+     "height": 240,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 29,
+     "name": "",
+     "type": "solido",
+     "x": 864,
+     "y": 528,
+     "width": 288,
+     "height": 192,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 31,
+     "name": "",
+     "type": "solido",
+     "x": 2640,
+     "y": 528,
+     "width": 480,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 38,
+     "name": "",
+     "type": "solido",
+     "x": 8496,
+     "y": 528,
+     "width": 144,
+     "height": 192,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 39,
+     "name": "",
+     "type": "solido",
+     "x": 0,
+     "y": 576,
+     "width": 672,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 40,
+     "name": "",
+     "type": "solido",
+     "x": 1344,
+     "y": 576,
+     "width": 528,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 41,
+     "name": "",
+     "type": "solido",
+     "x": 2112,
+     "y": 576,
+     "width": 336,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 42,
+     "name": "",
+     "type": "solido",
+     "x": 2640,
+     "y": 576,
+     "width": 1392,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 43,
+     "name": "",
+     "type": "solido",
+     "x": 4176,
+     "y": 576,
+     "width": 624,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 44,
+     "name": "",
+     "type": "solido",
+     "x": 4944,
+     "y": 576,
+     "width": 3360,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "name": "entidades",
+   "type": "objectgroup",
+   "draworder": "topdown",
+   "opacity": 1,
+   "visible": true,
+   "x": 0,
+   "y": 0,
+   "objects": [
+    {
+     "id": 4,
+     "name": "",
+     "type": "foto",
+     "x": 7440,
+     "y": 48,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 8,
+     "name": "",
+     "type": "objeto",
+     "x": 5856,
+     "y": 288,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 16,
+     "name": "",
+     "type": "caja",
+     "x": 6864,
+     "y": 384,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 17,
+     "name": "",
+     "type": "meta",
+     "x": 10896,
+     "y": 384,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 22,
+     "name": "",
+     "type": "checkpoint",
+     "x": 2784,
+     "y": 480,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 26,
+     "name": "",
+     "type": "inicio",
+     "x": 96,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 27,
+     "name": "",
+     "type": "miriam",
+     "x": 192,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "hola"
+      }
+     ]
+    },
+    {
+     "id": 28,
+     "name": "",
+     "type": "cartel",
+     "x": 336,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "correr"
+      }
+     ]
+    },
+    {
+     "id": 30,
+     "name": "",
+     "type": "cartel",
+     "x": 1728,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "nocorras"
+      }
+     ]
+    },
+    {
+     "id": 32,
+     "name": "",
+     "type": "cartel",
+     "x": 3168,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "cocina"
+      }
+     ]
+    },
+    {
+     "id": 33,
+     "name": "",
+     "type": "checkpoint",
+     "x": 6096,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 34,
+     "name": "",
+     "type": "miriam",
+     "x": 6240,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "cajas"
+      },
+      {
+       "name": "radio",
+       "type": "int",
+       "value": 220
+      }
+     ]
+    },
+    {
+     "id": 35,
+     "name": "",
+     "type": "caja",
+     "x": 6480,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 36,
+     "name": "",
+     "type": "checkpoint",
+     "x": 7968,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 37,
+     "name": "",
+     "type": "cartel",
+     "x": 8064,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "escalera"
+      }
+     ]
+    },
+    {
+     "id": 45,
+     "name": "",
+     "type": "lluvia",
+     "x": 3216,
+     "y": 192,
+     "width": 528,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "intervalo",
+       "type": "int",
+       "value": 700
+      },
+      {
+       "name": "texturas",
+       "type": "string",
+       "value": "obj-patito,obj-sonajero,obj-cubo"
+      }
+     ]
+    },
+    {
+     "id": 46,
+     "name": "",
+     "type": "lluvia",
+     "x": 3888,
+     "y": 192,
+     "width": 624,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "intervalo",
+       "type": "int",
+       "value": 600
+      },
+      {
+       "name": "texturas",
+       "type": "string",
+       "value": "obj-patito,obj-ceras,obj-cubo"
+      }
+     ]
+    },
+    {
+     "id": 47,
+     "name": "",
+     "type": "lluvia",
+     "x": 4656,
+     "y": 192,
+     "width": 624,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "intervalo",
+       "type": "int",
+       "value": 520
+      },
+      {
+       "name": "texturas",
+       "type": "string",
+       "value": "obj-sonajero,obj-ceras,obj-patito"
+      }
+     ]
+    },
+    {
+     "id": 48,
+     "name": "",
+     "type": "lluvia",
+     "x": 5520,
+     "y": 0,
+     "width": 432,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "intervalo",
+       "type": "int",
+       "value": 300
+      },
+      {
+       "name": "texturas",
+       "type": "string",
+       "value": "obj-cubo,obj-sonajero"
+      }
+     ]
+    },
+    {
+     "id": 49,
+     "name": "",
+     "type": "lluvia",
+     "x": 10224,
+     "y": 0,
+     "width": 576,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "intervalo",
+       "type": "int",
+       "value": 900
+      },
+      {
+       "name": "texturas",
+       "type": "string",
+       "value": "obj-cubo,obj-sonajero"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "name": "zonas",
+   "type": "objectgroup",
+   "draworder": "topdown",
+   "opacity": 1,
+   "visible": true,
+   "x": 0,
+   "y": 0,
+   "objects": []
+  }
+ ],
+ "tilesets": []
+}

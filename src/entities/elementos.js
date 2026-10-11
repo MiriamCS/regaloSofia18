@@ -155,16 +155,23 @@ class Bloque {
     const h = alto ?? o.h;
     this.zona = movil ? cuerpoMovil(scene, o.x, o.y, o.w, h) : cuerpoEstatico(scene, o.x, o.y, o.w, h);
     this.zona.elemento = this;
+    if (movil) this.zona.body.setFriction(0, 0); // el arrastre horizontal lo hace la escena
     this.g = dibujarBloque(scene, o.x, o.y, o.w, o.h, paleta, estilo);
     this.g.setDepth(20);
     this.base = { x: o.x, y: o.y };
     this.mundo = o.p.mundo;
   }
-  mover(x, y) {
+  // Las plataformas móviles se mueven por velocidad (no teletransportándose) para que
+  // Arcade sostenga y arrastre bien a quien vaya encima, también al subir.
+  mover(x, y, dt) {
     this.g.setPosition(x, y);
-    if (this.zona.body.moves) {
-      this.zona.body.reset(x + this.o.w / 2, y + this.zona.height / 2);
+    const b = this.zona.body;
+    if (!b.moves) return;
+    if (!dt || Math.abs(x - b.x) > 200 || Math.abs(y - b.y) > 200) {
+      b.reset(x + this.o.w / 2, y + this.zona.height / 2);
+      return;
     }
+    b.setVelocity((x - b.x) / dt, (y - b.y) / dt);
   }
   activo(si) {
     this.zona.body.enable = si && !this.zona.fueraDeMundo;
@@ -188,7 +195,8 @@ export class PlataformaMovil extends Bloque {
     this.deltaX = 0;
     this.deltaY = 0;
   }
-  actualizar(t) {
+  actualizar(t, dt) {
+    this.dtAnterior = dt;
     const fase = ((t + this.t0) % (this.dur * 2)) / this.dur;
     const k = fase < 1 ? fase : 2 - fase;
     const e = 0.5 - Math.cos(k * Math.PI) / 2;
@@ -197,10 +205,7 @@ export class PlataformaMovil extends Bloque {
     this.deltaX = x - this.ultimo.x;
     this.deltaY = y - this.ultimo.y;
     this.ultimo = { x, y };
-    // velocidad para que Arcade arrastre a quien esté encima
-    this.g.setPosition(x, y);
-    const b = this.zona.body;
-    b.reset(x + this.o.w / 2, y + this.zona.height / 2);
+    this.mover(x, y, this.dtAnterior);
   }
 }
 
@@ -228,7 +233,7 @@ export class PlataformaCae extends Bloque {
       const vel = pisando ? (this.o.p.velocidad || 70) : 110;
       if (Math.abs(objetivo - this.y) < vel * dt) this.y = objetivo;
       else this.y += Math.sign(objetivo - this.y) * vel * dt;
-      this.mover(this.o.x, this.y);
+      this.mover(this.o.x, this.y, dt);
       return;
     }
     if (this.estado === 'tiembla') {
@@ -347,7 +352,7 @@ export class PlataformaMusical extends Bloque {
       // se desplaza mientras dura la canción y vuelve poco a poco
       const obj = activa ? 1 : 0;
       this.prog = Phaser.Math.Clamp(this.prog + Math.sign(obj - this.prog) * dt * (activa ? 0.8 : 0.35), 0, 1);
-      this.mover(this.base.x + this.dx * this.prog, this.base.y + this.dy * this.prog);
+      this.mover(this.base.x + this.dx * this.prog, this.base.y + this.dy * this.prog, dt);
     }
   }
 }
@@ -728,7 +733,7 @@ export class LluviaObjetos {
     this.siguiente = t + this.intervalo * (0.7 + Math.random() * 0.6);
     const x = this.o.x + 20 + Math.random() * (this.o.w - 40);
     const tex = Phaser.Utils.Array.GetRandom(this.texturas);
-    const s = this.scene.physics.add.image(x, this.o.y, tex).setScale(0.32).setDepth(40);
+    const s = this.scene.physics.add.image(x, this.o.y + 24, tex).setScale(0.32).setDepth(40);
     s.body.setCircle(60, 36, 36);
     s.setAngularVelocity((Math.random() - 0.5) * 300);
     s.body.setMaxVelocityY(this.o.p.velocidad || 520);

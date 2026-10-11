@@ -15,6 +15,8 @@ export default {
     { tipo: 'gravedad', x: 40, y: 0, w: 10, h: 12, factor: -1 },
     { tipo: 'peligro-movil', x: 60, y: 14, w: 20, h: 2, dir: 'arriba', velocidad: 30, desdeX: 60 },
     { tipo: 'miriam', x: 4, y: 11, pista: 'x', texto: 'Prueba' },
+    { tipo: 'plataforma-movil', x: 30, y: 11, w: 3, h: 1, dy: -5, duracion: 2000 },
+    { tipo: 'plataforma-movil', x: 34, y: 8, w: 3, h: 1, dx: 4, duracion: 2000, estilo: 'solido' },
   ],
   mapa: `
 ##########################################################################################
