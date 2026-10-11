@@ -1,4 +1,4 @@
-// Miriam (PROVISIONAL: falta su foto o descripción y la diferencia de edad).
+// Miriam (PROVISIONAL: falta su foto o descripción). Es 5 años mayor que Sofía.
 // De momento es un diseño neutro en el mismo estilo, con ropa amarilla para distinguirla de Sofía.
 import { TRAZO, ANCHO_TRAZO as T, f } from './comun.mjs';
 
@@ -6,7 +6,8 @@ const PIEL = '#e7b590';
 const PELO = '#5a3a28';
 
 const ETAPAS = {
-  nina: { piernas: 34, torso: 32, cabeza: 36, ropa: '#f5c542', abajo: '#4f7fd8' },
+  nina: { piernas: 28, torso: 30, cabeza: 37, ropa: '#f5c542', abajo: '#4f7fd8' },
+  preado: { piernas: 34, torso: 33, cabeza: 36, ropa: '#f5c542', abajo: '#4f7fd8' },
   adolescente: { piernas: 40, torso: 36, cabeza: 36, ropa: '#f5c542', abajo: '#3a4f8a' },
   adulta: { piernas: 42, torso: 38, cabeza: 36, ropa: '#f5c542', abajo: '#2b3a6b' },
 };

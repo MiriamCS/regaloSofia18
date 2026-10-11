@@ -3,12 +3,31 @@
   "etapas": {
     "nina": {
       "medidas": {
-        "alto": 102
+        "alto": 95
+      },
+      "piezas": {
+        "cuerpo": {
+          "w": 83,
+          "h": 109,
+          "pivote": [
+            0,
+            0
+          ],
+          "origen": [
+            0.54,
+            0.94
+          ]
+        }
+      }
+    },
+    "preado": {
+      "medidas": {
+        "alto": 103
       },
       "piezas": {
         "cuerpo": {
           "w": 82,
-          "h": 116,
+          "h": 117,
           "pivote": [
             0,
             0
