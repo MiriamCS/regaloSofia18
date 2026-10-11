@@ -202,7 +202,12 @@
     },
     {
       "nombre": "Primer día de instituto",
-      "pistas": {}
+      "pistas": {
+        "hola": "¡Primer día de insti, Sofi! Aquí nada funciona como en el cole: ni las flechas, ni la gravedad, ni el horario. Tú respira.",
+        "poraquino": "POR AQUÍ NO ➡ (La flecha la pintó alguien con los controles al revés. Como tú ahora mismo.)",
+        "alreves": "Esta escalera se sube por el techo. Cuando estés boca abajo, saltar es hacia abajo y los agujeros del techo dan al cielo. ¡No mires arriba! Bueno, abajo. Bueno, tú me entiendes.",
+        "final": "Último pasillo. Si te sale todo al revés, es que vas bien. ¡Ya casi eres de instituto!"
+      }
     },
     {
       "nombre": "La habitación y el móvil gigante",

@@ -337,7 +337,13 @@ export class JuegoScene extends Phaser.Scene {
       return b.velocity.y >= 0 && b.prev.y + b.height <= z.body.top + 8;
     };
     // en plataformas que se mueven, se compara con la velocidad de la plataforma (al subir, quien va encima sube con ella)
-    const unaDireccionMovil = (cuerpo, z) => cuerpo.body.velocity.y >= z.body.velocity.y - 5 && cuerpo.body.prev.y + cuerpo.body.height <= z.body.prev.y + 10;
+    // (las temporizadas tienen cuerpo estático, sin velocidad ni posición anterior)
+    const unaDireccionMovil = (cuerpo, z) => {
+      const zb = z.body;
+      const vz = zb.velocity ? zb.velocity.y : 0;
+      const topeAntes = zb.prev ? zb.prev.y : zb.y;
+      return cuerpo.body.velocity.y >= vz - 5 && cuerpo.body.prev.y + cuerpo.body.height <= topeAntes + 10;
+    };
     fis.add.collider(s, this.solidos, (sofia, z) => this.alPisar(z));
     fis.add.collider(s, this.nubes, null, unaDireccion);
     fis.add.collider(this.cajas, this.solidos);
