@@ -30,6 +30,7 @@ const juego = new Phaser.Game({
   render: { antialias: true, roundPixels: false },
   physics: { default: 'arcade', arcade: { gravity: { y: JUEGO.fisica.gravedad }, debug: new URLSearchParams(location.search).has('debug') } },
   input: { activePointers: 4 },
+  audio: { noAudio: true }, // el audio lo gestiona src/audio (Web Audio propio)
   fps: { target: 60 },
   scene: [BootScene, MenuScene, NivelesScene, AlbumScene, VitrinaScene, OpcionesScene, TransicionScene, JuegoScene, InterfazScene, PausaScene, TartaScene, PosesScene],
 });
