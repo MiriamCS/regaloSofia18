@@ -1,0 +1,9 @@
+{
+  "nombre": "La clase de música",
+  "pistas": {
+    "hola": "¡Sofi, primer día de clase de música! Aquí el suelo es un piano gigante: cada tecla que pisas, suena.",
+    "teclas": "Las puertas de esta clase se abren tocando sus notas en orden. Pisa solo las teclas que toquen.",
+    "armario": "Era un armario. Dentro: un metrónomo con muy mal carácter. ¿Y si el himno tenía una segunda mitad?",
+    "piano": "El gran piano, Sofi. La salida quiere «Estrellita». Y arriba hay una puerta secreta que pide la canción que te cantamos en cada cumpleaños..."
+  }
+}

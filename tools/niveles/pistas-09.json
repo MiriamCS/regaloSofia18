@@ -1,0 +1,9 @@
+{
+  "nombre": "El conservatorio",
+  "pistas": {
+    "hola": "¡Bienvenida al conservatorio, Sofi! Aquí las puertas piden melodías enteras. Canta junto a cada campana, en orden... y sin prisa. Bueno, de momento.",
+    "taquilla": "Taquilla del conserje. Combinación: el timbre del recreo (sol, mi, do... y vuelta a subir).",
+    "puerta": "Puerta de la sala de ensayo. Funciona... más o menos.",
+    "audicion": "¡Tu primera audición! «Oda a la alegría»: mi mi fa sol sol fa mi. Ojo: si cantas cerca de una campana, suena aunque no quieras."
+  }
+}

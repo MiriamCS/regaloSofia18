@@ -64,19 +64,26 @@ export function dibujarBloque(scene, x, y, w, h, paleta, estilo = 'solido') {
 
 // Dibuja todos los sólidos del nivel como una única forma: relleno continuo, franja clara
 // arriba de cada superficie y contorno solo en los bordes que dan al aire.
-export function dibujarSuelos(scene, rects, paleta, anchoMundo, altoMundo) {
+// 'soloEstos': si se pasa, solo se dibujan esos rectángulos (con los bordes calculados sobre todos).
+export function dibujarSuelos(scene, rects, paleta, anchoMundo, altoMundo, soloEstos = null) {
   const k = texturasBloque(scene, paleta);
   const cols = Math.ceil(anchoMundo / TILE) + 1;
   const filas = Math.ceil(altoMundo / TILE) + 1;
   const lleno = new Uint8Array(cols * filas);
-  const en = (cx, cy) => cx >= 0 && cy >= 0 && cx < cols && cy < filas && lleno[cy * cols + cx] === 1;
-  for (const r of rects) {
-    for (let y = Math.floor(r.y / TILE); y < Math.ceil((r.y + r.h) / TILE); y++) {
-      for (let x = Math.floor(r.x / TILE); x < Math.ceil((r.x + r.w) / TILE); x++) if (x >= 0 && y >= 0 && x < cols && y < filas) lleno[y * cols + x] = 1;
+  const marcar = (lista, valor) => {
+    for (const r of lista) {
+      for (let y = Math.floor(r.y / TILE); y < Math.ceil((r.y + r.h) / TILE); y++) {
+        for (let x = Math.floor(r.x / TILE); x < Math.ceil((r.x + r.w) / TILE); x++) if (x >= 0 && y >= 0 && x < cols && y < filas) lleno[y * cols + x] |= valor;
+      }
     }
-  }
+  };
+  marcar(rects, 1);
+  if (soloEstos) marcar(soloEstos, 2);
+  const en = (cx, cy) => cx >= 0 && cy >= 0 && cx < cols && cy < filas && (lleno[cy * cols + cx] & 1) === 1;
+  // casillas que se pintan (todas, o solo las marcadas)
+  const pinta = (cx, cy) => en(cx, cy) && (!soloEstos || (lleno[cy * cols + cx] & 2) === 2);
   const c = scene.add.container(0, 0);
-  for (const r of rects) {
+  for (const r of soloEstos || rects) {
     const t = scene.add.tileSprite(r.x, r.y, r.w, r.h, `${k}-relleno`).setOrigin(0);
     t.tilePositionX = r.x;
     t.tilePositionY = r.y;
@@ -89,9 +96,9 @@ export function dibujarSuelos(scene, rects, paleta, anchoMundo, altoMundo) {
     // tramos horizontales con aire encima (superficie) o debajo
     let x = 0;
     while (x < cols) {
-      if (en(x, y) && !en(x, y - 1)) {
+      if (pinta(x, y) && !en(x, y - 1)) {
         let x2 = x;
-        while (en(x2 + 1, y) && !en(x2 + 1, y - 1)) x2++;
+        while (pinta(x2 + 1, y) && !en(x2 + 1, y - 1)) x2++;
         g.fillStyle(claro, 1).fillRect(x * TILE, y * TILE, (x2 - x + 1) * TILE, 14);
         g.fillStyle(paleta.sueloBorde, 1).fillRect(x * TILE, y * TILE, (x2 - x + 1) * TILE, G);
         x = x2 + 1;
@@ -99,9 +106,9 @@ export function dibujarSuelos(scene, rects, paleta, anchoMundo, altoMundo) {
     }
     x = 0;
     while (x < cols) {
-      if (en(x, y) && !en(x, y + 1) && y + 1 < filas) {
+      if (pinta(x, y) && !en(x, y + 1) && y + 1 < filas) {
         let x2 = x;
-        while (en(x2 + 1, y) && !en(x2 + 1, y + 1)) x2++;
+        while (pinta(x2 + 1, y) && !en(x2 + 1, y + 1)) x2++;
         g.fillStyle(paleta.sueloBorde, 1).fillRect(x * TILE, (y + 1) * TILE - G, (x2 - x + 1) * TILE, G);
         x = x2 + 1;
       } else x++;
@@ -111,9 +118,9 @@ export function dibujarSuelos(scene, rects, paleta, anchoMundo, altoMundo) {
     for (const lado of [-1, 1]) {
       let y = 0;
       while (y < filas) {
-        if (en(x, y) && !en(x + lado, y) && x + lado >= 0) {
+        if (pinta(x, y) && !en(x + lado, y) && x + lado >= 0) {
           let y2 = y;
-          while (en(x, y2 + 1) && !en(x + lado, y2 + 1)) y2++;
+          while (pinta(x, y2 + 1) && !en(x + lado, y2 + 1)) y2++;
           const px = lado < 0 ? x * TILE : (x + 1) * TILE - G;
           g.fillStyle(paleta.sueloBorde, 1).fillRect(px, y * TILE, G, (y2 - y + 1) * TILE);
           y = y2 + 1;
@@ -441,9 +448,10 @@ export class PuertaMelodia {
       this.progreso++;
       if (this.progreso >= this.secuencia.length) this.abrir();
     } else {
+      const habiaEmpezado = this.progreso > 0;
       this.progreso = midi(nota) === midi(this.secuencia[0]) ? 1 : 0;
       this.marcas.forEach((m, i) => m.setColor(i < this.progreso ? '#ffd23f' : '#ffffff'));
-      Audio.efecto('mal');
+      if (habiaEmpezado) Audio.efecto('mal');
     }
   }
   abrir() {
@@ -662,27 +670,35 @@ export class PeligroMovil {
     this.g = scene.add.graphics().setDepth(65);
     this.pos = { x: o.x, y: o.y };
     this.activo = !o.p.desdeX;
+    // 'hastaX' / 'hastaY' (casillas): donde se detiene el frente
+    this.hasta = this.dir === 'arriba' ? (o.p.hastaY !== undefined ? o.p.hastaY * TILE : -Infinity) : (o.p.hastaX !== undefined ? o.p.hastaX * TILE : Infinity);
+    this.zona.body.enable = this.activo;
     this.dibujar(0);
   }
   dibujar(t) {
     const { w, h } = this.o;
     const g = this.g;
     g.clear();
+    if (!this.activo) return;
     g.fillStyle(this.color, 0.85);
     if (this.dir === 'arriba') {
-      g.fillRect(this.pos.x, this.pos.y + 10, w, h + 2000);
+      g.fillRect(this.pos.x, this.pos.y + 10, w, h + Math.max(0, this.o.y - this.pos.y));
       for (let x = 0; x < w; x += 40) g.fillCircle(this.pos.x + x + 20, this.pos.y + 12 + Math.sin(t / 300 + x) * 4, 22);
     } else {
-      g.fillRect(this.pos.x - 2000, this.pos.y, w + 2000 - 10, h);
+      const cola = Math.max(0, this.pos.x - this.o.x);
+      g.fillRect(this.pos.x - cola, this.pos.y, w + cola - 10, h);
       for (let y = 0; y < h; y += 40) g.fillCircle(this.pos.x + w - 12 + Math.sin(t / 300 + y) * 4, this.pos.y + y + 20, 22);
     }
   }
   actualizar(t, dt) {
     const s = this.scene.sofia;
-    if (!this.activo && s.x >= this.o.p.desdeX * TILE) this.activo = true;
+    if (!this.activo && s.x >= this.o.p.desdeX * TILE) {
+      this.activo = true;
+      this.zona.body.enable = true;
+    }
     if (this.activo && !this.scene.muriendo && !this.scene.terminado) {
-      if (this.dir === 'arriba') this.pos.y -= this.vel * dt;
-      else this.pos.x += this.vel * dt;
+      if (this.dir === 'arriba') this.pos.y = Math.max(this.hasta, this.pos.y - this.vel * dt);
+      else this.pos.x = Math.min(this.hasta - this.o.w, this.pos.x + this.vel * dt);
       this.zona.body.reset(this.pos.x + this.o.w / 2, this.pos.y + this.o.h / 2);
     }
     this.dibujar(t);

@@ -1,0 +1,1535 @@
+{
+ "type": "map",
+ "version": "1.10",
+ "tiledversion": "1.11.0",
+ "orientation": "orthogonal",
+ "renderorder": "right-down",
+ "width": 250,
+ "height": 15,
+ "tilewidth": 48,
+ "tileheight": 48,
+ "infinite": false,
+ "nextlayerid": 4,
+ "nextobjectid": 80,
+ "properties": [
+  {
+   "name": "nivel",
+   "type": "int",
+   "value": 6
+  },
+  {
+   "name": "tema",
+   "type": "string",
+   "value": "colegio"
+  },
+  {
+   "name": "edad",
+   "type": "int",
+   "value": 6
+  }
+ ],
+ "layers": [
+  {
+   "id": 1,
+   "name": "solidos",
+   "type": "objectgroup",
+   "draworder": "topdown",
+   "opacity": 1,
+   "visible": true,
+   "x": 0,
+   "y": 0,
+   "objects": [
+    {
+     "id": 1,
+     "name": "",
+     "type": "solido",
+     "x": 0,
+     "y": 0,
+     "width": 48,
+     "height": 576,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 2,
+     "name": "",
+     "type": "solido",
+     "x": 3648,
+     "y": 0,
+     "width": 48,
+     "height": 432,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 3,
+     "name": "",
+     "type": "solido",
+     "x": 4752,
+     "y": 0,
+     "width": 48,
+     "height": 432,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 4,
+     "name": "",
+     "type": "solido",
+     "x": 6432,
+     "y": 0,
+     "width": 432,
+     "height": 432,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 5,
+     "name": "",
+     "type": "solido",
+     "x": 10128,
+     "y": 0,
+     "width": 48,
+     "height": 432,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 6,
+     "name": "",
+     "type": "solido",
+     "x": 11952,
+     "y": 0,
+     "width": 48,
+     "height": 576,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 8,
+     "name": "",
+     "type": "nube",
+     "x": 1632,
+     "y": 144,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 11,
+     "name": "",
+     "type": "plataforma-musical",
+     "x": 1968,
+     "y": 192,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "modo",
+       "type": "string",
+       "value": "aparece"
+      }
+     ]
+    },
+    {
+     "id": 12,
+     "name": "",
+     "type": "solido",
+     "x": 9168,
+     "y": 192,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 15,
+     "name": "",
+     "type": "solido",
+     "x": 7440,
+     "y": 240,
+     "width": 528,
+     "height": 192,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 17,
+     "name": "",
+     "type": "solido",
+     "x": 4224,
+     "y": 288,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 19,
+     "name": "",
+     "type": "plataforma-musical",
+     "x": 8928,
+     "y": 288,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "modo",
+       "type": "string",
+       "value": "aparece"
+      }
+     ]
+    },
+    {
+     "id": 21,
+     "name": "",
+     "type": "plataforma-musical",
+     "x": 2112,
+     "y": 336,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "modo",
+       "type": "string",
+       "value": "aparece"
+      }
+     ]
+    },
+    {
+     "id": 22,
+     "name": "",
+     "type": "plataforma-musical",
+     "x": 7296,
+     "y": 336,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "modo",
+       "type": "string",
+       "value": "aparece"
+      }
+     ]
+    },
+    {
+     "id": 23,
+     "name": "",
+     "type": "solido",
+     "x": 8736,
+     "y": 336,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 26,
+     "name": "",
+     "type": "solido",
+     "x": 9552,
+     "y": 384,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 27,
+     "name": "",
+     "type": "solido",
+     "x": 10560,
+     "y": 384,
+     "width": 384,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 28,
+     "name": "",
+     "type": "plataforma-musical",
+     "x": 2736,
+     "y": 432,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "modo",
+       "type": "string",
+       "value": "aparece"
+      }
+     ]
+    },
+    {
+     "id": 29,
+     "name": "",
+     "type": "plataforma-musical",
+     "x": 4032,
+     "y": 432,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "modo",
+       "type": "string",
+       "value": "aparece"
+      }
+     ]
+    },
+    {
+     "id": 31,
+     "name": "",
+     "type": "solido",
+     "x": 5712,
+     "y": 432,
+     "width": 192,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 33,
+     "name": "",
+     "type": "plataforma-musical",
+     "x": 7152,
+     "y": 432,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "modo",
+       "type": "string",
+       "value": "aparece"
+      }
+     ]
+    },
+    {
+     "id": 34,
+     "name": "",
+     "type": "solido",
+     "x": 10896,
+     "y": 432,
+     "width": 48,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 35,
+     "name": "",
+     "type": "plataforma-musical",
+     "x": 1200,
+     "y": 480,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "modo",
+       "type": "string",
+       "value": "aparece"
+      }
+     ]
+    },
+    {
+     "id": 36,
+     "name": "",
+     "type": "plataforma-musical",
+     "x": 1968,
+     "y": 480,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "modo",
+       "type": "string",
+       "value": "aparece"
+      }
+     ]
+    },
+    {
+     "id": 37,
+     "name": "",
+     "type": "plataforma-musical",
+     "x": 2544,
+     "y": 480,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "modo",
+       "type": "string",
+       "value": "aparece"
+      }
+     ]
+    },
+    {
+     "id": 38,
+     "name": "",
+     "type": "solido",
+     "x": 5376,
+     "y": 480,
+     "width": 192,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 39,
+     "name": "",
+     "type": "solido",
+     "x": 6048,
+     "y": 480,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 40,
+     "name": "",
+     "type": "plataforma-musical",
+     "x": 8544,
+     "y": 480,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "modo",
+       "type": "string",
+       "value": "aparece"
+      }
+     ]
+    },
+    {
+     "id": 41,
+     "name": "",
+     "type": "solido",
+     "x": 10416,
+     "y": 480,
+     "width": 96,
+     "height": 96,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 45,
+     "name": "",
+     "type": "plataforma-musical",
+     "x": 1008,
+     "y": 528,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "modo",
+       "type": "string",
+       "value": "aparece"
+      }
+     ]
+    },
+    {
+     "id": 51,
+     "name": "",
+     "type": "puerta",
+     "x": 3648,
+     "y": 432,
+     "width": 48,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "p1"
+      },
+      {
+       "name": "secuencia",
+       "type": "string",
+       "value": "G5,C5"
+      }
+     ]
+    },
+    {
+     "id": 54,
+     "name": "",
+     "type": "puerta",
+     "x": 4752,
+     "y": 432,
+     "width": 48,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "p2"
+      },
+      {
+       "name": "secuencia",
+       "type": "string",
+       "value": "E5,A5,D5"
+      }
+     ]
+    },
+    {
+     "id": 63,
+     "name": "",
+     "type": "puerta",
+     "x": 10128,
+     "y": 432,
+     "width": 48,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "aula"
+      },
+      {
+       "name": "secuencia",
+       "type": "string",
+       "value": "C5,E5,G5,C6"
+      }
+     ]
+    },
+    {
+     "id": 66,
+     "name": "",
+     "type": "puerta",
+     "x": 10560,
+     "y": 432,
+     "width": 48,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "armario"
+      },
+      {
+       "name": "secuencia",
+       "type": "string",
+       "value": "A5,F5,D5"
+      },
+      {
+       "name": "oculta",
+       "type": "bool",
+       "value": true
+      }
+     ]
+    },
+    {
+     "id": 70,
+     "name": "",
+     "type": "solido",
+     "x": 0,
+     "y": 576,
+     "width": 912,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 71,
+     "name": "",
+     "type": "solido",
+     "x": 1488,
+     "y": 576,
+     "width": 912,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 72,
+     "name": "",
+     "type": "solido",
+     "x": 2976,
+     "y": 576,
+     "width": 1008,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 74,
+     "name": "",
+     "type": "solido",
+     "x": 4416,
+     "y": 576,
+     "width": 864,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 76,
+     "name": "",
+     "type": "solido",
+     "x": 6288,
+     "y": 576,
+     "width": 2256,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 78,
+     "name": "",
+     "type": "solido",
+     "x": 9936,
+     "y": 576,
+     "width": 2064,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 79,
+     "name": "",
+     "type": "solido",
+     "x": 2976,
+     "y": 624,
+     "width": 9024,
+     "height": 96,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "name": "entidades",
+   "type": "objectgroup",
+   "draworder": "topdown",
+   "opacity": 1,
+   "visible": true,
+   "x": 0,
+   "y": 0,
+   "objects": [
+    {
+     "id": 7,
+     "name": "",
+     "type": "foto",
+     "x": 1680,
+     "y": 96,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 9,
+     "name": "",
+     "type": "campana",
+     "x": 9216,
+     "y": 144,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "G5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "aula"
+      }
+     ]
+    },
+    {
+     "id": 10,
+     "name": "",
+     "type": "campana",
+     "x": 11136,
+     "y": 144,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "A5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "armario"
+      }
+     ]
+    },
+    {
+     "id": 13,
+     "name": "",
+     "type": "campana",
+     "x": 4224,
+     "y": 240,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "A5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "p2"
+      }
+     ]
+    },
+    {
+     "id": 14,
+     "name": "",
+     "type": "enemigo",
+     "x": 5952,
+     "y": 240,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "avion-papel"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "amplitud",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 1700
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 70
+      }
+     ]
+    },
+    {
+     "id": 16,
+     "name": "",
+     "type": "enemigo",
+     "x": 2640,
+     "y": 288,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "avion-papel"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "amplitud",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 1700
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 70
+      }
+     ]
+    },
+    {
+     "id": 18,
+     "name": "",
+     "type": "campana",
+     "x": 8784,
+     "y": 288,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "E5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "aula"
+      }
+     ]
+    },
+    {
+     "id": 20,
+     "name": "",
+     "type": "campana",
+     "x": 10704,
+     "y": 288,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "F5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "armario"
+      }
+     ]
+    },
+    {
+     "id": 24,
+     "name": "",
+     "type": "campana",
+     "x": 9600,
+     "y": 336,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "C6"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "aula"
+      }
+     ]
+    },
+    {
+     "id": 25,
+     "name": "",
+     "type": "enemigo",
+     "x": 5808,
+     "y": 384,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "patrullero"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "mochila"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 2
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 75
+      },
+      {
+       "name": "canto",
+       "type": "string",
+       "value": "dormir"
+      }
+     ]
+    },
+    {
+     "id": 30,
+     "name": "",
+     "type": "enemigo",
+     "x": 5472,
+     "y": 432,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "patrullero"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "mochila"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 2
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 75
+      },
+      {
+       "name": "canto",
+       "type": "string",
+       "value": "dormir"
+      }
+     ]
+    },
+    {
+     "id": 32,
+     "name": "",
+     "type": "enemigo",
+     "x": 6096,
+     "y": 432,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "patrullero"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "mochila"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 2
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 75
+      },
+      {
+       "name": "canto",
+       "type": "string",
+       "value": "dormir"
+      }
+     ]
+    },
+    {
+     "id": 42,
+     "name": "",
+     "type": "inicio",
+     "x": 144,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 43,
+     "name": "",
+     "type": "miriam",
+     "x": 336,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "cantar"
+      }
+     ]
+    },
+    {
+     "id": 44,
+     "name": "",
+     "type": "cartel",
+     "x": 768,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "musical"
+      }
+     ]
+    },
+    {
+     "id": 47,
+     "name": "",
+     "type": "checkpoint",
+     "x": 3024,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 48,
+     "name": "",
+     "type": "miriam",
+     "x": 3120,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "pasillo"
+      }
+     ]
+    },
+    {
+     "id": 49,
+     "name": "",
+     "type": "campana",
+     "x": 3264,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "C5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "p1"
+      }
+     ]
+    },
+    {
+     "id": 50,
+     "name": "",
+     "type": "campana",
+     "x": 3456,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "G5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "p1"
+      }
+     ]
+    },
+    {
+     "id": 52,
+     "name": "",
+     "type": "campana",
+     "x": 3888,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "E5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "p2"
+      }
+     ]
+    },
+    {
+     "id": 53,
+     "name": "",
+     "type": "campana",
+     "x": 4560,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "D5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "p2"
+      }
+     ]
+    },
+    {
+     "id": 55,
+     "name": "",
+     "type": "checkpoint",
+     "x": 4944,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 56,
+     "name": "",
+     "type": "enemigo",
+     "x": 6624,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "bloqueador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "profesor"
+      },
+      {
+       "name": "canto",
+       "type": "string",
+       "value": "apartar"
+      }
+     ]
+    },
+    {
+     "id": 57,
+     "name": "",
+     "type": "enemigo",
+     "x": 7008,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "patrullero"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "mochila"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 2
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 75
+      },
+      {
+       "name": "canto",
+       "type": "string",
+       "value": "dormir"
+      }
+     ]
+    },
+    {
+     "id": 58,
+     "name": "",
+     "type": "cartel",
+     "x": 7536,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "profe"
+      }
+     ]
+    },
+    {
+     "id": 59,
+     "name": "",
+     "type": "enemigo",
+     "x": 7728,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "bloqueador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "profesor"
+      },
+      {
+       "name": "canto",
+       "type": "string",
+       "value": "dormir"
+      }
+     ]
+    },
+    {
+     "id": 60,
+     "name": "",
+     "type": "checkpoint",
+     "x": 8112,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 61,
+     "name": "",
+     "type": "miriam",
+     "x": 8208,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "aula"
+      }
+     ]
+    },
+    {
+     "id": 62,
+     "name": "",
+     "type": "campana",
+     "x": 8400,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "C5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "aula"
+      }
+     ]
+    },
+    {
+     "id": 64,
+     "name": "",
+     "type": "cartel",
+     "x": 10224,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "armario"
+      }
+     ]
+    },
+    {
+     "id": 65,
+     "name": "",
+     "type": "campana",
+     "x": 10320,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "D5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "armario"
+      }
+     ]
+    },
+    {
+     "id": 67,
+     "name": "",
+     "type": "objeto",
+     "x": 10800,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 68,
+     "name": "",
+     "type": "cartel",
+     "x": 11520,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "recreo"
+      }
+     ]
+    },
+    {
+     "id": 69,
+     "name": "",
+     "type": "meta",
+     "x": 11760,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "name": "zonas",
+   "type": "objectgroup",
+   "draworder": "topdown",
+   "opacity": 1,
+   "visible": true,
+   "x": 0,
+   "y": 0,
+   "objects": [
+    {
+     "id": 46,
+     "name": "",
+     "type": "pinchos",
+     "x": 1968,
+     "y": 528,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 1
+      }
+     ]
+    },
+    {
+     "id": 73,
+     "name": "",
+     "type": "pinchos",
+     "x": 3984,
+     "y": 576,
+     "width": 432,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 1
+      }
+     ]
+    },
+    {
+     "id": 75,
+     "name": "",
+     "type": "pinchos",
+     "x": 5280,
+     "y": 576,
+     "width": 1008,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 1
+      }
+     ]
+    },
+    {
+     "id": 77,
+     "name": "",
+     "type": "pinchos",
+     "x": 8544,
+     "y": 576,
+     "width": 1392,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 1
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "tilesets": []
+}

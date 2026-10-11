@@ -228,6 +228,10 @@ entre checkpoints. La dificultad sube claramente de un nivel al siguiente.
 | Radio del canto | 190 px | ~4 casillas |
 | Plataforma musical activa | 3,8 s | |
 
+Ojo: correr se mantiene en el aire si se sigue pulsando la flecha, así que en la práctica los saltos
+llegan algo más lejos (un doble salto corriendo cubre ~9 casillas). Al morir, las cajas que empiezan
+por delante del atril vuelven a su sitio. Lo que hay dentro de una pared falsa (`fantasma`) queda tapado.
+
 La pantalla muestra unas 27 × 15 casillas. Un nivel típico mide 15 de alto y 150-300 de ancho;
 los de escape vertical pueden medir 40+ de alto.
 
@@ -264,12 +268,12 @@ Los objetos con posición exacta o tamaño especial van en `objetos: [{ tipo, x,
 | `plataforma-musical` | `modo` (`aparece`/`mueve`), `dx`, `dy`, `duracion`, `global` |
 | `tecla` | `nota` (`C4`, `F#4`...), `grupo` |
 | `campana` | `nota`, `grupo` (suena al cantar cerca) |
-| `puerta` | `grupo`, `secuencia` (`"C5,E5,G5"`), `oculta` (no muestra las notas) |
+| `puerta` | `grupo`, `secuencia` (`"C5,E5,G5"`), `oculta` (no muestra las notas; cantar junto a la puerta la hace tocar su melodía) |
 | `caja`, `mueble` | `estilo` (`juguete`/`madera`/`carton`/`libros`), `pesada`, `fija` |
 | `enemigo` | `clase` (`patrullero`/`volador`/`bloqueador`/`ladron`/`desafinado`), `sprite`, `velocidad`, `rango`, `amplitud`, `periodo`, `eliminable` (`salto,caja,canto`), `canto` (`dormir`/`huir`/`enfadar`/`apartar`/`invertir`/`nada`), `danio`, `escala` |
 | `pinchos` | `danio` (1; 2 desde nivel 10; 3 desde nivel 15) |
 | `lluvia` | `intervalo` (ms), `texturas`, `velocidad`, `danio` |
-| `peligro-movil` | `dir` (`arriba`/`derecha`), `velocidad` (px/s), `desdeX` (casilla que lo activa), `margen`, `color`, `danio` |
+| `peligro-movil` | `dir` (`arriba`/`derecha`), `velocidad` (px/s), `desdeX` (casilla que lo activa; no se ve ni mata hasta entonces), `hastaX`/`hastaY` (casilla donde se para), `margen`, `color`, `danio` |
 | `meta-falsa` | `dx` (casillas que huye), `pista` (lo que dice) |
 | `miriam`, `cartel` | `pista` (clave en `config/texts.json` → `niveles[N].pistas`), `radio` |
 | `aviso` | zona que muestra un texto una vez: `pista`, `duracion` |

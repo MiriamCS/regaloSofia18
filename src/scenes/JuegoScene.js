@@ -74,9 +74,15 @@ export class JuegoScene extends Phaser.Scene {
     this.graficos = []; // todo lo que se desvanece en el final
 
     this.rectsSuelo = [];
+    this.rectsFantasma = [];
     for (const o of mundo.objetos) this.crearObjeto(o);
     const suelos = dibujarSuelos(this, this.rectsSuelo, this.paleta, mundo.ancho, mundo.alto).setDepth(20);
     this.graficos.push(suelos);
+    if (this.rectsFantasma.length) {
+      // se dibujan con los sólidos para que el contorno empalme, pero por encima de todo
+      this.fantasmas = dibujarSuelos(this, [...this.rectsSuelo, ...this.rectsFantasma], this.paleta, mundo.ancho, mundo.alto, this.rectsFantasma).setDepth(70);
+      this.graficos.push(this.fantasmas);
+    }
 
     // Sofía
     const inicio = mundo.objetos.find((o) => o.tipo === 'inicio') || { pieX: 100, pieY: mundo.alto - TILE * 2 };
@@ -184,8 +190,8 @@ export class JuegoScene extends Phaser.Scene {
       }
       case 'plataforma-falsa': {
         if (o.p.modo === 'fantasma') {
-          // pared o suelo falso: se dibuja igual que el resto y no tiene cuerpo
-          this.rectsSuelo.push(o);
+          // pared o suelo falso: se ve igual que el resto, no tiene cuerpo y tapa lo que esconde
+          this.rectsFantasma.push(o);
           break;
         }
         const pl = new PlataformaFalsa(this, o, pal);
@@ -221,6 +227,8 @@ export class JuegoScene extends Phaser.Scene {
         break;
       case 'puerta': {
         const p = new PuertaMelodia(this, o);
+        this.puertas = this.puertas || [];
+        this.puertas.push(p);
         this.solidos.add(p.zona);
         this.graficos.push(p.img);
         break;
@@ -320,10 +328,14 @@ export class JuegoScene extends Phaser.Scene {
   crearColisiones() {
     const s = this.sofia;
     const fis = this.physics;
-    const unaDireccion = (cuerpo, z) => {
+    // plataforma de un sentido: se atraviesa desde abajo. Phaser puede pasar los argumentos
+    // en cualquier orden según sea grupo o lista, así que se busca cuál es la plataforma.
+    const unaDireccion = (a, bb) => {
+      const [cuerpo, z] = a.body && a.body.physicsType === Phaser.Physics.Arcade.STATIC_BODY ? [bb, a] : [a, bb];
       const b = cuerpo.body;
       return b.velocity.y >= 0 && b.prev.y + b.height <= z.body.top + 8;
     };
+    const unaDireccionMovil = (cuerpo, z) => cuerpo.body.velocity.y >= 0 && cuerpo.body.prev.y + cuerpo.body.height <= z.body.top + 8;
     fis.add.collider(s, this.solidos, (sofia, z) => this.alPisar(z));
     fis.add.collider(s, this.nubes, null, unaDireccion);
     fis.add.collider(this.cajas, this.solidos);
@@ -333,8 +345,15 @@ export class JuegoScene extends Phaser.Scene {
     // plataformas especiales: cuerpo en su 'zona'
     const zonasEspeciales = [...this.movibles, ...this.pisables, ...(this.pisablesFijos || [])].map((p) => p.zona).filter((z, i, a) => a.indexOf(z) === i);
     const esNube = (z) => z.height <= 24;
-    fis.add.collider(s, zonasEspeciales, (sofia, z) => this.alPisar(z), (sofia, z) => (esNube(z) ? unaDireccion(sofia, z) : true));
-    fis.add.collider(this.cajas, zonasEspeciales, null, (c, z) => (esNube(z) ? unaDireccion(c, z) : true));
+    const ordenar = (a, b) => (zonasEspeciales.includes(a) ? [b, a] : [a, b]);
+    fis.add.collider(s, zonasEspeciales, (a, b) => this.alPisar(ordenar(a, b)[1]), (a, b) => {
+      const [c, z] = ordenar(a, b);
+      return esNube(z) ? unaDireccionMovil(c, z) : true;
+    });
+    fis.add.collider(this.cajas, zonasEspeciales, null, (a, b) => {
+      const [c, z] = ordenar(a, b);
+      return esNube(z) ? unaDireccionMovil(c, z) : true;
+    });
     for (const e of this.enemigos) {
       fis.add.collider(e, this.solidos);
       fis.add.collider(e, this.nubes, null, unaDireccion);
@@ -471,6 +490,11 @@ export class JuegoScene extends Phaser.Scene {
       }
     }
     for (const l of this.lectores) l.actualizar(s, dt, l === cercano);
+    // al entrar en una pared falsa se transparenta
+    if (this.fantasmas) {
+      const dentro = this.rectsFantasma.some((r) => s.x > r.x - 10 && s.x < r.x + r.w + 10 && s.y - 30 > r.y && s.y - 30 < r.y + r.h + 20);
+      this.fantasmas.setAlpha(Phaser.Math.Linear(this.fantasmas.alpha, this.enFinal ? 0 : dentro ? 0.45 : 1, 0.15));
+    }
     this.zonas(t);
     this.fondo.actualizar();
 
@@ -538,6 +562,15 @@ export class JuegoScene extends Phaser.Scene {
       Audio.piano(NOTAS_CANTO[this.indiceNota], { dur: 0.8, vel: 0.7 });
     }
     this.ondaCanto(s.x, s.y - 50, radio);
+    // cantar junto a una puerta-melodía (sin campanas cerca) hace que la puerta toque su melodía
+    if (!campana) {
+      for (const p of this.puertas || []) {
+        if (!p.abierta && Math.abs(s.x - (p.o.x + p.o.w / 2)) < radio * 0.7 && Math.abs(s.y - (p.o.y + p.o.h)) < 150) {
+          this.time.delayedCall(500, () => p.reproducirPista());
+          break;
+        }
+      }
+    }
     for (const p of this.musicales) {
       const cx = p.o.x + p.o.w / 2;
       const cy = p.o.y + p.o.h / 2;
@@ -665,6 +698,8 @@ export class JuegoScene extends Phaser.Scene {
     this.invertidoHasta = 0;
     this.muriendo = false;
     for (const p of this.pisables) p.reiniciar?.();
+    // las cajas que empiezan por delante del atril vuelven a su sitio (evita partidas bloqueadas)
+    for (const c of this.cajas.getChildren()) if (c.inicio.x > this.puntoReaparicion.x - 48) this.recolocarCaja(c);
     for (const pm of this.peligrosMoviles || []) pm.reiniciar(this.puntoReaparicion);
     s.g = 1;
     for (const e of this.enemigos) {

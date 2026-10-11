@@ -1,0 +1,1619 @@
+{
+ "type": "map",
+ "version": "1.10",
+ "tiledversion": "1.11.0",
+ "orientation": "orthogonal",
+ "renderorder": "right-down",
+ "width": 235,
+ "height": 37,
+ "tilewidth": 48,
+ "tileheight": 48,
+ "infinite": false,
+ "nextlayerid": 4,
+ "nextobjectid": 86,
+ "properties": [
+  {
+   "name": "nivel",
+   "type": "int",
+   "value": 9
+  },
+  {
+   "name": "tema",
+   "type": "string",
+   "value": "conservatorio"
+  }
+ ],
+ "layers": [
+  {
+   "id": 1,
+   "name": "solidos",
+   "type": "objectgroup",
+   "draworder": "topdown",
+   "opacity": 1,
+   "visible": true,
+   "x": 0,
+   "y": 0,
+   "objects": [
+    {
+     "id": 1,
+     "name": "",
+     "type": "solido",
+     "x": 0,
+     "y": 0,
+     "width": 3408,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 2,
+     "name": "",
+     "type": "solido",
+     "x": 3600,
+     "y": 0,
+     "width": 2832,
+     "height": 1008,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 3,
+     "name": "",
+     "type": "solido",
+     "x": 8640,
+     "y": 0,
+     "width": 48,
+     "height": 432,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 4,
+     "name": "",
+     "type": "solido",
+     "x": 10704,
+     "y": 0,
+     "width": 48,
+     "height": 624,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 5,
+     "name": "",
+     "type": "solido",
+     "x": 11232,
+     "y": 0,
+     "width": 48,
+     "height": 768,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 6,
+     "name": "",
+     "type": "solido",
+     "x": 0,
+     "y": 144,
+     "width": 48,
+     "height": 480,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 7,
+     "name": "",
+     "type": "solido",
+     "x": 336,
+     "y": 144,
+     "width": 48,
+     "height": 192,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 8,
+     "name": "",
+     "type": "solido",
+     "x": 2208,
+     "y": 144,
+     "width": 48,
+     "height": 336,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 9,
+     "name": "",
+     "type": "solido",
+     "x": 3024,
+     "y": 144,
+     "width": 48,
+     "height": 192,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 11,
+     "name": "",
+     "type": "puerta",
+     "x": 624,
+     "y": 192,
+     "width": 48,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "g1"
+      },
+      {
+       "name": "secuencia",
+       "type": "string",
+       "value": "G5,E5,C5,E5,G5"
+      },
+      {
+       "name": "oculta",
+       "type": "bool",
+       "value": true
+      }
+     ]
+    },
+    {
+     "id": 13,
+     "name": "",
+     "type": "solido",
+     "x": 336,
+     "y": 336,
+     "width": 384,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 15,
+     "name": "",
+     "type": "solido",
+     "x": 10224,
+     "y": 336,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 17,
+     "name": "",
+     "type": "plataforma-temporizada",
+     "x": 816,
+     "y": 432,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "on",
+       "type": "int",
+       "value": 1300
+      },
+      {
+       "name": "off",
+       "type": "int",
+       "value": 1700
+      }
+     ]
+    },
+    {
+     "id": 18,
+     "name": "",
+     "type": "solido",
+     "x": 1728,
+     "y": 432,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 19,
+     "name": "",
+     "type": "puerta",
+     "x": 3024,
+     "y": 336,
+     "width": 48,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "g2"
+      },
+      {
+       "name": "secuencia",
+       "type": "string",
+       "value": "E5,D5,C5,D5,E5"
+      },
+      {
+       "name": "oculta",
+       "type": "bool",
+       "value": true
+      }
+     ]
+    },
+    {
+     "id": 20,
+     "name": "",
+     "type": "plataforma-musical",
+     "x": 10080,
+     "y": 432,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "modo",
+       "type": "string",
+       "value": "aparece"
+      }
+     ]
+    },
+    {
+     "id": 22,
+     "name": "",
+     "type": "solido",
+     "x": 2880,
+     "y": 480,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 23,
+     "name": "",
+     "type": "solido",
+     "x": 3072,
+     "y": 480,
+     "width": 336,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 24,
+     "name": "",
+     "type": "plataforma-temporizada",
+     "x": 8064,
+     "y": 480,
+     "width": 288,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "on",
+       "type": "int",
+       "value": 2200
+      },
+      {
+       "name": "off",
+       "type": "int",
+       "value": 1400
+      },
+      {
+       "name": "desfase",
+       "type": "int",
+       "value": 700
+      }
+     ]
+    },
+    {
+     "id": 26,
+     "name": "",
+     "type": "solido",
+     "x": 1488,
+     "y": 528,
+     "width": 144,
+     "height": 96,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 27,
+     "name": "",
+     "type": "puerta",
+     "x": 8640,
+     "y": 432,
+     "width": 48,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "escalera"
+      },
+      {
+       "name": "secuencia",
+       "type": "string",
+       "value": "C4,E4,G4,C5"
+      }
+     ]
+    },
+    {
+     "id": 28,
+     "name": "",
+     "type": "solido",
+     "x": 9840,
+     "y": 528,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 35,
+     "name": "",
+     "type": "puerta",
+     "x": 2208,
+     "y": 480,
+     "width": 48,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "g1"
+      },
+      {
+       "name": "secuencia",
+       "type": "string",
+       "value": "C5,D5,E5,F5,G5"
+      }
+     ]
+    },
+    {
+     "id": 40,
+     "name": "",
+     "type": "puerta",
+     "x": 3024,
+     "y": 480,
+     "width": 48,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "nadie"
+      },
+      {
+       "name": "secuencia",
+       "type": "string",
+       "value": "E5,D5,C5,D5,E5"
+      }
+     ]
+    },
+    {
+     "id": 41,
+     "name": "",
+     "type": "tecla",
+     "x": 7920,
+     "y": 576,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "G4"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "escalera"
+      }
+     ]
+    },
+    {
+     "id": 42,
+     "name": "",
+     "type": "tecla",
+     "x": 8064,
+     "y": 576,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "A4"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "escalera"
+      }
+     ]
+    },
+    {
+     "id": 43,
+     "name": "",
+     "type": "tecla",
+     "x": 8208,
+     "y": 576,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "B4"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "escalera"
+      }
+     ]
+    },
+    {
+     "id": 44,
+     "name": "",
+     "type": "tecla",
+     "x": 8352,
+     "y": 576,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "C5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "escalera"
+      }
+     ]
+    },
+    {
+     "id": 45,
+     "name": "",
+     "type": "solido",
+     "x": 8448,
+     "y": 576,
+     "width": 528,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 47,
+     "name": "",
+     "type": "solido",
+     "x": 0,
+     "y": 624,
+     "width": 3408,
+     "height": 1008,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 48,
+     "name": "",
+     "type": "plataforma-musical",
+     "x": 9696,
+     "y": 624,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "modo",
+       "type": "string",
+       "value": "aparece"
+      }
+     ]
+    },
+    {
+     "id": 49,
+     "name": "",
+     "type": "plataforma-temporizada",
+     "x": 7632,
+     "y": 672,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "on",
+       "type": "int",
+       "value": 1500
+      },
+      {
+       "name": "off",
+       "type": "int",
+       "value": 1500
+      }
+     ]
+    },
+    {
+     "id": 50,
+     "name": "",
+     "type": "tecla",
+     "x": 7776,
+     "y": 672,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "F4"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "escalera"
+      }
+     ]
+    },
+    {
+     "id": 51,
+     "name": "",
+     "type": "nube",
+     "x": 8976,
+     "y": 672,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 55,
+     "name": "",
+     "type": "puerta",
+     "x": 10704,
+     "y": 624,
+     "width": 48,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "audicion"
+      },
+      {
+       "name": "secuencia",
+       "type": "string",
+       "value": "E5,E5,F5,G5,G5,F5,E5"
+      }
+     ]
+    },
+    {
+     "id": 57,
+     "name": "",
+     "type": "tecla",
+     "x": 7488,
+     "y": 768,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "E4"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "escalera"
+      }
+     ]
+    },
+    {
+     "id": 58,
+     "name": "",
+     "type": "solido",
+     "x": 8928,
+     "y": 768,
+     "width": 2352,
+     "height": 1008,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 59,
+     "name": "",
+     "type": "plataforma-temporizada",
+     "x": 7200,
+     "y": 864,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "on",
+       "type": "int",
+       "value": 1500
+      },
+      {
+       "name": "off",
+       "type": "int",
+       "value": 1500
+      }
+     ]
+    },
+    {
+     "id": 60,
+     "name": "",
+     "type": "tecla",
+     "x": 7344,
+     "y": 864,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "D4"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "escalera"
+      }
+     ]
+    },
+    {
+     "id": 62,
+     "name": "",
+     "type": "solido",
+     "x": 6720,
+     "y": 960,
+     "width": 336,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 63,
+     "name": "",
+     "type": "tecla",
+     "x": 7056,
+     "y": 960,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "C4"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "escalera"
+      }
+     ]
+    },
+    {
+     "id": 64,
+     "name": "",
+     "type": "nube",
+     "x": 6576,
+     "y": 1056,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 66,
+     "name": "",
+     "type": "nube",
+     "x": 6432,
+     "y": 1200,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 67,
+     "name": "",
+     "type": "nube",
+     "x": 5472,
+     "y": 1248,
+     "width": 240,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 68,
+     "name": "",
+     "type": "nube",
+     "x": 5760,
+     "y": 1248,
+     "width": 240,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 69,
+     "name": "",
+     "type": "solido",
+     "x": 6048,
+     "y": 1248,
+     "width": 48,
+     "height": 240,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 70,
+     "name": "",
+     "type": "nube",
+     "x": 6096,
+     "y": 1248,
+     "width": 240,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 71,
+     "name": "",
+     "type": "nube",
+     "x": 6576,
+     "y": 1344,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 73,
+     "name": "",
+     "type": "solido",
+     "x": 4608,
+     "y": 1440,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 75,
+     "name": "",
+     "type": "solido",
+     "x": 5328,
+     "y": 1488,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 76,
+     "name": "",
+     "type": "nube",
+     "x": 6432,
+     "y": 1488,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 82,
+     "name": "",
+     "type": "puerta",
+     "x": 6048,
+     "y": 1488,
+     "width": 48,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "elisa"
+      },
+      {
+       "name": "secuencia",
+       "type": "string",
+       "value": "E5,D#5,E5,D#5,E5,B4,D5,C5,A4"
+      }
+     ]
+    },
+    {
+     "id": 83,
+     "name": "",
+     "type": "solido",
+     "x": 0,
+     "y": 1632,
+     "width": 4848,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 84,
+     "name": "",
+     "type": "solido",
+     "x": 4944,
+     "y": 1632,
+     "width": 1488,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "name": "entidades",
+   "type": "objectgroup",
+   "draworder": "topdown",
+   "opacity": 1,
+   "visible": true,
+   "x": 0,
+   "y": 0,
+   "objects": [
+    {
+     "id": 10,
+     "name": "",
+     "type": "objeto",
+     "x": 480,
+     "y": 288,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 12,
+     "name": "",
+     "type": "campana",
+     "x": 10272,
+     "y": 288,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "G5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "audicion"
+      }
+     ]
+    },
+    {
+     "id": 14,
+     "name": "",
+     "type": "enemigo",
+     "x": 8112,
+     "y": 336,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "avion-papel"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 4
+      },
+      {
+       "name": "amplitud",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 2000
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 60
+      }
+     ]
+    },
+    {
+     "id": 16,
+     "name": "",
+     "type": "campana",
+     "x": 1776,
+     "y": 384,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "D5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "g1"
+      }
+     ]
+    },
+    {
+     "id": 21,
+     "name": "",
+     "type": "campana",
+     "x": 1536,
+     "y": 480,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "G5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "g1"
+      }
+     ]
+    },
+    {
+     "id": 25,
+     "name": "",
+     "type": "campana",
+     "x": 9888,
+     "y": 480,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "F5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "audicion"
+      }
+     ]
+    },
+    {
+     "id": 29,
+     "name": "",
+     "type": "inicio",
+     "x": 96,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 30,
+     "name": "",
+     "type": "miriam",
+     "x": 240,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "hola"
+      }
+     ]
+    },
+    {
+     "id": 31,
+     "name": "",
+     "type": "cartel",
+     "x": 768,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "taquilla"
+      }
+     ]
+    },
+    {
+     "id": 32,
+     "name": "",
+     "type": "campana",
+     "x": 1056,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "E5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "g1"
+      }
+     ]
+    },
+    {
+     "id": 33,
+     "name": "",
+     "type": "campana",
+     "x": 1296,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "C5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "g1"
+      }
+     ]
+    },
+    {
+     "id": 34,
+     "name": "",
+     "type": "campana",
+     "x": 2016,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "F5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "g1"
+      }
+     ]
+    },
+    {
+     "id": 36,
+     "name": "",
+     "type": "campana",
+     "x": 2400,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "C5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "g2"
+      }
+     ]
+    },
+    {
+     "id": 37,
+     "name": "",
+     "type": "campana",
+     "x": 2592,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "D5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "g2"
+      }
+     ]
+    },
+    {
+     "id": 38,
+     "name": "",
+     "type": "campana",
+     "x": 2784,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "E5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "g2"
+      }
+     ]
+    },
+    {
+     "id": 39,
+     "name": "",
+     "type": "cartel",
+     "x": 2928,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "puerta"
+      }
+     ]
+    },
+    {
+     "id": 46,
+     "name": "",
+     "type": "enemigo",
+     "x": 10416,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "avion-papel"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "amplitud",
+       "type": "float",
+       "value": 1.5
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 2400
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 50
+      }
+     ]
+    },
+    {
+     "id": 52,
+     "name": "",
+     "type": "checkpoint",
+     "x": 9120,
+     "y": 720,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 53,
+     "name": "",
+     "type": "miriam",
+     "x": 9264,
+     "y": 720,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "audicion"
+      }
+     ]
+    },
+    {
+     "id": 54,
+     "name": "",
+     "type": "campana",
+     "x": 9504,
+     "y": 720,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "E5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "audicion"
+      }
+     ]
+    },
+    {
+     "id": 56,
+     "name": "",
+     "type": "meta",
+     "x": 10992,
+     "y": 720,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 61,
+     "name": "",
+     "type": "checkpoint",
+     "x": 6864,
+     "y": 912,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 65,
+     "name": "",
+     "type": "foto",
+     "x": 5568,
+     "y": 1200,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 72,
+     "name": "",
+     "type": "campana",
+     "x": 4656,
+     "y": 1392,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "B4"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "elisa"
+      }
+     ]
+    },
+    {
+     "id": 74,
+     "name": "",
+     "type": "campana",
+     "x": 5376,
+     "y": 1440,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "C5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "elisa"
+      }
+     ]
+    },
+    {
+     "id": 77,
+     "name": "",
+     "type": "checkpoint",
+     "x": 3648,
+     "y": 1584,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 78,
+     "name": "",
+     "type": "campana",
+     "x": 4032,
+     "y": 1584,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "E5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "elisa"
+      }
+     ]
+    },
+    {
+     "id": 79,
+     "name": "",
+     "type": "campana",
+     "x": 4272,
+     "y": 1584,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "D#5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "elisa"
+      }
+     ]
+    },
+    {
+     "id": 80,
+     "name": "",
+     "type": "campana",
+     "x": 5088,
+     "y": 1584,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "D5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "elisa"
+      }
+     ]
+    },
+    {
+     "id": 81,
+     "name": "",
+     "type": "campana",
+     "x": 5712,
+     "y": 1584,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "A4"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "elisa"
+      }
+     ]
+    },
+    {
+     "id": 85,
+     "name": "",
+     "type": "peligro-movil",
+     "x": 2880,
+     "y": 1008,
+     "width": 192,
+     "height": 624,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "dir",
+       "type": "string",
+       "value": "derecha"
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 90
+      },
+      {
+       "name": "desdeX",
+       "type": "int",
+       "value": 79
+      },
+      {
+       "name": "margen",
+       "type": "int",
+       "value": 12
+      },
+      {
+       "name": "color",
+       "type": "string",
+       "value": "#ff8fb1"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "name": "zonas",
+   "type": "objectgroup",
+   "draworder": "topdown",
+   "opacity": 1,
+   "visible": true,
+   "x": 0,
+   "y": 0,
+   "objects": []
+  }
+ ],
+ "tilesets": []
+}
