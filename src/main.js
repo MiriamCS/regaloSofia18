@@ -40,6 +40,20 @@ window.addEventListener('pointerdown', desbloquear, { passive: true });
 window.addEventListener('keydown', desbloquear);
 window.addEventListener('touchend', desbloquear, { passive: true });
 
+// En Android, el primer toque pone el juego a pantalla completa y bloquea la horizontal
+// (si no se ha instalado como app). iOS no lo permite: allí se usa «Añadir a pantalla de inicio».
+const instalada = window.matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches || navigator.standalone;
+if (!instalada && 'ontouchstart' in window) {
+  window.addEventListener('touchend', function pantallaCompleta() {
+    window.removeEventListener('touchend', pantallaCompleta);
+    const el = document.documentElement;
+    if (!el.requestFullscreen || document.fullscreenElement) return;
+    el.requestFullscreen({ navigationUI: 'hide' })
+      .then(() => screen.orientation?.lock?.('landscape'))
+      .catch(() => {});
+  });
+}
+
 // Al volver a horizontal, ajustar el tamaño
 window.addEventListener('orientationchange', () => setTimeout(() => juego.scale.refresh(), 300));
 
