@@ -87,6 +87,9 @@ export class JuegoScene extends Phaser.Scene {
     // Sofía
     const inicio = mundo.objetos.find((o) => o.tipo === 'inicio') || { pieX: 100, pieY: mundo.alto - TILE * 2 };
     this.puntoReaparicion = { x: inicio.pieX, y: inicio.pieY };
+    this.velasCheckpoint = 0; // velas que había al activar el último atril (0 = ninguno)
+    this.momentoCheckpoint = 0; // los enemigos derrotados después de este momento reviven al reaparecer
+    this.ultimoSuelo = null; // último suelo firme pisado (para volver tras una caída)
     const habilidades = {
       correr: tieneHabilidad(n, 'correr'),
       dobleSalto: tieneHabilidad(n, 'dobleSalto'),
@@ -344,7 +347,10 @@ export class JuegoScene extends Phaser.Scene {
       const topeAntes = zb.prev ? zb.prev.y : zb.y;
       return cuerpo.body.velocity.y >= vz - 5 && cuerpo.body.prev.y + cuerpo.body.height <= topeAntes + 10;
     };
-    fis.add.collider(s, this.solidos, (sofia, z) => this.alPisar(z));
+    fis.add.collider(s, this.solidos, (sofia, z) => {
+      this.alPisar(z);
+      this.apuntarSuelo(z);
+    });
     fis.add.collider(s, this.nubes, null, unaDireccion);
     fis.add.collider(this.cajas, this.solidos);
     fis.add.collider(this.cajas, this.nubes, null, unaDireccion);
@@ -370,7 +376,8 @@ export class JuegoScene extends Phaser.Scene {
       if (e.tipo === 'bloqueador') fis.add.collider(s, e);
       else fis.add.overlap(s, e, () => this.tocarEnemigo(e));
     }
-    fis.add.overlap(s, this.zonasPeligro, (sofia, z) => this.morir(z.danio));
+    // un peligro que avanza (marea...) no deja quedarse donde se está: cuenta como caída
+    fis.add.overlap(s, this.zonasPeligro, (sofia, z) => this.morir(z.danio, undefined, !!z.avanza));
     fis.add.overlap(s, this.peligros, (sofia, p) => this.morir(p.danio || 1));
     fis.add.collider(this.peligros, this.solidos, (a, b) => {
       const p = this.peligros.contains(a) ? a : b;
@@ -654,6 +661,8 @@ export class JuegoScene extends Phaser.Scene {
   activarCheckpoint(c) {
     if (c.activar()) {
       this.puntoReaparicion = { x: c.x + 30, y: c.y };
+      this.velasCheckpoint = this.velas;
+      this.momentoCheckpoint = this.time.now;
       this.mostrarAviso(texto('juego.checkpoint'), 1300);
     }
   }
@@ -674,7 +683,6 @@ export class JuegoScene extends Phaser.Scene {
     const s = this.sofia;
     const t = this.time.now;
     if (!caida && t < s.invulnerableHasta) return;
-    this.muriendo = true;
     if (caida) {
       Audio.efecto('danio');
       if (navigator.vibrate) navigator.vibrate(JUEGO.controles.vibracionMs);
@@ -688,26 +696,69 @@ export class JuegoScene extends Phaser.Scene {
       this.events.emit('velas', this.velas, antes);
     }
     if (this.velas <= 0) {
-      // Sin velas: se reinicia el nivel entero y se pierden checkpoints y coleccionables del intento
+      this.muriendo = true;
       this.mostrarAviso(texto('juego.sinVelas'), 1800);
       this.time.delayedCall(1900, () => {
         this.cameras.main.fadeOut(500, 13, 27, 61);
-        this.cameras.main.once('camerafadeoutcomplete', () => this.scene.restart({ nivel: this.nivel }));
+        this.cameras.main.once('camerafadeoutcomplete', () => {
+          if (!this.velasCheckpoint) {
+            // sin ningún atril activado: se reinicia el nivel entero
+            this.scene.restart({ nivel: this.nivel });
+            return;
+          }
+          // se vuelve al último atril con las velas que se tenían al activarlo
+          const antes = this.velas;
+          this.velas = this.velasCheckpoint;
+          this.events.emit('velas', this.velas, antes);
+          this.reaparecer();
+          this.cameras.main.fadeIn(400, 13, 27, 61);
+        });
       });
       return;
     }
+    // un golpe con velas encendidas: se sigue jugando donde se está (con el rebote y el parpadeo)
+    if (!caida) return;
+    // caída al vacío o atrapada por un peligro que avanza: vuelve al último suelo firme que pisó
+    this.muriendo = true;
     this.time.delayedCall(JUEGO.danio.msVolverCheckpoint, () => {
       this.cameras.main.fadeOut(180, 255, 255, 255);
       this.cameras.main.once('camerafadeoutcomplete', () => {
-        this.reaparecer();
+        this.volverAlSuelo();
         this.cameras.main.fadeIn(250, 255, 255, 255);
       });
     });
   }
 
+  // Tras una caída con velas: se recoloca a Sofía sin reiniciar el tramo
+  volverAlSuelo() {
+    const s = this.sofia;
+    // (si ese suelo ya no existe, p.ej. un sólido de otro mundo o una puerta abierta, se vuelve al atril)
+    const suelo = this.ultimoSuelo;
+    const p = suelo && suelo.zona.body?.enable ? suelo : this.puntoReaparicion;
+    s.colocar(p.x, p.y - 2);
+    s.invulnerableHasta = this.time.now + JUEGO.danio.invulnerableMs;
+    s.invertido = false;
+    this.invertidoHasta = 0;
+    s.g = 1;
+    this.muriendo = false;
+    for (const pm of this.peligrosMoviles || []) pm.reiniciar(p);
+    this.cameras.main.centerOn(s.x, s.y);
+  }
+
+  // Recuerda el último suelo firme (sólido normal) que pisa Sofía, para volver ahí tras una caída
+  apuntarSuelo(z) {
+    const b = this.sofia.body;
+    // (no se apunta mientras parpadea tras un golpe: podría estar encima de unos pinchos)
+    if (z.elemento || !(b.blocked.down || b.touching.down) || this.muriendo || this.time.now < this.sofia.invulnerableHasta) return;
+    const zb = z.body;
+    if (zb.right - zb.left < 60) return;
+    this.ultimoSuelo = { x: Phaser.Math.Clamp(this.sofia.x, zb.left + 30, zb.right - 30), y: zb.top, zona: z };
+  }
+
   reaparecer() {
     const s = this.sofia;
     s.colocar(this.puntoReaparicion.x, this.puntoReaparicion.y - 2);
+    this.ultimoSuelo = null;
     s.invulnerableHasta = this.time.now + 900;
     s.invertido = false;
     this.invertidoHasta = 0;
@@ -718,6 +769,7 @@ export class JuegoScene extends Phaser.Scene {
     for (const pm of this.peligrosMoviles || []) pm.reiniciar(this.puntoReaparicion);
     s.g = 1;
     for (const e of this.enemigos) {
+      if (!e.vivo && e.derrotadoEn >= this.momentoCheckpoint) e.revivir();
       if (e.tipo === 'ladron' && e.vivo) {
         e.body.reset(e.inicioX, e.inicioY);
       }

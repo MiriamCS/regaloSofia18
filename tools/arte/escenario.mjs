@@ -2,6 +2,8 @@
 import { TRAZO, ANCHO_TRAZO as T, claveSol, f } from './comun.mjs';
 
 const t = `stroke="${TRAZO}" stroke-width="${T}" stroke-linejoin="round" stroke-linecap="round"`;
+// trazo grueso (no repetir stroke-width tras ${t}: un atributo duplicado invalida el SVG entero)
+const t4 = `stroke="${TRAZO}" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"`;
 const DORADO = '#e8b84a';
 
 function vela(encendida) {
@@ -19,7 +21,7 @@ function atril(encendido) {
   const papel = encendido ? '#fff6c8' : '#e6ebf5';
   let s = '';
   if (encendido) s += `<defs><radialGradient id="h"><stop offset="0" stop-color="#fff3a0" stop-opacity="0.9"/><stop offset="1" stop-color="#fff3a0" stop-opacity="0"/></radialGradient></defs><circle cx="40" cy="34" r="38" fill="url(#h)"/>`;
-  s += `<path d="M 40 52 L 40 118 M 40 118 L 22 128 M 40 118 L 58 128 M 40 118 L 40 128" ${t} fill="none" stroke-width="4"/>`;
+  s += `<path d="M 40 52 L 40 118 M 40 118 L 22 128 M 40 118 L 58 128 M 40 118 L 40 128" ${t4} fill="none"/>`;
   s += `<path d="M 10 20 L 70 20 L 64 54 L 16 54 Z" fill="#3b4256" ${t}/>`;
   s += `<rect x="18" y="14" width="44" height="34" rx="2" fill="${papel}" ${t}/>`;
   for (const y of [22, 28, 34, 40]) s += `<path d="M 22 ${y} h 36" stroke="#9aa7c7" stroke-width="1.2"/>`;
@@ -87,7 +89,7 @@ export function spritesEscenario() {
     puerta: { w: 48, h: 144, cuerpo: `<rect x="3" y="3" width="42" height="138" rx="4" fill="#5d6b8a" ${t}/>${[0, 1, 2, 3, 4].map((i) => `<path d="M 10 ${20 + i * 26} h 28" stroke="#ffffff" stroke-width="1.8"/>`).join('')}<circle cx="24" cy="72" r="8" fill="${DORADO}" ${t}/>` },
     tarta: tarta(),
     'cartel-continuara': { w: 300, h: 190, cuerpo: `<rect x="138" y="90" width="22" height="98" fill="#b07a45" ${t}/><rect x="8" y="8" width="284" height="96" rx="10" fill="#ffffff" ${t}/><text x="150" y="70" font-family="Georgia, serif" font-style="italic" font-size="40" text-anchor="middle" fill="#1b2a4a">Continuará...</text>` },
-    candado: { w: 48, h: 56, cuerpo: `<path d="M 14 26 V 18 Q 14 6 24 6 Q 34 6 34 18 V 26" fill="none" ${t} stroke-width="4"/><rect x="6" y="24" width="36" height="28" rx="5" fill="#9aa7c7" ${t}/><circle cx="24" cy="36" r="4" fill="${TRAZO}"/><path d="M 24 38 v 7" stroke="${TRAZO}" stroke-width="3"/>` },
+    candado: { w: 48, h: 56, cuerpo: `<path d="M 14 26 V 18 Q 14 6 24 6 Q 34 6 34 18 V 26" fill="none" ${t4}/><rect x="6" y="24" width="36" height="28" rx="5" fill="#9aa7c7" ${t}/><circle cx="24" cy="36" r="4" fill="${TRAZO}"/><path d="M 24 38 v 7" stroke="${TRAZO}" stroke-width="3"/>` },
     'icono-foto': { w: 40, h: 40, cuerpo: `<rect x="3" y="8" width="34" height="26" rx="4" fill="#ffffff" ${t}/><circle cx="20" cy="21" r="7" fill="#8fd0ff" ${t}/><rect x="8" y="4" width="10" height="6" rx="2" fill="#ffffff" ${t}/>` },
     'icono-objeto': { w: 40, h: 40, cuerpo: `<path d="M 20 3 L 25 14 L 37 15 L 28 23 L 31 35 L 20 29 L 9 35 L 12 23 L 3 15 L 15 14 Z" fill="#ffd23f" ${t}/>` },
     clave: { w: 64, h: 128, cuerpo: claveSol(10, 6, 2.2, DORADO, 6) },

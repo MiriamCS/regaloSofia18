@@ -70,6 +70,15 @@ export class InterfazScene extends Phaser.Scene {
   }
 
   alCambiarVelas(actual, antes) {
+    // al volver a un atril se reencienden las velas que se tenían al activarlo
+    for (let i = antes; i < actual; i++) {
+      const v = this.velas[i];
+      if (!v) continue;
+      this.time.delayedCall((i - antes) * 120, () => {
+        v.setTexture('vela-on');
+        this.tweens.add({ targets: v, scaleX: ESC * 1.3, scaleY: ESC * 1.3, duration: 120, yoyo: true });
+      });
+    }
     for (let i = actual; i < antes; i++) {
       const v = this.velas[i];
       if (!v) continue;

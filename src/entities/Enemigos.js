@@ -197,11 +197,25 @@ export class Enemigo extends Phaser.Physics.Arcade.Image {
   derrotar() {
     if (!this.vivo) return;
     this.vivo = false;
+    this.derrotadoEn = this.scene.time.now;
     this.body.enable = false;
     this.zzz.setVisible(false);
     this.iconoBotin?.setVisible(false);
     this.scene.nubeDeNotas?.(this.x, this.y - this.displayHeight / 2);
     Audio.efecto('pop');
     this.scene.tweens.add({ targets: this, scale: 0, alpha: 0, angle: 180, duration: 260, onComplete: () => this.setVisible(false) });
+  }
+
+  // Vuelve a su sitio de partida como al empezar el nivel (al reaparecer Sofía en un atril)
+  revivir() {
+    this.scene.tweens.killTweensOf(this);
+    this.vivo = true;
+    this.setVisible(true).setAlpha(1).setAngle(0).setScale(ESC * (this.def.escala || 1)).clearTint();
+    this.body.enable = true;
+    this.body.reset(this.inicioX, this.inicioY);
+    this.dir = this.def.dir === 'izq' ? -1 : 1;
+    this.dormidoHasta = 0;
+    this.huyendoHasta = 0;
+    this.enfadadoHasta = 0;
   }
 }

@@ -96,13 +96,16 @@ Los enemigos se diseñan con humor y nunca de forma violenta: al derrotarlos des
 
 ## 4. Vidas, checkpoints y reinicio
 
-Cada nivel N empieza con N velas encendidas (nivel 0: vidas infinitas). Cada muerte apaga una vela; sin velas encendidas, el nivel se reinicia desde el principio.
+Cada nivel N empieza con N velas encendidas (nivel 0: vidas infinitas). Cada golpe apaga una vela; solo al quedarse sin velas encendidas Sofía vuelve al último checkpoint activado, con las velas que tenía cuando lo activó (si no ha activado ninguno, el nivel se reinicia desde el principio).
 
 - **Indicador**: fila de velas arriba a la izquierda, encendidas y apagadas. En niveles altos (más de 10 velas) se muestran en dos filas o como tarta con velas.
-- **Muerte**: Sofía vuelve al último checkpoint con las velas que le quedan en ese momento. Las velas apagadas no se recuperan al volver al checkpoint.
+- **Golpe con velas**: Sofía rebota, parpadea un momento (invulnerable) y sigue jugando donde está.
+- **Caída con velas**: al caer al vacío o ser alcanzada por un peligro que avanza (marea...), vuelve al último suelo firme que pisó, no al checkpoint.
+- **Sin velas**: Sofía vuelve al último checkpoint y se reencienden las velas que tenía al activarlo por primera vez.
+- **Enemigos al volver al checkpoint**: los enemigos derrotados después de activar el último checkpoint vuelven a su sitio; los derrotados antes siguen eliminados.
 - **Checkpoints**: un atril de partitura que se ilumina al tocarlo. Entre 2 y 4 por nivel según longitud, nunca más de 3 minutos de juego entre dos seguidos.
 - **Daño**: cada golpe o caída mortal quita una vela. Desde el nivel 10 algunos peligros quitan 2 velas, y desde el nivel 15 algunos quitan 3.
-- **Reinicio por agotar velas**: se pierden los checkpoints activados y la foto y el objeto cogidos en ese intento.
+- **Reinicio por agotar velas sin checkpoint**: se pierden la foto y el objeto cogidos en ese intento.
 - **Coleccionables y muerte normal**: si muere con la foto u objeto ya cogidos, los conserva mientras le queden velas.
 - **Guardado de coleccionables**: solo se guardan definitivamente al completar el nivel.
 - **Sin vidas extra**: no hay forma de recuperar velas dentro del nivel, salvo que se decida añadir velas ocultas como recompensa (pendiente de decidir).

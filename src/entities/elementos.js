@@ -672,6 +672,7 @@ export class PeligroMovil {
     this.zona = scene.add.zone(o.x + o.w / 2, o.y + o.h / 2, o.w, o.h);
     scene.physics.add.existing(this.zona, true);
     this.zona.danio = this.danio;
+    this.zona.avanza = true;
     this.g = scene.add.graphics().setDepth(65);
     this.pos = { x: o.x, y: o.y };
     this.activo = !o.p.desdeX;
