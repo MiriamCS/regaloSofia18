@@ -1,0 +1,1270 @@
+{
+ "type": "map",
+ "version": "1.10",
+ "tiledversion": "1.11.0",
+ "orientation": "orthogonal",
+ "renderorder": "right-down",
+ "width": 290,
+ "height": 16,
+ "tilewidth": 48,
+ "tileheight": 48,
+ "infinite": false,
+ "nextlayerid": 4,
+ "nextobjectid": 68,
+ "properties": [
+  {
+   "name": "nivel",
+   "type": "int",
+   "value": 18
+  },
+  {
+   "name": "tema",
+   "type": "string",
+   "value": "escenario"
+  },
+  {
+   "name": "edad",
+   "type": "int",
+   "value": 18
+  }
+ ],
+ "layers": [
+  {
+   "id": 1,
+   "name": "solidos",
+   "type": "objectgroup",
+   "draworder": "topdown",
+   "opacity": 1,
+   "visible": true,
+   "x": 0,
+   "y": 0,
+   "objects": [
+    {
+     "id": 1,
+     "name": "",
+     "type": "solido",
+     "x": 0,
+     "y": 0,
+     "width": 48,
+     "height": 624,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 2,
+     "name": "",
+     "type": "solido",
+     "x": 5664,
+     "y": 0,
+     "width": 48,
+     "height": 480,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 3,
+     "name": "",
+     "type": "solido",
+     "x": 6528,
+     "y": 0,
+     "width": 576,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 4,
+     "name": "",
+     "type": "solido",
+     "x": 7248,
+     "y": 0,
+     "width": 336,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 5,
+     "name": "",
+     "type": "solido",
+     "x": 7728,
+     "y": 0,
+     "width": 528,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 7,
+     "name": "",
+     "type": "nube",
+     "x": 8736,
+     "y": 192,
+     "width": 240,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 12,
+     "name": "",
+     "type": "nube",
+     "x": 5040,
+     "y": 336,
+     "width": 240,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 13,
+     "name": "",
+     "type": "nube",
+     "x": 9024,
+     "y": 336,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 15,
+     "name": "",
+     "type": "nube",
+     "x": 11520,
+     "y": 336,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 16,
+     "name": "",
+     "type": "solido",
+     "x": 960,
+     "y": 384,
+     "width": 240,
+     "height": 240,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 18,
+     "name": "",
+     "type": "nube",
+     "x": 10944,
+     "y": 384,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 20,
+     "name": "",
+     "type": "nube",
+     "x": 10368,
+     "y": 432,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 21,
+     "name": "",
+     "type": "nube",
+     "x": 12048,
+     "y": 432,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 22,
+     "name": "",
+     "type": "nube",
+     "x": 4752,
+     "y": 480,
+     "width": 240,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 23,
+     "name": "",
+     "type": "plataforma-temporizada",
+     "x": 8448,
+     "y": 480,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "on",
+       "type": "int",
+       "value": 1500
+      },
+      {
+       "name": "off",
+       "type": "int",
+       "value": 1100
+      },
+      {
+       "name": "desfase",
+       "type": "int",
+       "value": 0
+      }
+     ]
+    },
+    {
+     "id": 24,
+     "name": "",
+     "type": "plataforma-temporizada",
+     "x": 8688,
+     "y": 480,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "on",
+       "type": "int",
+       "value": 1500
+      },
+      {
+       "name": "off",
+       "type": "int",
+       "value": 1100
+      },
+      {
+       "name": "desfase",
+       "type": "int",
+       "value": 1300
+      }
+     ]
+    },
+    {
+     "id": 25,
+     "name": "",
+     "type": "plataforma-temporizada",
+     "x": 8928,
+     "y": 480,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "on",
+       "type": "int",
+       "value": 1500
+      },
+      {
+       "name": "off",
+       "type": "int",
+       "value": 1100
+      },
+      {
+       "name": "desfase",
+       "type": "int",
+       "value": 0
+      }
+     ]
+    },
+    {
+     "id": 26,
+     "name": "",
+     "type": "nube",
+     "x": 11232,
+     "y": 480,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 27,
+     "name": "",
+     "type": "nube",
+     "x": 11808,
+     "y": 480,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 28,
+     "name": "",
+     "type": "plataforma-cae",
+     "x": 1920,
+     "y": 528,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 29,
+     "name": "",
+     "type": "plataforma-cae",
+     "x": 2160,
+     "y": 528,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 30,
+     "name": "",
+     "type": "plataforma-cae",
+     "x": 2400,
+     "y": 528,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 31,
+     "name": "",
+     "type": "plataforma-cae",
+     "x": 2640,
+     "y": 528,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 32,
+     "name": "",
+     "type": "nube",
+     "x": 10080,
+     "y": 528,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 33,
+     "name": "",
+     "type": "nube",
+     "x": 10656,
+     "y": 528,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 38,
+     "name": "",
+     "type": "plataforma-temporizada",
+     "x": 3216,
+     "y": 576,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "ritmo",
+       "type": "bool",
+       "value": true
+      },
+      {
+       "name": "on",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "off",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "desfase",
+       "type": "int",
+       "value": 0
+      }
+     ]
+    },
+    {
+     "id": 39,
+     "name": "",
+     "type": "plataforma-temporizada",
+     "x": 3504,
+     "y": 576,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "ritmo",
+       "type": "bool",
+       "value": true
+      },
+      {
+       "name": "on",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "off",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "desfase",
+       "type": "int",
+       "value": 2
+      }
+     ]
+    },
+    {
+     "id": 40,
+     "name": "",
+     "type": "plataforma-temporizada",
+     "x": 3792,
+     "y": 576,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "ritmo",
+       "type": "bool",
+       "value": true
+      },
+      {
+       "name": "on",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "off",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "desfase",
+       "type": "int",
+       "value": 0
+      }
+     ]
+    },
+    {
+     "id": 41,
+     "name": "",
+     "type": "plataforma-temporizada",
+     "x": 4080,
+     "y": 576,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "ritmo",
+       "type": "bool",
+       "value": true
+      },
+      {
+       "name": "on",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "off",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "desfase",
+       "type": "int",
+       "value": 2
+      }
+     ]
+    },
+    {
+     "id": 45,
+     "name": "",
+     "type": "puerta",
+     "x": 5664,
+     "y": 480,
+     "width": 48,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "feliz"
+      },
+      {
+       "name": "secuencia",
+       "type": "string",
+       "value": "G4,G4,A4,G4,C5,B4"
+      }
+     ]
+    },
+    {
+     "id": 51,
+     "name": "",
+     "type": "solido",
+     "x": 0,
+     "y": 624,
+     "width": 1200,
+     "height": 96,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 52,
+     "name": "",
+     "type": "solido",
+     "x": 1632,
+     "y": 624,
+     "width": 192,
+     "height": 96,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 53,
+     "name": "",
+     "type": "solido",
+     "x": 2784,
+     "y": 624,
+     "width": 336,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 55,
+     "name": "",
+     "type": "solido",
+     "x": 4464,
+     "y": 624,
+     "width": 3936,
+     "height": 96,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 56,
+     "name": "",
+     "type": "solido",
+     "x": 9216,
+     "y": 624,
+     "width": 96,
+     "height": 96,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 57,
+     "name": "",
+     "type": "plataforma-falsa",
+     "x": 9312,
+     "y": 624,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 58,
+     "name": "",
+     "type": "solido",
+     "x": 9456,
+     "y": 624,
+     "width": 480,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 59,
+     "name": "",
+     "type": "solido",
+     "x": 12288,
+     "y": 624,
+     "width": 1632,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 61,
+     "name": "",
+     "type": "solido",
+     "x": 3648,
+     "y": 672,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 63,
+     "name": "",
+     "type": "solido",
+     "x": 0,
+     "y": 720,
+     "width": 1824,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 64,
+     "name": "",
+     "type": "solido",
+     "x": 4464,
+     "y": 720,
+     "width": 4848,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "name": "entidades",
+   "type": "objectgroup",
+   "draworder": "topdown",
+   "opacity": 1,
+   "visible": true,
+   "x": 0,
+   "y": 0,
+   "objects": [
+    {
+     "id": 6,
+     "name": "",
+     "type": "foto",
+     "x": 8832,
+     "y": 144,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 8,
+     "name": "",
+     "type": "enemigo",
+     "x": 11088,
+     "y": 240,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "avion-papel"
+      },
+      {
+       "name": "amplitud",
+       "type": "float",
+       "value": 1.5
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 70
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 2200
+      }
+     ]
+    },
+    {
+     "id": 9,
+     "name": "",
+     "type": "enemigo",
+     "x": 2544,
+     "y": 288,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "avion-papel"
+      },
+      {
+       "name": "amplitud",
+       "type": "float",
+       "value": 1.5
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 70
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 2200
+      }
+     ]
+    },
+    {
+     "id": 10,
+     "name": "",
+     "type": "campana",
+     "x": 5136,
+     "y": 288,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "C5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "feliz"
+      }
+     ]
+    },
+    {
+     "id": 11,
+     "name": "",
+     "type": "enemigo",
+     "x": 11712,
+     "y": 288,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "avion-papel"
+      },
+      {
+       "name": "amplitud",
+       "type": "float",
+       "value": 1.5
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 70
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 2200
+      }
+     ]
+    },
+    {
+     "id": 14,
+     "name": "",
+     "type": "enemigo",
+     "x": 10512,
+     "y": 336,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "avion-papel"
+      },
+      {
+       "name": "amplitud",
+       "type": "float",
+       "value": 1.5
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 70
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 2200
+      }
+     ]
+    },
+    {
+     "id": 17,
+     "name": "",
+     "type": "enemigo",
+     "x": 2256,
+     "y": 384,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "avion-papel"
+      },
+      {
+       "name": "amplitud",
+       "type": "float",
+       "value": 1.5
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 70
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 2200
+      }
+     ]
+    },
+    {
+     "id": 19,
+     "name": "",
+     "type": "campana",
+     "x": 4848,
+     "y": 432,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "A4"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "feliz"
+      }
+     ]
+    },
+    {
+     "id": 34,
+     "name": "",
+     "type": "inicio",
+     "x": 96,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 35,
+     "name": "",
+     "type": "miriam",
+     "x": 240,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "inicio"
+      }
+     ]
+    },
+    {
+     "id": 36,
+     "name": "",
+     "type": "caja",
+     "x": 576,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 37,
+     "name": "",
+     "type": "checkpoint",
+     "x": 2928,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 42,
+     "name": "",
+     "type": "campana",
+     "x": 4560,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "G4"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "feliz"
+      }
+     ]
+    },
+    {
+     "id": 43,
+     "name": "",
+     "type": "miriam",
+     "x": 4704,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "melodia"
+      }
+     ]
+    },
+    {
+     "id": 44,
+     "name": "",
+     "type": "campana",
+     "x": 5424,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "B4"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "feliz"
+      }
+     ]
+    },
+    {
+     "id": 46,
+     "name": "",
+     "type": "checkpoint",
+     "x": 5856,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 48,
+     "name": "",
+     "type": "cartel",
+     "x": 9216,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "seguro"
+      }
+     ]
+    },
+    {
+     "id": 49,
+     "name": "",
+     "type": "checkpoint",
+     "x": 9600,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 50,
+     "name": "",
+     "type": "miriam",
+     "x": 9744,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "ultimo"
+      }
+     ]
+    },
+    {
+     "id": 54,
+     "name": "",
+     "type": "objeto",
+     "x": 3696,
+     "y": 624,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 66,
+     "name": "",
+     "type": "gravedad",
+     "x": 6576,
+     "y": 0,
+     "width": 1680,
+     "height": 624,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "factor",
+       "type": "int",
+       "value": -1
+      }
+     ]
+    },
+    {
+     "id": 67,
+     "name": "",
+     "type": "final",
+     "x": 12576,
+     "y": 432,
+     "width": 96,
+     "height": 192,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "name": "zonas",
+   "type": "objectgroup",
+   "draworder": "topdown",
+   "opacity": 1,
+   "visible": true,
+   "x": 0,
+   "y": 0,
+   "objects": [
+    {
+     "id": 47,
+     "name": "",
+     "type": "pinchos",
+     "x": 6672,
+     "y": 576,
+     "width": 1536,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 3
+      }
+     ]
+    },
+    {
+     "id": 60,
+     "name": "",
+     "type": "pinchos",
+     "x": 1200,
+     "y": 672,
+     "width": 432,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 3
+      }
+     ]
+    },
+    {
+     "id": 62,
+     "name": "",
+     "type": "pinchos",
+     "x": 8400,
+     "y": 672,
+     "width": 816,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 3
+      }
+     ]
+    },
+    {
+     "id": 65,
+     "name": "",
+     "type": "pinchos",
+     "x": 9312,
+     "y": 720,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 1
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "tilesets": []
+}

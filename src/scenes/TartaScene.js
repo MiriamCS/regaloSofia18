@@ -53,7 +53,7 @@ export class TartaScene extends Phaser.Scene {
       const sx = 240 - Math.cos(a) * (fila === 0 ? 112 : 124);
       const sy = 110 + (fila === 0 ? -Math.sin(a) * 12 : Math.sin(a) * 14 + 4);
       const p = svgAPantalla(sx, sy);
-      const cuerpo = this.add.image(p.x, p.y + 4, 'vela-off').setOrigin(0.5, 1).setScale(0.62).setDepth(fila === 0 ? 1 : 3);
+      const cuerpo = this.add.image(p.x, p.y + 4, 'vela-cuerpo').setOrigin(0.5, 1).setScale(0.62).setDepth(fila === 0 ? 1 : 3);
       const yLlama = p.y + 4 - cuerpo.displayHeight + 6;
       const llama = this.add.image(p.x, yLlama, 'llama').setOrigin(0.5, 1).setDepth(fila === 0 ? 2 : 4);
       this.tweens.add({ targets: llama, scaleX: { from: 0.9, to: 1.1 }, scaleY: { from: 1.05, to: 0.9 }, duration: 120 + Math.random() * 120, yoyo: true, repeat: -1 });

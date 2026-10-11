@@ -297,6 +297,11 @@ export class PlataformaTemporizada extends Bloque {
       ciclo = this.on + this.off;
       f = (((pulso + this.desfase) % ciclo) + ciclo) % ciclo;
       aviso = 0.5;
+    } else if (this.o.p.ritmo) {
+      // sin música sonando: se usa un tempo de 100 bpm (600 ms por pulso)
+      ciclo = this.on + this.off;
+      f = (((t / 600 + this.desfase) % ciclo) + ciclo) % ciclo;
+      aviso = 0.5;
     } else {
       ciclo = this.on + this.off;
       f = (t + this.desfase) % ciclo;

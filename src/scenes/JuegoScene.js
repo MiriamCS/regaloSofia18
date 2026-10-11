@@ -766,8 +766,7 @@ export class JuegoScene extends Phaser.Scene {
       f.continuado = true;
       // El nivel se marca como completado y se guarda
       Guardado.completarNivel(this.nivel, { foto: this.tieneFoto, objeto: this.tieneObjeto });
-      Audio.efecto('checkpoint');
-      this.events.emit('aviso', texto('final.continuara'), 2500);
+      Audio.piano('E5', { dur: 1.5, vel: 0.4 });
     }
     if (!f.tarta && s.x > f.tartaX - 150) {
       f.tarta = true;
@@ -777,8 +776,8 @@ export class JuegoScene extends Phaser.Scene {
       Audio.fundirMusica(1.5);
       const cam = this.cameras.main;
       cam.stopFollow();
-      cam.pan(f.tartaX - 60, f.sueloY - 80, 1600, 'Sine.inOut');
-      cam.zoomTo(2.2, 1800, 'Sine.inOut');
+      cam.pan(f.tartaX - 60, f.sueloY - 80, 1600, 'Sine.easeInOut');
+      cam.zoomTo(2.2, 1800, 'Sine.easeInOut');
       this.time.delayedCall(2000, () => {
         cam.fadeOut(600, 255, 255, 255);
         cam.once('camerafadeoutcomplete', () => this.scene.start('Tarta', {}));

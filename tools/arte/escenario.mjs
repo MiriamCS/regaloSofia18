@@ -65,6 +65,7 @@ export function spritesEscenario() {
   return {
     'vela-on': vela(true),
     'vela-off': vela(false),
+    'vela-cuerpo': { w: 30, h: 56, cuerpo: vela(false).cuerpo.replace(/<path d="M 15 16 q[^>]*>/, '') },
     'atril-off': atril(false),
     'atril-on': atril(true),
     'caja-juguete': caja('#3f8cff', '#bfe0ff', 'A'),
