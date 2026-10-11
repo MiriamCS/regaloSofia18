@@ -1,0 +1,47 @@
+// Toda la configuración editable vive en /config. Aquí solo se reexporta.
+import juego from '../config/juego.json';
+import textos from '../config/texts.json';
+import fotos from '../config/photos.json';
+import objetos from '../config/objetos.json';
+import mensajeFinal from '../config/mensaje-final.txt?raw';
+
+export const JUEGO = juego;
+export const TEXTOS = textos;
+export const FOTOS = fotos;
+export const OBJETOS = objetos;
+export const MENSAJE_FINAL = mensajeFinal;
+
+export const NUM_NIVELES = 19;
+export const TILE = juego.tile;
+
+// Etapa de edad (aspecto de Sofía y paleta) según el nivel.
+export function etapaDeNivel(n) {
+  if (n <= 1) return 'bebe';
+  if (n <= 7) return 'nina';
+  if (n <= 12) return 'preado';
+  if (n <= 17) return 'adolescente';
+  return 'adulta';
+}
+
+export function etapaMiriam(n) {
+  if (n <= 7) return 'nina';
+  if (n <= 14) return 'adolescente';
+  return 'adulta';
+}
+
+export function velasDeNivel(n) {
+  return n === 0 ? Infinity : n;
+}
+
+export function tieneHabilidad(nivel, habilidad) {
+  return nivel >= (juego.habilidades[habilidad] ?? 0);
+}
+
+// Sustituye {n}, {nombre}... en los textos.
+export function texto(clave, vars = {}) {
+  const partes = clave.split('.');
+  let v = textos;
+  for (const p of partes) v = v?.[p];
+  if (typeof v !== 'string') return clave;
+  return v.replace(/\{(\w+)\}/g, (_, k) => (vars[k] ?? `{${k}}`));
+}

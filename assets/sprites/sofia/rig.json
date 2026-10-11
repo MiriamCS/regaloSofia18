@@ -1,0 +1,1028 @@
+{
+  "_comentario": "Generado por tools/generar-sprites.mjs. Coordenadas con origen en los pies (y negativa hacia arriba).",
+  "etapas": {
+    "bebe": {
+      "medidas": {
+        "caderaY": -16,
+        "cuelloY": -42,
+        "hombroY": -36,
+        "cabezaR": 19,
+        "cabezaCY": -57,
+        "cabezaTop": -76,
+        "piernas": 16,
+        "torso": 26,
+        "alto": 76
+      },
+      "piezas": {
+        "pelo-atras": {
+          "w": 84,
+          "h": 76,
+          "pivote": [
+            0,
+            -68
+          ],
+          "origen": [
+            0.54,
+            0.32
+          ]
+        },
+        "pierna": {
+          "w": 36,
+          "h": 24,
+          "pivote": [
+            0,
+            -16
+          ],
+          "origen": [
+            0.29,
+            0.17
+          ]
+        },
+        "brazo": {
+          "w": 20,
+          "h": 37,
+          "pivote": [
+            0,
+            -36
+          ],
+          "origen": [
+            0.5,
+            0.19
+          ]
+        },
+        "torso": {
+          "w": 50,
+          "h": 52,
+          "pivote": [
+            0,
+            -16
+          ],
+          "origen": [
+            0.5,
+            0.62
+          ]
+        },
+        "collar": {
+          "w": 20,
+          "h": 24,
+          "pivote": [
+            0,
+            -16
+          ],
+          "origen": [
+            0.5,
+            1.08
+          ]
+        },
+        "collar-brillo": {
+          "w": 32,
+          "h": 32,
+          "pivote": [
+            0,
+            -16
+          ],
+          "origen": [
+            0.5,
+            0.88
+          ]
+        },
+        "cabeza": {
+          "w": 52,
+          "h": 48,
+          "pivote": [
+            0,
+            -42
+          ],
+          "origen": [
+            0.5,
+            0.79
+          ]
+        },
+        "ojos": {
+          "w": 38,
+          "h": 18,
+          "pivote": [
+            0,
+            -42
+          ],
+          "origen": [
+            0.5,
+            1.22
+          ]
+        },
+        "ojos-cerrados": {
+          "w": 38,
+          "h": 18,
+          "pivote": [
+            0,
+            -42
+          ],
+          "origen": [
+            0.5,
+            1.22
+          ]
+        },
+        "boca-sonrisa": {
+          "w": 38,
+          "h": 16,
+          "pivote": [
+            0,
+            -42
+          ],
+          "origen": [
+            0.5,
+            0.77
+          ]
+        },
+        "boca-canta": {
+          "w": 38,
+          "h": 16,
+          "pivote": [
+            0,
+            -42
+          ],
+          "origen": [
+            0.5,
+            0.77
+          ]
+        },
+        "boca-ay": {
+          "w": 38,
+          "h": 16,
+          "pivote": [
+            0,
+            -42
+          ],
+          "origen": [
+            0.5,
+            0.77
+          ]
+        },
+        "boca-sopla": {
+          "w": 38,
+          "h": 16,
+          "pivote": [
+            0,
+            -42
+          ],
+          "origen": [
+            0.5,
+            0.77
+          ]
+        },
+        "gafas": {
+          "w": 42,
+          "h": 18,
+          "pivote": [
+            0,
+            -42
+          ],
+          "origen": [
+            0.5,
+            1.22
+          ]
+        },
+        "pelo-delante": {
+          "w": 62,
+          "h": 52,
+          "pivote": [
+            0,
+            -42
+          ],
+          "origen": [
+            0.5,
+            0.92
+          ]
+        }
+      }
+    },
+    "nina": {
+      "medidas": {
+        "caderaY": -26,
+        "cuelloY": -54,
+        "hombroY": -48,
+        "cabezaR": 18.5,
+        "cabezaCY": -68.5,
+        "cabezaTop": -87,
+        "piernas": 26,
+        "torso": 28,
+        "alto": 87
+      },
+      "piezas": {
+        "pelo-puntas": {
+          "w": 71,
+          "h": 52,
+          "pivote": [
+            -4,
+            -48
+          ],
+          "origen": [
+            0.54,
+            0.35
+          ]
+        },
+        "pelo-atras": {
+          "w": 83,
+          "h": 83,
+          "pivote": [
+            0,
+            -79
+          ],
+          "origen": [
+            0.54,
+            0.29
+          ]
+        },
+        "pierna": {
+          "w": 35,
+          "h": 34,
+          "pivote": [
+            0,
+            -26
+          ],
+          "origen": [
+            0.26,
+            0.12
+          ]
+        },
+        "brazo": {
+          "w": 20,
+          "h": 39,
+          "pivote": [
+            0,
+            -48
+          ],
+          "origen": [
+            0.5,
+            0.18
+          ]
+        },
+        "torso": {
+          "w": 46,
+          "h": 60,
+          "pivote": [
+            0,
+            -26
+          ],
+          "origen": [
+            0.5,
+            0.57
+          ]
+        },
+        "collar": {
+          "w": 20,
+          "h": 24,
+          "pivote": [
+            0,
+            -26
+          ],
+          "origen": [
+            0.5,
+            1.17
+          ]
+        },
+        "collar-brillo": {
+          "w": 32,
+          "h": 32,
+          "pivote": [
+            0,
+            -26
+          ],
+          "origen": [
+            0.5,
+            0.94
+          ]
+        },
+        "cabeza": {
+          "w": 51,
+          "h": 47,
+          "pivote": [
+            0,
+            -54
+          ],
+          "origen": [
+            0.5,
+            0.79
+          ]
+        },
+        "ojos": {
+          "w": 37,
+          "h": 18,
+          "pivote": [
+            0,
+            -54
+          ],
+          "origen": [
+            0.5,
+            1.19
+          ]
+        },
+        "ojos-cerrados": {
+          "w": 37,
+          "h": 18,
+          "pivote": [
+            0,
+            -54
+          ],
+          "origen": [
+            0.5,
+            1.19
+          ]
+        },
+        "boca-sonrisa": {
+          "w": 37,
+          "h": 16,
+          "pivote": [
+            0,
+            -54
+          ],
+          "origen": [
+            0.5,
+            0.76
+          ]
+        },
+        "boca-canta": {
+          "w": 37,
+          "h": 16,
+          "pivote": [
+            0,
+            -54
+          ],
+          "origen": [
+            0.5,
+            0.76
+          ]
+        },
+        "boca-ay": {
+          "w": 37,
+          "h": 16,
+          "pivote": [
+            0,
+            -54
+          ],
+          "origen": [
+            0.5,
+            0.76
+          ]
+        },
+        "boca-sopla": {
+          "w": 37,
+          "h": 16,
+          "pivote": [
+            0,
+            -54
+          ],
+          "origen": [
+            0.5,
+            0.76
+          ]
+        },
+        "gafas": {
+          "w": 41,
+          "h": 18,
+          "pivote": [
+            0,
+            -54
+          ],
+          "origen": [
+            0.5,
+            1.19
+          ]
+        },
+        "pelo-delante": {
+          "w": 61,
+          "h": 69,
+          "pivote": [
+            0,
+            -54
+          ],
+          "origen": [
+            0.5,
+            0.68
+          ]
+        }
+      }
+    },
+    "preado": {
+      "medidas": {
+        "caderaY": -32,
+        "cuelloY": -64,
+        "hombroY": -58,
+        "cabezaR": 18,
+        "cabezaCY": -78,
+        "cabezaTop": -96,
+        "piernas": 32,
+        "torso": 32,
+        "alto": 96
+      },
+      "piezas": {
+        "pelo-puntas": {
+          "w": 70,
+          "h": 52,
+          "pivote": [
+            -4,
+            -54
+          ],
+          "origen": [
+            0.54,
+            0.35
+          ]
+        },
+        "pelo-atras": {
+          "w": 82,
+          "h": 88,
+          "pivote": [
+            0,
+            -88
+          ],
+          "origen": [
+            0.54,
+            0.27
+          ]
+        },
+        "pierna": {
+          "w": 35,
+          "h": 40,
+          "pivote": [
+            0,
+            -32
+          ],
+          "origen": [
+            0.26,
+            0.1
+          ]
+        },
+        "brazo": {
+          "w": 20,
+          "h": 42,
+          "pivote": [
+            0,
+            -58
+          ],
+          "origen": [
+            0.5,
+            0.17
+          ]
+        },
+        "torso": {
+          "w": 47,
+          "h": 68,
+          "pivote": [
+            0,
+            -32
+          ],
+          "origen": [
+            0.5,
+            0.56
+          ]
+        },
+        "collar": {
+          "w": 20,
+          "h": 24,
+          "pivote": [
+            0,
+            -32
+          ],
+          "origen": [
+            0.5,
+            1.33
+          ]
+        },
+        "collar-brillo": {
+          "w": 32,
+          "h": 32,
+          "pivote": [
+            0,
+            -32
+          ],
+          "origen": [
+            0.5,
+            1.06
+          ]
+        },
+        "cabeza": {
+          "w": 50,
+          "h": 46,
+          "pivote": [
+            0,
+            -64
+          ],
+          "origen": [
+            0.5,
+            0.78
+          ]
+        },
+        "ojos": {
+          "w": 36,
+          "h": 18,
+          "pivote": [
+            0,
+            -64
+          ],
+          "origen": [
+            0.5,
+            1.17
+          ]
+        },
+        "ojos-cerrados": {
+          "w": 36,
+          "h": 18,
+          "pivote": [
+            0,
+            -64
+          ],
+          "origen": [
+            0.5,
+            1.17
+          ]
+        },
+        "boca-sonrisa": {
+          "w": 36,
+          "h": 16,
+          "pivote": [
+            0,
+            -64
+          ],
+          "origen": [
+            0.5,
+            0.75
+          ]
+        },
+        "boca-canta": {
+          "w": 36,
+          "h": 16,
+          "pivote": [
+            0,
+            -64
+          ],
+          "origen": [
+            0.5,
+            0.75
+          ]
+        },
+        "boca-ay": {
+          "w": 36,
+          "h": 16,
+          "pivote": [
+            0,
+            -64
+          ],
+          "origen": [
+            0.5,
+            0.75
+          ]
+        },
+        "boca-sopla": {
+          "w": 36,
+          "h": 16,
+          "pivote": [
+            0,
+            -64
+          ],
+          "origen": [
+            0.5,
+            0.75
+          ]
+        },
+        "gafas": {
+          "w": 40,
+          "h": 18,
+          "pivote": [
+            0,
+            -64
+          ],
+          "origen": [
+            0.5,
+            1.17
+          ]
+        },
+        "pelo-delante": {
+          "w": 60,
+          "h": 77,
+          "pivote": [
+            0,
+            -64
+          ],
+          "origen": [
+            0.5,
+            0.6
+          ]
+        }
+      }
+    },
+    "adolescente": {
+      "medidas": {
+        "caderaY": -36,
+        "cuelloY": -70,
+        "hombroY": -64,
+        "cabezaR": 18,
+        "cabezaCY": -84,
+        "cabezaTop": -102,
+        "piernas": 36,
+        "torso": 34,
+        "alto": 102
+      },
+      "piezas": {
+        "pelo-puntas": {
+          "w": 70,
+          "h": 53,
+          "pivote": [
+            -4,
+            -60
+          ],
+          "origen": [
+            0.54,
+            0.34
+          ]
+        },
+        "pelo-atras": {
+          "w": 82,
+          "h": 88,
+          "pivote": [
+            0,
+            -94
+          ],
+          "origen": [
+            0.54,
+            0.27
+          ]
+        },
+        "pierna": {
+          "w": 35,
+          "h": 44,
+          "pivote": [
+            0,
+            -36
+          ],
+          "origen": [
+            0.26,
+            0.09
+          ]
+        },
+        "brazo": {
+          "w": 20,
+          "h": 44,
+          "pivote": [
+            0,
+            -64
+          ],
+          "origen": [
+            0.5,
+            0.16
+          ]
+        },
+        "torso": {
+          "w": 47,
+          "h": 72,
+          "pivote": [
+            0,
+            -36
+          ],
+          "origen": [
+            0.5,
+            0.56
+          ]
+        },
+        "collar": {
+          "w": 20,
+          "h": 24,
+          "pivote": [
+            0,
+            -36
+          ],
+          "origen": [
+            0.5,
+            1.42
+          ]
+        },
+        "collar-brillo": {
+          "w": 32,
+          "h": 32,
+          "pivote": [
+            0,
+            -36
+          ],
+          "origen": [
+            0.5,
+            1.13
+          ]
+        },
+        "cabeza": {
+          "w": 50,
+          "h": 46,
+          "pivote": [
+            0,
+            -70
+          ],
+          "origen": [
+            0.5,
+            0.78
+          ]
+        },
+        "ojos": {
+          "w": 36,
+          "h": 18,
+          "pivote": [
+            0,
+            -70
+          ],
+          "origen": [
+            0.5,
+            1.17
+          ]
+        },
+        "ojos-cerrados": {
+          "w": 36,
+          "h": 18,
+          "pivote": [
+            0,
+            -70
+          ],
+          "origen": [
+            0.5,
+            1.17
+          ]
+        },
+        "boca-sonrisa": {
+          "w": 36,
+          "h": 16,
+          "pivote": [
+            0,
+            -70
+          ],
+          "origen": [
+            0.5,
+            0.75
+          ]
+        },
+        "boca-canta": {
+          "w": 36,
+          "h": 16,
+          "pivote": [
+            0,
+            -70
+          ],
+          "origen": [
+            0.5,
+            0.75
+          ]
+        },
+        "boca-ay": {
+          "w": 36,
+          "h": 16,
+          "pivote": [
+            0,
+            -70
+          ],
+          "origen": [
+            0.5,
+            0.75
+          ]
+        },
+        "boca-sopla": {
+          "w": 36,
+          "h": 16,
+          "pivote": [
+            0,
+            -70
+          ],
+          "origen": [
+            0.5,
+            0.75
+          ]
+        },
+        "gafas": {
+          "w": 40,
+          "h": 18,
+          "pivote": [
+            0,
+            -70
+          ],
+          "origen": [
+            0.5,
+            1.17
+          ]
+        },
+        "pelo-delante": {
+          "w": 60,
+          "h": 77,
+          "pivote": [
+            0,
+            -70
+          ],
+          "origen": [
+            0.5,
+            0.6
+          ]
+        }
+      }
+    },
+    "adulta": {
+      "medidas": {
+        "caderaY": -37,
+        "cuelloY": -73,
+        "hombroY": -67,
+        "cabezaR": 18,
+        "cabezaCY": -87,
+        "cabezaTop": -105,
+        "piernas": 37,
+        "torso": 36,
+        "alto": 105
+      },
+      "piezas": {
+        "pelo-puntas": {
+          "w": 70,
+          "h": 54,
+          "pivote": [
+            -4,
+            -63
+          ],
+          "origen": [
+            0.54,
+            0.33
+          ]
+        },
+        "pelo-atras": {
+          "w": 82,
+          "h": 88,
+          "pivote": [
+            0,
+            -97
+          ],
+          "origen": [
+            0.54,
+            0.27
+          ]
+        },
+        "pierna": {
+          "w": 35,
+          "h": 45,
+          "pivote": [
+            0,
+            -37
+          ],
+          "origen": [
+            0.26,
+            0.09
+          ]
+        },
+        "brazo": {
+          "w": 20,
+          "h": 45,
+          "pivote": [
+            0,
+            -67
+          ],
+          "origen": [
+            0.5,
+            0.16
+          ]
+        },
+        "torso": {
+          "w": 46,
+          "h": 75,
+          "pivote": [
+            0,
+            -37
+          ],
+          "origen": [
+            0.5,
+            0.56
+          ]
+        },
+        "collar": {
+          "w": 20,
+          "h": 24,
+          "pivote": [
+            0,
+            -37
+          ],
+          "origen": [
+            0.5,
+            1.5
+          ]
+        },
+        "collar-brillo": {
+          "w": 32,
+          "h": 32,
+          "pivote": [
+            0,
+            -37
+          ],
+          "origen": [
+            0.5,
+            1.19
+          ]
+        },
+        "cabeza": {
+          "w": 50,
+          "h": 46,
+          "pivote": [
+            0,
+            -73
+          ],
+          "origen": [
+            0.5,
+            0.78
+          ]
+        },
+        "ojos": {
+          "w": 36,
+          "h": 18,
+          "pivote": [
+            0,
+            -73
+          ],
+          "origen": [
+            0.5,
+            1.17
+          ]
+        },
+        "ojos-cerrados": {
+          "w": 36,
+          "h": 18,
+          "pivote": [
+            0,
+            -73
+          ],
+          "origen": [
+            0.5,
+            1.17
+          ]
+        },
+        "boca-sonrisa": {
+          "w": 36,
+          "h": 16,
+          "pivote": [
+            0,
+            -73
+          ],
+          "origen": [
+            0.5,
+            0.75
+          ]
+        },
+        "boca-canta": {
+          "w": 36,
+          "h": 16,
+          "pivote": [
+            0,
+            -73
+          ],
+          "origen": [
+            0.5,
+            0.75
+          ]
+        },
+        "boca-ay": {
+          "w": 36,
+          "h": 16,
+          "pivote": [
+            0,
+            -73
+          ],
+          "origen": [
+            0.5,
+            0.75
+          ]
+        },
+        "boca-sopla": {
+          "w": 36,
+          "h": 16,
+          "pivote": [
+            0,
+            -73
+          ],
+          "origen": [
+            0.5,
+            0.75
+          ]
+        },
+        "gafas": {
+          "w": 40,
+          "h": 18,
+          "pivote": [
+            0,
+            -73
+          ],
+          "origen": [
+            0.5,
+            1.17
+          ]
+        },
+        "pelo-delante": {
+          "w": 60,
+          "h": 77,
+          "pivote": [
+            0,
+            -73
+          ],
+          "origen": [
+            0.5,
+            0.6
+          ]
+        }
+      }
+    }
+  }
+}

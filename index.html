@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Sofía 18" />
+  <meta name="theme-color" content="#1e4fa3" />
+  <link rel="apple-touch-icon" href="icons/icono-192.png" />
+  <link rel="icon" href="icons/clave.svg" type="image/svg+xml" />
+  <title>Sofía: 18 años en clave de sol</title>
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: #0d1b3d; overflow: hidden;
+      touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+    #juego { position: fixed; inset: 0; }
+    #juego canvas { display: block; }
+    #girar { display: none; position: fixed; inset: 0; z-index: 10; background: #0d1b3d; color: #e8f0ff;
+      font-family: 'Trebuchet MS', system-ui, sans-serif; text-align: center; flex-direction: column;
+      align-items: center; justify-content: center; gap: 16px; font-size: 22px; padding: 24px; box-sizing: border-box; }
+    #girar .movil { width: 60px; height: 100px; border: 5px solid #8fb8ff; border-radius: 12px;
+      animation: girar 2s ease-in-out infinite; }
+    @keyframes girar { 0%, 30% { transform: rotate(0deg); } 60%, 100% { transform: rotate(-90deg); } }
+    @media (orientation: portrait) and (pointer: coarse) { #girar { display: flex; } }
+  </style>
+</head>
+<body>
+  <div id="juego"></div>
+  <div id="girar"><div class="movil"></div><div>Gira el móvil para jugar</div></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

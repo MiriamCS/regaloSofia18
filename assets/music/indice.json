@@ -1,0 +1,1 @@
+{ "_comentario": "Claves de música convertidas desde MIDI (ver tools/midi-a-json.mjs). Cada clave tiene su archivo <clave>.json en esta carpeta.", "pistas": [] }

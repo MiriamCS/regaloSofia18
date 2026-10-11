@@ -1,0 +1,160 @@
+{
+  "_comentario": "Todos los textos del juego. {n} se sustituye por el número de nivel/edad. Las pistas de Miriam de cada nivel están en 'niveles[N].pistas' y se referencian desde el JSON del nivel por su clave.",
+  "titulo": "Sofía",
+  "subtitulo": "18 años en clave de sol",
+  "menu": {
+    "jugar": "Jugar",
+    "continuar": "Continuar",
+    "niveles": "Niveles",
+    "album": "Álbum de fotos",
+    "objetos": "Objetos",
+    "opciones": "Opciones",
+    "tarta": "La tarta",
+    "tocaParaEmpezar": "Toca la pantalla para empezar"
+  },
+  "transicion": {
+    "nacer": "Sofía acaba de nacer",
+    "uno": "Sofía cumple 1 año",
+    "varios": "Sofía cumple {n} años"
+  },
+  "pausa": {
+    "titulo": "Pausa",
+    "reanudar": "Reanudar",
+    "reiniciar": "Reiniciar nivel",
+    "menu": "Volver al menú"
+  },
+  "opciones": {
+    "titulo": "Opciones",
+    "musica": "Música",
+    "efectos": "Efectos",
+    "borrar": "Borrar partida",
+    "confirmarBorrar": "¿Seguro? Se perderá todo el progreso.",
+    "si": "Sí, borrar",
+    "no": "No",
+    "borrado": "Partida borrada",
+    "volver": "Volver",
+    "pantallaCompleta": "Pantalla completa"
+  },
+  "galerias": {
+    "album": "Álbum de fotos",
+    "vitrina": "Vitrina de objetos",
+    "niveles": "Niveles",
+    "noConseguida": "Todavía no la has encontrado",
+    "noConseguido": "Todavía no lo has encontrado",
+    "nivel": "Año {n}",
+    "volver": "Volver",
+    "cerrar": "Cerrar"
+  },
+  "juego": {
+    "fotoConseguida": "¡Foto encontrada!",
+    "objetoConseguido": "¡Objeto encontrado!",
+    "nivelCompletado": "¡Nivel completado!",
+    "sinVelas": "Se apagaron todas las velas...",
+    "checkpoint": "¡Punto de control!",
+    "fotoRobada": "¡La urraca te ha robado la foto!",
+    "objetoRobado": "¡Te han robado el objeto!",
+    "recuperado": "¡Recuperado!",
+    "puertaAbierta": "¡Se abrió!",
+    "melodiaMal": "Esa no era...",
+    "controlesInvertidos": "¡Controles al revés!",
+    "habilidades": {
+      "correr": "¡Nueva habilidad: correr! Mantén pulsada la flecha",
+      "dobleSalto": "¡Nueva habilidad: doble salto! Pulsa saltar otra vez en el aire",
+      "cantar": "¡Nueva habilidad: cantar! Pulsa el botón de la nota"
+    }
+  },
+  "final": {
+    "continuara": "Continuará...",
+    "soplar": "Desliza el dedo para soplar las velas",
+    "volverMenu": "Volver al inicio",
+    "felicidades": "¡Feliz cumpleaños, Sofía!"
+  },
+  "niveles": [
+    {
+      "nombre": "La cuna",
+      "pistas": {
+        "hola": "¡Hola, Sofi! Soy Miriam, tu hermana. Te iré dando pistas por el camino... aunque alguna vez puede que te mienta un poquito.",
+        "mover": "Muévete con las flechas de la izquierda. ¡A gatas también se llega lejos!",
+        "saltar": "Para subir, pulsa el botón de saltar (abajo a la derecha).",
+        "hueco": "Un hueco. Salta un poco antes del borde. Tranquila: a esta edad tienes velas infinitas.",
+        "empujar": "¿Ves esa caja? Gatea contra ella para empujarla.",
+        "pato": "Un pato de goma patrulla la zona. Si le saltas encima, se convierte en notas.",
+        "seguro": "¡Este suelo es 100% seguro! Firmado: nadie.",
+        "cajas": "Una caja sola no llega... ¿Y si una se sube encima de la otra? Las cajas también saben caerse.",
+        "meta": "¿Ves la puerta con la clave de sol? Esa es la meta. ¡Ya casi tienes un año!"
+      }
+    },
+    {
+      "nombre": "El parque",
+      "pistas": {}
+    },
+    {
+      "nombre": "La casa a ras de suelo",
+      "pistas": {}
+    },
+    {
+      "nombre": "La guardería",
+      "pistas": {}
+    },
+    {
+      "nombre": "La playa",
+      "pistas": {}
+    },
+    {
+      "nombre": "La fiesta de cumpleaños",
+      "pistas": {}
+    },
+    {
+      "nombre": "El primer cole",
+      "pistas": {}
+    },
+    {
+      "nombre": "La clase de música",
+      "pistas": {}
+    },
+    {
+      "nombre": "La excursión al bosque",
+      "pistas": {}
+    },
+    {
+      "nombre": "El conservatorio",
+      "pistas": {}
+    },
+    {
+      "nombre": "La ciudad de noche",
+      "pistas": {}
+    },
+    {
+      "nombre": "Vacaciones de verano",
+      "pistas": {}
+    },
+    {
+      "nombre": "Primer día de instituto",
+      "pistas": {}
+    },
+    {
+      "nombre": "La habitación y el móvil gigante",
+      "pistas": {}
+    },
+    {
+      "nombre": "La audición",
+      "pistas": {}
+    },
+    {
+      "nombre": "Exámenes",
+      "pistas": {}
+    },
+    {
+      "nombre": "El viaje",
+      "pistas": {}
+    },
+    {
+      "nombre": "Selectividad",
+      "pistas": {}
+    },
+    {
+      "nombre": "El gran concierto",
+      "pistas": {}
+    }
+  ]
+}

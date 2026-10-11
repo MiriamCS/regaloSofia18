@@ -1,0 +1,32 @@
+{
+  "_comentario": "Tamaño de visualización de las fotos en el álbum y pies de foto. Formatos: JPG o WebP, ~1200 px de lado largo. Si 'archivo' no existe se muestra un marco con placeholder.",
+  "visualizacion": {
+    "ancho": 640,
+    "alto": 480,
+    "recorte": "cubrir",
+    "_recorte": "'cubrir' recorta para llenar el marco; 'contener' muestra la foto entera con bandas",
+    "marco": 18,
+    "giroMaxGrados": 3
+  },
+  "fotos": [
+    { "nivel": 0,  "archivo": "photos/foto-00.jpg", "pie": "Pendiente: pie de foto del año 0" },
+    { "nivel": 1,  "archivo": "photos/foto-01.jpg", "pie": "Pendiente: pie de foto del año 1" },
+    { "nivel": 2,  "archivo": "photos/foto-02.jpg", "pie": "Pendiente: pie de foto del año 2" },
+    { "nivel": 3,  "archivo": "photos/foto-03.jpg", "pie": "Pendiente: pie de foto del año 3" },
+    { "nivel": 4,  "archivo": "photos/foto-04.jpg", "pie": "Pendiente: pie de foto del año 4" },
+    { "nivel": 5,  "archivo": "photos/foto-05.jpg", "pie": "Pendiente: pie de foto del año 5" },
+    { "nivel": 6,  "archivo": "photos/foto-06.jpg", "pie": "Pendiente: pie de foto del año 6" },
+    { "nivel": 7,  "archivo": "photos/foto-07.jpg", "pie": "Pendiente: pie de foto del año 7" },
+    { "nivel": 8,  "archivo": "photos/foto-08.jpg", "pie": "Pendiente: pie de foto del año 8" },
+    { "nivel": 9,  "archivo": "photos/foto-09.jpg", "pie": "Pendiente: pie de foto del año 9" },
+    { "nivel": 10, "archivo": "photos/foto-10.jpg", "pie": "Pendiente: pie de foto del año 10" },
+    { "nivel": 11, "archivo": "photos/foto-11.jpg", "pie": "Pendiente: pie de foto del año 11" },
+    { "nivel": 12, "archivo": "photos/foto-12.jpg", "pie": "Pendiente: pie de foto del año 12" },
+    { "nivel": 13, "archivo": "photos/foto-13.jpg", "pie": "Pendiente: pie de foto del año 13" },
+    { "nivel": 14, "archivo": "photos/foto-14.jpg", "pie": "Pendiente: pie de foto del año 14" },
+    { "nivel": 15, "archivo": "photos/foto-15.jpg", "pie": "Pendiente: pie de foto del año 15" },
+    { "nivel": 16, "archivo": "photos/foto-16.jpg", "pie": "Pendiente: pie de foto del año 16" },
+    { "nivel": 17, "archivo": "photos/foto-17.jpg", "pie": "Pendiente: pie de foto del año 17" },
+    { "nivel": 18, "archivo": "photos/foto-18.jpg", "pie": "Pendiente: pie de foto del año 18" }
+  ]
+}

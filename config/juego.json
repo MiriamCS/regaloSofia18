@@ -1,0 +1,59 @@
+{
+  "_comentario": "Valores de jugabilidad y dificultad. Se pueden ajustar sin tocar el código.",
+  "pantalla": {
+    "alto": 720,
+    "anchoMin": 1280,
+    "anchoMax": 1600
+  },
+  "tile": 48,
+  "fisica": {
+    "gravedad": 1900,
+    "velocidadAndar": 230,
+    "velocidadCorrer": 380,
+    "velocidadGatas": 150,
+    "aceleracionSuelo": 2600,
+    "aceleracionAire": 1500,
+    "frenadoSuelo": 3200,
+    "salto": 690,
+    "dobleSalto": 600,
+    "saltoBebe": 520,
+    "cortarSalto": 0.45,
+    "coyoteMs": 90,
+    "bufferSaltoMs": 110,
+    "velocidadMaxCaida": 1100,
+    "empujeCaja": 110
+  },
+  "controles": {
+    "msParaCorrer": 500,
+    "tamBoton": 96,
+    "opacidadBotones": 0.45,
+    "vibracionMs": 60
+  },
+  "canto": {
+    "recargaMs": 1500,
+    "duracionMs": 900,
+    "radio": 190,
+    "duracionPlataformaMs": 3800,
+    "dormirMs": 3500,
+    "invertirMs": 4000
+  },
+  "habilidades": {
+    "_comentario": "Nivel desde el que se desbloquea cada habilidad. Si Sofía empezó música a otra edad, cambia 'cantar'.",
+    "correr": 2,
+    "dobleSalto": 4,
+    "cantar": 6
+  },
+  "danio": {
+    "invulnerableMs": 1200,
+    "retrocesoX": 320,
+    "retrocesoY": 420,
+    "msVolverCheckpoint": 650
+  },
+  "musica": {
+    "aceleracionUltimaVela": 1.12
+  },
+  "final": {
+    "segundosCaminoBlanco": 75,
+    "distanciaCartelATarta": 2400
+  }
+}

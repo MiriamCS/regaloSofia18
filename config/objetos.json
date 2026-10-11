@@ -1,0 +1,24 @@
+{
+  "_comentario": "Objeto coleccionable de cada nivel. PROVISIONAL: objetos genéricos por edad hasta que Miriam pase la lista real (fecha límite 26 oct). 'sprite' es el nombre del SVG en assets/sprites/objetos/.",
+  "objetos": [
+    { "nivel": 0,  "sprite": "chupete",     "nombre": "El chupete",               "texto": "Pendiente: texto del objeto del año 0" },
+    { "nivel": 1,  "sprite": "sonajero",    "nombre": "El sonajero",              "texto": "Pendiente: texto del objeto del año 1" },
+    { "nivel": 2,  "sprite": "patito",      "nombre": "El patito de baño",        "texto": "Pendiente: texto del objeto del año 2" },
+    { "nivel": 3,  "sprite": "ceras",       "nombre": "Las ceras de colores",     "texto": "Pendiente: texto del objeto del año 3" },
+    { "nivel": 4,  "sprite": "cubo",        "nombre": "El cubo de playa",         "texto": "Pendiente: texto del objeto del año 4" },
+    { "nivel": 5,  "sprite": "corona",      "nombre": "La corona de cumpleaños",  "texto": "Pendiente: texto del objeto del año 5" },
+    { "nivel": 6,  "sprite": "mochila",     "nombre": "La primera mochila",       "texto": "Pendiente: texto del objeto del año 6" },
+    { "nivel": 7,  "sprite": "partituras",  "nombre": "El primer libro de partituras", "texto": "Pendiente: texto del objeto del año 7" },
+    { "nivel": 8,  "sprite": "brujula",     "nombre": "La brújula de la excursión", "texto": "Pendiente: texto del objeto del año 8" },
+    { "nivel": 9,  "sprite": "metronomo",   "nombre": "El metrónomo",             "texto": "Pendiente: texto del objeto del año 9" },
+    { "nivel": 10, "sprite": "farolillo",   "nombre": "El farolillo",             "texto": "Pendiente: texto del objeto del año 10" },
+    { "nivel": 11, "sprite": "gafas-sol",   "nombre": "Las gafas de sol",         "texto": "Pendiente: texto del objeto del año 11" },
+    { "nivel": 12, "sprite": "agenda",      "nombre": "La agenda del instituto",  "texto": "Pendiente: texto del objeto del año 12" },
+    { "nivel": 13, "sprite": "movil",       "nombre": "El primer móvil",          "texto": "Pendiente: texto del objeto del año 13" },
+    { "nivel": 14, "sprite": "entrada",     "nombre": "La entrada del concierto", "texto": "Pendiente: texto del objeto del año 14" },
+    { "nivel": 15, "sprite": "boligrafo",   "nombre": "El boli de la suerte",     "texto": "Pendiente: texto del objeto del año 15" },
+    { "nivel": 16, "sprite": "maleta",      "nombre": "La maleta",                "texto": "Pendiente: texto del objeto del año 16" },
+    { "nivel": 17, "sprite": "auriculares", "nombre": "Los auriculares",          "texto": "Pendiente: texto del objeto del año 17" },
+    { "nivel": 18, "sprite": "llave",       "nombre": "La llave de los 18",       "texto": "Pendiente: texto del objeto del año 18" }
+  ]
+}

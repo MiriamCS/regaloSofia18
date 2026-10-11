@@ -1,0 +1,22 @@
+{
+  "name": "sofia-18-clave-de-sol",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Sofía: 18 años en clave de sol — videojuego de cumpleaños",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host",
+    "sprites": "node tools/generar-sprites.mjs",
+    "niveles": "node tools/generar-niveles.mjs",
+    "validar": "node tools/validar-niveles.mjs"
+  },
+  "dependencies": {
+    "phaser": "^3.90.0"
+  },
+  "devDependencies": {
+    "vite": "^6.4.4",
+    "vite-plugin-pwa": "^0.21.2"
+  }
+}

@@ -1,0 +1,5 @@
+PENDIENTE: aquí va el mensaje personal de Miriam para Sofía.
+
+(Miriam lo escribe al final. Fecha límite: 1 de noviembre.)
+
+Se pueden usar varias líneas y párrafos: el juego respeta los saltos de línea.
