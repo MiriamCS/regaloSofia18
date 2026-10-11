@@ -1,6 +1,6 @@
 // Pantalla de inicio: Jugar/Continuar, Niveles, Álbum, Objetos, Opciones (y la tarta cuando se ha visto).
 import Phaser from 'phaser';
-import { texto, NUM_NIVELES } from '../config.js';
+import { texto, NUM_NIVELES, etapaDeNivel } from '../config.js';
 import { Boton, fondoMenu } from '../ui/Boton.js';
 import { Guardado } from '../systems/Guardado.js';
 import { Audio } from '../audio/Audio.js';
@@ -25,7 +25,8 @@ export class MenuScene extends Phaser.Scene {
     this.add.text(W * 0.3, H * 0.2 + 74, texto('subtitulo'), { fontFamily: FUENTE_TITULO, fontSize: '32px', color: '#e8b84a', fontStyle: 'italic' }).setOrigin(0.5);
 
     // Sofía adulta saludando en el menú
-    const etapa = Guardado.completado(NUM_NIVELES - 1) ? 'adulta' : ['bebe', 'nina', 'preado', 'adolescente', 'adulta'][Math.min(4, Math.floor(Guardado.siguienteNivel() / 4))];
+    // Sofía aparece con la edad del siguiente nivel por jugar
+    const etapa = Guardado.completado(NUM_NIVELES - 1) ? 'adulta' : etapaDeNivel(Guardado.siguienteNivel());
     this.sofia = new Sofia(this, W * 0.3, H * 0.86, etapa, {});
     this.sofia.body.setAllowGravity(false);
     this.sofia.setScale(1.9);

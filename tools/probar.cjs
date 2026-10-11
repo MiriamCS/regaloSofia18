@@ -8,6 +8,7 @@
 //   tpc:col,fila          coloca a Sofía de pie en la casilla (col, fila)
 //   estado                imprime posición, velas, coleccionables...
 //   eval:codigo           evalúa JS (URL-encoded) y lo imprime
+//   clic:x,y              toca la pantalla en (x, y)
 //   arrastrar:x1,y1,x2,y2 arrastra el ratón/dedo (p.ej. soplar las velas de la tarta)
 // Teclas: flechas o A/D, saltar = ArrowUp/Space, cantar = x, correr = Shift.
 // Consejo: usa &canvas en la URL; en este entorno WebGL va a pocos fps.
@@ -39,7 +40,10 @@ try { pw = require('playwright'); } catch { pw = require('/opt/node-tools/node_m
     const v = i < 0 ? '' : a.slice(i + 1);
     if (k === 'esperar') await pg.waitForTimeout(Number(v));
     else if (k === 'shot') await pg.screenshot({ path: `${base}-${v}.png` });
-    else if (k === 'arrastrar') {
+    else if (k === 'clic') {
+      const [x, y] = v.split(',').map(Number);
+      await pg.mouse.click(x, y);
+    } else if (k === 'arrastrar') {
       // arrastrar:x1,y1,x2,y2[,pasos]  (coordenadas de pantalla 1280x720)
       const [x1, y1, x2, y2, pasos = 20] = v.split(',').map(Number);
       await pg.mouse.move(x1, y1);

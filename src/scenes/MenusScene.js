@@ -74,6 +74,15 @@ export class NivelesScene extends Phaser.Scene {
 
 // ---- Álbum de fotos ---------------------------------------------------------------
 
+// Escala la imagen para cubrir w x h y recorta lo que sobra (centrado). Funciona aunque se gire.
+function recortarCubriendo(img, w, h) {
+  const s = Math.max(w / img.width, h / img.height);
+  const cw = w / s;
+  const ch = h / s;
+  img.setScale(s);
+  img.setCrop((img.width - cw) / 2, (img.height - ch) / 2, cw, ch);
+}
+
 export class AlbumScene extends Phaser.Scene {
   constructor() {
     super('Album');
@@ -99,11 +108,8 @@ export class AlbumScene extends Phaser.Scene {
       const c = casilla(this, x, y, tam, { activa: tiene, alPulsar: tiene ? () => this.ver(f) : null });
       if (tiene) {
         if (this.textures.exists(`foto-${n}`)) {
-          const img = this.add.image(0, -6, `foto-${n}`);
-          const s = Math.max((tam - 16) / img.width, (tam - 34) / img.height);
-          img.setScale(s);
-          const mask = this.make.graphics({}, false).fillRect(x - tam / 2 + 8, y - tam / 2 + 8, tam - 16, tam - 34);
-          img.setMask(mask.createGeometryMask());
+          const img = this.add.image(0, -8, `foto-${n}`);
+          recortarCubriendo(img, tam - 16, tam - 34);
           c.add(img);
         } else {
           c.add(this.add.image(0, -8, 'marco-foto').setScale(0.6));
@@ -136,13 +142,8 @@ export class AlbumScene extends Phaser.Scene {
     const clave = `foto-${f.nivel}`;
     if (this.textures.exists(clave)) {
       const img = this.add.image(0, 0, clave);
-      const fx = aw / img.width;
-      const fy = ah / img.height;
-      img.setScale(cfg.recorte === 'contener' ? Math.min(fx, fy) : Math.max(fx, fy));
-      if (cfg.recorte !== 'contener') {
-        const m = this.make.graphics({}, false).fillRect(W / 2 - aw / 2, H / 2 - 30 - ah / 2, aw, ah);
-        img.setMask(m.createGeometryMask());
-      }
+      if (cfg.recorte === 'contener') img.setScale(Math.min(aw / img.width, ah / img.height));
+      else recortarCubriendo(img, aw, ah);
       foto.add(img);
     } else {
       const g = this.add.graphics();
