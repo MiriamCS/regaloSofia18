@@ -300,6 +300,18 @@ class MotorAudio {
     }
   }
 
+  // Pulso actual de la música (para plataformas a ritmo). null si no suena nada.
+  pulso() {
+    if (!this.musica || !this.ctx) return null;
+    const p = this.pulsoEn(this.t);
+    const d = this.musica.pista.duracion;
+    return ((p % d) + d) % d;
+  }
+
+  get bpm() {
+    return this.musica ? this.musica.pista.bpm * this.velocidad : 100;
+  }
+
   pararMusica() {
     if (this.temporizador) clearInterval(this.temporizador);
     this.temporizador = null;

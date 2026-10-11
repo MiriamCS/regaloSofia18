@@ -13,7 +13,7 @@ import { Sofia } from '../entities/Sofia.js';
 import { Enemigo } from '../entities/Enemigos.js';
 import {
   dibujarBloque, dibujarSuelos, PlataformaMovil, PlataformaCae, PlataformaFalsa, PlataformaTemporizada, PlataformaMusical,
-  TeclaPiano, Campana, PuertaMelodia, Checkpoint, Coleccionable, Meta, Miriam, Cartel, LluviaObjetos,
+  TeclaPiano, Campana, PuertaMelodia, Checkpoint, Coleccionable, Meta, MetaFalsa, PeligroMovil, Miriam, Cartel, LluviaObjetos,
 } from '../entities/elementos.js';
 import { claveNivel } from './TransicionScene.js';
 
@@ -131,6 +131,18 @@ export class JuegoScene extends Phaser.Scene {
   }
 
   crearObjeto(o) {
+    const antes = { act: this.actualizables.length, pis: this.pisables.length, zp: this.zonasPeligro.length, gr: this.graficos.length };
+    this.crearObjetoTipo(o);
+    if (o.p.mundo && o.tipo !== 'solido' && o.tipo !== 'nube') {
+      // lo creado por este objeto pertenece solo a un mundo (A o B): se oculta en el otro
+      const nuevos = [...this.actualizables.slice(antes.act), ...this.pisables.slice(antes.pis)];
+      for (const el of nuevos) if (el.zona) this.registrarMundo({ zona: el.zona, g: el.g }, o);
+      for (const z of this.zonasPeligro.slice(antes.zp)) this.registrarMundo({ zona: z }, o);
+      for (const g of this.graficos.slice(antes.gr)) if (!nuevos.some((n) => n.g === g)) this.registrarMundo({ g }, o);
+    }
+  }
+
+  crearObjetoTipo(o) {
     const pal = this.paleta;
     switch (o.tipo) {
       case 'solido': {
@@ -261,6 +273,22 @@ export class JuegoScene extends Phaser.Scene {
         this.graficos.push(img);
         break;
       }
+      case 'meta-falsa': {
+        const m = new MetaFalsa(this, o);
+        this.metasFalsas = this.metasFalsas || [];
+        this.metasFalsas.push(m);
+        this.graficos.push(m.img);
+        break;
+      }
+      case 'peligro-movil': {
+        const pm = new PeligroMovil(this, o);
+        this.actualizables.push(pm);
+        this.zonasPeligro.push(pm.zona);
+        this.peligrosMoviles = this.peligrosMoviles || [];
+        this.peligrosMoviles.push(pm);
+        this.graficos.push(pm.g);
+        break;
+      }
       case 'lluvia': {
         this.actualizables.push(new LluviaObjetos(this, o, this.peligros));
         break;
@@ -322,6 +350,7 @@ export class JuegoScene extends Phaser.Scene {
     if (this.foto) fis.add.overlap(s, this.foto.zona, () => this.coger('foto'));
     if (this.objeto) fis.add.overlap(s, this.objeto.zona, () => this.coger('objeto'));
     if (this.meta) fis.add.overlap(s, this.meta.zona, () => this.completar());
+    for (const m of this.metasFalsas || []) fis.add.overlap(s, m.zona, () => m.tocar(this.textoPista(m.o)));
   }
 
   alPisar(z) {
@@ -446,7 +475,7 @@ export class JuegoScene extends Phaser.Scene {
     this.fondo.actualizar();
 
     // caída al vacío
-    if (s.y > this.datos.alto + 120 && !this.muriendo) this.morir(1, undefined, true);
+    if ((s.y > this.datos.alto + 120 || s.y < -300) && !this.muriendo) this.morir(1, undefined, true);
     // cajas caídas al vacío vuelven a su sitio
     for (const c of this.cajas.getChildren()) if (c.y > this.datos.alto + 200) this.recolocarCaja(c);
 
@@ -472,7 +501,12 @@ export class JuegoScene extends Phaser.Scene {
       } else if (z.tipo === 'final' && !this.enFinal) this.iniciarFinal(z);
     }
     b.setGravityY(JUEGO.fisica.gravedad * (gravedad - 1));
-    s.multSalto = gravedad < 1 ? 0.75 : 1;
+    s.multSalto = Math.abs(gravedad) < 1 ? 0.75 : 1;
+    const signo = gravedad < 0 ? -1 : 1;
+    if (signo !== (s.g || 1)) {
+      s.g = signo;
+      b.setMaxVelocity(b.maxVelocity.x, JUEGO.fisica.velocidadMaxCaida);
+    }
     const invertidoPorCanto = t < (this.invertidoHasta || 0);
     const inv = enInvertir || invertidoPorCanto;
     if (inv && !s.invertido) {
@@ -536,7 +570,10 @@ export class JuegoScene extends Phaser.Scene {
   aplicarMundo() {
     for (const { mundo, objeto } of this.porMundo) {
       const activo = mundo === this.mundoActual;
-      if (objeto.zona) objeto.zona.body.enable = activo;
+      if (objeto.zona) {
+        objeto.zona.body.enable = activo;
+        objeto.zona.fueraDeMundo = !activo;
+      }
       if (objeto.g) this.tweens.add({ targets: objeto.g, alpha: activo ? 1 : 0.12, duration: 250 });
     }
     this.cameras.main.flash(200, 255, 255, 255, false);
@@ -628,6 +665,8 @@ export class JuegoScene extends Phaser.Scene {
     this.invertidoHasta = 0;
     this.muriendo = false;
     for (const p of this.pisables) p.reiniciar?.();
+    for (const pm of this.peligrosMoviles || []) pm.reiniciar(this.puntoReaparicion);
+    s.g = 1;
     for (const e of this.enemigos) {
       if (e.tipo === 'ladron' && e.vivo) {
         e.body.reset(e.inicioX, e.inicioY);

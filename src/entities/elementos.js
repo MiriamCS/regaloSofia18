@@ -160,10 +160,10 @@ class Bloque {
     }
   }
   activo(si) {
-    this.zona.body.enable = si;
+    this.zona.body.enable = si && !this.zona.fueraDeMundo;
   }
   visible(alpha) {
-    this.g.setAlpha(alpha);
+    this.g.setAlpha(this.zona.fueraDeMundo ? Math.min(alpha, 0.12) : alpha);
   }
 }
 
@@ -283,15 +283,26 @@ export class PlataformaTemporizada extends Bloque {
   // Aparece y desaparece en ciclo: on/off en ms (o en pulsos si 'ritmo' = true)
   constructor(scene, o, paleta) {
     super(scene, o, paleta, { estilo: o.p.estilo || 'nube', alto: o.p.estilo === 'solido' ? o.h : 22 });
-    this.on = o.p.on || 1800;
-    this.off = o.p.off || 1400;
+    this.on = o.p.on || (o.p.ritmo ? 2 : 1800);
+    this.off = o.p.off || (o.p.ritmo ? 2 : 1400);
     this.desfase = o.p.desfase || 0;
   }
   actualizar(t) {
-    const ciclo = this.on + this.off;
-    const f = (t + this.desfase) % ciclo;
+    let f;
+    let ciclo;
+    let aviso = 450;
+    const pulso = this.o.p.ritmo ? Audio.pulso() : null;
+    if (pulso !== null) {
+      // a ritmo: on/off/desfase en pulsos (negras) de la música
+      ciclo = this.on + this.off;
+      f = (((pulso + this.desfase) % ciclo) + ciclo) % ciclo;
+      aviso = 0.5;
+    } else {
+      ciclo = this.on + this.off;
+      f = (t + this.desfase) % ciclo;
+    }
     const encendida = f < this.on;
-    const avisando = encendida && f > this.on - 450;
+    const avisando = encendida && f > this.on - aviso;
     this.activo(encendida);
     this.visible(encendida ? (avisando ? (Math.floor(t / 70) % 2 ? 0.4 : 1) : 1) : 0.15);
   }
@@ -598,6 +609,84 @@ export class Cartel {
   actualizar(sofia, dt, hablando) {
     this.bocadillo.mostrar(hablando);
     this.bocadillo.actualizar(dt);
+  }
+}
+
+// ---- Meta falsa (niveles-trampa) -------------------------------------------------
+
+export class MetaFalsa {
+  // Igual que la meta... hasta que la tocas: sale corriendo 'dx' tiles y desaparece.
+  constructor(scene, o) {
+    this.scene = scene;
+    this.o = o;
+    this.x = o.pieX;
+    this.y = o.pieY;
+    this.img = scene.add.image(this.x, this.y, 'meta').setOrigin(0.5, 1).setScale(ESC * 1.1).setDepth(19);
+    this.zona = scene.add.zone(this.x, this.y - 50, 50, 100);
+    scene.physics.add.existing(this.zona, true);
+    scene.tweens.add({ targets: this.img, scaleX: ESC * 1.14, scaleY: ESC * 1.14, duration: 1100, yoyo: true, repeat: -1, ease: 'Sine.inOut' });
+    this.usada = false;
+  }
+  tocar(contenido) {
+    if (this.usada) return;
+    this.usada = true;
+    this.zona.body.enable = false;
+    Audio.efecto('invertir');
+    this.scene.globo?.(this.x, this.y - 150, contenido || '¡Todavía no!');
+    const dx = (this.o.p.dx ?? 8) * TILE;
+    this.scene.tweens.add({ targets: this.img, x: this.x + dx, angle: 360, duration: 900, ease: 'Cubic.in' });
+    this.scene.tweens.add({ targets: this.img, alpha: 0, delay: 700, duration: 300 });
+  }
+}
+
+// ---- Peligro que avanza (marea, papeles...) para escapes ---------------------------
+
+export class PeligroMovil {
+  // Rectángulo que avanza a 'velocidad' px/s (dir: arriba, derecha). Mata al tocarlo.
+  constructor(scene, o) {
+    this.scene = scene;
+    this.o = o;
+    this.dir = o.p.dir || 'arriba';
+    this.vel = o.p.velocidad || 40;
+    this.danio = o.p.danio || 1;
+    this.margen = (o.p.margen ?? 7) * TILE;
+    this.color = Phaser.Display.Color.HexStringToColor(o.p.color || '#3f8cff').color;
+    this.zona = scene.add.zone(o.x + o.w / 2, o.y + o.h / 2, o.w, o.h);
+    scene.physics.add.existing(this.zona, true);
+    this.zona.danio = this.danio;
+    this.g = scene.add.graphics().setDepth(65);
+    this.pos = { x: o.x, y: o.y };
+    this.activo = !o.p.desdeX;
+    this.dibujar(0);
+  }
+  dibujar(t) {
+    const { w, h } = this.o;
+    const g = this.g;
+    g.clear();
+    g.fillStyle(this.color, 0.85);
+    if (this.dir === 'arriba') {
+      g.fillRect(this.pos.x, this.pos.y + 10, w, h + 2000);
+      for (let x = 0; x < w; x += 40) g.fillCircle(this.pos.x + x + 20, this.pos.y + 12 + Math.sin(t / 300 + x) * 4, 22);
+    } else {
+      g.fillRect(this.pos.x - 2000, this.pos.y, w + 2000 - 10, h);
+      for (let y = 0; y < h; y += 40) g.fillCircle(this.pos.x + w - 12 + Math.sin(t / 300 + y) * 4, this.pos.y + y + 20, 22);
+    }
+  }
+  actualizar(t, dt) {
+    const s = this.scene.sofia;
+    if (!this.activo && s.x >= this.o.p.desdeX * TILE) this.activo = true;
+    if (this.activo && !this.scene.muriendo && !this.scene.terminado) {
+      if (this.dir === 'arriba') this.pos.y -= this.vel * dt;
+      else this.pos.x += this.vel * dt;
+      this.zona.body.reset(this.pos.x + this.o.w / 2, this.pos.y + this.o.h / 2);
+    }
+    this.dibujar(t);
+  }
+  reiniciar(punto) {
+    // vuelve a quedar a 'margen' de donde reaparece Sofía (nunca más adelante de su inicio)
+    if (this.dir === 'arriba') this.pos.y = Math.max(this.pos.y, Math.min(this.o.y, punto.y + this.margen));
+    else this.pos.x = Math.min(this.pos.x, Math.max(this.o.x, punto.x - this.margen - this.o.w));
+    this.zona.body.reset(this.pos.x + this.o.w / 2, this.pos.y + this.o.h / 2);
   }
 }
 

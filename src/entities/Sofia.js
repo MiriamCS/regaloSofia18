@@ -104,9 +104,12 @@ export class Sofia extends Phaser.GameObjects.Container {
   actualizar(tiempo, delta, entrada) {
     const dt = delta / 1000;
     const b = this.body;
-    const enSuelo = b.blocked.down || b.touching.down;
+    // gravedad invertida (g = -1): el "suelo" es el techo y se salta hacia abajo
+    const g = this.g || 1;
+    const vy = b.velocity.y * g;
+    const enSuelo = g > 0 ? b.blocked.down || b.touching.down : b.blocked.up || b.touching.up;
     if (enSuelo) {
-      if (!this.estabaEnSuelo && b.velocity.y >= 0 && this.velPrevY > 300) {
+      if (!this.estabaEnSuelo && vy >= 0 && this.velPrevY > 300) {
         Audio.efecto('aterrizar');
         this.squash = 1;
       }
@@ -114,7 +117,7 @@ export class Sofia extends Phaser.GameObjects.Container {
       this.saltosAire = 0;
     }
     this.estabaEnSuelo = enSuelo;
-    this.velPrevY = b.velocity.y;
+    this.velPrevY = vy;
 
     let dir = 0;
     if (!this.controlBloqueado) {
@@ -145,15 +148,15 @@ export class Sofia extends Phaser.GameObjects.Container {
     if (entrada.saltar && !this.controlBloqueado) this.bufferSalto = tiempo;
     const puedeCoyote = tiempo - this.ultimoSuelo <= F.coyoteMs;
     if (tiempo - this.bufferSalto <= F.bufferSaltoMs) {
-      if (enSuelo || (puedeCoyote && b.velocity.y >= 0 && this.saltosAire === 0 && !this.saltando)) {
-        b.setVelocityY(-(this.gatas ? F.saltoBebe : F.salto) * (this.multSalto || 1));
+      if (enSuelo || (puedeCoyote && vy >= 0 && this.saltosAire === 0 && !this.saltando)) {
+        b.setVelocityY(-(this.gatas ? F.saltoBebe : F.salto) * (this.multSalto || 1) * g);
         this.bufferSalto = -9999;
         this.saltando = true;
         this.ultimoSuelo = -9999;
         Audio.efecto('salto');
         this.estirar = 1;
       } else if (this.habilidades.dobleSalto && this.saltosAire === 0 && entrada.saltar) {
-        b.setVelocityY(-F.dobleSalto * (this.multSalto || 1));
+        b.setVelocityY(-F.dobleSalto * (this.multSalto || 1) * g);
         this.saltosAire = 1;
         this.bufferSalto = -9999;
         this.vuelta = 1; // pirueta
@@ -161,9 +164,9 @@ export class Sofia extends Phaser.GameObjects.Container {
         this.emit('dobleSalto');
       }
     }
-    if (enSuelo && b.velocity.y >= 0) this.saltando = false;
+    if (enSuelo && vy >= 0) this.saltando = false;
     // salto variable: soltar el botón corta la subida
-    if (!entrada.saltarMantenido && b.velocity.y < 0 && this.saltando) {
+    if (!entrada.saltarMantenido && vy < 0 && this.saltando) {
       b.setVelocityY(b.velocity.y * (1 - (1 - F.cortarSalto) * Math.min(1, dt * 20)));
     }
 
@@ -192,7 +195,7 @@ export class Sofia extends Phaser.GameObjects.Container {
     if (this.estadoForzado) estado = this.estadoForzado;
     else if (tiempo < (this.dolorHasta || 0)) estado = 'danio';
     else if (this.cantando) estado = enSuelo ? 'cantar' : 'aire';
-    else if (!enSuelo) estado = b.velocity.y < 0 ? 'saltar' : 'caer';
+    else if (!enSuelo) estado = b.velocity.y * (this.g || 1) < 0 ? 'saltar' : 'caer';
     else if (this.empujando) estado = 'empujar';
     else if (vx > 20) estado = this.corriendo ? 'correr' : 'andar';
     else estado = 'reposo';
@@ -347,7 +350,7 @@ export class Sofia extends Phaser.GameObjects.Container {
     }
 
     // Física sencilla del pelo: muelle amortiguado que reacciona a la velocidad
-    const objetivoPelo = Phaser.Math.Clamp(-b.velocity.x * this.mirando * 0.0011 + b.velocity.y * 0.0004, -0.6, 0.5) - (r.cabeza + r.torso) * 0.6;
+    const objetivoPelo = Phaser.Math.Clamp(-b.velocity.x * this.mirando * 0.0011 + b.velocity.y * (this.g || 1) * 0.0004, -0.6, 0.5) - (r.cabeza + r.torso) * 0.6;
     const k = 90;
     const amort = 9;
     this.pelo.va += ((objetivoPelo - this.pelo.a) * k - this.pelo.va * amort) * dt;
@@ -368,8 +371,10 @@ export class Sofia extends Phaser.GameObjects.Container {
     this.raiz.x = rx;
     this.raiz.y = ry;
     this.aplicarPose(r);
-    this.visual.setScale(this.mirando * sx, sy);
-    this.visual.y = -this.medio * sy;
+    const g = this.g || 1;
+    this.visual.setScale(this.mirando * sx, sy * g);
+    // boca abajo, los pies tocan la parte de arriba del cuerpo físico
+    this.visual.y = g > 0 ? -this.medio * sy : this.medio * sy - this.body.height;
     this.visual.rotation = rrot * this.mirando;
     // parpadeo de invulnerabilidad
     this.alpha = tiempo < this.invulnerableHasta ? (Math.floor(tiempo / 80) % 2 ? 0.35 : 1) : 1;
