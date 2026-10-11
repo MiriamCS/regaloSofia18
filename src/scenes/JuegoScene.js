@@ -355,12 +355,18 @@ export class JuegoScene extends Phaser.Scene {
     fis.add.collider(this.cajas, this.solidos);
     fis.add.collider(this.cajas, this.nubes, null, unaDireccion);
     fis.add.collider(this.cajas, this.cajas);
-    fis.add.collider(s, this.cajas, (sofia, caja) => this.alTocarCaja(caja));
+    fis.add.collider(s, this.cajas, (sofia, caja) => {
+      contacto();
+      this.alTocarCaja(caja);
+    });
     // plataformas especiales: cuerpo en su 'zona'
     const zonasEspeciales = [...this.movibles, ...this.pisables, ...(this.pisablesFijos || [])].map((p) => p.zona).filter((z, i, a) => a.indexOf(z) === i);
     const esNube = (z) => z.height <= 24;
     const ordenar = (a, b) => (zonasEspeciales.includes(a) ? [b, a] : [a, b]);
-    fis.add.collider(s, zonasEspeciales, (a, b) => this.alPisar(ordenar(a, b)[1]), (a, b) => {
+    fis.add.collider(s, zonasEspeciales, (a, b) => {
+      contacto();
+      this.alPisar(ordenar(a, b)[1]);
+    }, (a, b) => {
       const [c, z] = ordenar(a, b);
       return esNube(z) ? unaDireccionMovil(c, z) : true;
     });
@@ -373,7 +379,7 @@ export class JuegoScene extends Phaser.Scene {
       fis.add.collider(e, this.nubes, null, unaDireccion);
       fis.add.collider(e, zonasEspeciales);
       fis.add.collider(e, this.cajas, (en, caja) => this.cajaSobreEnemigo(caja, en));
-      if (e.tipo === 'bloqueador') fis.add.collider(s, e);
+      if (e.tipo === 'bloqueador') fis.add.collider(s, e, contacto);
       else fis.add.overlap(s, e, () => this.tocarEnemigo(e));
     }
     // un peligro que avanza (marea...) no deja quedarse donde se está: cuenta como caída

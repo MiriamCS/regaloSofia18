@@ -40,7 +40,7 @@ function exportarRig(nombre, etapas, generador) {
 }
 
 exportarRig('sofia', Object.keys(ETAPAS), piezasSofia);
-exportarRig('miriam', ['nina', 'adolescente', 'adulta'], piezasMiriam);
+exportarRig('miriam', ['nina', 'preado', 'adolescente', 'adulta'], piezasMiriam);
 
 for (const [grupo, sprites] of [['enemigos', spritesEnemigos()], ['objetos', spritesObjetos()], ['escenario', spritesEscenario()]]) {
   for (const [nombre, s] of Object.entries(sprites)) {

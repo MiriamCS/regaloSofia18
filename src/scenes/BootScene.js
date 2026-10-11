@@ -6,7 +6,7 @@ import { PISTAS } from '../audio/musica.js';
 import { Guardado } from '../systems/Guardado.js';
 
 const ETAPAS_SOFIA = ['bebe', 'nina', 'preado', 'adolescente', 'adulta'];
-const ETAPAS_MIRIAM = ['nina', 'adolescente', 'adulta'];
+const ETAPAS_MIRIAM = ['nina', 'preado', 'adolescente', 'adulta'];
 const ENEMIGOS = ['pato', 'cochecito', 'mochila', 'mosquito', 'avion-papel', 'notificacion', 'profesor', 'examenes', 'urraca', 'metronomo', 'despertador'];
 const ESCENARIO = ['vela-on', 'vela-off', 'vela-cuerpo', 'atril-off', 'atril-on', 'caja-juguete', 'caja-madera', 'caja-carton', 'caja-libros', 'mueble', 'pinchos', 'marco-foto', 'nota-azul', 'nota-dorada', 'nota-rosa', 'nota-verde', 'campana', 'meta', 'puerta', 'tarta', 'cartel-continuara', 'candado', 'icono-foto', 'icono-objeto', 'clave', 'boton-izq', 'boton-der', 'boton-saltar', 'boton-cantar', 'boton-pausa'];
 

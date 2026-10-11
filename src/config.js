@@ -23,9 +23,12 @@ export function etapaDeNivel(n) {
   return 'adulta';
 }
 
+// Miriam es 5 años mayor: en el nivel N tiene N + 5 años.
 export function etapaMiriam(n) {
-  if (n <= 7) return 'nina';
-  if (n <= 14) return 'adolescente';
+  const edad = n + 5;
+  if (edad <= 7) return 'nina';
+  if (edad <= 12) return 'preado';
+  if (edad <= 17) return 'adolescente';
   return 'adulta';
 }
 

@@ -107,7 +107,9 @@ export class Sofia extends Phaser.GameObjects.Container {
     // gravedad invertida (g = -1): el "suelo" es el techo y se salta hacia abajo
     const g = this.g || 1;
     const vy = b.velocity.y * g;
-    const enSuelo = g > 0 ? b.blocked.down || b.touching.down : b.blocked.up || b.touching.up;
+    // 'touching' también se activa con solapamientos (enemigos, zonas): solo cuenta si hubo choque real
+    const choque = tiempo - (this.contactoSolido || -1e9) < 60;
+    const enSuelo = g > 0 ? b.blocked.down || (b.touching.down && choque) : b.blocked.up || (b.touching.up && choque);
     if (enSuelo) {
       if (!this.estabaEnSuelo && vy >= 0 && this.velPrevY > 300) {
         Audio.efecto('aterrizar');
