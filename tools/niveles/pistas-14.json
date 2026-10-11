@@ -1,0 +1,10 @@
+{
+  "nombre": "La audición",
+  "pistas": {
+    "cuenta": "Sofi, aquí todo va a compás. Cuenta conmigo: un, dos, tres, cuatro... Salta cuando tu plataforma empiece a parpadear.",
+    "puerta": "La puerta pide mi, sol, la, do. Cántale a cada campana sin caerte... y ni se te ocurra tocar el si.",
+    "metronomo": "Aviso: no le cantes al metrónomo. No se enfada... se acelera.",
+    "ovacion": "Escucha la ovación: ¡el público pide otra!",
+    "avisoOvacion": "¡Última pieza! Corre a compás."
+  }
+}

@@ -124,7 +124,17 @@ export class Sofia extends Phaser.GameObjects.Container {
       if (entrada.izq) dir -= 1;
       if (entrada.der) dir += 1;
     }
-    if (this.invertido) dir = -dir;
+    // Al entrar o salir de una inversión, la flecha que ya se mantenía pulsada conserva su sentido
+    // hasta soltarla (si no, Sofía se daría la vuelta en el borde y se quedaría temblando).
+    const inv = !!this.invertido;
+    if (inv !== this._invAnterior) {
+      this._dirMantenida = dir;
+      this._invMantenido = !!this._invAnterior;
+      this._invAnterior = inv;
+    }
+    if (dir !== this._dirMantenida) this._dirMantenida = 0;
+    const invEfectivo = dir !== 0 && dir === this._dirMantenida ? this._invMantenido : inv;
+    if (invEfectivo) dir = -dir;
     const corre = entrada.correr && this.habilidades.correr && !this.gatas;
     const vMax = this.gatas ? F.velocidadGatas : corre ? F.velocidadCorrer : F.velocidadAndar;
     const acel = enSuelo ? F.aceleracionSuelo : F.aceleracionAire;
