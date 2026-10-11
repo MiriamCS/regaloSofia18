@@ -37,7 +37,7 @@ function tipoProp(v) {
 
 function props(obj) {
   return Object.entries(obj)
-    .filter(([k, v]) => v !== undefined && !['tipo', 'capa', 'fusion', 'w', 'h', 'dx', 'dy', 'nombre'].includes(k))
+    .filter(([k, v]) => v !== undefined && !['tipo', 'capa', 'fusion', 'w', 'h', 'x', 'y', 'nombre'].includes(k))
     .map(([name, value]) => ({ name, type: tipoProp(value), value }));
 }
 
@@ -57,8 +57,8 @@ function construir(diseno, numero) {
       id: id++,
       name: def.nombre || '',
       type: def.tipo,
-      x: (x + (def.dx || 0)) * T,
-      y: (y + (def.dy || 0)) * T,
+      x: x * T,
+      y: y * T,
       width: (def.w || w) * T,
       height: (def.h || h) * T,
       rotation: 0,
@@ -92,10 +92,12 @@ function construir(diseno, numero) {
         anadir(def, x, y, w, h);
       } else {
         usado[y][x] = true;
-        anadir(def, x, y, 1, 1);
+        // objetos altos (puertas...): el carácter marca la casilla de abajo
+        anadir(def, x, y - ((def.h || 1) - 1), 1, 1);
       }
     }
   }
+  // objetos con posición explícita: x, y es la esquina superior izquierda (como en Tiled)
   for (const o of diseno.objetos || []) {
     anadir(o, o.x, o.y, o.w || 1, o.h || 1);
   }

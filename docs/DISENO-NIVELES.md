@@ -246,7 +246,12 @@ los de escape vertical pueden medir 40+ de alto.
 | espacio o `.` | aire |
 
 Cada nivel define el resto de caracteres en su `leyenda` (p. ej. `M: { tipo: 'miriam', pista: 'hola' }`).
-Los objetos con posición exacta o tamaño especial van en `objetos: [{ tipo, x, y, w, h, ...props }]` (en casillas).
+En la leyenda, `capa: 'solidos'` y `fusion: 'h'` (o `'2d'`) hacen que caracteres seguidos formen un solo
+rectángulo (plataformas, pinchos, teclas...). Si un elemento de un carácter tiene `h` > 1 (p. ej. una
+puerta de 3 de alto), el carácter marca su casilla **de abajo**.
+Los objetos con posición exacta o tamaño especial van en `objetos: [{ tipo, x, y, w, h, ...props }]`
+(en casillas; `x, y` es la esquina superior izquierda, como en Tiled). Zonas como `gravedad`, `invertir`,
+`peligro-movil`, `lluvia`, `aviso` o `final` suelen ir aquí.
 
 ### Tipos de objeto y propiedades
 | Tipo | Propiedades |
