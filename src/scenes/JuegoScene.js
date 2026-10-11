@@ -12,7 +12,7 @@ import { PISTAS, pistaDeEtapa } from '../audio/musica.js';
 import { Sofia } from '../entities/Sofia.js';
 import { Enemigo } from '../entities/Enemigos.js';
 import {
-  dibujarBloque, PlataformaMovil, PlataformaCae, PlataformaFalsa, PlataformaTemporizada, PlataformaMusical,
+  dibujarBloque, dibujarSuelos, PlataformaMovil, PlataformaCae, PlataformaFalsa, PlataformaTemporizada, PlataformaMusical,
   TeclaPiano, Campana, PuertaMelodia, Checkpoint, Coleccionable, Meta, Miriam, Cartel, LluviaObjetos,
 } from '../entities/elementos.js';
 import { claveNivel } from './TransicionScene.js';
@@ -73,7 +73,10 @@ export class JuegoScene extends Phaser.Scene {
     this.porMundo = [];
     this.graficos = []; // todo lo que se desvanece en el final
 
+    this.rectsSuelo = [];
     for (const o of mundo.objetos) this.crearObjeto(o);
+    const suelos = dibujarSuelos(this, this.rectsSuelo, this.paleta, mundo.ancho, mundo.alto).setDepth(20);
+    this.graficos.push(suelos);
 
     // Sofía
     const inicio = mundo.objetos.find((o) => o.tipo === 'inicio') || { pieX: 100, pieY: mundo.alto - TILE * 2 };
@@ -133,11 +136,14 @@ export class JuegoScene extends Phaser.Scene {
       case 'solido': {
         const z = this.add.zone(o.x + o.w / 2, o.y + o.h / 2, o.w, o.h);
         this.solidos.add(z);
-        const g = dibujarBloque(this, o.x, o.y, o.w, o.h, pal, o.p.estilo || 'solido').setDepth(20);
-        this.graficos.push(g);
-        if (o.p.mundo) this.registrarMundo({ zona: z, g }, o);
-        z.esSueloFinal = !!o.p.sueloFinal;
-        g.esSueloFinal = !!o.p.sueloFinal;
+        if (o.p.mundo) {
+          // los sólidos de un solo mundo se dibujan aparte para poder ocultarlos
+          const g = dibujarBloque(this, o.x, o.y, o.w, o.h, pal, o.p.estilo || 'solido').setDepth(20);
+          this.graficos.push(g);
+          this.registrarMundo({ zona: z, g }, o);
+        } else {
+          this.rectsSuelo.push(o);
+        }
         break;
       }
       case 'nube': {
@@ -165,6 +171,11 @@ export class JuegoScene extends Phaser.Scene {
         break;
       }
       case 'plataforma-falsa': {
+        if (o.p.modo === 'fantasma') {
+          // pared o suelo falso: se dibuja igual que el resto y no tiene cuerpo
+          this.rectsSuelo.push(o);
+          break;
+        }
         const pl = new PlataformaFalsa(this, o, pal);
         this.pisables.push(pl);
         this.graficos.push(pl.g);
@@ -680,10 +691,7 @@ export class JuegoScene extends Phaser.Scene {
     // El escenario se desvanece: solo queda el suelo
     for (const e of this.enemigos) e.vivo && e.derrotar();
     this.fondo.desvanecer(3500);
-    for (const g of this.graficos) {
-      if (g.esSueloFinal) continue;
-      this.tweens.add({ targets: g, alpha: 0, duration: 3500 });
-    }
+    for (const g of this.graficos) this.tweens.add({ targets: g, alpha: 0, duration: 3500 });
     for (const l of this.lectores) l.bocadillo.mostrar(false);
     this.lectores = [];
     this.events.emit('final');
@@ -697,9 +705,9 @@ export class JuegoScene extends Phaser.Scene {
     this.cameras.main.setBounds(0, 0, anchoNuevo, this.datos.alto);
     const suelo = this.add.zone((inicioX + fin) / 2, sueloY + 200, fin - inicioX, 400);
     this.solidos.add(suelo);
-    const linea = this.add.graphics().setDepth(20);
-    linea.fillStyle(0xf2f4f8, 1).fillRect(inicioX, sueloY, fin - inicioX, 400);
-    linea.lineStyle(3, 0xd5dbe8, 1).lineBetween(inicioX, sueloY, fin, sueloY);
+    const linea = this.add.graphics().setDepth(19);
+    linea.fillStyle(0xf2f4f8, 1).fillRect(0, sueloY, fin, 400);
+    linea.lineStyle(3, 0xd5dbe8, 1).lineBetween(0, sueloY, fin, sueloY);
     linea.setAlpha(0);
     this.tweens.add({ targets: linea, alpha: 1, duration: 3500 });
     // muro invisible al final del todo

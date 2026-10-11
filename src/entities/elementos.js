@@ -9,42 +9,120 @@ const ESC = 0.5; // texturas SVG rasterizadas al doble
 
 // ---- Dibujo de bloques ----------------------------------------------------------
 
+// Los bloques sólidos se componen de texturas repetidas (baratas de pintar en móvil)
+// más un contorno; las nubes y plataformas musicales son gráficos sencillos.
+function texturasBloque(scene, paleta) {
+  const k = `bloque-${paleta.suelo.toString(16)}-${paleta.sueloBorde.toString(16)}`;
+  if (!scene.textures.exists(`${k}-relleno`)) {
+    const g = scene.make.graphics({ x: 0, y: 0 }, false);
+    g.fillStyle(paleta.suelo, 1).fillRect(0, 0, 96, 96);
+    g.fillStyle(paleta.sueloBorde, 0.12).fillCircle(22, 30, 4).fillCircle(70, 70, 4).fillCircle(60, 18, 3);
+    g.generateTexture(`${k}-relleno`, 96, 96);
+    g.clear();
+    g.fillStyle(Phaser.Display.Color.ValueToColor(paleta.suelo).lighten(18).color, 1).fillRect(0, 0, 96, 14);
+    g.generateTexture(`${k}-borde`, 96, 14);
+    g.destroy();
+  }
+  return k;
+}
+
 export function dibujarBloque(scene, x, y, w, h, paleta, estilo = 'solido') {
-  const g = scene.add.graphics();
-  const radio = Math.min(14, h / 2, w / 2);
-  if (estilo === 'nube') {
-    g.fillStyle(paleta.plataforma, 1);
-    g.lineStyle(3, paleta.sueloBorde, 1);
-    g.fillRoundedRect(x, y, w, 22, 11);
-    g.strokeRoundedRect(x, y, w, 22, 11);
-    g.fillStyle(0xffffff, 0.5);
-    g.fillRoundedRect(x + 8, y + 4, w - 16, 5, 3);
-  } else if (estilo === 'musical') {
-    g.fillStyle(paleta.acento, 1);
-    g.lineStyle(3, 0x1b2a4a, 1);
-    g.fillRoundedRect(x, y, w, h, 8);
-    g.strokeRoundedRect(x, y, w, h, 8);
-    for (let i = 0; i < w / TILE; i++) {
-      g.fillStyle(0x1b2a4a, 0.5);
-      g.fillEllipse(x + i * TILE + 18, y + h / 2 + 3, 10, 8);
-      g.fillRect(x + i * TILE + 22, y + 5, 2.5, h / 2);
+  if (estilo === 'nube' || estilo === 'musical') {
+    const g = scene.add.graphics();
+    if (estilo === 'nube') {
+      g.fillStyle(paleta.plataforma, 1);
+      g.lineStyle(3, paleta.sueloBorde, 1);
+      g.fillRoundedRect(0, 0, w, 22, 11);
+      g.strokeRoundedRect(0, 0, w, 22, 11);
+      g.fillStyle(0xffffff, 0.5);
+      g.fillRoundedRect(8, 4, w - 16, 5, 3);
+    } else {
+      g.fillStyle(paleta.acento, 1);
+      g.lineStyle(3, 0x1b2a4a, 1);
+      g.fillRoundedRect(0, 0, w, h, 8);
+      g.strokeRoundedRect(0, 0, w, h, 8);
+      for (let i = 0; i < w / TILE; i++) {
+        g.fillStyle(0x1b2a4a, 0.5);
+        g.fillEllipse(i * TILE + 18, h / 2 + 3, 10, 8);
+        g.fillRect(i * TILE + 22, 5, 2.5, h / 2);
+      }
     }
-  } else {
-    g.fillStyle(paleta.suelo, 1);
-    g.fillRoundedRect(x, y, w, h, { tl: radio, tr: radio, bl: 4, br: 4 });
-    g.fillStyle(Phaser.Display.Color.ValueToColor(paleta.suelo).lighten(18).color, 1);
-    g.fillRoundedRect(x, y, w, Math.min(14, h), { tl: radio, tr: radio, bl: 0, br: 0 });
-    g.lineStyle(3, paleta.sueloBorde, 1);
-    g.strokeRoundedRect(x + 1.5, y + 1.5, w - 3, h - 3, { tl: radio, tr: radio, bl: 4, br: 4 });
-    // textura suave: lunares
-    g.fillStyle(paleta.sueloBorde, 0.12);
-    for (let i = 0; i < (w * h) / 2600; i++) {
-      const px = x + 10 + ((i * 97) % Math.max(1, w - 20));
-      const py = y + 22 + ((i * 53) % Math.max(1, h - 28));
-      if (py < y + h - 6) g.fillCircle(px, py, 4);
+    g.setPosition(x, y);
+    return g;
+  }
+  const k = texturasBloque(scene, paleta);
+  const c = scene.add.container(x, y);
+  const relleno = scene.add.tileSprite(0, 0, w, h, `${k}-relleno`).setOrigin(0);
+  relleno.tilePositionX = x;
+  relleno.tilePositionY = y;
+  const borde = scene.add.tileSprite(0, 0, w, Math.min(14, h), `${k}-borde`).setOrigin(0);
+  const linea = scene.add.graphics();
+  linea.lineStyle(3, paleta.sueloBorde, 1).strokeRoundedRect(1.5, 1.5, w - 3, h - 3, Math.min(6, h / 2 - 2));
+  c.add([relleno, borde, linea]);
+  return c;
+}
+
+// Dibuja todos los sólidos del nivel como una única forma: relleno continuo, franja clara
+// arriba de cada superficie y contorno solo en los bordes que dan al aire.
+export function dibujarSuelos(scene, rects, paleta, anchoMundo, altoMundo) {
+  const k = texturasBloque(scene, paleta);
+  const cols = Math.ceil(anchoMundo / TILE) + 1;
+  const filas = Math.ceil(altoMundo / TILE) + 1;
+  const lleno = new Uint8Array(cols * filas);
+  const en = (cx, cy) => cx >= 0 && cy >= 0 && cx < cols && cy < filas && lleno[cy * cols + cx] === 1;
+  for (const r of rects) {
+    for (let y = Math.floor(r.y / TILE); y < Math.ceil((r.y + r.h) / TILE); y++) {
+      for (let x = Math.floor(r.x / TILE); x < Math.ceil((r.x + r.w) / TILE); x++) if (x >= 0 && y >= 0 && x < cols && y < filas) lleno[y * cols + x] = 1;
     }
   }
-  return g;
+  const c = scene.add.container(0, 0);
+  for (const r of rects) {
+    const t = scene.add.tileSprite(r.x, r.y, r.w, r.h, `${k}-relleno`).setOrigin(0);
+    t.tilePositionX = r.x;
+    t.tilePositionY = r.y;
+    c.add(t);
+  }
+  const g = scene.add.graphics();
+  const claro = Phaser.Display.Color.ValueToColor(paleta.suelo).lighten(18).color;
+  const G = 3;
+  for (let y = 0; y < filas; y++) {
+    // tramos horizontales con aire encima (superficie) o debajo
+    let x = 0;
+    while (x < cols) {
+      if (en(x, y) && !en(x, y - 1)) {
+        let x2 = x;
+        while (en(x2 + 1, y) && !en(x2 + 1, y - 1)) x2++;
+        g.fillStyle(claro, 1).fillRect(x * TILE, y * TILE, (x2 - x + 1) * TILE, 14);
+        g.fillStyle(paleta.sueloBorde, 1).fillRect(x * TILE, y * TILE, (x2 - x + 1) * TILE, G);
+        x = x2 + 1;
+      } else x++;
+    }
+    x = 0;
+    while (x < cols) {
+      if (en(x, y) && !en(x, y + 1) && y + 1 < filas) {
+        let x2 = x;
+        while (en(x2 + 1, y) && !en(x2 + 1, y + 1)) x2++;
+        g.fillStyle(paleta.sueloBorde, 1).fillRect(x * TILE, (y + 1) * TILE - G, (x2 - x + 1) * TILE, G);
+        x = x2 + 1;
+      } else x++;
+    }
+  }
+  for (let x = 0; x < cols; x++) {
+    for (const lado of [-1, 1]) {
+      let y = 0;
+      while (y < filas) {
+        if (en(x, y) && !en(x + lado, y) && x + lado >= 0) {
+          let y2 = y;
+          while (en(x, y2 + 1) && !en(x + lado, y2 + 1)) y2++;
+          const px = lado < 0 ? x * TILE : (x + 1) * TILE - G;
+          g.fillStyle(paleta.sueloBorde, 1).fillRect(px, y * TILE, G, (y2 - y + 1) * TILE);
+          y = y2 + 1;
+        } else y++;
+      }
+    }
+  }
+  c.add(g);
+  return c;
 }
 
 function cuerpoEstatico(scene, x, y, w, h) {
@@ -70,8 +148,7 @@ class Bloque {
     const h = alto ?? o.h;
     this.zona = movil ? cuerpoMovil(scene, o.x, o.y, o.w, h) : cuerpoEstatico(scene, o.x, o.y, o.w, h);
     this.zona.elemento = this;
-    this.g = dibujarBloque(scene, 0, 0, o.w, o.h, paleta, estilo);
-    this.g.setPosition(o.x, o.y);
+    this.g = dibujarBloque(scene, o.x, o.y, o.w, o.h, paleta, estilo);
     this.g.setDepth(20);
     this.base = { x: o.x, y: o.y };
     this.mundo = o.p.mundo;

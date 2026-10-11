@@ -18,7 +18,7 @@ function anchoJuego() {
 }
 
 const juego = new Phaser.Game({
-  type: Phaser.AUTO,
+  type: new URLSearchParams(location.search).has('canvas') ? Phaser.CANVAS : Phaser.AUTO,
   parent: 'juego',
   backgroundColor: '#0d1b3d',
   scale: {

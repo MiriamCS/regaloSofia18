@@ -56,7 +56,7 @@ export class InterfazScene extends Phaser.Scene {
     if (total === Infinity) {
       this.velas.push(this.add.image(36, 44, 'vela-on').setScale(ESC * 1.1));
       this.add.text(62, 44, '∞', { fontFamily: FUENTE_TITULO, fontSize: '40px', color: '#ffd23f', stroke: '#0d1b3d', strokeThickness: 5 }).setOrigin(0, 0.5);
-      this.finVelas = { x: 110, y: 44 };
+      this.finVelas = { x: 122, y: 44 };
       return;
     }
     // más de 10 velas: dos filas
