@@ -59,6 +59,7 @@ Mayúsculas para correr (o mantener la flecha), Esc/P para pausa.
 | Fotos | Originales en `originales/fotos/Sofia0.jpg` … `Sofia18.jpg` y `SofiaNace.jpg` (la del prólogo); luego `npm run imagenes` |
 | Tamaño, recorte y pie de cada foto | `config/photos.json` |
 | Objetos coleccionables (nombre, texto, dibujo) | `config/objetos.json` (`sprite` con extensión) + el SVG en `assets/sprites/objetos/`, o un PNG original en `originales/objetos/` (fondo verde croma o liso) y luego `npm run imagenes` |
+| Enemigos (dibujo, hacia dónde miran, tamaño) | `config/enemigos.json` + originales en `originales/enemigos/<nombre>.svg`; luego `npm run imagenes` |
 | Mensaje final de la tarta | `config/mensaje-final.txt` |
 | Dificultad, física, controles, nivel en que se desbloquea cada habilidad | `config/juego.json` |
 | Música | ver «Música» abajo |

@@ -9,6 +9,9 @@ import { Boton } from '../ui/Boton.js';
 import { FUENTE, FUENTE_TITULO } from '../estilo.js';
 
 const NUM_VELAS = 18;
+// Superficie de arriba de la tarta, en px del lienzo de tarta.svg (480x340): las velas se reparten
+// en dos filas (la de atrás y la de delante) sobre esta elipse. Si cambia el dibujo, hay que ajustarla.
+const SUPERFICIE = { x: 240, y: 60, filaAtras: { rx: 100, ry: 10, dy: -6 }, filaDelante: { rx: 114, ry: 14, dy: 10 } };
 
 function distanciaASegmento(p, a, b) {
   const dx = b.x - a.x;
@@ -44,14 +47,15 @@ export class TartaScene extends Phaser.Scene {
     const oy = this.tarta.y - th;
     const svgAPantalla = (sx, sy) => ({ x: ox + (sx / 480) * tw, y: oy + (sy / 340) * th });
 
-    // 18 velas en dos filas sobre el piso de arriba (elipse centro 240,110; rx 140; ry 26)
+    // 18 velas en dos filas sobre la superficie de la tarta
     this.velas = [];
     for (let i = 0; i < NUM_VELAS; i++) {
       const fila = i < 9 ? 0 : 1;
       const j = fila === 0 ? i : i - 9;
       const a = Math.PI * (0.12 + (j / 8) * 0.76);
-      const sx = 240 - Math.cos(a) * (fila === 0 ? 112 : 124);
-      const sy = 110 + (fila === 0 ? -Math.sin(a) * 12 : Math.sin(a) * 14 + 4);
+      const f = fila === 0 ? SUPERFICIE.filaAtras : SUPERFICIE.filaDelante;
+      const sx = SUPERFICIE.x - Math.cos(a) * f.rx;
+      const sy = SUPERFICIE.y + f.dy + (fila === 0 ? -1 : 1) * Math.sin(a) * f.ry;
       const p = svgAPantalla(sx, sy);
       const cuerpo = this.add.image(p.x, p.y + 4, 'vela-cuerpo').setOrigin(0.5, 1).setScale(0.62).setDepth(fila === 0 ? 1 : 3);
       const yLlama = p.y + 4 - cuerpo.displayHeight + 6;

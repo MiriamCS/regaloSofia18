@@ -8,7 +8,7 @@ const raiz = join(dirname(fileURLToPath(import.meta.url)), '..');
 const textos = JSON.parse(readFileSync(join(raiz, 'config', 'texts.json'), 'utf8'));
 const conFoto = new Set(JSON.parse(readFileSync(join(raiz, 'config', 'photos.json'), 'utf8')).fotos.map((f) => f.nivel));
 const juego = JSON.parse(readFileSync(join(raiz, 'config', 'juego.json'), 'utf8'));
-const SPRITES_ENEMIGOS = ['pato', 'cochecito', 'mochila', 'mosquito', 'avion-papel', 'notificacion', 'profesor', 'examenes', 'urraca', 'metronomo', 'despertador'];
+const SPRITES_ENEMIGOS = Object.keys(JSON.parse(readFileSync(join(raiz, 'config', 'enemigos.json'), 'utf8')).enemigos);
 const TIPOS = new Set(['solido', 'nube', 'plataforma-movil', 'plataforma-cae', 'plataforma-falsa', 'plataforma-temporizada', 'plataforma-musical', 'tecla', 'campana', 'puerta', 'checkpoint', 'foto', 'objeto', 'meta', 'meta-falsa', 'miriam', 'cartel', 'caja', 'mueble', 'enemigo', 'pinchos', 'lluvia', 'peligro-movil', 'muerte', 'invertir', 'gravedad', 'final', 'aviso', 'decorado', 'inicio']);
 
 const pedidos = process.argv.slice(2).map(Number);

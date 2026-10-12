@@ -22,7 +22,7 @@ export default {
     K: { tipo: 'cartel', pista: 'consigna' },
     k: { tipo: 'cartel', pista: 'puentes' },
     j: { tipo: 'cartel', pista: 'tren' },
-    R: { tipo: 'enemigo', clase: 'bloqueador', sprite: 'profesor', canto: 'apartar' },
+    R: { tipo: 'enemigo', clase: 'bloqueador', sprite: 'boligrafo', canto: 'apartar' },
     m: { tipo: 'enemigo', clase: 'patrullero', sprite: 'mochila', rango: 2, velocidad: 70 },
     z: { tipo: 'enemigo', clase: 'desafinado', sprite: 'despertador', rango: 1, velocidad: 30, canto: 'invertir' },
     1: { tipo: 'campana', nota: 'C5', grupo: 'ciudad' },

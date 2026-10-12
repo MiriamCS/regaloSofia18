@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{content_type}\\\\n\" http://localhost:4790/sprites/objetos/chupete.svg)",
+      "Bash(curl -s http://localhost:4790/src/config.js)",
+      "Bash(netstat -ano)",
+      "Bash(node svgtest.cjs)",
+      "Bash(git diff *)",
+      "Bash(awk '{print $5,$6,$7,$8,$9}')",
+      "Bash(node -e ' *)",
+      "Bash(node -)",
+      "Bash(mkdir -p originales/enemigos)",
+      "Bash(mv assets/sprites/enemigos/*.svg originales/enemigos/)",
+      "Bash(rm -f e-*.png)",
+      "Bash(node enemigos.cjs)",
+      "Bash(sed -i \"s/          cam.stopFollow\\(\\);/          cam.stopFollow\\(\\);\\\\n          cam.removeBounds\\(\\);/; s/clip: { x: 640 - 130, y: 360 - 130, width: 260, height: 260 }/clip: { x: 640 - 150, y: 360 - 150, width: 300, height: 300 }/; s/await pg.waitForTimeout\\(9000\\);/await pg.waitForTimeout\\(4000\\);/\" enemigos.cjs)",
+      "Bash(grep -n \"image\\\\\\\\\\\\\\\\b\\\\|svg\\\\\\\\\\\\\\\\b\\\\|\\\\\\\\\\\\\\\\s\\(width\\\\|\\(svg|png|webp\\)\\\\|\\\\\\\\\\\\\\\\n\\\\`\" tools/preparar-imagenes.mjs)",
+      "Bash(node \"C:/Users/Miriam/AppData/Local/Temp/claude/c--Users-Miriam-OneDrive-Juegos-regaloSofia18/eac3f1b9-2856-402c-ac67-0664db40868d/scratchpad/arreglar.cjs\")",
+      "Bash(node \"C:/Users/Miriam/AppData/Local/Temp/claude/c--Users-Miriam-OneDrive-Juegos-regaloSofia18/eac3f1b9-2856-402c-ac67-0664db40868d/scratchpad/tarta-velas.cjs\")",
+      "Bash(node \"C:/Users/Miriam/AppData/Local/Temp/claude/c--Users-Miriam-OneDrive-Juegos-regaloSofia18/eac3f1b9-2856-402c-ac67-0664db40868d/scratchpad/decor.cjs\")",
+      "Bash(rm -f esc-*.png)",
+      "Bash(node escenario.cjs)",
+      "Bash(timeout 300 node escenario2.cjs)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4790/)",
+      "Bash(curl -s -o /dev/null http://localhost:4790/)",
+      "Bash(break)"
+    ]
+  }
+}

@@ -7,7 +7,6 @@ import { fileURLToPath } from 'node:url';
 import { svg, f } from './arte/comun.mjs';
 import { ETAPAS, piezasSofia } from './arte/sofia.mjs';
 import { piezasMiriam } from './arte/miriam.mjs';
-import { spritesEnemigos } from './arte/enemigos.mjs';
 import { spritesObjetos } from './arte/objetos.mjs';
 import { spritesEscenario } from './arte/escenario.mjs';
 
@@ -42,8 +41,12 @@ function exportarRig(nombre, etapas, generador) {
 exportarRig('sofia', Object.keys(ETAPAS), piezasSofia);
 exportarRig('miriam', ['nina', 'preado', 'adolescente', 'adulta'], piezasMiriam);
 
-for (const [grupo, sprites] of [['enemigos', spritesEnemigos()], ['objetos', spritesObjetos()], ['escenario', spritesEscenario()]]) {
+// Los enemigos y casi todo el escenario son dibujos de Miriam (originales/ -> npm run imagenes); aquí
+// solo se generan los botones táctiles y el icono, para no sobrescribirlos.
+const DEL_CODIGO = (grupo, nombre) => grupo !== 'escenario' || nombre.startsWith('boton-') || nombre === 'icono';
+for (const [grupo, sprites] of [['objetos', spritesObjetos()], ['escenario', spritesEscenario()]]) {
   for (const [nombre, s] of Object.entries(sprites)) {
+    if (!DEL_CODIGO(grupo, nombre)) continue;
     escribir(join(raiz, grupo, `${nombre}.svg`), svg(s.w, s.h, s.cuerpo));
   }
 }

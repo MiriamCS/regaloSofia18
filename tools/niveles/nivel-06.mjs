@@ -17,8 +17,8 @@ export default {
     n: { tipo: 'plataforma-musical', capa: 'solidos', fusion: 'h', modo: 'aparece' },
     a: { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', rango: 3, amplitud: 1, periodo: 1700, velocidad: 70 },
     b: { tipo: 'enemigo', clase: 'patrullero', sprite: 'mochila', rango: 2, velocidad: 75, canto: 'dormir' },
-    T: { tipo: 'enemigo', clase: 'bloqueador', sprite: 'profesor', canto: 'apartar' },
-    Z: { tipo: 'enemigo', clase: 'bloqueador', sprite: 'profesor', canto: 'dormir' },
+    T: { tipo: 'enemigo', clase: 'bloqueador', sprite: 'boligrafo', canto: 'apartar' },
+    Z: { tipo: 'enemigo', clase: 'bloqueador', sprite: 'boligrafo', canto: 'dormir' },
     // pasillo: puerta 1 (sol, do) y puerta 2 (mi, la, re)
     c: { tipo: 'campana', nota: 'C5', grupo: 'p1' },
     g: { tipo: 'campana', nota: 'G5', grupo: 'p1' },

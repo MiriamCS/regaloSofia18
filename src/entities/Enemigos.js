@@ -2,13 +2,14 @@
 //
 // Propiedades (desde Tiled):
 //   clase: patrullero | volador | bloqueador | ladron | desafinado
-//   sprite: textura (pato, cochecito, mochila, mosquito, avion-papel, notificacion, profesor, examenes, urraca, metronomo, despertador)
+//   sprite: textura (pato, cochecito, mochila, mosquito, avion-papel, notificacion, boligrafo, examenes, urraca, metronomo, despertador);
+//           hacia dónde mira cada dibujo y su tamaño están en config/enemigos.json
 //   velocidad, rango (tiles), amplitud (tiles, voladores), periodo (ms, voladores)
 //   eliminable: lista con 'salto', 'caja', 'canto' (p.ej. "salto,caja")
 //   canto: reacción al cantar cerca: dormir | huir | enfadar | apartar | invertir | nada
 //   danio: velas que quita (voladores; por defecto 1)
 import Phaser from 'phaser';
-import { JUEGO, TILE } from '../config.js';
+import { JUEGO, TILE, ENEMIGOS } from '../config.js';
 import { Audio } from '../audio/Audio.js';
 
 const ESC = 0.5;
@@ -16,7 +17,7 @@ const ESC = 0.5;
 const POR_DEFECTO = {
   patrullero: { sprite: 'pato', velocidad: 70, rango: 3, eliminable: 'salto,caja', canto: 'dormir' },
   volador: { sprite: 'mosquito', velocidad: 60, rango: 3, amplitud: 1, periodo: 1800, eliminable: 'salto,canto', canto: 'huir' },
-  bloqueador: { sprite: 'profesor', eliminable: '', canto: 'apartar' },
+  bloqueador: { sprite: 'boligrafo', eliminable: '', canto: 'apartar' },
   ladron: { sprite: 'urraca', velocidad: 110, rango: 4, eliminable: '', canto: 'enfadar' },
   desafinado: { sprite: 'metronomo', velocidad: 40, rango: 2, eliminable: 'caja', canto: 'invertir' },
 };
@@ -34,6 +35,7 @@ export class Enemigo extends Phaser.Physics.Arcade.Image {
     this.setOrigin(0.5, 1).setScale(ESC * (def.escala || 1)).setDepth(40);
     this.inicioX = o.pieX;
     this.inicioY = o.pieY;
+    this.mira = ENEMIGOS[def.sprite]?.mira || 'derecha';
     this.dir = def.dir === 'izq' ? -1 : 1;
     this.vel = def.velocidad || 0;
     this.rango = (def.rango || 0) * TILE;
@@ -86,7 +88,7 @@ export class Enemigo extends Phaser.Physics.Arcade.Image {
         else if (this.rango && Math.abs(this.x - this.inicioX) > this.rango) this.dir = this.x > this.inicioX ? -1 : 1;
         else if (b.blocked.down && !this.haySueloDelante()) this.dir *= -1;
         b.setVelocityX(this.dir * this.vel * enfado);
-        this.setFlipX(this.dir < 0);
+        this.mirarHacia(this.dir);
         this.setAngle(Math.sin(t / 110 + this.t0) * 5);
         if (this.tipo === 'desafinado') this.setAngle(Math.sin(t / 90) * 14);
         break;
@@ -101,7 +103,7 @@ export class Enemigo extends Phaser.Physics.Arcade.Image {
           b.setVelocityX(this.dir * this.vel * enfado);
           b.setVelocityY((objetivoY - this.y) * 4);
         }
-        this.setFlipX(b.velocity.x < 0);
+        this.mirarHacia(b.velocity.x);
         break;
       }
       case 'ladron': {
@@ -110,24 +112,32 @@ export class Enemigo extends Phaser.Physics.Arcade.Image {
           const lejos = Math.sign(this.x - sofia.x) || 1;
           b.setVelocityX(lejos * this.vel * 1.6 * enfado);
           if ((b.blocked.left || b.blocked.right || !this.haySueloDelante(lejos)) && b.blocked.down) b.setVelocityY(-620);
-          this.setFlipX(lejos < 0);
+          this.mirarHacia(lejos);
           this.iconoBotin.setPosition(this.x, this.y - this.displayHeight - 8);
         } else {
           if (b.blocked.left) this.dir = 1;
           else if (b.blocked.right) this.dir = -1;
           else if (this.rango && Math.abs(this.x - this.inicioX) > this.rango) this.dir = this.x > this.inicioX ? -1 : 1;
           b.setVelocityX(this.dir * this.vel * 0.6 * enfado);
-          this.setFlipX(this.dir < 0);
+          this.mirarHacia(this.dir);
         }
         this.setAngle(Math.sin(t / 80) * 6);
         break;
       }
       case 'bloqueador':
+        // no se mueve, pero mira a Sofía
+        this.mirarHacia(sofia.x - this.x);
         this.setAngle(Math.sin(t / 500) * 1.5);
         break;
       default:
         break;
     }
+  }
+
+  // Los dibujos de lado se dan la vuelta según hacia dónde van; los de frente, nunca
+  mirarHacia(dir) {
+    if (this.mira === 'frente' || !dir) return;
+    this.setFlipX(this.mira === 'derecha' ? dir < 0 : dir > 0);
   }
 
   haySueloDelante(dir = this.dir) {

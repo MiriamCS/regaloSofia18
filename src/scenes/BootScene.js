@@ -1,14 +1,13 @@
 // Carga los sprites SVG y los datos comunes. Los niveles se cargan aparte, uno a uno.
 import Phaser from 'phaser';
-import { OBJETOS, claveObjeto } from '../config.js';
+import { OBJETOS, ENEMIGOS, claveObjeto } from '../config.js';
 import { ESCALA_TEXTURAS, claveFotogramas } from '../entities/Sofia.js';
 import { PISTAS } from '../audio/musica.js';
 import { Guardado } from '../systems/Guardado.js';
 
 const ETAPAS_MIRIAM = ['nina', 'preado', 'adolescente', 'adulta'];
-const ENEMIGOS = ['pato', 'cochecito', 'mochila', 'mosquito', 'avion-papel', 'notificacion', 'profesor', 'examenes', 'urraca', 'metronomo', 'despertador'];
-// Cosas que caen en las zonas de lluvia (texturas 'obj-*' de los niveles); no son los coleccionables
-const LLUVIA = ['patito', 'sonajero', 'ceras', 'cubo', 'boligrafo', 'agenda'];
+// Cosas que caen en las zonas de lluvia y adornos de los niveles (texturas 'obj-*'); no son los coleccionables
+const LLUVIA = ['patito', 'sonajero', 'ceras', 'cubo', 'boligrafo', 'agenda', 'movil', 'maleta', 'gafas-sol'];
 const ESCENARIO = ['vela-on', 'vela-off', 'vela-cuerpo', 'atril-off', 'atril-on', 'caja-juguete', 'caja-madera', 'caja-carton', 'caja-libros', 'mueble', 'pinchos', 'marco-foto', 'nota-azul', 'nota-dorada', 'nota-rosa', 'nota-verde', 'campana', 'meta', 'puerta', 'tarta', 'cartel-continuara', 'candado', 'icono-foto', 'icono-objeto', 'clave', 'boton-izq', 'boton-der', 'boton-saltar', 'boton-cantar', 'boton-pausa'];
 
 // [clave de textura y animación, datos] de cada animación del índice de fotogramas
@@ -57,7 +56,7 @@ export class BootScene extends Phaser.Scene {
       }
     });
     for (const e of ETAPAS_MIRIAM) this.load.svg(`miriam-${e}`, `sprites/miriam/${e}/cuerpo.svg`, S);
-    for (const n of ENEMIGOS) this.load.svg(n, `sprites/enemigos/${n}.svg`, S);
+    for (const n of Object.keys(ENEMIGOS)) this.load.svg(n, `sprites/enemigos/${n}.svg`, S);
     for (const n of ESCENARIO) this.load.svg(n, `sprites/escenario/${n}.svg`, S);
     for (const o of OBJETOS.objetos) {
       const ruta = `sprites/objetos/${o.sprite}`;

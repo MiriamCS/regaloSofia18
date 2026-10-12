@@ -3,12 +3,14 @@ import juego from '../config/juego.json';
 import textos from '../config/texts.json';
 import fotos from '../config/photos.json';
 import objetos from '../config/objetos.json';
+import enemigos from '../config/enemigos.json';
 import mensajeFinal from '../config/mensaje-final.txt?raw';
 
 export const JUEGO = juego;
 export const TEXTOS = textos;
 export const FOTOS = fotos;
 export const OBJETOS = objetos;
+export const ENEMIGOS = enemigos.enemigos;
 export const MENSAJE_FINAL = mensajeFinal;
 
 export const NUM_NIVELES = 19;
