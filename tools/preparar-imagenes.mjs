@@ -186,7 +186,6 @@ const ESCENARIO = {
   candado: { w: 48, h: 56 },
   'cartel-continuara': { w: 300, h: 190, abajo: true },
   clave: { w: 64, h: 128 },
-  'icono-foto': { w: 40, h: 40 },
   'icono-objeto': { w: 40, h: 40 },
   'marco-foto': { w: 64, h: 64 },
   meta: { w: 96, h: 144, abajo: true },

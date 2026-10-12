@@ -2,11 +2,19 @@
 import Phaser from 'phaser';
 import { JUEGO, texto } from '../config.js';
 import { Controles } from '../systems/Controles.js';
-import { FUENTE, FUENTE_TITULO } from '../estilo.js';
+import { FUENTE, FUENTE_TITULO, ajustarTam } from '../estilo.js';
 import { Audio } from '../audio/Audio.js';
 import { Boton } from '../ui/Boton.js';
 
 const ESC = 0.5;
+const TAM_ICONO = 40; // px en pantalla de los coleccionables junto a las velas
+
+// Coleccionable conseguido a color o, si falta, solo su silueta
+function marcarConseguido(img, tiene) {
+  if (tiene) img.clearTint().setAlpha(1);
+  else img.setTintFill(0x0d1b3d).setAlpha(0.45);
+  return img;
+}
 
 export class InterfazScene extends Phaser.Scene {
   constructor() {
@@ -22,9 +30,13 @@ export class InterfazScene extends Phaser.Scene {
     this.input.addPointer(3);
     this.raiz = this.add.container(0, 0);
     this.crearVelas();
-    // coleccionables del intento (aparecen al cogerlos)
-    this.iconoFoto = this.add.image(0, 0, 'icono-foto').setScale(0.8).setVisible(false);
-    this.iconoObjeto = this.add.image(0, 0, 'icono-objeto').setScale(0.8).setVisible(false);
+    // coleccionables del intento: siluetas que se colorean al cogerlos
+    const x = this.finVelas.x + TAM_ICONO / 2;
+    this.iconoFoto = ajustarTam(this.add.image(x, this.finVelas.y, 'marco-foto'), TAM_ICONO);
+    this.iconoObjeto = ajustarTam(this.add.image(x + TAM_ICONO + 8, this.finVelas.y, 'icono-objeto'), TAM_ICONO);
+    marcarConseguido(this.iconoFoto, false);
+    marcarConseguido(this.iconoObjeto, false);
+    this.teniaFoto = this.teniaObjeto = false;
     // pausa
     this.botonPausa = this.add.image(W - 52, 52, 'boton-pausa').setScale(ESC * 1.1).setAlpha(0.8).setInteractive();
     this.botonPausa.on('pointerup', () => {
@@ -91,6 +103,14 @@ export class InterfazScene extends Phaser.Scene {
     }
   }
 
+  alCambiarColeccionable(img, tiene) {
+    marcarConseguido(img, tiene);
+    const base = TAM_ICONO / Math.max(img.width, img.height);
+    this.tweens.killTweensOf(img);
+    img.setScale(base);
+    this.tweens.add({ targets: img, scale: base * 1.4, duration: 140, yoyo: true });
+  }
+
   // ---- Controles táctiles -----------------------------------------------------------
   crearControles() {
     const { width: W, height: H } = this.scale;
@@ -155,8 +175,8 @@ export class InterfazScene extends Phaser.Scene {
     const t = this.add.text(W / 2, H * 0.35, texto('juego.nivelCompletado'), { fontFamily: FUENTE_TITULO, fontSize: '64px', color: '#ffd23f', fontStyle: 'bold italic', stroke: '#0d1b3d', strokeThickness: 8 }).setOrigin(0.5).setScale(0);
     this.tweens.add({ targets: t, scale: 1, duration: 500, ease: 'Back.out' });
     const fila = this.add.container(W / 2, H * 0.5);
-    const f = this.add.image(-50, 0, 'icono-foto').setScale(1.5).setAlpha(foto ? 1 : 0.2);
-    const o = this.add.image(50, 0, 'icono-objeto').setScale(1.5).setAlpha(objeto ? 1 : 0.2);
+    const f = marcarConseguido(ajustarTam(this.add.image(-50, 0, 'marco-foto'), 72), foto);
+    const o = marcarConseguido(ajustarTam(this.add.image(50, 0, 'icono-objeto'), 72), objeto);
     fila.add([f, o]);
     fila.setAlpha(0);
     this.tweens.add({ targets: fila, alpha: 1, delay: 500, duration: 400 });
@@ -179,11 +199,15 @@ export class InterfazScene extends Phaser.Scene {
     }
     this.leerToques();
     const j = this.juego;
-    // coleccionables cogidos en este intento
-    let x = this.finVelas.x + 20;
-    this.iconoFoto.setVisible(j.tieneFoto && !j.enFinal).setPosition(x, this.finVelas.y);
-    if (j.tieneFoto) x += 46;
-    this.iconoObjeto.setVisible(j.tieneObjeto && !j.enFinal).setPosition(x, this.finVelas.y);
+    // coleccionables cogidos en este intento (un enemigo puede robarlos y vuelven a silueta)
+    if (j.tieneFoto !== this.teniaFoto) {
+      this.teniaFoto = j.tieneFoto;
+      this.alCambiarColeccionable(this.iconoFoto, j.tieneFoto);
+    }
+    if (j.tieneObjeto !== this.teniaObjeto) {
+      this.teniaObjeto = j.tieneObjeto;
+      this.alCambiarColeccionable(this.iconoObjeto, j.tieneObjeto);
+    }
     // recarga del canto alrededor del botón
     if (this.recarga && !this.sinCanto) {
       const r = j.sofia.recargaCanto(j.time.now);

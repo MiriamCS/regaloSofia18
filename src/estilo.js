@@ -20,6 +20,11 @@ export const COLOR = {
   texto: '#1b2a4a',
 };
 
+// Ajusta una imagen a un tamaño en px (el lado mayor), sea cual sea el lienzo de su textura
+export function ajustarTam(img, px) {
+  return img.setScale(px / Math.max(img.width, img.height));
+}
+
 export function estiloTexto(tam = 28, color = COLOR.blanco, extra = {}) {
   return { fontFamily: FUENTE, fontSize: `${tam}px`, color, ...extra };
 }

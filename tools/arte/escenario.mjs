@@ -90,7 +90,6 @@ export function spritesEscenario() {
     tarta: tarta(),
     'cartel-continuara': { w: 300, h: 190, cuerpo: `<rect x="138" y="90" width="22" height="98" fill="#b07a45" ${t}/><rect x="8" y="8" width="284" height="96" rx="10" fill="#ffffff" ${t}/><text x="150" y="70" font-family="Georgia, serif" font-style="italic" font-size="40" text-anchor="middle" fill="#1b2a4a">Continuará...</text>` },
     candado: { w: 48, h: 56, cuerpo: `<path d="M 14 26 V 18 Q 14 6 24 6 Q 34 6 34 18 V 26" fill="none" ${t4}/><rect x="6" y="24" width="36" height="28" rx="5" fill="#9aa7c7" ${t}/><circle cx="24" cy="36" r="4" fill="${TRAZO}"/><path d="M 24 38 v 7" stroke="${TRAZO}" stroke-width="3"/>` },
-    'icono-foto': { w: 40, h: 40, cuerpo: `<rect x="3" y="8" width="34" height="26" rx="4" fill="#ffffff" ${t}/><circle cx="20" cy="21" r="7" fill="#8fd0ff" ${t}/><rect x="8" y="4" width="10" height="6" rx="2" fill="#ffffff" ${t}/>` },
     'icono-objeto': { w: 40, h: 40, cuerpo: `<path d="M 20 3 L 25 14 L 37 15 L 28 23 L 31 35 L 20 29 L 9 35 L 12 23 L 3 15 L 15 14 Z" fill="#ffd23f" ${t}/>` },
     clave: { w: 64, h: 128, cuerpo: claveSol(10, 6, 2.2, DORADO, 6) },
     'boton-izq': boton(`<path d="M 78 34 L 44 64 L 78 94" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>`),
@@ -98,8 +97,6 @@ export function spritesEscenario() {
     'boton-saltar': boton(`<path d="M 34 78 L 64 46 L 94 78" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>`),
     'boton-cantar': boton(`<ellipse cx="52" cy="82" rx="14" ry="10" transform="rotate(-20 52 82)" fill="#ffffff"/><path d="M 64 80 V 34 Q 80 40 86 54" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>`),
     'boton-pausa': { w: 80, h: 80, cuerpo: `<circle cx="40" cy="40" r="34" fill="#0d1b3d" fill-opacity="0.35" stroke="#ffffff" stroke-width="4"/><rect x="27" y="24" width="9" height="32" rx="3" fill="#ffffff"/><rect x="44" y="24" width="9" height="32" rx="3" fill="#ffffff"/>` },
-    // icono de la app (se rasteriza a PNG con tools/generar-iconos.mjs)
-    icono: { w: 512, h: 512, cuerpo: `<defs><radialGradient id="f" cx="0.5" cy="0.35" r="0.8"><stop offset="0" stop-color="#3f7fe0"/><stop offset="1" stop-color="#0d1b3d"/></radialGradient></defs><rect width="512" height="512" fill="url(#f)"/>${claveSol(175, 90, 6.2, DORADO, 15)}<text x="372" y="440" font-family="Georgia, serif" font-weight="bold" font-size="120" text-anchor="middle" fill="#ffffff">18</text>` },
   };
 }
 export { f };

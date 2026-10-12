@@ -4,7 +4,7 @@ import { texto, NUM_NIVELES, FOTOS, OBJETOS, claveObjeto } from '../config.js';
 import { Boton, fondoMenu, botonVolver } from '../ui/Boton.js';
 import { Guardado } from '../systems/Guardado.js';
 import { Audio } from '../audio/Audio.js';
-import { FUENTE, FUENTE_TITULO } from '../estilo.js';
+import { FUENTE, FUENTE_TITULO, ajustarTam } from '../estilo.js';
 
 function titulo(scene, t) {
   scene.add.text(scene.scale.width / 2, 52, t, { fontFamily: FUENTE_TITULO, fontSize: '44px', color: '#ffffff', fontStyle: 'bold italic', stroke: '#0d1b3d', strokeThickness: 6 }).setOrigin(0.5);
@@ -66,8 +66,8 @@ export class NivelesScene extends Phaser.Scene {
       c.add(this.add.text(0, -12, String(n), { fontFamily: FUENTE_TITULO, fontSize: '44px', color: '#ffffff', fontStyle: 'bold' }).setOrigin(0.5));
       if (Guardado.completado(n)) c.add(this.add.text(tam / 2 - 16, -tam / 2 + 14, '✓', { fontFamily: FUENTE, fontSize: '22px', color: '#7bdc6b', fontStyle: 'bold' }).setOrigin(0.5));
       // Iconos solo si se consiguió cada coleccionable (la ausencia indica que falta)
-      if (Guardado.tieneFoto(n)) c.add(this.add.image(-18, 30, 'icono-foto').setScale(0.55));
-      if (Guardado.tieneObjeto(n)) c.add(this.add.image(18, 30, 'icono-objeto').setScale(0.55));
+      if (Guardado.tieneFoto(n)) c.add(ajustarTam(this.add.image(-18, 30, 'marco-foto'), 28));
+      if (Guardado.tieneObjeto(n)) c.add(ajustarTam(this.add.image(18, 30, 'icono-objeto'), 28));
     }
   }
 }
