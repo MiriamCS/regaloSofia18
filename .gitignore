@@ -5,3 +5,6 @@ dev-dist/
 *.log
 .vite/
 assets/levels/nivel-99.json
+
+# Vídeos de referencia de Sofía: pesan mucho; el juego usa los fotogramas extraídos
+docs/videos/**/*.mp4
