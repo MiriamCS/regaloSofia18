@@ -1,4 +1,5 @@
-// Sofía: personaje por piezas SVG animado por código (cinemática directa).
+// Sofía: personaje por piezas SVG animado por código (cinemática directa), o, en las etapas con vídeo (el bebé),
+// solo con los fotogramas sacados de sus vídeos.
 // El contenedor tiene el origen en los pies; el cuerpo físico es un rectángulo encima.
 import Phaser from 'phaser';
 import { JUEGO } from '../config.js';
@@ -34,8 +35,19 @@ function profundidad(nombre) {
 }
 // Desplazamiento lateral de las extremidades en reposo
 const DX = { 'pierna-atras': -4, 'pierna-delante': 4, 'brazo-atras': -8, 'brazo-delante': 9 };
-// Animación de fotogramas (sacados de vídeo) que se usa en cada estado, si existe para la etapa
-const ANIM_FOTOGRAMAS = { reposo: ['reposo'], andar: ['andar'], correr: ['correr', 'andar'], saltar: ['saltar'], caer: ['caer'], aire: ['caer'] };
+// Etapas con vídeo (el bebé): animación de fotogramas de cada estado, por orden de preferencia; si no hay ninguna, reposo
+const ANIM_FOTOGRAMAS = {
+  andar: ['andar'],
+  correr: ['correr', 'andar'],
+  saltar: ['saltar'],
+  caer: ['caer'],
+  aire: ['caer'],
+  empujar: ['empujar', 'andar'],
+  danio: ['danio'],
+  celebrar: ['celebrar'],
+  cantar: ['cantar'],
+  soplar: ['soplar'],
+};
 export const claveFotogramas = (etapa, modo, anim) => `sofiaf-${etapa}-${modo}-${anim}`;
 const TEXTURA = { 'pierna-atras': 'pierna', 'pierna-delante': 'pierna', 'brazo-atras': 'brazo', 'brazo-delante': 'brazo', boca: 'boca-sonrisa' };
 
@@ -44,8 +56,11 @@ export class Sofia extends Phaser.GameObjects.Container {
     super(scene, x, y);
     this.scene = scene;
     this.etapa = etapa;
-    this.rig = scene.cache.json.get('rig-sofia').etapas[etapa];
     this.gatas = !!opciones.gatas;
+    // Las etapas con vídeo se animan solo con sus fotogramas; el resto, con el SVG por piezas
+    this.infoFotos = scene.cache.json.get('fotogramas-sofia')?.[etapa]?.[this.gatas ? 'gatas' : 'pie'];
+    this.rig = this.infoFotos ? null : scene.cache.json.get('rig-sofia').etapas[etapa];
+    this.alto = this.infoFotos ? this.infoFotos.altoJuego : this.rig.medidas.alto;
     this.habilidades = opciones.habilidades || {};
     this.mirando = 1;
     this.fase = 0;
@@ -65,7 +80,7 @@ export class Sofia extends Phaser.GameObjects.Container {
     scene.add.existing(this);
     scene.physics.world.enable(this);
     const anchoCuerpo = this.gatas ? 46 : 26;
-    const altoCuerpo = this.gatas ? 40 : Math.round(this.rig.medidas.alto * 0.9);
+    const altoCuerpo = this.gatas ? 40 : Math.round(this.alto * 0.9);
     this.body.setSize(anchoCuerpo, altoCuerpo);
     this.body.setOffset(-anchoCuerpo / 2, -altoCuerpo);
     this.body.setMaxVelocity(F.velocidadCorrer * 1.4, F.velocidadMaxCaida);
@@ -75,9 +90,14 @@ export class Sofia extends Phaser.GameObjects.Container {
 
   construir(conGafas) {
     // Contenedor interior: se voltea, aplasta y gira sin tocar el cuerpo físico.
-    this.medio = Math.round(this.rig.medidas.alto / 2);
+    this.medio = Math.round(this.alto / 2);
     this.visual = this.scene.add.container(0, -this.medio);
     this.add(this.visual);
+    this.raiz = { x: 0, y: 0, rot: 0 }; // desplazamiento global del cuerpo (respiración, salto...)
+    if (this.infoFotos) {
+      this.construirFotos();
+      return;
+    }
     for (const nombre of ORDEN) {
       if (nombre === 'gafas' && !conGafas) continue;
       const tex = TEXTURA[nombre] || nombre;
@@ -94,48 +114,26 @@ export class Sofia extends Phaser.GameObjects.Container {
       this.visual.add(img);
     }
     this.piezas['collar-brillo'].img.setAlpha(0);
-    this.raiz = { x: 0, y: 0, rot: 0 }; // desplazamiento global del cuerpo (respiración, salto...)
-
-    // Fotogramas sacados de vídeo para esta etapa (a gatas o de pie). Con gafas se usan las piezas.
-    this.modoFotos = this.gatas ? 'gatas' : 'pie';
-    const fotos = conGafas ? null : this.scene.cache.json.get('fotogramas-sofia')?.[this.etapa]?.[this.modoFotos];
-    this.animFotos = {};
-    if (fotos) {
-      for (const anim of Object.keys(fotos.animaciones)) {
-        const clave = claveFotogramas(this.etapa, this.modoFotos, anim);
-        if (this.scene.anims.exists(clave)) this.animFotos[anim] = clave;
-      }
-      const primera = Object.values(this.animFotos)[0];
-      if (primera) {
-        this.fotos = this.scene.add.sprite(0, this.medio, primera).setOrigin(fotos.origen[0], fotos.origen[1]).setScale(1 / ESCALA_TEX).setVisible(false);
-        this.visual.add(this.fotos);
-      }
-    }
-    this.usandoFotos = false;
   }
 
-  // Muestra la animación de fotogramas del estado (si la hay) o, si no, el personaje por piezas
+  // Sofía hecha solo con los fotogramas de sus vídeos (tools/video-a-sprites.mjs)
+  construirFotos() {
+    const modo = this.gatas ? 'gatas' : 'pie';
+    this.animFotos = {};
+    for (const anim of Object.keys(this.infoFotos.animaciones)) {
+      const clave = claveFotogramas(this.etapa, modo, anim);
+      if (this.scene.anims.exists(clave)) this.animFotos[anim] = clave;
+    }
+    const inicial = this.animFotos.reposo || Object.values(this.animFotos)[0];
+    this.fotos = this.scene.add.sprite(0, this.medio, inicial).setOrigin(this.infoFotos.origen[0], this.infoFotos.origen[1]).setScale(1 / ESCALA_TEX);
+    this.visual.add(this.fotos);
+  }
+
   elegirFotogramas(estado, vx) {
-    let clave = null;
-    if (this.fotos) {
-      for (const anim of ANIM_FOTOGRAMAS[estado] || []) {
-        if (this.animFotos[anim]) {
-          clave = this.animFotos[anim];
-          break;
-        }
-      }
-    }
-    const usar = !!clave;
-    if (usar !== this.usandoFotos) {
-      this.usandoFotos = usar;
-      this.fotos?.setVisible(usar);
-      for (const pz of Object.values(this.piezas)) pz.img.setVisible(!usar);
-    }
-    if (!usar) {
-      this.claveFotos = null;
-      return;
-    }
-    // saltar y caer no se repiten: se quedan en su último fotograma hasta cambiar de estado
+    const anim = (ANIM_FOTOGRAMAS[estado] || []).find((a) => this.animFotos[a]) || 'reposo';
+    const clave = this.animFotos[anim] || Object.values(this.animFotos)[0];
+    if (!clave) return;
+    // las animaciones sin bucle (saltar, caer, golpe) se quedan en su último fotograma hasta cambiar de estado
     if (clave !== this.claveFotos) {
       this.claveFotos = clave;
       this.fotos.play(clave);
@@ -259,18 +257,25 @@ export class Sofia extends Phaser.GameObjects.Container {
   animar(tiempo, dt, enSuelo, dir) {
     const b = this.body;
     const vx = Math.abs(b.velocity.x);
-    const p = this.piezas;
     let estado;
     if (this.estadoForzado) estado = this.estadoForzado;
     else if (tiempo < (this.dolorHasta || 0)) estado = 'danio';
     else if (this.cantando) estado = enSuelo ? 'cantar' : 'aire';
-    else if (!enSuelo) estado = b.velocity.y * (this.g || 1) < 0 ? 'saltar' : 'caer';
+    // perder el suelo un instante (cajas, plataformas que se mueven) no cuenta como caer
+    else if (!enSuelo && (b.velocity.y * (this.g || 1) < 0 || tiempo - this.ultimoSuelo > 90)) estado = b.velocity.y * (this.g || 1) < 0 ? 'saltar' : 'caer';
     else if (this.empujando) estado = 'empujar';
     else if (vx > 20) estado = this.corriendo ? 'correr' : 'andar';
     else estado = 'reposo';
     this.estado = estado;
-    this.elegirFotogramas(estado, vx);
+    if (this.fotos) this.elegirFotogramas(estado, vx);
+    else this.animarPiezas(estado, tiempo, dt, vx);
+    this.transformar(tiempo, dt);
+  }
 
+  // Personaje por piezas: pose de cada estado, cara, pelo y brillo del collar
+  animarPiezas(estado, tiempo, dt, vx) {
+    const b = this.body;
+    const p = this.piezas;
     const velAnim = estado === 'correr' ? 15 : estado === 'empujar' ? 7 : this.gatas ? 9 : 11;
     this.fase += dt * velAnim * (estado === 'andar' || estado === 'correr' || estado === 'empujar' ? Math.max(0.5, vx / 200) : 1);
     const s = Math.sin(this.fase);
@@ -278,7 +283,6 @@ export class Sofia extends Phaser.GameObjects.Container {
     const r = { torso: 0, cabeza: 0, 'pierna-atras': 0, 'pierna-delante': 0, 'brazo-atras': 0.15, 'brazo-delante': -0.1 };
     let rx = 0;
     let ry = 0;
-    let rrot = 0;
     let boca = 'boca-sonrisa';
 
     if (this.gatas) {
@@ -378,26 +382,6 @@ export class Sofia extends Phaser.GameObjects.Container {
       }
     }
 
-    // pirueta del doble salto
-    if (this.vuelta > 0) {
-      this.vuelta = Math.max(0, this.vuelta - dt * 3.2);
-      rrot = (1 - this.vuelta) * Math.PI * 2;
-      if (this.vuelta === 0) rrot = 0;
-    }
-    // estirar y aplastar
-    let sx = 1;
-    let sy = 1;
-    if (this.squash > 0) {
-      this.squash = Math.max(0, this.squash - dt * 6);
-      sy = 1 - this.squash * 0.12;
-      sx = 1 + this.squash * 0.1;
-    }
-    if (this.estirar > 0) {
-      this.estirar = Math.max(0, this.estirar - dt * 5);
-      sy *= 1 + this.estirar * 0.08;
-      sx *= 1 - this.estirar * 0.06;
-    }
-
     // Parpadeo
     this.parpadeo -= dt;
     let ojos = 'ojos';
@@ -443,6 +427,30 @@ export class Sofia extends Phaser.GameObjects.Container {
     this.raiz.x = rx;
     this.raiz.y = ry;
     this.aplicarPose(r);
+  }
+
+  // Volteo, estirar y aplastar, pirueta y parpadeo de invulnerabilidad (con piezas o con fotogramas)
+  transformar(tiempo, dt) {
+    // pirueta del doble salto
+    let rrot = 0;
+    if (this.vuelta > 0) {
+      this.vuelta = Math.max(0, this.vuelta - dt * 3.2);
+      rrot = (1 - this.vuelta) * Math.PI * 2;
+      if (this.vuelta === 0) rrot = 0;
+    }
+    // estirar y aplastar
+    let sx = 1;
+    let sy = 1;
+    if (this.squash > 0) {
+      this.squash = Math.max(0, this.squash - dt * 6);
+      sy = 1 - this.squash * 0.12;
+      sx = 1 + this.squash * 0.1;
+    }
+    if (this.estirar > 0) {
+      this.estirar = Math.max(0, this.estirar - dt * 5);
+      sy *= 1 + this.estirar * 0.08;
+      sx *= 1 - this.estirar * 0.06;
+    }
     const g = this.g || 1;
     this.visual.setScale(this.mirando * sx, sy * g);
     // boca abajo, los pies tocan la parte de arriba del cuerpo físico
@@ -521,6 +529,7 @@ export class Sofia extends Phaser.GameObjects.Container {
     const lado = Math.sign(this.x - desdeX) || -this.mirando;
     this.body.setVelocity(lado * fuerza, -220);
     this.retrocesoHasta = this.scene.time.now + 220;
+    this.dolorHasta = this.scene.time.now + 380; // pose de golpe, aunque no quite vela
   }
 
   colocar(x, y) {

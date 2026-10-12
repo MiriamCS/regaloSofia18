@@ -265,7 +265,8 @@ export class JuegoScene extends Phaser.Scene {
         c.body.setSize(c.width - 16, c.height).setOffset(8, 0);
         c.pesada = o.tipo === 'mueble' || !!o.p.pesada;
         c.inicio = { x: o.pieX, y: o.pieY };
-        if (o.p.fija) c.body.setImmovable(true);
+        c.fija = !!o.p.fija;
+        if (c.fija) c.body.setImmovable(true);
         this.graficos.push(c);
         break;
       }
@@ -347,17 +348,28 @@ export class JuegoScene extends Phaser.Scene {
       const topeAntes = zb.prev ? zb.prev.y : zb.y;
       return cuerpo.body.velocity.y >= vz - 5 && cuerpo.body.prev.y + cuerpo.body.height <= topeAntes + 10;
     };
+    // choque real con algo sólido (Sofía lo usa para saber si está en el suelo)
+    const contacto = () => (s.contactoSolido = this.time.now);
     fis.add.collider(s, this.solidos, (sofia, z) => {
+      contacto();
       this.alPisar(z);
       this.apuntarSuelo(z);
     });
-    fis.add.collider(s, this.nubes, null, unaDireccion);
+    fis.add.collider(s, this.nubes, contacto, unaDireccion);
     fis.add.collider(this.cajas, this.solidos);
     fis.add.collider(this.cajas, this.nubes, null, unaDireccion);
     fis.add.collider(this.cajas, this.cajas);
+    // Sofía no se deja empujar: si cae encima de una caja (o la golpea desde abajo), la hundiría en lo que tenga
+    // debajo. En los choques verticales la caja no se mueve y es Sofía la que se coloca; de lado, la empuja.
     fis.add.collider(s, this.cajas, (sofia, caja) => {
       contacto();
       this.alTocarCaja(caja);
+    }, (sofia, caja) => {
+      const b = s.body;
+      const cb = caja.body;
+      const vertical = b.prev.y + b.height <= cb.prev.y + 8 || b.prev.y >= cb.prev.y + cb.height - 8;
+      cb.immovable = caja.fija || vertical;
+      return true;
     });
     // plataformas especiales: cuerpo en su 'zona'
     const zonasEspeciales = [...this.movibles, ...this.pisables, ...(this.pisablesFijos || [])].map((p) => p.zona).filter((z, i, a) => a.indexOf(z) === i);
@@ -527,6 +539,7 @@ export class JuegoScene extends Phaser.Scene {
     if ((s.y > this.datos.alto + 120 || s.y < -300) && !this.muriendo) this.morir(1, undefined, true);
     // cajas caídas al vacío vuelven a su sitio
     for (const c of this.cajas.getChildren()) {
+      c.body.immovable = c.fija; // solo es inamovible durante el choque vertical con Sofía
       c.vyAntes = c.body.velocity.y;
       if (c.y > this.datos.alto + 200) this.recolocarCaja(c);
     }

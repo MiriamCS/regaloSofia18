@@ -4,7 +4,9 @@ La animación de Sofía se saca de vídeos generados con IA (Flow/Veo, Sora, Kli
 personaje de [`docs/concept-art/sofia`](../concept-art/sofia). De cada vídeo se extraen los fotogramas, se quita
 el fondo verde y se montan las hojas de sprites del juego (`tools/video-a-sprites.mjs`).
 
-Las acciones que todavía no tengan vídeo se siguen dibujando con el personaje SVG por piezas.
+El bebé se anima **solo** con los fotogramas de sus cuatro vídeos (ya no tiene personaje SVG). Las demás edades
+se siguen dibujando con el personaje SVG por piezas hasta que tengan sus vídeos. Qué tramo de cada vídeo va a cada
+animación se decide en `tools/fotogramas-sofia.json`.
 
 ---
 
@@ -33,9 +35,9 @@ Las acciones que todavía no tengan vídeo se siguen dibujando con el personaje 
 | Clip | Estado |
 | --- | --- |
 | `bebe-A-gatas` | ✅ En el juego: reposo, gatear, saltar y caer a gatas |
-| `bebe-B-gatas-acciones` | ⏳ |
+| `bebe-B-gatas-acciones` | ✅ En el juego: empujar, golpe y celebrar (sentada aplaudiendo) a gatas |
 | `bebe-C-pie` | ✅ En el juego: reposo, andar, saltar y caer de pie |
-| `bebe-D-pie-acciones` | ⏳ |
+| `bebe-D-pie-acciones` | ✅ En el juego: empujar, golpe y celebrar de pie |
 | Resto de edades | ⏳ |
 
 ---

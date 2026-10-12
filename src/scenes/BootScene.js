@@ -5,7 +5,6 @@ import { ESCALA_TEXTURAS, claveFotogramas } from '../entities/Sofia.js';
 import { PISTAS } from '../audio/musica.js';
 import { Guardado } from '../systems/Guardado.js';
 
-const ETAPAS_SOFIA = ['bebe', 'nina', 'preado', 'adolescente', 'adulta'];
 const ETAPAS_MIRIAM = ['nina', 'preado', 'adolescente', 'adulta'];
 const ENEMIGOS = ['pato', 'cochecito', 'mochila', 'mosquito', 'avion-papel', 'notificacion', 'profesor', 'examenes', 'urraca', 'metronomo', 'despertador'];
 const ESCENARIO = ['vela-on', 'vela-off', 'vela-cuerpo', 'atril-off', 'atril-on', 'caja-juguete', 'caja-madera', 'caja-carton', 'caja-libros', 'mueble', 'pinchos', 'marco-foto', 'nota-azul', 'nota-dorada', 'nota-rosa', 'nota-verde', 'campana', 'meta', 'puerta', 'tarta', 'cartel-continuara', 'candado', 'icono-foto', 'icono-objeto', 'clave', 'boton-izq', 'boton-der', 'boton-saltar', 'boton-cantar', 'boton-pausa'];
@@ -43,11 +42,12 @@ export class BootScene extends Phaser.Scene {
     this.load.json('rig-miriam', 'sprites/miriam/rig.json');
     this.load.json('indice-musica', 'music/indice.json');
     this.load.once('filecomplete-json-rig-sofia', (k, t, rig) => {
-      for (const e of ETAPAS_SOFIA) {
+      // el bebé no tiene piezas: va solo con fotogramas de vídeo
+      for (const e of Object.keys(rig.etapas)) {
         for (const pieza of Object.keys(rig.etapas[e].piezas)) this.load.svg(`sofia-${e}-${pieza}`, `sprites/sofia/${e}/${pieza}.svg`, S);
       }
     });
-    // Animaciones sacadas de los vídeos (tools/video-a-sprites.mjs); lo que no tenga vídeo se dibuja con el SVG por piezas
+    // Animaciones sacadas de los vídeos (tools/video-a-sprites.mjs); las etapas sin vídeo se dibujan con el SVG por piezas
     this.load.json('fotogramas-sofia', 'sprites/sofia/fotogramas.json');
     this.load.once('filecomplete-json-fotogramas-sofia', (k, t, indice) => {
       for (const [clave, info] of animacionesFotogramas(indice)) {

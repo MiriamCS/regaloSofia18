@@ -4,7 +4,8 @@
 //   assets/sprites/sofia/<etapa>/fotogramas/<modo>-<animacion>.png  (rejilla de fotogramas)
 //   assets/sprites/sofia/fotogramas.json                              (índice que carga el juego)
 // Todos los fotogramas de un mismo modo (p. ej. bebé a gatas) comparten tamaño y punto de apoyo (los pies),
-// así el personaje no baila al cambiar de animación.
+// así el personaje no baila al cambiar de animación, aunque vengan de vídeos distintos: cada vídeo se calibra
+// con su propia pose de referencia.
 import { execFileSync } from 'node:child_process';
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -62,18 +63,26 @@ function cajaOpaca(data, W, H) {
 
 const mediana = (v) => [...v].sort((a, b) => a - b)[Math.floor(v.length / 2)];
 
-async function procesarModo(etapa, modo, cfg, indice) {
-  const video = join(VIDEOS, cfg.video);
+const numeros = (a) => {
+  const lista = [];
+  for (let n = a.de; n <= a.a; n += a.paso || 1) lista.push(n);
+  return lista;
+};
+
+// Recorta y escala los fotogramas de un vídeo. Cada uno queda colocado respecto a los pies de la pose de referencia
+// del vídeo (x = centro, y = suelo), en píxeles de textura.
+async function procesarVideo(nombreVideo, cfg, alto) {
+  const video = join(VIDEOS, nombreVideo);
   if (!existsSync(video)) {
-    console.log(`  (falta ${cfg.video}, se omite)`);
-    return;
+    console.log(`  (falta ${nombreVideo}, se omite)`);
+    return null;
   }
   const tmp = mkdtempSync(join(tmpdir(), 'fotogramas-'));
   try {
     execFileSync(ffmpeg, ['-hide_banner', '-loglevel', 'error', '-i', video, '-start_number', '0', join(tmp, '%04d.png')]);
     const usados = new Set();
     for (let n = cfg.referencia[0]; n <= cfg.referencia[1]; n++) usados.add(n);
-    for (const a of Object.values(cfg.animaciones)) for (let n = a.de; n <= a.a; n++) usados.add(n);
+    for (const a of Object.values(cfg.animaciones)) for (const n of numeros(a)) usados.add(n);
 
     // 1. Quitar el fondo y medir cada fotograma
     const fot = new Map();
@@ -87,71 +96,98 @@ async function procesarModo(etapa, modo, cfg, indice) {
       fot.set(n, { data, caja: cajaOpaca(data, W, H) });
     }
 
-    // 2. Caja común, línea de los pies y escala (a partir de la pose de referencia)
+    // 2. Línea de los pies y escala (a partir de la pose de referencia)
     const ref = [];
     for (let n = cfg.referencia[0]; n <= cfg.referencia[1]; n++) ref.push(fot.get(n).caja);
     const suelo = mediana(ref.map((c) => c.y1));
     const centro = mediana(ref.map((c) => (c.x0 + c.x1) / 2));
     const altoVideo = mediana(ref.map((c) => c.y1 - c.y0));
-    const escala = (cfg.alto * ESCALA_TEX) / altoVideo;
-    let x0 = W;
-    let y0 = H;
-    let x1 = 0;
-    let y1 = 0;
-    for (const { caja } of fot.values()) {
-      x0 = Math.min(x0, caja.x0);
-      y0 = Math.min(y0, caja.y0);
-      x1 = Math.max(x1, caja.x1);
-      y1 = Math.max(y1, caja.y1);
-    }
-    x0 = Math.max(0, x0 - MARGEN);
-    y0 = Math.max(0, y0 - MARGEN);
-    x1 = Math.min(W - 1, x1 + MARGEN);
-    y1 = Math.min(H - 1, Math.max(y1, suelo) + MARGEN);
-    const cw = x1 - x0 + 1;
-    const ch = y1 - y0 + 1;
-    const fw = Math.ceil(cw * escala);
-    const fh = Math.ceil(ch * escala);
-    const origen = [Math.round(((centro - x0) / cw) * 1000) / 1000, Math.round(((suelo - y0) / ch) * 1000) / 1000];
+    const escala = (alto * ESCALA_TEX) / altoVideo;
 
-    // 3. Una rejilla por animación
-    const dirSalida = join(SALIDA, etapa, 'fotogramas');
-    mkdirSync(dirSalida, { recursive: true });
-    const info = { ancho: fw, alto: fh, origen, animaciones: {} };
+    // 3. Cada fotograma usado, recortado a su caja y escalado
+    const animaciones = {};
     for (const [nombre, a] of Object.entries(cfg.animaciones)) {
-      const total = a.a - a.de + 1;
-      const columnas = Math.max(1, Math.min(total, Math.floor(ANCHO_MAX / fw)));
-      const filas = Math.ceil(total / columnas);
-      const piezas = [];
-      for (let k = 0; k < total; k++) {
-        const { data } = fot.get(a.de + k);
+      const lista = [];
+      for (const n of numeros(a)) {
+        const { data, caja } = fot.get(n);
+        const x0 = Math.max(0, caja.x0 - MARGEN);
+        const y0 = Math.max(0, caja.y0 - MARGEN);
+        const x1 = Math.min(W - 1, caja.x1 + MARGEN);
+        const y1 = Math.min(H - 1, caja.y1 + MARGEN);
+        const w = Math.max(1, Math.round((x1 - x0 + 1) * escala));
+        const h = Math.max(1, Math.round((y1 - y0 + 1) * escala));
         const img = await sharp(data, { raw: { width: W, height: H, channels: 4 } })
-          .extract({ left: x0, top: y0, width: cw, height: ch })
-          .resize(fw, fh, { kernel: 'lanczos3' })
+          .extract({ left: x0, top: y0, width: x1 - x0 + 1, height: y1 - y0 + 1 })
+          .resize(w, h, { kernel: 'lanczos3' })
           .png()
           .toBuffer();
-        piezas.push({ input: img, left: (k % columnas) * fw, top: Math.floor(k / columnas) * fh });
+        lista.push({ img, x: Math.round((x0 - centro) * escala), y: Math.round((y0 - suelo) * escala), w, h });
       }
-      const archivo = `${modo}-${nombre}.png`;
-      await sharp({ create: { width: columnas * fw, height: filas * fh, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } })
-        .composite(piezas)
-        .png({ compressionLevel: 9, palette: true, quality: 95, effort: 10 })
-        .toFile(join(dirSalida, archivo));
-      info.animaciones[nombre] = { archivo: `${etapa}/fotogramas/${archivo}`, fotogramas: total, fps: a.fps, bucle: !!a.bucle };
-      console.log(`  ${etapa}/${archivo}: ${total} fotogramas de ${fw}x${fh}`);
+      animaciones[nombre] = { lista, fps: a.fps, bucle: !!a.bucle };
     }
-    indice[etapa] = indice[etapa] || {};
-    indice[etapa][modo] = info;
+    return animaciones;
   } finally {
     rmSync(tmp, { recursive: true, force: true });
   }
+}
+
+async function procesarModo(etapa, modo, cfg, indice) {
+  // 1. Fotogramas de todos los vídeos del modo
+  const anims = {};
+  for (const [nombreVideo, cv] of Object.entries(cfg.videos)) {
+    console.log(`  <- ${nombreVideo}`);
+    Object.assign(anims, await procesarVideo(nombreVideo, cv, cfg.alto));
+  }
+  if (!Object.keys(anims).length) return;
+
+  // 2. Caja común a todos los fotogramas del modo, con los pies en el mismo punto
+  let L = 0;
+  let T = 0;
+  let R = 0;
+  let B = 0;
+  for (const a of Object.values(anims)) {
+    for (const p of a.lista) {
+      L = Math.min(L, p.x);
+      T = Math.min(T, p.y);
+      R = Math.max(R, p.x + p.w);
+      B = Math.max(B, p.y + p.h);
+    }
+  }
+  const fw = R - L;
+  const fh = B - T;
+  const origen = [Math.round((-L / fw) * 1000) / 1000, Math.round((-T / fh) * 1000) / 1000];
+
+  // 3. Una rejilla por animación
+  const dirSalida = join(SALIDA, etapa, 'fotogramas');
+  mkdirSync(dirSalida, { recursive: true });
+  // altoJuego: lo que mide Sofía en el juego en la pose neutra (sirve para su cuerpo físico)
+  const info = { ancho: fw, alto: fh, origen, altoJuego: cfg.alto, animaciones: {} };
+  for (const [nombre, a] of Object.entries(anims)) {
+    const total = a.lista.length;
+    const columnas = Math.max(1, Math.min(total, Math.floor(ANCHO_MAX / fw)));
+    const filas = Math.ceil(total / columnas);
+    const piezas = a.lista.map((p, k) => ({
+      input: p.img,
+      left: (k % columnas) * fw + p.x - L,
+      top: Math.floor(k / columnas) * fh + p.y - T,
+    }));
+    const archivo = `${modo}-${nombre}.png`;
+    await sharp({ create: { width: columnas * fw, height: filas * fh, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } })
+      .composite(piezas)
+      .png({ compressionLevel: 9, palette: true, quality: 95, effort: 10 })
+      .toFile(join(dirSalida, archivo));
+    info.animaciones[nombre] = { archivo: `${etapa}/fotogramas/${archivo}`, fotogramas: total, fps: a.fps, bucle: a.bucle };
+    console.log(`  ${etapa}/${archivo}: ${total} fotogramas de ${fw}x${fh}`);
+  }
+  indice[etapa] = indice[etapa] || {};
+  indice[etapa][modo] = info;
 }
 
 const indice = { _comentario: 'Generado por tools/video-a-sprites.mjs a partir de tools/fotogramas-sofia.json.' };
 for (const [etapa, modos] of Object.entries(config)) {
   if (etapa.startsWith('_')) continue;
   for (const [modo, cfg] of Object.entries(modos)) {
-    console.log(`${etapa} (${modo}) <- ${cfg.video}`);
+    console.log(`${etapa} (${modo})`);
     await procesarModo(etapa, modo, cfg, indice);
   }
 }
