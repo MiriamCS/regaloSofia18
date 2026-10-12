@@ -10,12 +10,12 @@ function titulo(scene, t) {
   scene.add.text(scene.scale.width / 2, 52, t, { fontFamily: FUENTE_TITULO, fontSize: '44px', color: '#ffffff', fontStyle: 'bold italic', stroke: '#0d1b3d', strokeThickness: 6 }).setOrigin(0.5);
 }
 
-// Rejilla de 19 casillas: 10 arriba y 9 abajo
-function posicionCasilla(scene, n, tam) {
+// Rejilla en dos filas: 10 arriba y el resto abajo (19 casillas, o 20 en el álbum)
+function posicionCasilla(scene, n, tam, total = NUM_NIVELES) {
   const { width: W, height: H } = scene.scale;
   const fila = n < 10 ? 0 : 1;
   const col = n < 10 ? n : n - 10;
-  const porFila = fila === 0 ? 10 : 9;
+  const porFila = fila === 0 ? 10 : total - 10;
   const sep = Math.min(tam + 18, (W - 80) / 10);
   const x = W / 2 + (col - (porFila - 1) / 2) * sep;
   const y = H * 0.42 + fila * (tam + 60);
@@ -74,8 +74,10 @@ export class NivelesScene extends Phaser.Scene {
 
 // ---- Álbum de fotos ---------------------------------------------------------------
 
+export const CLAVE_FOTO_NACIMIENTO = 'foto-nacimiento';
+
 // Escala la imagen para cubrir w x h y recorta lo que sobra (centrado). Funciona aunque se gire.
-function recortarCubriendo(img, w, h) {
+export function recortarCubriendo(img, w, h) {
   const s = Math.max(w / img.width, h / img.height);
   const cw = w / s;
   const ch = h / s;
@@ -91,9 +93,17 @@ export class AlbumScene extends Phaser.Scene {
   preload() {
     // Solo se cargan las fotos conseguidas. Si falta el archivo se usa un marco con placeholder.
     this.load.on('loaderror', () => {});
-    for (const f of FOTOS.fotos) {
-      if (Guardado.tieneFoto(f.nivel) && f.archivo && !this.textures.exists(`foto-${f.nivel}`)) this.load.image(`foto-${f.nivel}`, f.archivo);
+    for (const f of this.fotos()) {
+      if (f.tiene && f.archivo && !this.textures.exists(f.clave)) this.load.image(f.clave, f.archivo);
     }
+  }
+
+  // La foto del nacimiento va la primera, antes de las de cada año
+  fotos() {
+    const nace = FOTOS.nacimiento;
+    const lista = FOTOS.fotos.map((f) => ({ ...f, clave: `foto-${f.nivel}`, tiene: Guardado.tieneFoto(f.nivel), etiqueta: texto('galerias.nivel', { n: f.nivel }) }));
+    if (nace) lista.unshift({ ...nace, clave: CLAVE_FOTO_NACIMIENTO, tiene: Guardado.tieneFotoNacimiento(), etiqueta: texto('galerias.nacimiento') });
+    return lista;
   }
 
   create() {
@@ -101,14 +111,14 @@ export class AlbumScene extends Phaser.Scene {
     titulo(this, texto('galerias.album'));
     botonVolver(this);
     const tam = 104;
-    for (const f of FOTOS.fotos) {
-      const n = f.nivel;
-      const { x, y } = posicionCasilla(this, n, tam);
-      const tiene = Guardado.tieneFoto(n);
+    const fotos = this.fotos();
+    fotos.forEach((f, i) => {
+      const { x, y } = posicionCasilla(this, i, tam, fotos.length);
+      const tiene = f.tiene;
       const c = casilla(this, x, y, tam, { activa: tiene, alPulsar: tiene ? () => this.ver(f) : null });
       if (tiene) {
-        if (this.textures.exists(`foto-${n}`)) {
-          const img = this.add.image(0, -8, `foto-${n}`);
+        if (this.textures.exists(f.clave)) {
+          const img = this.add.image(0, -8, f.clave);
           recortarCubriendo(img, tam - 16, tam - 34);
           c.add(img);
         } else {
@@ -121,8 +131,8 @@ export class AlbumScene extends Phaser.Scene {
         c.add(g);
         c.add(this.add.text(0, -14, '?', { fontFamily: FUENTE_TITULO, fontSize: '38px', color: '#56607a', fontStyle: 'bold' }).setOrigin(0.5));
       }
-      c.add(this.add.text(0, tam / 2 - 14, texto('galerias.nivel', { n }), { fontFamily: FUENTE, fontSize: '15px', color: '#cfe0ff' }).setOrigin(0.5));
-    }
+      c.add(this.add.text(0, tam / 2 - 14, f.etiqueta, { fontFamily: FUENTE, fontSize: '15px', color: '#cfe0ff' }).setOrigin(0.5));
+    });
   }
 
   ver(f) {
@@ -139,9 +149,8 @@ export class AlbumScene extends Phaser.Scene {
     const papel = this.add.graphics();
     papel.fillStyle(0xffffff, 1).fillRect(-aw / 2 - marco, -ah / 2 - marco, aw + marco * 2, ah + marco * 2 + 56);
     foto.add(papel);
-    const clave = `foto-${f.nivel}`;
-    if (this.textures.exists(clave)) {
-      const img = this.add.image(0, 0, clave);
+    if (this.textures.exists(f.clave)) {
+      const img = this.add.image(0, 0, f.clave);
       if (cfg.recorte === 'contener') img.setScale(Math.min(aw / img.width, ah / img.height));
       else recortarCubriendo(img, aw, ah);
       foto.add(img);
@@ -151,7 +160,7 @@ export class AlbumScene extends Phaser.Scene {
       g.lineStyle(4, 0x9aa7c7, 1).strokeRect(-aw / 2 + 20, -ah / 2 + 20, aw - 40, ah - 40);
       foto.add(g);
       foto.add(this.add.image(0, -20, 'marco-foto').setScale(1.4));
-      foto.add(this.add.text(0, 70, `Foto ${f.nivel} pendiente`, { fontFamily: FUENTE, fontSize: '24px', color: '#56607a' }).setOrigin(0.5));
+      foto.add(this.add.text(0, 70, `${f.etiqueta}: foto pendiente`, { fontFamily: FUENTE, fontSize: '24px', color: '#56607a' }).setOrigin(0.5));
     }
     foto.add(this.add.text(0, ah / 2 + marco + 22, f.pie, { fontFamily: '"Comic Sans MS", "Chalkboard SE", ' + FUENTE, fontSize: '24px', color: '#1b2a4a', align: 'center', wordWrap: { width: aw } }).setOrigin(0.5));
     capa.add(foto);
@@ -179,7 +188,8 @@ export class VitrinaScene extends Phaser.Scene {
       const { x, y } = posicionCasilla(this, n, tam);
       const tiene = Guardado.tieneObjeto(n);
       const c = casilla(this, x, y, tam, { activa: tiene, alPulsar: tiene ? () => this.ver(o) : null });
-      const img = this.add.image(0, -8, `obj-${o.sprite}`).setScale(0.36);
+      const img = this.add.image(0, -8, `obj-${o.sprite}`);
+      img.setScale(72 / img.width);
       if (!tiene) img.setTintFill(0x0d1b3d).setAlpha(0.75);
       c.add(img);
       c.add(this.add.text(0, tam / 2 - 14, texto('galerias.nivel', { n }), { fontFamily: FUENTE, fontSize: '15px', color: '#cfe0ff' }).setOrigin(0.5));
@@ -193,7 +203,8 @@ export class VitrinaScene extends Phaser.Scene {
     const panel = this.add.graphics();
     panel.fillStyle(0xfffaf0, 1).fillRoundedRect(W / 2 - 360, H / 2 - 230, 720, 460, 24);
     panel.lineStyle(5, 0xe8b84a, 1).strokeRoundedRect(W / 2 - 360, H / 2 - 230, 720, 460, 24);
-    const img = this.add.image(W / 2, H / 2 - 80, `obj-${o.sprite}`).setScale(1.2);
+    const img = this.add.image(W / 2, H / 2 - 80, `obj-${o.sprite}`);
+    img.setScale(220 / img.width);
     this.tweens.add({ targets: img, angle: { from: -5, to: 5 }, duration: 1400, yoyo: true, repeat: -1, ease: 'Sine.inOut' });
     const nombre = this.add.text(W / 2, H / 2 + 60, o.nombre, { fontFamily: FUENTE_TITULO, fontSize: '36px', color: '#1e4fa3', fontStyle: 'bold' }).setOrigin(0.5);
     const desc = this.add.text(W / 2, H / 2 + 130, o.texto, { fontFamily: FUENTE, fontSize: '22px', color: '#1b2a4a', align: 'center', wordWrap: { width: 640 } }).setOrigin(0.5);

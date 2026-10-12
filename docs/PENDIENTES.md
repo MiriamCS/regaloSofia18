@@ -13,8 +13,8 @@ Cuando me lo pases, lo meto en el juego.
 | ~~Diferencia de edad entre hermanas~~ | ✅ 5 años: Miriam niña (niveles 0-2), preadolescente (3-7), adolescente (8-12), adulta (13-18) | — | `src/config.js` → `etapaMiriam` |
 | Recuerdos de los años con historia propia | Adaptar las ambientaciones y bromas de esos niveles | 19 oct | `docs/DISENO-NIVELES.md` y `tools/niveles` |
 | ¿A qué edad empezó Sofía con la música? | Nivel en que se desbloquea cantar (ahora el 6) | 19 oct | `config/juego.json` → `habilidades.cantar` |
-| Lista de objetos por año | Sustituir los 19 objetos genéricos provisionales y dibujarlos | 26 oct | `config/objetos.json` y `tools/arte/objetos.mjs` |
-| 19 fotos reales con su pie de foto | Álbum de fotos (ahora salen marcos con placeholder) | 31 oct | `assets/photos/foto-NN.jpg` y `config/photos.json` |
+| Textos de los objetos | ✅ Lista e imágenes puestas (12 oct). Falta el texto de cada uno | 26 oct | `config/objetos.json` → `texto` |
+| Pies de foto | ✅ Fotos puestas: nacimiento y años 0-17 (el 18 no tiene foto, solo objeto). Faltan todos los pies | 31 oct | `originales/fotos/SofiaN.jpg` (+ `npm run imagenes`) y `config/photos.json` |
 | Mensaje final de la tarta | Lo que aparece al apagar las 18 velas | 1 nov | `config/mensaje-final.txt` |
 | Archivos MIDI de las obras | Desde este entorno no se puede descargar de Mutopia/IMSLP. Bájalos tú (comprobando que la licencia sea libre) y te los convierto | cuando puedas | `assets/music` (con `tools/midi-a-json.mjs`) |
 | ~~Concept art de Sofía~~ | ✅ Hojas S1-S7 en `docs/concept-art/sofia` y Sofía redibujada en SVG (`tools/arte/sofia.mjs`) | — | — |

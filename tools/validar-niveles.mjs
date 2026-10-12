@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 const raiz = join(dirname(fileURLToPath(import.meta.url)), '..');
 const textos = JSON.parse(readFileSync(join(raiz, 'config', 'texts.json'), 'utf8'));
+const conFoto = new Set(JSON.parse(readFileSync(join(raiz, 'config', 'photos.json'), 'utf8')).fotos.map((f) => f.nivel));
 const juego = JSON.parse(readFileSync(join(raiz, 'config', 'juego.json'), 'utf8'));
 const SPRITES_ENEMIGOS = ['pato', 'cochecito', 'mochila', 'mosquito', 'avion-papel', 'notificacion', 'profesor', 'examenes', 'urraca', 'metronomo', 'despertador'];
 const TIPOS = new Set(['solido', 'nube', 'plataforma-movil', 'plataforma-cae', 'plataforma-falsa', 'plataforma-temporizada', 'plataforma-musical', 'tecla', 'campana', 'puerta', 'checkpoint', 'foto', 'objeto', 'meta', 'meta-falsa', 'miriam', 'cartel', 'caja', 'mueble', 'enemigo', 'pinchos', 'lluvia', 'peligro-movil', 'muerte', 'invertir', 'gravedad', 'final', 'aviso', 'decorado', 'inicio']);
@@ -37,7 +38,9 @@ for (let n = 0; n <= 18; n++) {
   if (cuenta('inicio') !== 1) err(`debe haber 1 inicio (hay ${cuenta('inicio')})`);
   if (n < 18 && cuenta('meta') !== 1) err(`debe haber 1 meta (hay ${cuenta('meta')})`);
   if (n === 18 && cuenta('final') !== 1) err('el nivel 18 necesita una zona "final"');
-  if (cuenta('foto') !== 1) err(`debe haber 1 foto (hay ${cuenta('foto')})`);
+  // los niveles sin entrada en config/photos.json (el 18) no llevan foto
+  const fotos = conFoto.has(n) ? 1 : 0;
+  if (cuenta('foto') !== fotos) err(`debe haber ${fotos} foto (hay ${cuenta('foto')})`);
   if (cuenta('objeto') !== 1) err(`debe haber 1 objeto (hay ${cuenta('objeto')})`);
   if (cuenta('miriam') < 1) err('Miriam debe aparecer al menos una vez');
   const cps = cuenta('checkpoint');

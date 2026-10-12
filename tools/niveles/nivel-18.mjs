@@ -4,7 +4,7 @@
 // (3) el escenario: gravedad invertida por el techo, luces temporizadas y un suelo «seguro»;
 // (4) el último tramo: nubes pequeñas sobre el abismo con aviones de papel.
 // Donde debería estar la meta empieza la zona 'final': camino blanco, «Continuará...» y la tarta.
-// Foto: en el palco (sobre las luces temporizadas). Objeto: en una repisa escondida en el foso del tramo 2.
+// Sin foto (aún no hay foto de los 18). Objeto: en una repisa escondida en el foso del tramo 2.
 export default {
   props: { tema: 'escenario', edad: 18 },
   leyenda: {
@@ -32,7 +32,7 @@ export default {
 #                                                                                                                     #                 ############   #######   ###########
 #                                                                                                                     #                 ############   #######   ###########
 #                                                                                                                     #                 ############   #######   ###########
-#                                                                                                                     #                                                                 F
+#                                                                                                                     #                                                                  
 #                                                                                                                     #                                                               =====
 #                                                                                                                     #                                                                                                                a
 #                                                    a                                                     k          #                                                                                                                             a

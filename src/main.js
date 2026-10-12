@@ -5,6 +5,7 @@ import { BootScene } from './scenes/BootScene.js';
 import { MenuScene } from './scenes/MenuScene.js';
 import { NivelesScene, AlbumScene, VitrinaScene, OpcionesScene } from './scenes/MenusScene.js';
 import { TransicionScene } from './scenes/TransicionScene.js';
+import { PrologoScene } from './scenes/PrologoScene.js';
 import { JuegoScene } from './scenes/JuegoScene.js';
 import { InterfazScene, PausaScene } from './scenes/InterfazScene.js';
 import { TartaScene } from './scenes/TartaScene.js';
@@ -32,7 +33,7 @@ const juego = new Phaser.Game({
   input: { activePointers: 4 },
   audio: { noAudio: true }, // el audio lo gestiona src/audio (Web Audio propio)
   fps: { target: 60 },
-  scene: [BootScene, MenuScene, NivelesScene, AlbumScene, VitrinaScene, OpcionesScene, TransicionScene, JuegoScene, InterfazScene, PausaScene, TartaScene, PosesScene],
+  scene: [BootScene, MenuScene, NivelesScene, AlbumScene, VitrinaScene, OpcionesScene, PrologoScene, TransicionScene, JuegoScene, InterfazScene, PausaScene, TartaScene, PosesScene],
 });
 
 // iOS/Android: el audio solo puede arrancar tras el primer toque

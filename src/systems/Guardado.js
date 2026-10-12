@@ -1,4 +1,4 @@
-// Guardado en localStorage. Solo se escribe al completar un nivel (y al cambiar opciones).
+// Guardado en localStorage. Solo se escribe al completar un nivel (y al cambiar opciones o ver el prólogo).
 import { NUM_NIVELES } from '../config.js';
 
 const CLAVE = 'sofia18-partida-v1';
@@ -8,6 +8,7 @@ function vacia() {
     completados: [],      // números de nivel completados
     fotos: [],            // niveles cuya foto se consiguió
     objetos: [],          // niveles cuyo objeto se consiguió
+    fotoNacimiento: false, // se consigue en el prólogo, al empezar la primera partida
     tartaVista: false,
     opciones: { musica: 0.7, efectos: 0.8 },
   };
@@ -42,6 +43,12 @@ export const Guardado = {
   completado: (n) => datos.completados.includes(n),
   tieneFoto: (n) => datos.fotos.includes(n),
   tieneObjeto: (n) => datos.objetos.includes(n),
+  // las partidas guardadas antes de existir el prólogo también la tienen
+  tieneFotoNacimiento: () => datos.fotoNacimiento || datos.completados.length > 0,
+  conseguirFotoNacimiento() {
+    datos.fotoNacimiento = true;
+    escribir();
+  },
   // Un nivel está disponible si es el 0 o el anterior está completado.
   disponible: (n) => n === 0 || datos.completados.includes(n - 1) || datos.completados.includes(n),
   siguienteNivel() {

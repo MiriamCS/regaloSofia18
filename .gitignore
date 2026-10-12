@@ -8,3 +8,6 @@ assets/levels/nivel-99.json
 
 # Vídeos de referencia de Sofía: pesan mucho; el juego usa los fotogramas extraídos
 docs/videos/**/*.mp4
+
+# Originales de fotos y objetos: pesan mucho; el juego usa las versiones de assets/ (npm run imagenes)
+originales/

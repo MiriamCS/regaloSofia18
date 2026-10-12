@@ -7,6 +7,8 @@ import { Guardado } from '../systems/Guardado.js';
 
 const ETAPAS_MIRIAM = ['nina', 'preado', 'adolescente', 'adulta'];
 const ENEMIGOS = ['pato', 'cochecito', 'mochila', 'mosquito', 'avion-papel', 'notificacion', 'profesor', 'examenes', 'urraca', 'metronomo', 'despertador'];
+// Cosas que caen en las zonas de lluvia (texturas 'obj-*' de los niveles); no son los coleccionables
+const LLUVIA = ['patito', 'sonajero', 'ceras', 'cubo', 'boligrafo', 'agenda'];
 const ESCENARIO = ['vela-on', 'vela-off', 'vela-cuerpo', 'atril-off', 'atril-on', 'caja-juguete', 'caja-madera', 'caja-carton', 'caja-libros', 'mueble', 'pinchos', 'marco-foto', 'nota-azul', 'nota-dorada', 'nota-rosa', 'nota-verde', 'campana', 'meta', 'puerta', 'tarta', 'cartel-continuara', 'candado', 'icono-foto', 'icono-objeto', 'clave', 'boton-izq', 'boton-der', 'boton-saltar', 'boton-cantar', 'boton-pausa'];
 
 // [clave de textura y animación, datos] de cada animación del índice de fotogramas
@@ -57,7 +59,8 @@ export class BootScene extends Phaser.Scene {
     for (const e of ETAPAS_MIRIAM) this.load.svg(`miriam-${e}`, `sprites/miriam/${e}/cuerpo.svg`, S);
     for (const n of ENEMIGOS) this.load.svg(n, `sprites/enemigos/${n}.svg`, S);
     for (const n of ESCENARIO) this.load.svg(n, `sprites/escenario/${n}.svg`, S);
-    for (const o of OBJETOS.objetos) this.load.svg(`obj-${o.sprite}`, `sprites/objetos/${o.sprite}.svg`, S);
+    for (const o of OBJETOS.objetos) this.load.image(`obj-${o.sprite}`, `sprites/objetos/${o.sprite}.png`);
+    for (const n of LLUVIA) this.load.svg(`obj-${n}`, `sprites/objetos/${n}.svg`, S);
     // Música: si existen JSON convertidos de MIDI (tools/midi-a-json.mjs) se usan en lugar de los provisionales
     this.load.once('filecomplete-json-indice-musica', (k, t, indice) => {
       for (const clave of indice.pistas || []) this.load.json(`musica-${clave}`, `music/${clave}.json`);

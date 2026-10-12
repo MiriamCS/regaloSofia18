@@ -200,8 +200,8 @@ entre checkpoints. La dificultad sube claramente de un nivel al siguiente.
   (4) el último tramo, el más difícil del juego. Donde debería estar la meta empieza la zona `final`:
   el escenario se desvanece, queda una pantalla blanca con solo el suelo, 60-90 s andando con piano
   suave, el cartel «Continuará...» (el nivel se guarda como completado) y, más allá, la tarta con 18 velas.
-- **Foto:** en el palco del teatro.
-- **Objeto (llave de los 18):** en el foso.
+- **Foto:** no hay (Sofía aún no tiene foto de los 18): solo objeto.
+- **Objeto (copa de vino):** en el foso.
 - **Miriam:** en el escenario, antes del último tramo (pista emotiva).
 
 ---

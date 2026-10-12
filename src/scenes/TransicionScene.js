@@ -3,6 +3,7 @@ import Phaser from 'phaser';
 import { texto } from '../config.js';
 import { FUENTE_TITULO } from '../estilo.js';
 import { Audio } from '../audio/Audio.js';
+import { Guardado } from '../systems/Guardado.js';
 
 export const claveNivel = (n) => `nivel-${String(n).padStart(2, '0')}`;
 
@@ -23,6 +24,11 @@ export class TransicionScene extends Phaser.Scene {
   create() {
     const { width: W, height: H } = this.scale;
     const n = this.nivel;
+    // primera partida: antes del nivel 0 se encuentra la foto del nacimiento
+    if (n === 0 && !Guardado.tieneFotoNacimiento()) {
+      this.scene.start('Prologo');
+      return;
+    }
     this.cameras.main.setBackgroundColor('#0d1b3d');
     Audio.fundirMusica(0.8);
     const frase = n === 0 ? texto('transicion.nacer') : n === 1 ? texto('transicion.uno') : texto('transicion.varios', { n });

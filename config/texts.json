@@ -12,6 +12,13 @@
     "tarta": "La tarta",
     "tocaParaEmpezar": "Toca la pantalla para empezar"
   },
+  "prologo": {
+    "encontrada": "¡Has encontrado una foto!",
+    "titulo": "El nacimiento de Sofía",
+    "historia": "Aquí empieza todo: Sofía acaba de llegar al mundo y tiene 0 años.\nAcompáñala año a año, nivel a nivel, hasta la mayoría de edad.\nCuando cumpla los 18, habrás completado el juego.",
+    "guardada": "La foto se ha guardado en el álbum",
+    "empezar": "¡Empezar!"
+  },
   "transicion": {
     "nacer": "Sofía acaba de nacer",
     "uno": "Sofía cumple 1 año",
@@ -42,6 +49,7 @@
     "noConseguida": "Todavía no la has encontrado",
     "noConseguido": "Todavía no lo has encontrado",
     "nivel": "Año {n}",
+    "nacimiento": "Nacimiento",
     "volver": "Volver",
     "cerrar": "Cerrar"
   },
