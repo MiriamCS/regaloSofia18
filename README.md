@@ -92,7 +92,7 @@ Claves: `inicio`, `bebe`, `nina`, `preado`, `adolescente`, `adulta`, `caminoBlan
 ### Gráficos
 ```bash
 npm run sprites              # regenera los SVG de assets/sprites desde tools/arte
-node tools/generar-iconos.cjs  # iconos PNG de la app (necesita Playwright)
+npm run iconos               # logo de inicio e iconos de la app desde originales/logo/
 ```
 Ojo: `npm run sprites` sobrescribe los SVG; si retocas alguno en Inkscape, guárdalo aparte o quítalo del generador.
 

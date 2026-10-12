@@ -64,6 +64,7 @@ export class BootScene extends Phaser.Scene {
       else this.load.image(claveObjeto(o), ruta);
     }
     for (const n of LLUVIA) this.load.svg(`obj-${n}`, `sprites/objetos/${n}.svg`, S);
+    this.load.image('logo', 'logo.png');
     // Música: si existen JSON convertidos de MIDI (tools/midi-a-json.mjs) se usan en lugar de los provisionales
     this.load.once('filecomplete-json-indice-musica', (k, t, indice) => {
       for (const clave of indice.pistas || []) this.load.json(`musica-${clave}`, `music/${clave}.json`);

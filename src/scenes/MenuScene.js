@@ -21,8 +21,10 @@ export class MenuScene extends Phaser.Scene {
     const clave = this.add.image(W * 0.2, H * 0.5, 'clave').setScale(1.4).setAlpha(0.18);
     this.tweens.add({ targets: clave, angle: { from: -3, to: 3 }, duration: 3000, yoyo: true, repeat: -1, ease: 'Sine.inOut' });
 
-    this.add.text(W * 0.3, H * 0.2, texto('titulo'), { fontFamily: FUENTE_TITULO, fontSize: '96px', color: '#ffffff', fontStyle: 'bold italic', stroke: '#0d1b3d', strokeThickness: 8 }).setOrigin(0.5);
-    this.add.text(W * 0.3, H * 0.2 + 74, texto('subtitulo'), { fontFamily: FUENTE_TITULO, fontSize: '32px', color: '#e8b84a', fontStyle: 'italic' }).setOrigin(0.5);
+    // Logo (assets/logo.png, se genera con npm run iconos) y el subtítulo justo debajo
+    const logo = this.add.image(W * 0.3, 24, 'logo').setOrigin(0.5, 0);
+    logo.setScale(Math.min((W * 0.48) / logo.width, (H * 0.32) / logo.height));
+    this.add.text(W * 0.3, logo.y + logo.displayHeight + 4, texto('subtitulo'), { fontFamily: FUENTE_TITULO, fontSize: '32px', color: '#e8b84a', fontStyle: 'italic', stroke: '#0d1b3d', strokeThickness: 4 }).setOrigin(0.5, 0);
 
     // Sofía adulta saludando en el menú
     // Sofía aparece con la edad del siguiente nivel por jugar
