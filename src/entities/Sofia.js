@@ -10,6 +10,7 @@ const F = JUEGO.fisica;
 // Jerarquía: padre -> hijos. Las posiciones salen del rig (pivotes en coordenadas de pies).
 const PADRES = {
   torso: null,
+  alas: 'torso',
   'pierna-atras': null,
   'pierna-delante': null,
   'brazo-atras': 'torso',
@@ -25,7 +26,12 @@ const PADRES = {
   'pelo-puntas': 'pelo-atras',
 };
 // Orden de dibujo (de atrás hacia delante)
-const ORDEN = ['pelo-puntas', 'pelo-atras', 'brazo-atras', 'pierna-atras', 'pierna-delante', 'torso', 'collar-brillo', 'collar', 'cabeza', 'ojos', 'boca', 'gafas', 'pelo-delante', 'brazo-delante'];
+const ORDEN = ['pelo-puntas', 'alas', 'pelo-atras', 'brazo-atras', 'pierna-atras', 'pierna-delante', 'torso', 'collar-brillo', 'collar', 'cabeza', 'ojos', 'boca', 'gafas', 'pelo-delante', 'brazo-delante'];
+// Orden de cálculo de la pose: cada pieza después de su padre
+const ORDEN_POSE = [...ORDEN].sort((a, b) => profundidad(a) - profundidad(b));
+function profundidad(nombre) {
+  return PADRES[nombre] ? 1 + profundidad(PADRES[nombre]) : 0;
+}
 // Desplazamiento lateral de las extremidades en reposo
 const DX = { 'pierna-atras': -4, 'pierna-delante': 4, 'brazo-atras': -8, 'brazo-delante': 9 };
 const TEXTURA = { 'pierna-atras': 'pierna', 'pierna-delante': 'pierna', 'brazo-atras': 'brazo', 'brazo-delante': 'brazo', boca: 'boca-sonrisa' };
@@ -86,6 +92,7 @@ export class Sofia extends Phaser.GameObjects.Container {
     }
     this.piezas['collar-brillo'].img.setAlpha(0);
     this.raiz = { x: 0, y: 0, rot: 0 }; // desplazamiento global del cuerpo (respiración, salto...)
+
   }
 
   pivote(nombre) {
@@ -373,6 +380,8 @@ export class Sofia extends Phaser.GameObjects.Container {
     const rebote = estado === 'andar' || estado === 'correr' ? Math.sin(this.fase * 2) * 0.03 : 0;
     r['pelo-atras'] = this.pelo.a + rebote;
     r['pelo-puntas'] = this.pelo.p - this.pelo.a * 0.4 + rebote;
+    // aleteo suave de las alas de hada
+    r.alas = Math.sin(tiempo / 140) * 0.06;
 
     // Brillo del collar al cantar
     const brillo = p['collar-brillo'].img;
@@ -416,7 +425,7 @@ export class Sofia extends Phaser.GameObjects.Container {
     const p = this.piezas;
     const gatas = this.gatas;
     // raíz: la cadera; a gatas se baja y se retrasa para que manos y rodillas toquen el suelo
-    for (const nombre of ORDEN) {
+    for (const nombre of ORDEN_POSE) {
       const pz = p[nombre];
       if (!pz) continue;
       const rot = r[nombre] || 0;

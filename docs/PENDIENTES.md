@@ -17,7 +17,8 @@ Cuando me lo pases, lo meto en el juego.
 | 19 fotos reales con su pie de foto | Álbum de fotos (ahora salen marcos con placeholder) | 31 oct | `assets/photos/foto-NN.jpg` y `config/photos.json` |
 | Mensaje final de la tarta | Lo que aparece al apagar las 18 velas | 1 nov | `config/mensaje-final.txt` |
 | Archivos MIDI de las obras | Desde este entorno no se puede descargar de Mutopia/IMSLP. Bájalos tú (comprobando que la licencia sea libre) y te los convierto | cuando puedas | `assets/music` (con `tools/midi-a-json.mjs`) |
-| Concept art de Sofía y Miriam (guía completa en [`CONCEPT-ART.md`](CONCEPT-ART.md)) | Redibujar el SVG definitivo | fase 1 (12-15 oct) | `tools/arte/sofia.mjs` |
+| ~~Concept art de Sofía~~ | ✅ Hojas S1-S7 en `docs/concept-art/sofia` y Sofía redibujada en SVG (`tools/arte/sofia.mjs`) | — | — |
+| Concept art de Miriam (guía completa en [`CONCEPT-ART.md`](CONCEPT-ART.md)) | Redibujar su SVG definitivo | fase 1 (12-15 oct) | `tools/arte/miriam.mjs` |
 
 **MIDI que hacen falta** (SPEC §8): Debussy *Clair de lune* (inicio); Schumann *Escenas de niños*
 y Debussy *Children's Corner* (bebé e infancia); Chopin valses Op. 64 (preadolescencia); Chopin
@@ -34,7 +35,7 @@ CC) e imslp.org.
 
 | Tarea | Herramienta | Estado |
 | --- | --- | --- |
-| Concept art de Sofía cartoon a partir de su foto + hoja de personaje (frontal, perfil, espalda) | ChatGPT (imágenes) | ⏳ Pendiente. Mientras, hay una Sofía provisional hecha desde la descripción escrita de la SPEC. Con el concept, Claude la redibuja en SVG por piezas. |
+| Concept art de Sofía cartoon a partir de su foto + hoja de personaje (frontal, perfil, espalda) | ChatGPT (imágenes) | ✅ Hecho (12 oct). Sofía redibujada en SVG por piezas a partir de las hojas. |
 | Caricatura de Miriam (si se hace con concept) | ChatGPT (imágenes) | ⏳ Pendiente |
 | Fondos por etapa y objetos coleccionables | ChatGPT (imágenes) **o** SVG por código | ✅ Hechos por código (provisionales, misma paleta). Si se prefieren ilustrados con ChatGPT, se pueden sustituir. |
 | Cinemática de intro o tráiler (opcional) | Google Flow (vídeo) | ⏳ Opcional, sin empezar |
