@@ -1,7 +1,7 @@
 // Carga los sprites SVG y los datos comunes. Los niveles se cargan aparte, uno a uno.
 import Phaser from 'phaser';
 import { OBJETOS } from '../config.js';
-import { ESCALA_TEXTURAS } from '../entities/Sofia.js';
+import { ESCALA_TEXTURAS, claveFotogramas } from '../entities/Sofia.js';
 import { PISTAS } from '../audio/musica.js';
 import { Guardado } from '../systems/Guardado.js';
 
@@ -9,6 +9,18 @@ const ETAPAS_SOFIA = ['bebe', 'nina', 'preado', 'adolescente', 'adulta'];
 const ETAPAS_MIRIAM = ['nina', 'preado', 'adolescente', 'adulta'];
 const ENEMIGOS = ['pato', 'cochecito', 'mochila', 'mosquito', 'avion-papel', 'notificacion', 'profesor', 'examenes', 'urraca', 'metronomo', 'despertador'];
 const ESCENARIO = ['vela-on', 'vela-off', 'vela-cuerpo', 'atril-off', 'atril-on', 'caja-juguete', 'caja-madera', 'caja-carton', 'caja-libros', 'mueble', 'pinchos', 'marco-foto', 'nota-azul', 'nota-dorada', 'nota-rosa', 'nota-verde', 'campana', 'meta', 'puerta', 'tarta', 'cartel-continuara', 'candado', 'icono-foto', 'icono-objeto', 'clave', 'boton-izq', 'boton-der', 'boton-saltar', 'boton-cantar', 'boton-pausa'];
+
+// [clave de textura y animación, datos] de cada animación del índice de fotogramas
+function animacionesFotogramas(indice) {
+  const lista = [];
+  for (const [etapa, modos] of Object.entries(indice || {})) {
+    if (etapa.startsWith('_')) continue;
+    for (const [modo, m] of Object.entries(modos)) {
+      for (const [anim, a] of Object.entries(m.animaciones)) lista.push([claveFotogramas(etapa, modo, anim), { ...a, ancho: m.ancho, alto: m.alto }]);
+    }
+  }
+  return lista;
+}
 
 export class BootScene extends Phaser.Scene {
   constructor() {
@@ -35,6 +47,13 @@ export class BootScene extends Phaser.Scene {
         for (const pieza of Object.keys(rig.etapas[e].piezas)) this.load.svg(`sofia-${e}-${pieza}`, `sprites/sofia/${e}/${pieza}.svg`, S);
       }
     });
+    // Animaciones sacadas de los vídeos (tools/video-a-sprites.mjs); lo que no tenga vídeo se dibuja con el SVG por piezas
+    this.load.json('fotogramas-sofia', 'sprites/sofia/fotogramas.json');
+    this.load.once('filecomplete-json-fotogramas-sofia', (k, t, indice) => {
+      for (const [clave, info] of animacionesFotogramas(indice)) {
+        this.load.spritesheet(clave, `sprites/sofia/${info.archivo}`, { frameWidth: info.ancho, frameHeight: info.alto });
+      }
+    });
     for (const e of ETAPAS_MIRIAM) this.load.svg(`miriam-${e}`, `sprites/miriam/${e}/cuerpo.svg`, S);
     for (const n of ENEMIGOS) this.load.svg(n, `sprites/enemigos/${n}.svg`, S);
     for (const n of ESCENARIO) this.load.svg(n, `sprites/escenario/${n}.svg`, S);
@@ -50,6 +69,15 @@ export class BootScene extends Phaser.Scene {
     for (const clave of indice?.pistas || []) {
       const p = this.cache.json.get(`musica-${clave}`);
       if (p) PISTAS[clave] = p;
+    }
+    for (const [clave, info] of animacionesFotogramas(this.cache.json.get('fotogramas-sofia'))) {
+      if (!this.textures.exists(clave) || this.anims.exists(clave)) continue;
+      this.anims.create({
+        key: clave,
+        frames: this.anims.generateFrameNumbers(clave, { start: 0, end: info.fotogramas - 1 }),
+        frameRate: info.fps,
+        repeat: info.bucle ? -1 : 0,
+      });
     }
     // Partícula redonda para efectos
     const g = this.make.graphics({ x: 0, y: 0 }, false);

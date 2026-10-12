@@ -34,6 +34,9 @@ function profundidad(nombre) {
 }
 // Desplazamiento lateral de las extremidades en reposo
 const DX = { 'pierna-atras': -4, 'pierna-delante': 4, 'brazo-atras': -8, 'brazo-delante': 9 };
+// Animación de fotogramas (sacados de vídeo) que se usa en cada estado, si existe para la etapa
+const ANIM_FOTOGRAMAS = { reposo: ['reposo'], andar: ['andar'], correr: ['correr', 'andar'], saltar: ['saltar'], caer: ['caer'], aire: ['caer'] };
+export const claveFotogramas = (etapa, modo, anim) => `sofiaf-${etapa}-${modo}-${anim}`;
 const TEXTURA = { 'pierna-atras': 'pierna', 'pierna-delante': 'pierna', 'brazo-atras': 'brazo', 'brazo-delante': 'brazo', boca: 'boca-sonrisa' };
 
 export class Sofia extends Phaser.GameObjects.Container {
@@ -93,6 +96,53 @@ export class Sofia extends Phaser.GameObjects.Container {
     this.piezas['collar-brillo'].img.setAlpha(0);
     this.raiz = { x: 0, y: 0, rot: 0 }; // desplazamiento global del cuerpo (respiración, salto...)
 
+    // Fotogramas sacados de vídeo para esta etapa (a gatas o de pie). Con gafas se usan las piezas.
+    this.modoFotos = this.gatas ? 'gatas' : 'pie';
+    const fotos = conGafas ? null : this.scene.cache.json.get('fotogramas-sofia')?.[this.etapa]?.[this.modoFotos];
+    this.animFotos = {};
+    if (fotos) {
+      for (const anim of Object.keys(fotos.animaciones)) {
+        const clave = claveFotogramas(this.etapa, this.modoFotos, anim);
+        if (this.scene.anims.exists(clave)) this.animFotos[anim] = clave;
+      }
+      const primera = Object.values(this.animFotos)[0];
+      if (primera) {
+        this.fotos = this.scene.add.sprite(0, this.medio, primera).setOrigin(fotos.origen[0], fotos.origen[1]).setScale(1 / ESCALA_TEX).setVisible(false);
+        this.visual.add(this.fotos);
+      }
+    }
+    this.usandoFotos = false;
+  }
+
+  // Muestra la animación de fotogramas del estado (si la hay) o, si no, el personaje por piezas
+  elegirFotogramas(estado, vx) {
+    let clave = null;
+    if (this.fotos) {
+      for (const anim of ANIM_FOTOGRAMAS[estado] || []) {
+        if (this.animFotos[anim]) {
+          clave = this.animFotos[anim];
+          break;
+        }
+      }
+    }
+    const usar = !!clave;
+    if (usar !== this.usandoFotos) {
+      this.usandoFotos = usar;
+      this.fotos?.setVisible(usar);
+      for (const pz of Object.values(this.piezas)) pz.img.setVisible(!usar);
+    }
+    if (!usar) {
+      this.claveFotos = null;
+      return;
+    }
+    // saltar y caer no se repiten: se quedan en su último fotograma hasta cambiar de estado
+    if (clave !== this.claveFotos) {
+      this.claveFotos = clave;
+      this.fotos.play(clave);
+    }
+    // el ciclo de andar va al ritmo de la velocidad real
+    const ref = this.gatas ? F.velocidadGatas : F.velocidadAndar;
+    this.fotos.anims.timeScale = estado === 'andar' || estado === 'correr' ? Phaser.Math.Clamp(vx / ref, 0.6, 1.8) : 1;
   }
 
   pivote(nombre) {
@@ -219,6 +269,7 @@ export class Sofia extends Phaser.GameObjects.Container {
     else if (vx > 20) estado = this.corriendo ? 'correr' : 'andar';
     else estado = 'reposo';
     this.estado = estado;
+    this.elegirFotogramas(estado, vx);
 
     const velAnim = estado === 'correr' ? 15 : estado === 'empujar' ? 7 : this.gatas ? 9 : 11;
     this.fase += dt * velAnim * (estado === 'andar' || estado === 'correr' || estado === 'empujar' ? Math.max(0.5, vx / 200) : 1);

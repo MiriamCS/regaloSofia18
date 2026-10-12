@@ -32,9 +32,9 @@ Las acciones que todavía no tengan vídeo se siguen dibujando con el personaje 
 
 | Clip | Estado |
 | --- | --- |
-| `bebe-A-gatas` | ✅ Recibido |
+| `bebe-A-gatas` | ✅ En el juego: reposo, gatear, saltar y caer a gatas |
 | `bebe-B-gatas-acciones` | ⏳ |
-| `bebe-C-pie` | ✅ Recibido |
+| `bebe-C-pie` | ✅ En el juego: reposo, andar, saltar y caer de pie |
 | `bebe-D-pie-acciones` | ⏳ |
 | Resto de edades | ⏳ |
 
@@ -202,7 +202,19 @@ niña, con esta descripción (la falda se mueve al correr y al saltar).
 
 ---
 
-## 6. Consejos al generar
+## 6. Del vídeo al juego
+
+1. Deja el clip en `docs/videos` con su nombre.
+2. En [`tools/fotogramas-sofia.json`](../../tools/fotogramas-sofia.json), apunta qué fotogramas van a cada
+   animación (se cuentan desde 0, a 24 por segundo). Animaciones que entiende el juego: `reposo`, `andar`,
+   `correr`, `saltar` (subida) y `caer` (bajada). Los ciclos (`bucle: true`) deben empezar y acabar en la misma
+   postura.
+3. `npm run fotogramas`: quita el verde, alinea los pies, escala al tamaño del juego y genera las hojas en
+   `assets/sprites/sofia/<edad>/fotogramas` y el índice `assets/sprites/sofia/fotogramas.json`.
+4. Lo que no tenga fotogramas (de momento empujar, golpe, celebrar, cantar y soplar) se dibuja con el personaje
+   SVG por piezas. Con gafas también se usa el SVG.
+
+## 7. Consejos al generar
 
 - **Repite un clip hasta que salga bien.** Revisa sobre todo que no avance por la pantalla, que la cámara no se
   mueva, que no cambie la cara ni la ropa y que no gire hacia la cámara.

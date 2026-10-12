@@ -1,0 +1,73 @@
+{
+  "_comentario": "Generado por tools/video-a-sprites.mjs a partir de tools/fotogramas-sofia.json.",
+  "bebe": {
+    "gatas": {
+      "ancho": 128,
+      "alto": 129,
+      "origen": [
+        0.499,
+        0.989
+      ],
+      "animaciones": {
+        "reposo": {
+          "archivo": "bebe/fotogramas/gatas-reposo.png",
+          "fotogramas": 12,
+          "fps": 10,
+          "bucle": true
+        },
+        "andar": {
+          "archivo": "bebe/fotogramas/gatas-andar.png",
+          "fotogramas": 31,
+          "fps": 24,
+          "bucle": true
+        },
+        "saltar": {
+          "archivo": "bebe/fotogramas/gatas-saltar.png",
+          "fotogramas": 13,
+          "fps": 24,
+          "bucle": false
+        },
+        "caer": {
+          "archivo": "bebe/fotogramas/gatas-caer.png",
+          "fotogramas": 7,
+          "fps": 20,
+          "bucle": false
+        }
+      }
+    },
+    "pie": {
+      "ancho": 107,
+      "alto": 180,
+      "origen": [
+        0.45,
+        0.98
+      ],
+      "animaciones": {
+        "reposo": {
+          "archivo": "bebe/fotogramas/pie-reposo.png",
+          "fotogramas": 27,
+          "fps": 14,
+          "bucle": true
+        },
+        "andar": {
+          "archivo": "bebe/fotogramas/pie-andar.png",
+          "fotogramas": 21,
+          "fps": 24,
+          "bucle": true
+        },
+        "saltar": {
+          "archivo": "bebe/fotogramas/pie-saltar.png",
+          "fotogramas": 10,
+          "fps": 24,
+          "bucle": false
+        },
+        "caer": {
+          "archivo": "bebe/fotogramas/pie-caer.png",
+          "fotogramas": 7,
+          "fps": 20,
+          "bucle": false
+        }
+      }
+    }
+  }
+}

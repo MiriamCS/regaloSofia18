@@ -1,0 +1,27 @@
+{
+  "_comentario": "Qué fotogramas de cada vídeo de docs/videos se usan para cada animación de Sofía. Los fotogramas se cuentan desde 0 (24 por segundo). 'alto' es lo que mide Sofía en el juego en la pose de 'referencia' (en unidades del juego). 'bucle': la animación se repite; si no, se queda en el último fotograma. Uso: npm run fotogramas",
+  "bebe": {
+    "gatas": {
+      "video": "bebe-A-gatas.mp4",
+      "alto": 54,
+      "referencia": [4, 15],
+      "animaciones": {
+        "reposo": { "de": 4, "a": 15, "fps": 10, "bucle": true },
+        "andar": { "de": 46, "a": 76, "fps": 24, "bucle": true },
+        "saltar": { "de": 164, "a": 176, "fps": 24, "bucle": false },
+        "caer": { "de": 177, "a": 183, "fps": 20, "bucle": false }
+      }
+    },
+    "pie": {
+      "video": "bebe-C-pie.mp4",
+      "alto": 76,
+      "referencia": [0, 26],
+      "animaciones": {
+        "reposo": { "de": 0, "a": 26, "fps": 14, "bucle": true },
+        "andar": { "de": 79, "a": 99, "fps": 24, "bucle": true },
+        "saltar": { "de": 154, "a": 163, "fps": 24, "bucle": false },
+        "caer": { "de": 164, "a": 170, "fps": 20, "bucle": false }
+      }
+    }
+  }
+}
