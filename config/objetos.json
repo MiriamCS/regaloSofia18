@@ -6,7 +6,7 @@
     { "nivel": 2,  "sprite": "peluche.svg",      "nombre": "El peluche",                   "texto": "Pendiente: texto del objeto del año 2" },
     { "nivel": 3,  "sprite": "pelota.svg",       "nombre": "La pelota",                    "texto": "Pendiente: texto del objeto del año 3" },
     { "nivel": 4,  "sprite": "piano.svg",        "nombre": "El piano",                     "texto": "Pendiente: texto del objeto del año 4" },
-    { "nivel": 5,  "sprite": "muneco-nieve.svg", "nombre": "El muñeco de nieve",           "texto": "Pendiente: texto del objeto del año 5" },
+    { "nivel": 5,  "sprite": "libro-pia.svg",    "nombre": "El libro de Pía",              "texto": "Pendiente: texto del objeto del año 5" },
     { "nivel": 6,  "sprite": "tutu.svg",         "nombre": "El tutú",                      "texto": "Pendiente: texto del objeto del año 6" },
     { "nivel": 7,  "sprite": "rabano.svg",       "nombre": "El rábano",                    "texto": "Pendiente: texto del objeto del año 7" },
     { "nivel": 8,  "sprite": "rosario.svg",      "nombre": "El rosario",                   "texto": "Pendiente: texto del objeto del año 8" },
