@@ -58,8 +58,8 @@ Añade esto a las hojas de personaje:
 | S1 | **Hoja de personaje (la principal)** | Adolescente, 13-17 años (niveles 13-17) | Camiseta azul marino/violeta, pantalón oscuro, zapatillas claras |
 | S2 | Hoja de personaje | Adulta, 18 años (nivel 18, escena final) | Vestido azul noche con detalles dorados, de concierto |
 | S3 | Hoja de personaje | Preadolescente, 8-12 años (niveles 8-12) | Sudadera azul turquesa con capucha, vaqueros, zapatillas |
-| S4 | Hoja de personaje | Niña, 2-7 años (niveles 2-7) | Uniforme escolar: polo blanco y pichi/falda azul, calcetines blancos |
-| S5 | Hoja de personaje | Bebé, 0-1 año (niveles 0-1) | Pelele azul cielo. Una vista extra **a gatas** de perfil |
+| S4 | Hoja de personaje | Niña, 3-7 años (niveles 3-7) | Uniforme escolar: polo blanco y pichi/falda azul, calcetines blancos |
+| S5 | Hoja de personaje | Bebé, 0-2 años (niveles 0-2) | Pelele azul cielo. Una vista extra **a gatas** de perfil |
 | S6 | **Hoja de expresiones** (solo cabeza, versión adolescente) | — | — |
 | S7 | Hoja de poses (opcional pero muy útil) | Adolescente | — |
 
@@ -113,12 +113,12 @@ Miriam no salta ni corre: con las vistas de frente y de tres cuartos basta. La d
 > igual de largo. Sudadera azul turquesa con capucha y cordones blancos, vaqueros y zapatillas blancas
 > con una raya azul. Mismo collar. [Requisitos de piezas].
 
-**S4 · Sofía niña (2-7)**
+**S4 · Sofía niña (3-7)**
 > El mismo personaje, mismo estilo, con 6 años: más pequeña y cabezona, rizos hasta los hombros con la raya
 > al medio. Uniforme de colegio: polo blanco de manga corta, pichi azul, calcetines blancos altos y
 > zapatos azul marino. Mismo collar en pequeño. [Requisitos de piezas].
 
-**S5 · Sofía bebé (0-1)**
+**S5 · Sofía bebé (0-2)**
 > El mismo personaje, mismo estilo, de bebé: muy cabezona, rizos negros cortitos, ojos grandes, mofletes.
 > Pelele azul cielo con dos botones blancos. Collar de clave de sol en pequeño. Vistas de frente, tres cuartos
 > y perfil de pie, y **una vista extra de perfil a gatas**. Fondo blanco.

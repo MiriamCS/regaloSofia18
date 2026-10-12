@@ -138,8 +138,8 @@ export class Sofia extends Phaser.GameObjects.Container {
       this.claveFotos = clave;
       this.fotos.play(clave);
     }
-    // el ciclo de andar va al ritmo de la velocidad real
-    const ref = this.gatas ? F.velocidadGatas : F.velocidadAndar;
+    // el ciclo de andar o correr va al ritmo de la velocidad real (sin vídeo de correr, se acelera el de andar)
+    const ref = this.gatas ? F.velocidadGatas : anim === 'correr' ? F.velocidadCorrer : F.velocidadAndar;
     this.fotos.anims.timeScale = estado === 'andar' || estado === 'correr' ? Phaser.Math.Clamp(vx / ref, 0.6, 1.8) : 1;
   }
 

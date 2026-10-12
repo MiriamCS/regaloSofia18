@@ -23,8 +23,32 @@ const MARGEN = 6; // píxeles de vídeo alrededor del personaje
 
 const config = JSON.parse(readFileSync(join(RAIZ, 'tools', 'fotogramas-sofia.json'), 'utf8'));
 
-// Quita el verde: transparencia según cuánto domina el verde y elimina el halo verde de los bordes.
+// Color del fondo: la mediana de los píxeles del borde del fotograma (no todos los vídeos salen con el verde puro)
+function colorFondo(data, W, H) {
+  const rs = [];
+  const gs = [];
+  const bs = [];
+  const tomar = (x, y) => {
+    const p = (y * W + x) * 4;
+    rs.push(data[p]);
+    gs.push(data[p + 1]);
+    bs.push(data[p + 2]);
+  };
+  for (let x = 0; x < W; x += 8) {
+    tomar(x, 4);
+    tomar(x, H - 5);
+  }
+  for (let y = 0; y < H; y += 8) {
+    tomar(4, y);
+    tomar(W - 5, y);
+  }
+  return [mediana(rs), mediana(gs), mediana(bs)];
+}
+
+// Quita el fondo verde: transparencia según cuánto domina el verde y cuánto se parece el píxel al color del fondo
+// (así también se va la sombra verde oscura bajo los pies), y elimina el halo verde de los bordes.
 function quitarVerde(data, W, H) {
+  const [fr, fg, fb] = colorFondo(data, W, H);
   for (let i = 0; i < W * H; i++) {
     const p = i * 4;
     const r = data[p];
@@ -34,6 +58,8 @@ function quitarVerde(data, W, H) {
     let a = 1;
     if (k > 70) a = 0;
     else if (k > 25) a = 1 - (k - 25) / 45;
+    const dist = Math.hypot(r - fr, g - fg, b - fb);
+    if (k > 0) a = Math.min(a, Math.max(0, Math.min(1, (dist - 45) / 45)));
     data[p + 1] = Math.min(g, Math.max(r, b));
     const x = i % W;
     const y = (i / W) | 0;

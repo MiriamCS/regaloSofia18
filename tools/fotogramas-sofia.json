@@ -42,6 +42,12 @@
             "danio": { "de": 82, "a": 100, "paso": 2, "fps": 26, "bucle": false },
             "celebrar": { "de": 146, "a": 190, "paso": 2, "fps": 12, "bucle": true }
           }
+        },
+        "bebe-E-pie-correr.mp4": {
+          "referencia": [0, 36],
+          "animaciones": {
+            "correr": { "de": 100, "a": 131, "fps": 24, "bucle": true }
+          }
         }
       }
     }

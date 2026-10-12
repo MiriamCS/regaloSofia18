@@ -17,8 +17,8 @@ animación se decide en `tools/fotogramas-sofia.json`.
 
 | Edad | Niveles | Clips |
 | --- | --- | --- |
-| Bebé | 0-1 | `bebe-A-gatas` · `bebe-B-gatas-acciones` · `bebe-C-pie` · `bebe-D-pie-acciones` |
-| Niña | 2-7 | `nina-1-andar-correr` · `nina-2-saltos` · `nina-3-acciones` |
+| Bebé | 0-2 | `bebe-A-gatas` · `bebe-B-gatas-acciones` · `bebe-C-pie` · `bebe-D-pie-acciones` · `bebe-E-pie-correr` |
+| Niña | 3-7 | `nina-1-andar-correr` · `nina-2-saltos` · `nina-3-acciones` |
 | Preadolescente | 8-12 | `preado-1-andar-correr` · `preado-2-saltos` · `preado-3-acciones` |
 | Adolescente | 13-17 | `adolescente-1-andar-correr` · `adolescente-2-saltos` · `adolescente-3-acciones` · `adolescente-4-gafas` |
 | Adulta | 18 | `adulta-1-andar-correr` · `adulta-2-saltos` · `adulta-3-acciones` · `adulta-4-tarta` |
@@ -38,6 +38,7 @@ animación se decide en `tools/fotogramas-sofia.json`.
 | `bebe-B-gatas-acciones` | ✅ En el juego: empujar, golpe y celebrar (sentada aplaudiendo) a gatas |
 | `bebe-C-pie` | ✅ En el juego: reposo, andar, saltar y caer de pie |
 | `bebe-D-pie-acciones` | ✅ En el juego: empujar, golpe y celebrar de pie |
+| `bebe-E-pie-correr` | ✅ En el juego: correr de pie (nivel 2) |
 | Resto de edades | ⏳ |
 
 ---
@@ -46,8 +47,8 @@ animación se decide en `tools/fotogramas-sofia.json`.
 
 | Edad | Acciones |
 | --- | --- |
-| Bebé | A gatas (nivel 0): reposo, gatear, saltito, empujar, golpe. De pie (nivel 1): reposo, andar torpe, saltito, empujar, golpe, celebrar. Todavía no corre, ni hace doble salto, ni canta. |
-| Niña | Reposo, andar, correr (desde el nivel 2), saltar, caer, doble salto (desde el 4), empujar, cantar (desde el 6), golpe, celebrar. |
+| Bebé | A gatas (nivel 0): reposo, gatear, saltito, empujar, golpe. De pie (niveles 1 y 2): reposo, andar torpe, saltito, empujar, golpe, celebrar. En el nivel 2 ya corre; todavía no hace doble salto ni canta. |
+| Niña | Reposo, andar, correr, saltar, caer, doble salto (desde el 4), empujar, cantar (desde el 6), golpe, celebrar. |
 | Preadolescente | Todas las de la niña. |
 | Adolescente | Todas, más la versión con gafas (niveles 15 y 17). |
 | Adulta | Todas, más soplar las velas y la reverencia final. |
@@ -95,9 +96,9 @@ animación se decide en `tools/fotogramas-sofia.json`.
 
 En cada clip: **[Bloque fijo]** + **[Descripción]** de la edad + el texto del clip.
 
-### Bebé (0-1 años)
+### Bebé (0-2 años)
 
-**Adjunta:** S5 y el fotograma inicial (a gatas para A y B; de pie para C y D).
+**Adjunta:** S5 y el fotograma inicial (a gatas para A y B; de pie para C, D y E).
 
 **`bebe-A-gatas`**
 > [Bloque fijo] Bebé de 1 año con pelele azul cielo de volantes, rizos cortos castaño oscuro con flequillo y dos
@@ -123,7 +124,15 @@ En cada clip: **[Bloque fijo]** + **[Descripción]** de la edad + el texto del c
 > delante, con pasitos cortos en el sitio. 3-5 s: recibe un golpe, se echa hacia atrás con los ojos cerrados y la
 > mueca de «¡ay!», y se recupera. 5-8 s: celebra dando saltitos con los brazos arriba y riéndose.
 
-### Niña (2-7 años)
+**`bebe-E-pie-correr`** (nivel 2, cuando ya corre)
+> [Bloque fijo] (mismo bebé, de pie). 0-1,5 s: quieta de pie en pose neutra, mirando a la derecha, y parpadea.
+> 1,5-2,5 s: arranca a correr. 2,5-7 s: corre en el sitio hacia la derecha, como una niña de 2 años que acaba de
+> aprender a correr: pasitos rápidos y cortos, el cuerpo un poco inclinado hacia delante, los brazos abiertos y
+> doblados que se balancean para no perder el equilibrio, las coletitas rebotando y una sonrisa grande de emoción.
+> Cuatro ciclos completos y regulares, siempre al mismo ritmo y sin avanzar por la pantalla; el último fotograma
+> coincide con el primero. 7-8 s: frena y vuelve a la pose neutra de pie.
+
+### Niña (3-7 años)
 
 **Adjunta:** S4 y el fotograma inicial.
 ⚠️ **En el vídeo, las alas deben ser opacas.** Si son transparentes, el verde del fondo se ve a través de ellas y

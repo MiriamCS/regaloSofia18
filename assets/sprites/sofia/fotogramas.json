@@ -104,6 +104,12 @@
           "fotogramas": 23,
           "fps": 12,
           "bucle": true
+        },
+        "correr": {
+          "archivo": "bebe/fotogramas/pie-correr.png",
+          "fotogramas": 32,
+          "fps": 24,
+          "bucle": true
         }
       }
     }

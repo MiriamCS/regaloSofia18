@@ -16,7 +16,7 @@ export const TILE = juego.tile;
 
 // Etapa de edad (aspecto de Sofía y paleta) según el nivel.
 export function etapaDeNivel(n) {
-  if (n <= 1) return 'bebe';
+  if (n <= 2) return 'bebe';
   if (n <= 7) return 'nina';
   if (n <= 12) return 'preado';
   if (n <= 17) return 'adolescente';
