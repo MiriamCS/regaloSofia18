@@ -507,8 +507,8 @@ export class Coleccionable {
     this.y = o.pieY - 30;
     this.halo = scene.add.circle(this.x, this.y, 30, 0xfff3a0, 0.35).setDepth(23);
     this.img = scene.add.image(this.x, this.y, textura).setDepth(24);
-    // el objeto es un PNG cuadrado: se ajusta a un tamaño fijo en pantalla
-    this.img.setScale(tipo === 'objeto' ? 58 / this.img.width : ESC * 1.1);
+    // el objeto (PNG o SVG) se ajusta a un tamaño fijo en pantalla, sea cual sea su resolución
+    this.img.setScale(tipo === 'objeto' ? 58 / Math.max(this.img.width, this.img.height) : ESC * 1.1);
     this.zona = scene.add.zone(this.x, this.y, 52, 52);
     scene.physics.add.existing(this.zona, true);
     scene.tweens.add({ targets: [this.img], y: this.y - 8, duration: 900, yoyo: true, repeat: -1, ease: 'Sine.inOut' });

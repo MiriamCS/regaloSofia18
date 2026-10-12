@@ -180,8 +180,9 @@ export class Enemigo extends Phaser.Physics.Arcade.Image {
   // Robar un coleccionable a Sofía (solo ladrones)
   robar(tipo) {
     this.botin = tipo;
-    this.iconoBotin.setTexture(tipo === 'foto' ? 'marco-foto' : `obj-${this.scene.spriteObjeto}`);
-    this.iconoBotin.setScale(tipo === 'foto' ? ESC * 0.6 : 0.16).setVisible(true);
+    this.iconoBotin.setTexture(tipo === 'foto' ? 'marco-foto' : this.scene.texturaObjeto);
+    const b = this.iconoBotin;
+    b.setScale(tipo === 'foto' ? ESC * 0.6 : 32 / Math.max(b.width, b.height)).setVisible(true);
     Audio.efecto('robo');
   }
 

@@ -12,6 +12,9 @@ export const OBJETOS = objetos;
 export const MENSAJE_FINAL = mensajeFinal;
 
 export const NUM_NIVELES = 19;
+
+// Textura de un objeto coleccionable ('chupete.svg' -> 'obj-chupete')
+export const claveObjeto = (o) => `obj-${o.sprite.replace(/\.\w+$/, '')}`;
 export const TILE = juego.tile;
 
 // Etapa de edad (aspecto de Sofía y paleta) según el nivel.

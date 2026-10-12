@@ -58,14 +58,14 @@ Mayúsculas para correr (o mantener la flecha), Esc/P para pausa.
 | Textos, pistas de Miriam, nombres de nivel | `config/texts.json` |
 | Fotos | Originales en `originales/fotos/Sofia0.jpg` … `Sofia18.jpg` y `SofiaNace.jpg` (la del prólogo); luego `npm run imagenes` |
 | Tamaño, recorte y pie de cada foto | `config/photos.json` |
-| Objetos coleccionables (nombre, texto, dibujo) | `config/objetos.json` + originales en `originales/objetos/<sprite>.png` (fondo verde croma o liso); luego `npm run imagenes` |
+| Objetos coleccionables (nombre, texto, dibujo) | `config/objetos.json` (`sprite` con extensión) + el SVG en `assets/sprites/objetos/`, o un PNG original en `originales/objetos/` (fondo verde croma o liso) y luego `npm run imagenes` |
 | Mensaje final de la tarta | `config/mensaje-final.txt` |
 | Dificultad, física, controles, nivel en que se desbloquea cada habilidad | `config/juego.json` |
 | Música | ver «Música» abajo |
 
 ### Fotos y objetos
 ```bash
-npm run imagenes   # originales/ -> assets/photos (JPG de 1200 px) y assets/sprites/objetos (PNG 256 px sin fondo)
+npm run imagenes   # originales/ -> assets/photos (JPG de 1200 px) y assets/sprites/objetos (PNG 256 px sin fondo, salvo los que ya tienen SVG)
 ```
 La carpeta `originales/` no se sube a git (pesa mucho): guárdala aparte. Lo generado en `assets/` sí se sube.
 

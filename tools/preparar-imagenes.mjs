@@ -4,6 +4,7 @@
 //   originales/objetos/<nombre>.png    -> assets/sprites/objetos/<nombre>.png (256x256, fondo transparente)
 // Los originales no van a git (pesan mucho); se pueden sustituir y volver a ejecutar.
 // El fondo de los objetos se quita solo: croma verde o el color liso del borde (p. ej. blanco).
+// Si un objeto ya tiene su SVG en assets/sprites/objetos, se usa ese y no se genera el PNG.
 import { mkdirSync, readdirSync, existsSync } from 'node:fs';
 import { dirname, join, parse } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -132,5 +133,8 @@ async function objeto(f) {
 await fotos();
 if (existsSync(ORIG_OBJETOS)) {
   mkdirSync(DEST_OBJETOS, { recursive: true });
-  for (const f of readdirSync(ORIG_OBJETOS).filter(esImagen)) await objeto(f);
+  for (const f of readdirSync(ORIG_OBJETOS).filter(esImagen)) {
+    if (existsSync(join(DEST_OBJETOS, `${parse(f).name}.svg`))) console.log(`objeto ${f}: ya tiene SVG, se omite`);
+    else await objeto(f);
+  }
 }

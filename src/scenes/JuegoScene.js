@@ -1,7 +1,7 @@
 // Escena de juego: carga el nivel (JSON de Tiled), crea a Sofía y todos los elementos,
 // y gestiona velas, checkpoints, canto, coleccionables, enemigos y el final del nivel 18.
 import Phaser from 'phaser';
-import { JUEGO, TEXTOS, TILE, OBJETOS, etapaDeNivel, etapaMiriam, velasDeNivel, tieneHabilidad, texto } from '../config.js';
+import { JUEGO, TEXTOS, TILE, OBJETOS, claveObjeto, etapaDeNivel, etapaMiriam, velasDeNivel, tieneHabilidad, texto } from '../config.js';
 import { PALETAS } from '../estilo.js';
 import { leerNivel } from '../systems/Nivel.js';
 import { Controles } from '../systems/Controles.js';
@@ -36,7 +36,7 @@ export class JuegoScene extends Phaser.Scene {
     this.tema = props.tema || 'parque';
     this.paleta = PALETAS[this.etapa];
     this.textosNivel = TEXTOS.niveles?.[n] || {};
-    this.spriteObjeto = (OBJETOS.objetos.find((o) => o.nivel === n) || OBJETOS.objetos[0]).sprite;
+    this.texturaObjeto = claveObjeto(OBJETOS.objetos.find((o) => o.nivel === n) || OBJETOS.objetos[0]);
 
     // Estado del intento
     this.velasTotal = props.velas ?? velasDeNivel(n);
@@ -243,7 +243,7 @@ export class JuegoScene extends Phaser.Scene {
         this.foto = new Coleccionable(this, o, 'foto', 'marco-foto');
         break;
       case 'objeto':
-        this.objeto = new Coleccionable(this, o, 'objeto', `obj-${this.spriteObjeto}`);
+        this.objeto = new Coleccionable(this, o, 'objeto', this.texturaObjeto);
         break;
       case 'meta':
         this.meta = new Meta(this, o);

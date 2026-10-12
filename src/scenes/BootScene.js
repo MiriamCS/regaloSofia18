@@ -1,6 +1,6 @@
 // Carga los sprites SVG y los datos comunes. Los niveles se cargan aparte, uno a uno.
 import Phaser from 'phaser';
-import { OBJETOS } from '../config.js';
+import { OBJETOS, claveObjeto } from '../config.js';
 import { ESCALA_TEXTURAS, claveFotogramas } from '../entities/Sofia.js';
 import { PISTAS } from '../audio/musica.js';
 import { Guardado } from '../systems/Guardado.js';
@@ -59,7 +59,11 @@ export class BootScene extends Phaser.Scene {
     for (const e of ETAPAS_MIRIAM) this.load.svg(`miriam-${e}`, `sprites/miriam/${e}/cuerpo.svg`, S);
     for (const n of ENEMIGOS) this.load.svg(n, `sprites/enemigos/${n}.svg`, S);
     for (const n of ESCENARIO) this.load.svg(n, `sprites/escenario/${n}.svg`, S);
-    for (const o of OBJETOS.objetos) this.load.image(`obj-${o.sprite}`, `sprites/objetos/${o.sprite}.png`);
+    for (const o of OBJETOS.objetos) {
+      const ruta = `sprites/objetos/${o.sprite}`;
+      if (ruta.endsWith('.svg')) this.load.svg(claveObjeto(o), ruta, S);
+      else this.load.image(claveObjeto(o), ruta);
+    }
     for (const n of LLUVIA) this.load.svg(`obj-${n}`, `sprites/objetos/${n}.svg`, S);
     // Música: si existen JSON convertidos de MIDI (tools/midi-a-json.mjs) se usan en lugar de los provisionales
     this.load.once('filecomplete-json-indice-musica', (k, t, indice) => {

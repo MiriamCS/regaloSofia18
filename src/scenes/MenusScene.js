@@ -1,6 +1,6 @@
 // Menú de niveles, álbum de fotos, vitrina de objetos y opciones.
 import Phaser from 'phaser';
-import { texto, NUM_NIVELES, FOTOS, OBJETOS } from '../config.js';
+import { texto, NUM_NIVELES, FOTOS, OBJETOS, claveObjeto } from '../config.js';
 import { Boton, fondoMenu, botonVolver } from '../ui/Boton.js';
 import { Guardado } from '../systems/Guardado.js';
 import { Audio } from '../audio/Audio.js';
@@ -188,8 +188,8 @@ export class VitrinaScene extends Phaser.Scene {
       const { x, y } = posicionCasilla(this, n, tam);
       const tiene = Guardado.tieneObjeto(n);
       const c = casilla(this, x, y, tam, { activa: tiene, alPulsar: tiene ? () => this.ver(o) : null });
-      const img = this.add.image(0, -8, `obj-${o.sprite}`);
-      img.setScale(72 / img.width);
+      const img = this.add.image(0, -8, claveObjeto(o));
+      img.setScale(72 / Math.max(img.width, img.height));
       if (!tiene) img.setTintFill(0x0d1b3d).setAlpha(0.75);
       c.add(img);
       c.add(this.add.text(0, tam / 2 - 14, texto('galerias.nivel', { n }), { fontFamily: FUENTE, fontSize: '15px', color: '#cfe0ff' }).setOrigin(0.5));
@@ -203,8 +203,8 @@ export class VitrinaScene extends Phaser.Scene {
     const panel = this.add.graphics();
     panel.fillStyle(0xfffaf0, 1).fillRoundedRect(W / 2 - 360, H / 2 - 230, 720, 460, 24);
     panel.lineStyle(5, 0xe8b84a, 1).strokeRoundedRect(W / 2 - 360, H / 2 - 230, 720, 460, 24);
-    const img = this.add.image(W / 2, H / 2 - 80, `obj-${o.sprite}`);
-    img.setScale(220 / img.width);
+    const img = this.add.image(W / 2, H / 2 - 80, claveObjeto(o));
+    img.setScale(220 / Math.max(img.width, img.height));
     this.tweens.add({ targets: img, angle: { from: -5, to: 5 }, duration: 1400, yoyo: true, repeat: -1, ease: 'Sine.inOut' });
     const nombre = this.add.text(W / 2, H / 2 + 60, o.nombre, { fontFamily: FUENTE_TITULO, fontSize: '36px', color: '#1e4fa3', fontStyle: 'bold' }).setOrigin(0.5);
     const desc = this.add.text(W / 2, H / 2 + 130, o.texto, { fontFamily: FUENTE, fontSize: '22px', color: '#1b2a4a', align: 'center', wordWrap: { width: 640 } }).setOrigin(0.5);
