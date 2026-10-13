@@ -19,7 +19,7 @@ export const claveVela = (n) => `vela-alto-${n}`;
 const VELAS_NIVELES = 19;
 const ETAPAS_MIRIAM = ['nina', 'preado', 'adolescente', 'adulta'];
 // Cosas que caen en las zonas de lluvia (texturas 'obj-*'). Si alguna es también un coleccionable, ya se carga con ellos
-const LLUVIA = ['pelota', 'boligrafo', 'agenda'];
+const LLUVIA = ['pelota', 'libros'];
 const ESCENARIO = ['vela-on', 'vela-off', 'vela-cuerpo', 'atril-off', 'atril-on', 'caja-juguete', 'caja-madera', 'caja-carton', 'caja-libros', 'mueble', 'pinchos', 'marco-foto', 'nota-azul', 'nota-dorada', 'nota-rosa', 'nota-verde', 'campana', 'meta', 'puerta', 'tarta', 'cartel-continuara', 'candado', 'icono-objeto', 'clave', 'boton-izq', 'boton-der', 'boton-saltar', 'boton-cantar', 'boton-pausa'];
 
 // [clave de textura y animación, datos] de cada animación del índice de fotogramas

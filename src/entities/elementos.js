@@ -755,8 +755,12 @@ export class LluviaObjetos {
     this.siguiente = t + this.intervalo * (0.7 + Math.random() * 0.6);
     const x = this.o.x + 20 + Math.random() * (this.o.w - 40);
     const tex = Phaser.Utils.Array.GetRandom(this.texturas);
-    const s = this.scene.physics.add.image(x, this.o.y + 24, tex).setScale(0.32).setDepth(40);
-    s.body.setCircle(60, 36, 36);
+    // tamaño fijo en pantalla ('tam' px, por defecto 36), más pequeño que el mismo objeto como coleccionable (58)
+    const s = this.scene.physics.add.image(x, this.o.y + 24, tex).setDepth(40);
+    const lado = Math.max(s.width, s.height);
+    s.setScale((this.o.p.tam || 36) / lado);
+    // golpe algo más pequeño que el dibujo, centrado
+    s.body.setCircle(lado * 0.4, s.width / 2 - lado * 0.4, s.height / 2 - lado * 0.4);
     s.setAngularVelocity((Math.random() - 0.5) * 300);
     s.body.setMaxVelocityY(this.o.p.velocidad || 520);
     s.danio = this.o.p.danio || 1;

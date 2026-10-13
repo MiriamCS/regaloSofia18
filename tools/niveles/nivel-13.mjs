@@ -27,9 +27,9 @@ export default {
     // la marea de apuntes: la primera sube por el hueco de las estanterías; la segunda, más rápida, por el final
     { tipo: 'peligro-movil', x: 72, y: 82, w: 21, h: 2, dir: 'arriba', velocidad: 62, desdeX: 77, margen: 6, danio: 2, color: '#eae4cf' },
     { tipo: 'peligro-movil', x: 132, y: 33, w: 21, h: 2, dir: 'arriba', velocidad: 72, desdeX: 135, margen: 6, danio: 2, color: '#eae4cf' },
-    // lluvia de bolis y agendas
-    { tipo: 'lluvia', x: 14, y: 73, w: 9, h: 1, intervalo: 1100, texturas: 'obj-boligrafo,obj-agenda', velocidad: 420 },
-    { tipo: 'lluvia', x: 133, y: 1, w: 19, h: 1, intervalo: 1500, texturas: 'obj-boligrafo,obj-agenda', velocidad: 480 },
+    // lluvia de libros
+    { tipo: 'lluvia', x: 14, y: 73, w: 9, h: 1, intervalo: 1100, texturas: 'obj-libros', velocidad: 420 },
+    { tipo: 'lluvia', x: 133, y: 1, w: 19, h: 1, intervalo: 1500, texturas: 'obj-libros', velocidad: 480 },
     { tipo: 'aviso', x: 61, y: 73, w: 1, h: 4, pista: 'avisoSorpresa', duracion: 2200 },
     { tipo: 'aviso', x: 77, y: 70, w: 15, h: 7, pista: 'avisoMarea', duracion: 2400 },
     { tipo: 'aviso', x: 135, y: 20, w: 17, h: 9, pista: 'avisoFinal', duracion: 2400 },
