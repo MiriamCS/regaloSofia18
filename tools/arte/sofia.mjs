@@ -19,18 +19,11 @@ const BOCA = '#7a2a26';
 const LENGUA = '#d9606a';
 const LUNAR = '#3a2018';
 const DORADO = '#e8b84a';
-const FLOR = '#9fb4ea';
 const FLOR_CENTRO = '#f5d26b';
 
 // Las medidas (piernas, torso, cabeza) no cambian respecto al diseño provisional: la física de los niveles depende de ellas.
-// El bebé no está aquí: se anima solo con los fotogramas de sus vídeos (tools/video-a-sprites.mjs).
+// El bebé y la niña no están aquí: se animan solo con los fotogramas de sus vídeos (tools/video-a-sprites.mjs).
 export const ETAPAS = {
-  // S4: disfraz de hada (vestido de capas con florecitas, lazo, alas), medias negras y botas; coletas altas con flores
-  nina: {
-    piernas: 26, torso: 28, anchoTorso: 26, cabeza: 37,
-    pelo: { estilo: 'ondulado', largo: 'media', flequillo: true, coletas: true },
-    traje: 'hada',
-  },
   // S3: vestido de flores con rebeca azul marino, medias y botas con hebilla; melena ondulada con raya al medio
   preado: {
     piernas: 32, torso: 32, anchoTorso: 27, cabeza: 36,
@@ -53,7 +46,6 @@ export const ETAPAS = {
 
 // Colores de cada traje
 const ROPA = {
-  hada: { tela: '#26336a', claro: '#3c4d94', falda: '#2c3a74', tul: '#6276c8', lazo: '#4b5fae', medias: '#272a3d', bota: '#1e2547', alas: '#cbd6f7', alasBorde: '#7d8fd0' },
   rebeca: { tela: '#1d2850', claro: '#2c3a6c', vestido: '#26325f', flores: ['#a99be8', '#7f9be6', '#c3b4f2'], medias: '#2b2d3f', bota: '#1b1d27', hebilla: '#aeb6c6' },
   camiseta: { tela: '#273461', claro: '#33427a', estrella: '#86a3c6', vaquero: '#283a58', costura: '#41587e', zapa: '#eef0f4', zapaDetalle: '#93afd3' },
   gala: { tela: '#1e2a55', claro: '#2b3a70', zapato: '#1d2853' },
@@ -239,23 +231,18 @@ function pierna(e) {
   const L = e.piernas;
   let w = 10.5;
   let cuerpo = '';
-  if (e.traje === 'hada' || e.traje === 'rebeca') {
-    const c = ROPA[e.traje];
+  if (e.traje === 'rebeca') {
+    const c = ROPA.rebeca;
     const x0 = -w / 2;
-    const caña = e.traje === 'hada' ? 11 : 13;
+    const caña = 13;
     cuerpo += `<rect x="${f(x0)}" y="${f(caderaY - 2)}" width="${f(w)}" height="${f(L - 2)}" rx="${f(w / 2)}" fill="${c.medias}" ${trazo()}/>`;
     // bota: caña + pie
     cuerpo += `<path d="M ${f(x0 - 1)} ${f(-caña)} L ${f(x0 + w + 1)} ${f(-caña)} L ${f(x0 + w + 1)} -6 L ${f(x0 - 1)} -6 Z" fill="${c.bota}" ${trazo()}/>`;
     cuerpo += pie(x0, 16, c.bota, 9);
     cuerpo += `<path d="M ${f(x0 + 1)} -1.8 L ${f(x0 + 17)} -1.8" stroke="#3a3f55" stroke-width="1.3" stroke-linecap="round"/>`;
-    if (e.traje === 'hada') {
-      // lacito en la bota
-      cuerpo += `<path d="M ${f(x0 + w - 1)} ${f(-caña + 3)} l 3 -2.2 l 0 4.4 Z M ${f(x0 + w - 1)} ${f(-caña + 3)} l -3 -2.2 l 0 4.4 Z" fill="${c.lazo}" stroke="${TRAZO}" stroke-width="1"/>`;
-    } else {
-      // correa con hebilla
-      cuerpo += `<path d="M ${f(x0 - 0.5)} ${f(-caña + 4)} L ${f(x0 + w + 0.5)} ${f(-caña + 4)}" stroke="#2c2f3d" stroke-width="2.4"/>`;
-      cuerpo += `<rect x="${f(x0 + w - 3.5)}" y="${f(-caña + 2.4)}" width="3.4" height="3.2" fill="none" stroke="${c.hebilla}" stroke-width="1.1"/>`;
-    }
+    // correa con hebilla
+    cuerpo += `<path d="M ${f(x0 - 0.5)} ${f(-caña + 4)} L ${f(x0 + w + 0.5)} ${f(-caña + 4)}" stroke="#2c2f3d" stroke-width="2.4"/>`;
+    cuerpo += `<rect x="${f(x0 + w - 3.5)}" y="${f(-caña + 2.4)}" width="3.4" height="3.2" fill="none" stroke="${c.hebilla}" stroke-width="1.1"/>`;
   } else if (e.traje === 'camiseta') {
     const c = ROPA.camiseta;
     const x0 = -w / 2;
@@ -296,14 +283,7 @@ function brazo(e) {
   const manga = (color, largo) => `<path d="M ${-w / 2 - 1} ${f(hombroY - 3)} h ${w + 2} v ${f(largo)} q ${f(-(w + 2) / 2)} 2 ${-w - 2} 0 Z" fill="${color}" ${trazo()}/>`;
   const brazoPiel = `<rect x="${-w / 2}" y="${f(hombroY - 3)}" width="${w}" height="${f(L - 2)}" rx="${w / 2}" fill="${PIEL}" ${trazo()}/>`;
   const largaEntera = (color) => `<rect x="${-w / 2}" y="${f(hombroY - 3)}" width="${w}" height="${f(L - 3)}" rx="${w / 2}" fill="${color}" ${trazo()}/>`;
-  if (e.traje === 'hada') {
-    const c = ROPA.hada;
-    cuerpo += largaEntera(c.tela);
-    cuerpo += mano(yMano);
-    // puño abullonado con volante
-    cuerpo += `<ellipse cx="0" cy="${f(yMano - 6.5)}" rx="6.2" ry="3.4" fill="${c.claro}" ${trazo(1.6)}/>`;
-    cuerpo += `<path d="M -5 ${f(yMano - 4)} q 1.7 2.4 3.3 0 q 1.7 2.4 3.3 0 q 1.7 2.4 3.3 0" fill="none" stroke="${c.tul}" stroke-width="1.2"/>`;
-  } else if (e.traje === 'rebeca') {
+  if (e.traje === 'rebeca') {
     const c = ROPA.rebeca;
     cuerpo += largaEntera(c.tela);
     cuerpo += mano(yMano);
@@ -371,36 +351,7 @@ function torso(e) {
   cuerpo += `<rect x="-5" y="${f(cuelloY - 4)}" width="10" height="10" fill="${PIEL_SOMBRA}" ${trazo()}/>`;
   let bajoFalda = abajoY;
 
-  if (e.traje === 'hada') {
-    const c = ROPA.hada;
-    const cintura = caderaY - 5;
-    cuerpo += tronco(W, arriba, cintura + 3, c.tela);
-    // falda de tres capas de tul con florecitas
-    const bajo = caderaY + e.piernas * 0.5;
-    bajoFalda = bajo + 5;
-    const capas = 3;
-    for (let i = capas - 1; i >= 0; i--) {
-      const y1 = cintura + ((bajo - cintura) * (i + 1)) / capas;
-      const vuelo = 3 + i * 3.5;
-      const hw = W / 2 + vuelo;
-      let d = `M ${f(-W / 2 + 1)} ${f(cintura)} L ${f(W / 2 - 1)} ${f(cintura)} L ${f(hw)} ${f(y1)}`;
-      const n = 6 + i * 2;
-      const paso = (2 * hw) / n;
-      for (let k = 0; k < n; k++) d += ` q ${f(-paso / 2)} 3.2 ${f(-paso)} 0`;
-      d += ' Z';
-      const pol = [[-W / 2 + 1, cintura], [W / 2 - 1, cintura], [hw, y1], [-hw, y1]];
-      cuerpo += `<path d="${d}" fill="${c.falda}" ${trazo()}/>`;
-      cuerpo += estampado(pol.map(([x, y]) => [x, Math.max(y, y1 - (bajo - cintura) / capas + 1)]), 3 + i, [FLOR, '#b7a6ec'], 50 + i, 1);
-      cuerpo += `<path d="M ${f(-hw + 1)} ${f(y1 - 0.6)} L ${f(hw - 1)} ${f(y1 - 0.6)}" stroke="${c.tul}" stroke-width="1" opacity="0.8"/>`;
-    }
-    // fajín con lazo
-    cuerpo += `<rect x="${f(-W / 2 + 0.5)}" y="${f(cintura - 2)}" width="${f(W - 1)}" height="4.2" fill="${c.lazo}" ${trazo(1.6)}/>`;
-    const bx = 3;
-    const by = cintura;
-    cuerpo += `<path d="M ${bx} ${by} q -6 -5 -7 -0.5 q 1 4.5 7 0.5 Z M ${bx} ${by} q 6 -5 7 -0.5 q -1 4.5 -7 0.5 Z" fill="${c.lazo}" ${trazo(1.4)}/>`;
-    cuerpo += `<path d="M ${bx - 1} ${by + 1} l -2.5 6 M ${bx + 1} ${by + 1} l 2.8 5.6" stroke="${c.lazo}" stroke-width="2.2" stroke-linecap="round"/>`;
-    cuerpo += `<circle cx="${bx}" cy="${by}" r="1.7" fill="${c.claro}" ${trazo(1.1)}/>`;
-  } else if (e.traje === 'rebeca') {
+  if (e.traje === 'rebeca') {
     const c = ROPA.rebeca;
     // falda del vestido de flores
     const y0 = caderaY - 5;
@@ -458,27 +409,6 @@ function torso(e) {
   }
   const alto = bajoFalda - (cuelloY - 6) + 4;
   return { cuerpo, caja: [-W / 2 - 14, cuelloY - 6, W + 28, alto], pivote: [0, caderaY] };
-}
-
-// Alas de hada (solo en la etapa de niña): van detrás de todo, colgadas de la espalda
-function alas(e) {
-  if (e.traje !== 'hada') return null;
-  const { cuelloY } = medidas(e);
-  const c = ROPA.hada;
-  const W = e.anchoTorso;
-  const px = -W / 2 + 4;
-  const py = cuelloY + 9;
-  const ala = (ox, dx, dy) => {
-    const d = `M ${ox} ${py} C ${f(ox + dx * 0.2)} ${f(py + dy * 1.2)} ${f(ox + dx * 1.15)} ${f(py + dy * 1.1)} ${f(ox + dx)} ${f(py + dy * 0.45)} C ${f(ox + dx * 0.9)} ${f(py + dy * 0.05)} ${f(ox + dx * 0.4)} ${f(py + dy * 0.02)} ${ox} ${py} Z`;
-    return `<path d="${d}" fill="${c.alas}" fill-opacity="0.82" stroke="${c.alasBorde}" stroke-width="1.5" stroke-linejoin="round"/>` +
-      `<path d="M ${f(ox + dx * 0.25)} ${f(py + dy * 0.35)} q ${f(dx * 0.3)} ${f(dy * 0.4)} ${f(dx * 0.55)} ${f(dy * 0.25)}" fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round" opacity="0.9"/>`;
-  };
-  let cuerpo = '';
-  // ala del otro lado: asoma por detrás del hombro derecho
-  cuerpo += ala(px + 8, 32, -30);
-  cuerpo += ala(px, -30, -30);
-  cuerpo += ala(px, -22, 20);
-  return { cuerpo, caja: [px - 36, py - 40, 86, 68], pivote: [px, py] };
 }
 
 function collar(e) {
@@ -606,7 +536,6 @@ function bajoMelena(e) {
   const l = e.pelo.largo;
   if (l === 'cintura') return caderaY - 1;
   if (l === 'pecho') return hombroY + e.torso * 0.5;
-  if (l === 'media') return hombroY + e.torso * 0.55;
   return cabezaCY + R * 0.7;
 }
 
@@ -648,32 +577,17 @@ function peloPuntas(e) {
   return { cuerpo, caja: [x0 - 8, y0 - 8, x1 - x0 + 16, y1 - y0 + 16], pivote: [-4, hombroY] };
 }
 
-function florPelo(x, y, r) {
-  let s = '';
-  for (let i = 0; i < 5; i++) {
-    const a = (i / 5) * Math.PI * 2 - Math.PI / 2;
-    s += `<circle cx="${f(x + Math.cos(a) * r)}" cy="${f(y + Math.sin(a) * r)}" r="${f(r * 0.72)}" fill="${FLOR}" stroke="${TRAZO}" stroke-width="0.9"/>`;
-  }
-  for (let i = 0; i < 5; i++) {
-    const a = (i / 5) * Math.PI * 2 - Math.PI / 2;
-    s += `<circle cx="${f(x + Math.cos(a) * r)}" cy="${f(y + Math.sin(a) * r)}" r="${f(r * 0.55)}" fill="${FLOR}"/>`;
-  }
-  return s + `<circle cx="${f(x)}" cy="${f(y)}" r="${f(r * 0.45)}" fill="#ffffff"/><circle cx="${f(x)}" cy="${f(y)}" r="${f(r * 0.25)}" fill="${FLOR_CENTRO}"/>`;
-}
-
-// Casquete con la raya al medio (o flequillo) y los mechones que enmarcan la cara
+// Casquete con la raya al medio y los mechones que enmarcan la cara
 function peloDelante(e) {
   const { cabezaR: R, cabezaCY, cabezaTop, cuelloY } = medidas(e);
   const { paso, amp } = estiloPelo(e);
-  const { flequillo, coletas, estilo, largo } = e.pelo;
+  const { estilo, largo } = e.pelo;
   const H = (dx, dy) => [dx, cabezaCY + dy];
   const rizado = estilo === 'rizado';
   // hasta dónde baja el mechón del lado lejano (por delante del hombro)
-  const mechon = largo === 'cintura' ? cuelloY + 16 - cabezaCY : largo === 'pecho' ? cuelloY + 10 - cabezaCY : largo === 'media' ? R * 1.05 : R * 0.45;
+  const mechon = largo === 'cintura' ? cuelloY + 16 - cabezaCY : largo === 'pecho' ? cuelloY + 10 - cabezaCY : R * 0.45;
   const ext = rizado ? 3 : 1.5;
-  const lineaPelo = flequillo
-    ? [H(R * 0.7, -R * 0.25), H(R * 0.35, -R * 0.42), H(0, -R * 0.4), H(-R * 0.4, -R * 0.44), H(-R * 0.8, -R * 0.2)]
-    : [H(R * 0.62, -R * 0.42), H(R * 0.25, -R * 0.62), H(2, -R * 0.7), H(-R * 0.3, -R * 0.6), H(-R * 0.75, -R * 0.32)];
+  const lineaPelo = [H(R * 0.62, -R * 0.42), H(R * 0.25, -R * 0.62), H(2, -R * 0.7), H(-R * 0.3, -R * 0.6), H(-R * 0.75, -R * 0.32)];
   const base = [
     H(1, -R - 4 - ext * 0.6), H(R * 0.75, -R * 0.82 - ext * 0.3), H(R + 3 + ext, -R * 0.1),
     H(R + 4 + ext, R * 0.6), H(R + 3 + ext, mechon - 2), H(R * 0.62, mechon + 1),
@@ -682,9 +596,9 @@ function peloDelante(e) {
     H(-R - 1, R * 0.1), H(-R - 4 - ext * 0.6, -R * 0.1), H(-R - 3 - ext * 0.6, -R * 0.62), H(-R * 0.6, -R - 2 - ext * 0.6),
   ];
   const pts = curvaCerrada(base, paso * 0.85);
-  // la línea del nacimiento del pelo va casi lisa; el flequillo, con puntas
+  // la línea del nacimiento del pelo va casi lisa
   const enCara = (x, y) => y > cabezaCY - R * 0.75 && x > -R * 0.85 && x < R * 0.85 && y < cabezaCY + R * 0.15;
-  const ampl = (x, y) => (enCara(x, y) ? (flequillo ? amp * 0.8 : 0.4) : amp);
+  const ampl = (x, y) => (enCara(x, y) ? 0.4 : amp);
   let textura = '';
   // mechones que salen de la raya hacia los lados
   const rnd = azar(303);
@@ -700,19 +614,8 @@ function peloDelante(e) {
   textura += mechones([R * 0.85, R + 3.5], () => cabezaCY, () => cabezaCY + mechon, rizado ? 5 : 10, 2.2, 31);
   if (estilo !== 'ondulado') textura += bucles(pts, 0.35, 41);
   let cuerpo = masaPelo(pts, ampl, 404, textura);
-  if (!flequillo) {
-    // la raya al medio
-    cuerpo += `<path d="M 2 ${f(cabezaTop + 1.5)} Q 1.6 ${f(cabezaTop + 4)} 2 ${f(cabezaCY - R * 0.68)}" fill="none" stroke="${PIEL_SOMBRA}" stroke-width="1.3" stroke-linecap="round"/>`;
-  }
-  if (coletas) {
-    // dos coletitas altas con flores
-    const r = 6.5;
-    for (const [cx, cy, s] of [[-R * 0.62, cabezaTop - 1, 1], [R * 0.48, cabezaTop - 2.5, 0.9]]) {
-      const pc = curvaCerrada([[cx - r, cy], [cx, cy - r * 1.1], [cx + r, cy], [cx + r * 0.3, cy + r * 0.6], [cx - r * 0.4, cy + r * 0.6]], paso * 0.7);
-      cuerpo += masaPelo(pc, () => amp * 0.9, 505 + cx, '');
-      cuerpo += florPelo(cx + r * 0.25, cy + r * 0.55, 2.6 * s);
-    }
-  }
+  // la raya al medio
+  cuerpo += `<path d="M 2 ${f(cabezaTop + 1.5)} Q 1.6 ${f(cabezaTop + 4)} 2 ${f(cabezaCY - R * 0.68)}" fill="none" stroke="${PIEL_SOMBRA}" stroke-width="1.3" stroke-linecap="round"/>`;
   const [x0, y0, x1, y1] = caja(pts);
   const top = Math.min(y0, cabezaTop - 14);
   return { cuerpo, caja: [x0 - 8, top - 6, x1 - x0 + 16, y1 - top + 14], pivote: [0, cuelloY] };
@@ -722,7 +625,6 @@ export function piezasSofia(nombreEtapa) {
   const e = ETAPAS[nombreEtapa];
   contadorClip = 0;
   const piezas = {
-    alas: alas(e),
     'pelo-puntas': peloPuntas(e),
     'pelo-atras': peloAtras(e),
     pierna: pierna(e),

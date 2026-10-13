@@ -5,7 +5,7 @@ import { Sofia } from '../entities/Sofia.js';
 import { FUENTE } from '../estilo.js';
 
 const ETAPAS = ['bebe', 'nina', 'preado', 'adolescente', 'adulta'];
-const ESTADOS = ['reposo', 'andar', 'correr', 'saltar', 'caer', 'empujar', 'cantar', 'danio', 'celebrar', 'soplar'];
+const ESTADOS = ['reposo', 'andar', 'correr', 'saltar', 'caer', 'doble', 'empujar', 'cantar', 'danio', 'celebrar', 'soplar'];
 
 export class PosesScene extends Phaser.Scene {
   constructor() {

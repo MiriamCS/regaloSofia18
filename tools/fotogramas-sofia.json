@@ -51,5 +51,39 @@
         }
       }
     }
+  },
+  "nina": {
+    "pie": {
+      "alto": 87,
+      "videos": {
+        "nina-1-andar-correr.mp4": {
+          "recorte": [350, 0, 1280, 683],
+          "referencia": [0, 17],
+          "animaciones": {
+            "reposo": { "de": 0, "a": 17, "fps": 8, "bucle": true },
+            "andar": { "de": 33, "a": 63, "fps": 24, "bucle": true },
+            "correr": { "de": 137, "a": 158, "fps": 24, "bucle": true, "centrar": true }
+          }
+        },
+        "nina-2-saltos.mp4": {
+          "referencia": [165, 190],
+          "animaciones": {
+            "saltar": { "de": 24, "a": 38, "fps": 24, "bucle": false, "anclar": "pies" },
+            "caer": { "de": 50, "a": 61, "fps": 20, "bucle": false, "anclar": "pies" },
+            "doble": { "de": 96, "a": 149, "sin": [130, 140], "paso": 2, "fps": 40, "bucle": false, "anclar": "centro" }
+          }
+        },
+        "nina-3-acciones.mp4": {
+          "limpiar": { "zona": [940, 0, 1280, 720], "conservar": [[230, 158, 110]], "tolerancia": 60 },
+          "referencia": [0, 30],
+          "animaciones": {
+            "empujar": { "de": 44, "a": 72, "paso": 2, "fps": 12, "bucle": true },
+            "cantar": { "de": 84, "a": 128, "paso": 2, "fps": 12, "bucle": true },
+            "danio": { "de": 146, "a": 160, "fps": 40, "bucle": false },
+            "celebrar": { "de": 166, "a": 190, "paso": 2, "fps": 12, "bucle": true, "anclar": "pies" }
+          }
+        }
+      }
+    }
   }
 }

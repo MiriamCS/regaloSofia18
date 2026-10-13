@@ -432,6 +432,9 @@ export class JuegoScene extends Phaser.Scene {
     if (lado && b.blocked.down !== false) {
       this.empujeHasta = this.time.now + 80;
       this.cajaEmpujada = caja;
+      // al llegar corriendo, la caja no sale disparada: va al paso del empujón y sigue pegada a las manos
+      const lim = JUEGO.fisica.empujeCaja * (caja.pesada ? 0.55 : 1);
+      if (Math.abs(caja.body.velocity.x) > lim) caja.body.setVelocityX(Math.sign(caja.body.velocity.x) * lim);
     }
   }
 
@@ -512,6 +515,9 @@ export class JuegoScene extends Phaser.Scene {
       ? { izq: false, der: false, correr: false, saltar: false, saltarMantenido: false, cantar: false }
       : { ...Controles, correr: Controles.correr && !this.enFinal };
     s.empujando = t < (this.empujeHasta || 0);
+    // borde visible de la caja (el dibujo es algo más ancho que su cuerpo físico): ahí apoya Sofía las manos
+    const caja = s.empujando && this.cajaEmpujada;
+    s.bordeEmpuje = caja ? Math.abs(caja.x - s.x) - caja.displayWidth / 2 : null;
     s.actualizar(t, delta, entrada);
     if (s.empujando && this.cajaEmpujada) {
       const lim = JUEGO.fisica.empujeCaja * (this.cajaEmpujada.pesada ? 0.55 : 1);

@@ -87,13 +87,32 @@ function cajaOpaca(data, W, H) {
   return { x0, y0, x1, y1 };
 }
 
+// En la 'zona' [x0, y0, x1, y1] borra todo menos los colores de 'conservar' (p. ej. una caja que aparece en el vídeo
+// y las manos que se apoyan en ella: se queda la piel y se va la caja)
+function limpiar(data, W, H, { zona: [x0, y0, x1, y1], conservar, tolerancia = 60 }) {
+  for (let y = Math.max(0, y0); y < Math.min(H, y1); y++) {
+    for (let x = Math.max(0, x0); x < Math.min(W, x1); x++) {
+      const p = (y * W + x) * 4;
+      if (!conservar.some(([r, g, b]) => Math.hypot(data[p] - r, data[p + 1] - g, data[p + 2] - b) <= tolerancia)) data[p + 3] = 0;
+    }
+  }
+}
+
 const mediana = (v) => [...v].sort((a, b) => a - b)[Math.floor(v.length / 2)];
 
+// Fotogramas de una animación: de 'de' a 'a' cada 'paso', sin el tramo 'sin' ([desde, hasta]) si lo hay
 const numeros = (a) => {
   const lista = [];
-  for (let n = a.de; n <= a.a; n += a.paso || 1) lista.push(n);
+  for (let n = a.de; n <= a.a; n += a.paso || 1) if (!a.sin || n < a.sin[0] || n > a.sin[1]) lista.push(n);
   return lista;
 };
+
+// Deja transparente lo que queda fuera del 'recorte' [x0, y0, x1, y1] (p. ej. un suelo o un dibujo que se cuela)
+function recortar(data, W, H, [x0, y0, x1, y1]) {
+  for (let y = 0; y < H; y++) {
+    for (let x = 0; x < W; x++) if (x < x0 || x >= x1 || y < y0 || y >= y1) data[(y * W + x) * 4 + 3] = 0;
+  }
+}
 
 // Recorta y escala los fotogramas de un vídeo. Cada uno queda colocado respecto a los pies de la pose de referencia
 // del vídeo (x = centro, y = suelo), en píxeles de textura.
@@ -119,6 +138,8 @@ async function procesarVideo(nombreVideo, cfg, alto) {
       W = info.width;
       H = info.height;
       quitarVerde(data, W, H);
+      if (cfg.recorte) recortar(data, W, H, cfg.recorte);
+      if (cfg.limpiar) limpiar(data, W, H, cfg.limpiar);
       fot.set(n, { data, caja: cajaOpaca(data, W, H) });
     }
 
@@ -130,12 +151,25 @@ async function procesarVideo(nombreVideo, cfg, alto) {
     const altoVideo = mediana(ref.map((c) => c.y1 - c.y0));
     const escala = (alto * ESCALA_TEX) / altoVideo;
 
-    // 3. Cada fotograma usado, recortado a su caja y escalado
+    // 3. Cada fotograma usado, recortado a su caja y escalado.
+    // 'anclar': 'pies' pone los pies de cada fotograma en el suelo (saltos: la altura la da el juego);
+    // 'centro' centra cada fotograma en el cuerpo (voltereta). 'centrar' mueve en horizontal toda la animación
+    // para que quede centrada como la referencia (si en ese tramo del vídeo el personaje se ha desplazado).
+    const centroY = suelo - altoVideo / 2;
     const animaciones = {};
     for (const [nombre, a] of Object.entries(cfg.animaciones)) {
       const lista = [];
+      const frentes = [];
+      const dxAnim = a.centrar ? centro - mediana(numeros(a).map((n) => (fot.get(n).caja.x0 + fot.get(n).caja.x1) / 2)) : 0;
       for (const n of numeros(a)) {
         const { data, caja } = fot.get(n);
+        let dx = dxAnim;
+        let dy = 0;
+        if (a.anclar === 'pies') dy = suelo - caja.y1;
+        else if (a.anclar === 'centro') {
+          dx = centro - (caja.x0 + caja.x1) / 2;
+          dy = centroY - (caja.y0 + caja.y1) / 2;
+        }
         const x0 = Math.max(0, caja.x0 - MARGEN);
         const y0 = Math.max(0, caja.y0 - MARGEN);
         const x1 = Math.min(W - 1, caja.x1 + MARGEN);
@@ -147,9 +181,12 @@ async function procesarVideo(nombreVideo, cfg, alto) {
           .resize(w, h, { kernel: 'lanczos3' })
           .png()
           .toBuffer();
-        lista.push({ img, x: Math.round((x0 - centro) * escala), y: Math.round((y0 - suelo) * escala), w, h });
+        lista.push({ img, x: Math.round((x0 + dx - centro) * escala), y: Math.round((y0 + dy - suelo) * escala), w, h });
+        frentes.push((caja.x1 + 1 + dx - centro) * escala);
       }
-      animaciones[nombre] = { lista, fps: a.fps, bucle: !!a.bucle };
+      // alcance: hasta dónde llega por delante en cada fotograma (las manos al empujar), en unidades del juego
+      // desde el centro de los pies
+      animaciones[nombre] = { lista, fps: a.fps, bucle: !!a.bucle, alcance: frentes.map((x) => Math.round((x / ESCALA_TEX) * 10) / 10) };
     }
     return animaciones;
   } finally {
@@ -203,6 +240,8 @@ async function procesarModo(etapa, modo, cfg, indice) {
       .png({ compressionLevel: 9, palette: true, quality: 95, effort: 10 })
       .toFile(join(dirSalida, archivo));
     info.animaciones[nombre] = { archivo: `${etapa}/fotogramas/${archivo}`, fotogramas: total, fps: a.fps, bucle: a.bucle };
+    // el juego retrasa el dibujo al empujar para que las manos se queden en el borde de la caja
+    if (nombre === 'empujar') info.animaciones[nombre].alcance = a.alcance;
     console.log(`  ${etapa}/${archivo}: ${total} fotogramas de ${fw}x${fh}`);
   }
   indice[etapa] = indice[etapa] || {};

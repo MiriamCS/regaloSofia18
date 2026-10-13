@@ -1,4 +1,4 @@
-// Sofía: personaje por piezas SVG animado por código (cinemática directa), o, en las etapas con vídeo (el bebé),
+// Sofía: personaje por piezas SVG animado por código (cinemática directa), o, en las etapas con vídeo (bebé y niña),
 // solo con los fotogramas sacados de sus vídeos.
 // El contenedor tiene el origen en los pies; el cuerpo físico es un rectángulo encima.
 import Phaser from 'phaser';
@@ -11,7 +11,6 @@ const F = JUEGO.fisica;
 // Jerarquía: padre -> hijos. Las posiciones salen del rig (pivotes en coordenadas de pies).
 const PADRES = {
   torso: null,
-  alas: 'torso',
   'pierna-atras': null,
   'pierna-delante': null,
   'brazo-atras': 'torso',
@@ -27,7 +26,7 @@ const PADRES = {
   'pelo-puntas': 'pelo-atras',
 };
 // Orden de dibujo (de atrás hacia delante)
-const ORDEN = ['pelo-puntas', 'alas', 'pelo-atras', 'brazo-atras', 'pierna-atras', 'pierna-delante', 'torso', 'collar-brillo', 'collar', 'cabeza', 'ojos', 'boca', 'gafas', 'pelo-delante', 'brazo-delante'];
+const ORDEN = ['pelo-puntas', 'pelo-atras', 'brazo-atras', 'pierna-atras', 'pierna-delante', 'torso', 'collar-brillo', 'collar', 'cabeza', 'ojos', 'boca', 'gafas', 'pelo-delante', 'brazo-delante'];
 // Orden de cálculo de la pose: cada pieza después de su padre
 const ORDEN_POSE = [...ORDEN].sort((a, b) => profundidad(a) - profundidad(b));
 function profundidad(nombre) {
@@ -35,13 +34,14 @@ function profundidad(nombre) {
 }
 // Desplazamiento lateral de las extremidades en reposo
 const DX = { 'pierna-atras': -4, 'pierna-delante': 4, 'brazo-atras': -8, 'brazo-delante': 9 };
-// Etapas con vídeo (el bebé): animación de fotogramas de cada estado, por orden de preferencia; si no hay ninguna, reposo
+// Etapas con vídeo (bebé y niña): animación de fotogramas de cada estado, por orden de preferencia; si no hay ninguna, reposo
 const ANIM_FOTOGRAMAS = {
   andar: ['andar'],
   correr: ['correr', 'andar'],
   saltar: ['saltar'],
   caer: ['caer'],
   aire: ['caer'],
+  doble: ['doble', 'saltar'],
   empujar: ['empujar', 'andar'],
   danio: ['danio'],
   celebrar: ['celebrar'],
@@ -226,7 +226,10 @@ export class Sofia extends Phaser.GameObjects.Container {
         b.setVelocityY(-F.dobleSalto * (this.multSalto || 1) * g);
         this.saltosAire = 1;
         this.bufferSalto = -9999;
-        this.vuelta = 1; // pirueta
+        // voltereta: con fotogramas si el vídeo la tiene; si no, pirueta girando el personaje
+        const doble = this.infoFotos?.animaciones.doble;
+        if (doble) this.dobleHasta = tiempo + (doble.fotogramas / doble.fps) * 1000;
+        else this.vuelta = 1;
         Audio.efecto('dobleSalto');
         this.emit('dobleSalto');
       }
@@ -261,6 +264,7 @@ export class Sofia extends Phaser.GameObjects.Container {
     if (this.estadoForzado) estado = this.estadoForzado;
     else if (tiempo < (this.dolorHasta || 0)) estado = 'danio';
     else if (this.cantando) estado = enSuelo ? 'cantar' : 'aire';
+    else if (!enSuelo && tiempo < (this.dobleHasta || 0)) estado = 'doble';
     // perder el suelo un instante (cajas, plataformas que se mueven) no cuenta como caer
     else if (!enSuelo && (b.velocity.y * (this.g || 1) < 0 || tiempo - this.ultimoSuelo > 90)) estado = b.velocity.y * (this.g || 1) < 0 ? 'saltar' : 'caer';
     else if (this.empujando) estado = 'empujar';
@@ -270,6 +274,21 @@ export class Sofia extends Phaser.GameObjects.Container {
     if (this.fotos) this.elegirFotogramas(estado, vx);
     else this.animarPiezas(estado, tiempo, dt, vx);
     this.transformar(tiempo, dt);
+    this.ajustarEmpuje(estado, dt);
+  }
+
+  // Al empujar, el dibujo se retrasa para que las manos se queden en el borde de la caja en vez de traspasarla.
+  // bordeEmpuje (lo pone la escena): distancia de los pies al borde visible de la caja; alcance: hasta dónde llegan
+  // las manos (medido en cada fotograma del vídeo o calculado con la pose de las piezas).
+  ajustarEmpuje(estado, dt) {
+    let objetivo = 0;
+    if (estado === 'empujar') {
+      const alcances = this.fotos && this.claveFotos === this.animFotos.empujar ? this.infoFotos.animaciones.empujar.alcance : null;
+      const alcance = alcances ? alcances[this.fotos.anims.currentFrame?.index - 1] ?? alcances[0] : this.alcancePiezas;
+      if (alcance) objetivo = Math.min(0, (this.bordeEmpuje ?? this.body.width / 2) - alcance);
+    }
+    this.ajusteEmpuje = Phaser.Math.Linear(this.ajusteEmpuje || 0, objetivo, Math.min(1, dt * 25));
+    this.visual.x = this.ajusteEmpuje * this.mirando;
   }
 
   // Personaje por piezas: pose de cada estado, cara, pelo y brillo del collar
@@ -415,8 +434,6 @@ export class Sofia extends Phaser.GameObjects.Container {
     const rebote = estado === 'andar' || estado === 'correr' ? Math.sin(this.fase * 2) * 0.03 : 0;
     r['pelo-atras'] = this.pelo.a + rebote;
     r['pelo-puntas'] = this.pelo.p - this.pelo.a * 0.4 + rebote;
-    // aleteo suave de las alas de hada
-    r.alas = Math.sin(tiempo / 140) * 0.06;
 
     // Brillo del collar al cantar
     const brillo = p['collar-brillo'].img;
@@ -427,6 +444,12 @@ export class Sofia extends Phaser.GameObjects.Container {
     this.raiz.x = rx;
     this.raiz.y = ry;
     this.aplicarPose(r);
+    if (estado === 'empujar') {
+      // punta de la mano más adelantada (el brazo cuelga de su pivote y gira con la pose)
+      const brazo = this.rig.piezas.brazo;
+      const largo = brazo.h * (1 - brazo.origen[1]) - 4;
+      this.alcancePiezas = Math.max(...['brazo-delante', 'brazo-atras'].map((n) => p[n].x - Math.sin(p[n].rotAbs) * largo));
+    }
   }
 
   // Volteo, estirar y aplastar, pirueta y parpadeo de invulnerabilidad (con piezas o con fotogramas)
@@ -538,6 +561,7 @@ export class Sofia extends Phaser.GameObjects.Container {
     this.body.setVelocity(0, 0);
     this.saltando = false;
     this.vuelta = 0;
+    this.dobleHasta = 0;
     this.visual.rotation = 0;
   }
 }

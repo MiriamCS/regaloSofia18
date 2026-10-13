@@ -4,8 +4,8 @@ La animación de Sofía se saca de vídeos generados con IA (Flow/Veo, Sora, Kli
 personaje de [`docs/concept-art/sofia`](../concept-art/sofia). De cada vídeo se extraen los fotogramas, se quita
 el fondo verde y se montan las hojas de sprites del juego (`tools/video-a-sprites.mjs`).
 
-El bebé se anima **solo** con los fotogramas de sus cuatro vídeos (ya no tiene personaje SVG). Las demás edades
-se siguen dibujando con el personaje SVG por piezas hasta que tengan sus vídeos. Qué tramo de cada vídeo va a cada
+El bebé y la niña se animan **solo** con los fotogramas de sus vídeos (ya no tienen personaje SVG). Las demás
+edades se siguen dibujando con el personaje SVG por piezas hasta que tengan sus vídeos. Qué tramo de cada vídeo va a cada
 animación se decide en `tools/fotogramas-sofia.json`.
 
 ---
@@ -39,6 +39,9 @@ animación se decide en `tools/fotogramas-sofia.json`.
 | `bebe-C-pie` | ✅ En el juego: reposo, andar, saltar y caer de pie |
 | `bebe-D-pie-acciones` | ✅ En el juego: empujar, golpe y celebrar de pie |
 | `bebe-E-pie-correr` | ✅ En el juego: correr de pie (nivel 2) |
+| `nina-1-andar-correr` | ✅ En el juego: reposo, andar y correr. Se recorta la franja gris del suelo y la clave de sol que aparece a la izquierda |
+| `nina-2-saltos` | ✅ En el juego: saltar, caer y la voltereta del doble salto (sin los fotogramas 130-140, que salen mal) |
+| `nina-3-acciones` | ✅ En el juego: empujar (contra una caja que sale en el vídeo y se borra), cantar, golpe y celebrar |
 | Resto de edades | ⏳ |
 
 ---
@@ -89,6 +92,9 @@ animación se decide en `tools/fotogramas-sofia.json`.
 > constante. Sin desenfoque de movimiento ni profundidad de campo; contornos nítidos en cada fotograma. Movimiento
 > fluido y bien espaciado, como una animación 2D tradicional a 24 fps. Entre una acción y la siguiente vuelve a
 > la pose neutra y se queda quieta 1 segundo.
+
+
+2D video game animation in the style identical to the reference images: flat cartoon drawing, clean and dark outlines, flat colors, no 3D shading, no textures, no realistic highlights. The character is exactly like the reference, with the same proportions, the same face, the same hair, and the same clothes, the small mole on the cheek, and the necklace with the gold treble clef pendant always visible. Camera completely fixed: full shot, no zoom, no panning, no cuts or changes of shot. Three-quarter view: the character always looks to the right of the screen and never turns toward the camera or the left. Animation in place, like on an invisible treadmill: they don't move across the screen, the body stays centered, and the feet always return to the same invisible ground line. The whole body is visible at all times, with margins above and below, and the same size throughout the video (about 60% of the height). Solid, uniform green chroma background (#00FF00): no ground, no shadows, no objects, no other characters, no text. Flat and consistent lighting. No motion blur or depth of field; sharp outlines in every frame. Smooth, well-spaced movement, like a traditional 2D animation at 24 fps. Between actions, returns to a neutral pose and stays still for 1 second.
 
 ---
 
@@ -180,7 +186,7 @@ niña, con esta descripción. En `preado-3-acciones`, el canto como en S7 (la ma
 
 **[Descripción]**
 > Chica de 15 años con camiseta azul marino con una estrella azul claro, vaqueros anchos azul oscuro y zapatillas
-> blancas con detalles azules. Melena larga, castaño oscuro y muy rizada hasta la cintura, con la raya al medio y
+> blancas con detalles azules. Melena larga, castaño oscuro y muy rizada hasta los hombros, con la raya al medio y
 > mucho volumen. Las expresiones son las de la hoja de expresiones y las poses siguen la hoja de poses adjunta. El
 > pelo rizado se mueve con naturalidad y algo de retraso respecto al cuerpo, pero sin exagerar.
 
@@ -189,7 +195,7 @@ los de la niña, con esta descripción. Andar y correr como en S7; cantar con la
 con la mueca de dientes apretados y un ojo cerrado como en S6.
 
 **`adolescente-4-gafas`** (niveles 15 y 17): el texto de `adolescente-1-andar-correr` añadiendo «*lleva unas gafas
-redondas de montura azul marino, como en la hoja de expresiones*». Si no se hace, en esos dos niveles sale sin gafas.
+redondas de montura negra, como en la hoja de expresiones*». Si no se hace, en esos dos niveles sale sin gafas.
 
 ### Adulta (18 años)
 
@@ -218,12 +224,19 @@ niña, con esta descripción (la falda se mueve al correr y al saltar).
 1. Deja el clip en `docs/videos` con su nombre.
 2. En [`tools/fotogramas-sofia.json`](../../tools/fotogramas-sofia.json), apunta qué fotogramas van a cada
    animación (se cuentan desde 0, a 24 por segundo). Animaciones que entiende el juego: `reposo`, `andar`,
-   `correr`, `saltar` (subida) y `caer` (bajada). Los ciclos (`bucle: true`) deben empezar y acabar en la misma
-   postura.
+   `correr`, `saltar` (subida), `caer` (bajada), `doble` (voltereta del doble salto), `empujar`, `cantar`, `danio`
+   (golpe), `celebrar` y `soplar`. Los ciclos (`bucle: true`) deben empezar y acabar en la misma postura.
+   Opciones para arreglar vídeos imperfectos: `recorte` (zona del vídeo que se usa, para quitar suelos o dibujos
+   que se cuelan), `limpiar` (en una zona borra todo menos los colores indicados: quita la caja que empuja y deja
+   las manos), `sin` (tramo de fotogramas que se salta), `anclar: "pies"` (en los saltos, los pies al suelo:
+   la altura la pone el juego), `anclar: "centro"` (voltereta) y `centrar` (si en ese tramo se ha desplazado).
 3. `npm run fotogramas`: quita el verde, alinea los pies, escala al tamaño del juego y genera las hojas en
    `assets/sprites/sofia/<edad>/fotogramas` y el índice `assets/sprites/sofia/fotogramas.json`.
-4. Lo que no tenga fotogramas (de momento empujar, golpe, celebrar, cantar y soplar) se dibuja con el personaje
-   SVG por piezas. Con gafas también se usa el SVG.
+4. **Empujar:** la herramienta mide en cada fotograma hasta dónde llegan las manos, y el juego retrasa el dibujo
+   para que se apoyen justo en el borde de la caja (sin traspasarla). Por eso, en el tramo de empujar las manos
+   tienen que ser lo más adelantado del dibujo, y si en el vídeo sale una caja hay que borrarla con `limpiar`.
+5. Las edades sin vídeo se dibujan con el personaje SVG por piezas (al empujar, las manos se apoyan igual en la
+   caja). Con gafas también se usa el SVG.
 
 ## 7. Consejos al generar
 
