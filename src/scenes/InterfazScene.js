@@ -1,10 +1,11 @@
 // Interfaz encima del juego: velas, coleccionables, avisos, pausa y controles táctiles.
 import Phaser from 'phaser';
-import { JUEGO, texto } from '../config.js';
+import { JUEGO, FOTOS, OBJETOS, texto } from '../config.js';
 import { Controles } from '../systems/Controles.js';
 import { FUENTE, FUENTE_TITULO, ajustarTam } from '../estilo.js';
 import { Audio } from '../audio/Audio.js';
 import { Boton } from '../ui/Boton.js';
+import { recortarCubriendo } from './MenusScene.js';
 
 const ESC = 0.5;
 const TAM_ICONO = 40; // px en pantalla de los coleccionables junto a las velas
@@ -170,17 +171,88 @@ export class InterfazScene extends Phaser.Scene {
     this.tweens.add({ targets: this.aviso, alpha: 0, delay: duracion, duration: 400 });
   }
 
-  alCompletar({ foto, objeto }) {
-    const { width: W, height: H } = this.scale;
-    const t = this.add.text(W / 2, H * 0.35, texto('juego.nivelCompletado'), { fontFamily: FUENTE_TITULO, fontSize: '64px', color: '#ffd23f', fontStyle: 'bold italic', stroke: '#0d1b3d', strokeThickness: 8 }).setOrigin(0.5).setScale(0);
-    this.tweens.add({ targets: t, scale: 1, duration: 500, ease: 'Back.out' });
-    const fila = this.add.container(W / 2, H * 0.5);
-    const f = marcarConseguido(ajustarTam(this.add.image(-50, 0, 'marco-foto'), 72), foto);
-    const o = marcarConseguido(ajustarTam(this.add.image(50, 0, 'icono-objeto'), 72), objeto);
-    fila.add([f, o]);
-    fila.setAlpha(0);
-    this.tweens.add({ targets: fila, alpha: 1, delay: 500, duration: 400 });
+  // Al completar el nivel: ventana con la foto y el objeto del año (lo que falte, en silueta)
+  alCompletar({ nivel, foto, objeto }) {
     for (const b of Object.values(this.botones)) b.setVisible(false);
+    this.botonPausa.setVisible(false).disableInteractive();
+    this.recarga?.clear();
+    this.sinCanto = true;
+    const datosFoto = FOTOS.fotos.find((f) => f.nivel === nivel);
+    const claveFoto = `foto-${nivel}`; // la misma clave que el álbum
+    const mostrar = () => this.mostrarResumen({ nivel, foto, objeto, datosFoto, claveFoto });
+    // un momento para ver a Sofía celebrar; mientras, se carga la foto si se ha conseguido
+    this.time.delayedCall(900, () => {
+      if (foto && datosFoto?.archivo && !this.textures.exists(claveFoto)) {
+        this.load.image(claveFoto, datosFoto.archivo);
+        this.load.once('complete', mostrar);
+        this.load.start();
+      } else mostrar();
+    });
+  }
+
+  mostrarResumen({ nivel, foto, objeto, datosFoto, claveFoto }) {
+    const { width: W, height: H } = this.scale;
+    const pw = Math.min(840, W - 60);
+    const ph = 540;
+    this.add.rectangle(0, 0, W, H, 0x0d1b3d, 0.6).setOrigin(0).setInteractive();
+    const v = this.add.container(W / 2, H / 2);
+    const panel = this.add.graphics();
+    panel.fillStyle(0xfffaf0, 1).fillRoundedRect(-pw / 2, -ph / 2, pw, ph, 24);
+    panel.lineStyle(5, 0xe8b84a, 1).strokeRoundedRect(-pw / 2, -ph / 2, pw, ph, 24);
+    v.add(panel);
+    v.add(this.add.text(0, -ph / 2 + 56, texto('juego.nivelCompletado'), { fontFamily: FUENTE_TITULO, fontSize: '52px', color: '#1e4fa3', fontStyle: 'bold italic' }).setOrigin(0.5));
+
+    // el nivel 18 no tiene foto: solo se enseña el objeto
+    const xObjeto = datosFoto ? pw / 4 : 0;
+    const yCentro = -20;
+    const yEtiqueta = 140;
+    const etiqueta = (x, txt, tiene) => this.add.text(x, yEtiqueta, txt, { fontFamily: FUENTE, fontSize: '26px', color: tiene ? '#1e4fa3' : '#8c95ab', fontStyle: 'bold', align: 'center', wordWrap: { width: pw / 2 - 40 } }).setOrigin(0.5, 0);
+    if (datosFoto) {
+      const x = -pw / 4;
+      const fw = 260;
+      const fh = 195;
+      const marco = 12;
+      const polaroid = this.add.container(x, yCentro).setAngle(-3);
+      const papel = this.add.graphics();
+      if (foto) {
+        papel.fillStyle(0xffffff, 1).fillRect(-fw / 2 - marco, -fh / 2 - marco, fw + marco * 2, fh + marco * 2);
+        papel.lineStyle(2, 0xd5dbe8, 1).strokeRect(-fw / 2 - marco, -fh / 2 - marco, fw + marco * 2, fh + marco * 2);
+        polaroid.add(papel);
+        if (this.textures.exists(claveFoto)) {
+          const img = this.add.image(0, 0, claveFoto);
+          recortarCubriendo(img, fw, fh);
+          polaroid.add(img);
+        } else polaroid.add(ajustarTam(this.add.image(0, 0, 'marco-foto'), 150));
+      } else {
+        // silueta de la foto
+        papel.fillStyle(0x0d1b3d, 0.45).fillRect(-fw / 2 - marco, -fh / 2 - marco, fw + marco * 2, fh + marco * 2);
+        polaroid.add(papel);
+        polaroid.add(this.add.text(0, 0, '?', { fontFamily: FUENTE_TITULO, fontSize: '80px', color: '#fffaf0', fontStyle: 'bold' }).setOrigin(0.5).setAlpha(0.8));
+      }
+      v.add(polaroid);
+      v.add(etiqueta(x, foto ? texto('juego.fotoConseguida') : texto('juego.fotoNoEncontrada'), foto));
+    }
+    const datosObjeto = OBJETOS.objetos.find((o) => o.nivel === nivel);
+    const img = marcarConseguido(ajustarTam(this.add.image(xObjeto, yCentro, this.juego.texturaObjeto), 210), objeto);
+    v.add(img);
+    if (objeto) this.tweens.add({ targets: img, angle: { from: -5, to: 5 }, duration: 1400, yoyo: true, repeat: -1, ease: 'Sine.inOut' });
+    v.add(etiqueta(xObjeto, objeto ? datosObjeto?.nombre || texto('juego.objetoConseguido') : texto('juego.objetoNoEncontrado'), objeto));
+
+    let pulsado = false;
+    const continuar = () => {
+      if (pulsado) return;
+      pulsado = true;
+      this.juego.continuarTrasNivel();
+    };
+    v.add(new Boton(this, 0, ph / 2 - 56,texto('juego.continuar'), continuar, { ancho: 320, alto: 68, color: 0xe8b84a, borde: 0xffffff }));
+    // en el ordenador también con Intro o Espacio (tras un momento, para no saltarla sin querer)
+    this.time.delayedCall(700, () => {
+      this.input.keyboard?.once('keydown-ENTER', continuar);
+      this.input.keyboard?.once('keydown-SPACE', continuar);
+    });
+
+    v.setScale(0.7).setAlpha(0);
+    this.tweens.add({ targets: v, scale: 1, alpha: 1, duration: 320, ease: 'Back.out' });
   }
 
   alFinal() {

@@ -45,6 +45,7 @@ export class JuegoScene extends Phaser.Scene {
     this.tieneObjeto = false;
     this.muriendo = false;
     this.terminado = false;
+    this.saliendo = false;
     this.enFinal = false;
     this.mundoActual = 'A';
     this.actualizables = [];
@@ -814,14 +815,18 @@ export class JuegoScene extends Phaser.Scene {
     this.time.delayedCall(300, () => Audio.efecto('nivelCompletado'));
     Guardado.completarNivel(this.nivel, { foto: this.tieneFoto, objeto: this.tieneObjeto });
     this.nubeDeNotas(s.x, s.y - 60, 16);
-    this.events.emit('completado', { foto: this.tieneFoto, objeto: this.tieneObjeto });
-    this.time.delayedCall(3200, () => {
-      this.cameras.main.fadeOut(500, 13, 27, 61);
-      this.cameras.main.once('camerafadeoutcomplete', () => {
-        const siguiente = this.nivel + 1;
-        if (siguiente <= 18) this.scene.start('Transicion', { nivel: siguiente });
-        else this.scene.start('Menu');
-      });
+    // La interfaz muestra el resumen (foto y objeto) y llama a continuarTrasNivel al pulsar Continuar
+    this.events.emit('completado', { nivel: this.nivel, foto: this.tieneFoto, objeto: this.tieneObjeto });
+  }
+
+  continuarTrasNivel() {
+    if (this.saliendo) return;
+    this.saliendo = true;
+    this.cameras.main.fadeOut(500, 13, 27, 61);
+    this.cameras.main.once('camerafadeoutcomplete', () => {
+      const siguiente = this.nivel + 1;
+      if (siguiente <= 18) this.scene.start('Transicion', { nivel: siguiente });
+      else this.scene.start('Menu');
     });
   }
 
