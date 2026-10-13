@@ -1,6 +1,7 @@
 // Prepara las fotos, los objetos, los enemigos y el escenario para el juego a partir de los originales.
 // Uso: npm run imagenes
-//   originales/fotos/SofiaN.jpg|png    -> assets/photos/SofiaN.jpg   (máx. 1200 px, girada según EXIF)
+//   originales/fotos/SofiaN.jpg|png    -> assets/photos/SofiaN.jpg   (máx. 1200 px, girada según EXIF;
+//                                        sus medidas se apuntan en config/photos.json para dar forma a su hueco en el álbum)
 //   originales/objetos/<nombre>.png    -> assets/sprites/objetos/<nombre>.png (256x256, fondo transparente)
 //   originales/enemigos/<nombre>.svg|png -> assets/sprites/enemigos/<nombre>.svg (recortado, al alto de config/enemigos.json)
 //   originales/escenario/<nombre>.svg  -> assets/sprites/escenario/<nombre>.svg (encajado en el lienzo de ESCENARIO)
@@ -38,7 +39,17 @@ async function fotos() {
       .jpeg({ quality: 82, mozjpeg: true })
       .toFile(destino);
     console.log(`foto   ${f} -> ${parse(destino).base} (${info.width}x${info.height}, ${Math.round(info.size / 1024)} KB)`);
+    apuntarMedidas(`photos/${parse(destino).base}`, info.width, info.height);
   }
+}
+
+// Escribe "medidas": [ancho, alto] en la línea de la foto de config/photos.json, sin tocar el resto del archivo
+function apuntarMedidas(archivo, w, h) {
+  const ruta = join(raiz, 'config', 'photos.json');
+  const texto = readFileSync(ruta, 'utf8');
+  const linea = new RegExp(`("archivo": "${archivo.replace(/[.]/g, '\\.')}",)( "medidas": \\[[^\\]]*\\],)?`);
+  if (!linea.test(texto)) return console.log(`foto   ${archivo}: no está en config/photos.json, no se apuntan sus medidas`);
+  writeFileSync(ruta, texto.replace(linea, `$1 "medidas": [${w}, ${h}],`));
 }
 
 // Color de fondo: mediana de los píxeles del borde

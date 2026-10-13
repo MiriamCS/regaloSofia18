@@ -21,21 +21,21 @@ function posicionCasilla(scene, n, tam, total = NUM_NIVELES) {
   return { x, y };
 }
 
-// Casilla de las colecciones: papel si ya se tiene, azul si falta
-function casilla(scene, x, y, tam, { activa, alPulsar }) {
+// Casilla de las colecciones: papel si ya se tiene, azul si falta. Cuadrada salvo que se le dé otro alto.
+function casilla(scene, x, y, tam, { activa, alPulsar, alto = tam, radio = 18 }) {
   const c = scene.add.container(x, y);
   const g = scene.add.graphics();
-  g.fillStyle(activa ? HEX.papel : HEX.superficie, 1).fillRoundedRect(-tam / 2, -tam / 2, tam, tam, 18);
+  g.fillStyle(activa ? HEX.papel : HEX.superficie, 1).fillRoundedRect(-tam / 2, -alto / 2, tam, alto, radio);
   c.add(g);
-  c.setSize(tam, tam);
+  c.setSize(tam, alto);
   if (alPulsar) hacerPulsable(c, alPulsar, { escala: 0.94, nota: 'E5' });
   return c;
 }
 
 // Aviso de nuevo en la esquina de una casilla (si lo conseguido aún no se ha abierto)
-function avisoNuevo(scene, c, tam, coleccion, id) {
+function avisoNuevo(scene, c, tam, coleccion, id, alto = tam) {
   if (!Guardado.esNuevo(coleccion, id)) return null;
-  const a = insignia(scene, tam / 2 - 14, -tam / 2 + 14);
+  const a = insignia(scene, tam / 2 - 14, -alto / 2 + 14);
   c.add(a);
   return a;
 }
@@ -203,29 +203,32 @@ export class AlbumScene extends Phaser.Scene {
   create() {
     fondoMenu(this);
     cabecera(this, texto('galerias.album'), { destino: 'Albumes' });
-    const tam = 104;
+    // Cada hueco tiene la forma de su foto (medidas en photos.json), se tenga o no: cabe en anchoMax × altoMax
+    const anchoMax = 104;
+    const altoMax = 120;
+    const marco = 6;
     const fotos = this.fotos();
     fotos.forEach((f, i) => {
-      const { x, y } = posicionCasilla(this, i, tam, fotos.length);
+      const { x, y } = posicionCasilla(this, i, anchoMax, fotos.length);
       const tiene = f.tiene;
-      const c = casilla(this, x, y, tam, { activa: tiene, alPulsar: tiene ? () => this.ver(f, aviso) : null });
-      const aviso = avisoNuevo(this, c, tam, 'fotos', f.id);
-      if (tiene) {
-        if (this.textures.exists(f.clave)) {
-          const img = this.add.image(0, -8, f.clave);
-          recortarCubriendo(img, tam - 16, tam - 34);
-          c.add(img);
-        } else {
-          c.add(this.add.image(0, -8, 'marco-foto').setScale(0.6));
-        }
+      const img = tiene && this.textures.exists(f.clave) ? this.add.image(0, 0, f.clave) : null;
+      const [mw, mh] = img ? [img.width, img.height] : f.medidas || [4, 3];
+      const s = Math.min((anchoMax - marco * 2) / mw, (altoMax - marco * 2) / mh);
+      const fw = Math.round(mw * s);
+      const fh = Math.round(mh * s);
+      const c = casilla(this, x, y, fw + marco * 2, { activa: tiene, alto: fh + marco * 2, radio: 4, alPulsar: tiene ? () => this.ver(f, aviso) : null });
+      const aviso = avisoNuevo(this, c, fw + marco * 2, 'fotos', f.id, fh + marco * 2);
+      if (img) {
+        img.setDisplaySize(fw, fh);
+        c.addAt(img, 1);
+      } else if (tiene) {
+        c.addAt(ajustarTam(this.add.image(0, 0, 'marco-foto'), Math.min(fw, fh) * 0.8), 1);
       } else {
         // silueta con interrogación
-        const g = this.add.graphics();
-        g.fillStyle(HEX.noche, 1).fillRoundedRect(-30, -40, 60, 52, 8);
-        c.add(g);
-        c.add(this.add.text(0, -14, '?', { fontFamily: FUENTE_TITULO, fontSize: '38px', color: COLOR.azulClaro }).setOrigin(0.5));
+        c.addAt(this.add.graphics().fillStyle(HEX.noche, 1).fillRect(-fw / 2, -fh / 2, fw, fh), 1);
+        c.add(this.add.text(0, 0, '?', { fontFamily: FUENTE_TITULO, fontSize: '38px', color: COLOR.azulClaro }).setOrigin(0.5));
       }
-      c.add(this.add.text(0, tam / 2 - 14, f.etiqueta, { fontFamily: FUENTE, fontSize: '15px', color: tiene ? COLOR.tinta : COLOR.azulClaro }).setOrigin(0.5));
+      this.add.text(x, y + altoMax / 2 + 8, f.etiqueta, { fontFamily: FUENTE, fontSize: '15px', color: tiene ? COLOR.blanco : COLOR.azulClaro }).setOrigin(0.5, 0);
     });
   }
 
@@ -236,28 +239,48 @@ export class AlbumScene extends Phaser.Scene {
     const capa = this.add.container(0, 0).setDepth(100);
     const velo = this.add.rectangle(0, 0, W, H, HEX.tinta, 0.85).setOrigin(0).setInteractive();
     capa.add(velo);
-    const aw = Math.min(cfg.ancho, W - 120);
-    const ah = Math.min(cfg.alto, H - 170);
+    // ancho y alto son el máximo: el marco toma las proporciones de la foto, que se ve entera
+    let aw = Math.min(cfg.ancho, W - 120);
+    let ah = Math.min(cfg.alto, H - 170);
     const marco = cfg.marco;
+    const hueco = 14; // entre la foto y el pie
+    const img = this.textures.exists(f.clave) ? this.add.image(0, 0, f.clave) : null;
+    // el pie va debajo, en el papel, ajustado al ancho de la foto (nunca más estrecho que 340)
+    const pie = this.add.text(0, 0, f.pie || '', { fontFamily: FUENTE, fontSize: '24px', color: COLOR.tinta, align: 'center', wordWrap: { width: Math.max(aw, 340) } }).setOrigin(0.5, 0);
+    const altoPapel = () => marco + ah + hueco + pie.height + marco * 1.5;
+    if (img) {
+      // si el pie no cabe en la pantalla, la foto encoge (y el pie se vuelve a repartir en su nuevo ancho)
+      let s = Math.min(aw / img.width, ah / img.height);
+      for (let i = 0; i < 4; i++) {
+        aw = img.width * s;
+        ah = img.height * s;
+        pie.setWordWrapWidth(Math.max(aw, 340));
+        const sobra = altoPapel() - (H - 40);
+        if (sobra <= 0) break;
+        s *= (ah - sobra) / ah;
+      }
+      img.setScale(s);
+    }
+    const ancho = Math.max(aw, pie.width) + marco * 2;
+    const alto = altoPapel();
+    const arriba = -alto / 2;
+    const yFoto = arriba + marco + ah / 2;
     const giro = Phaser.Math.Between(-cfg.giroMaxGrados, cfg.giroMaxGrados);
-    const foto = this.add.container(W / 2, H / 2 - 30).setAngle(giro);
+    const foto = this.add.container(W / 2, H / 2).setAngle(giro);
     const papel = this.add.graphics();
-    papel.fillStyle(HEX.blanco, 1).fillRect(-aw / 2 - marco, -ah / 2 - marco, aw + marco * 2, ah + marco * 2 + 56);
+    papel.fillStyle(HEX.blanco, 1).fillRect(-ancho / 2, arriba, ancho, alto);
     foto.add(papel);
-    if (this.textures.exists(f.clave)) {
-      const img = this.add.image(0, 0, f.clave);
-      if (cfg.recorte === 'contener') img.setScale(Math.min(aw / img.width, ah / img.height));
-      else recortarCubriendo(img, aw, ah);
-      foto.add(img);
+    if (img) {
+      foto.add(img.setY(yFoto));
     } else {
       const g = this.add.graphics();
-      g.fillStyle(HEX.hielo, 1).fillRect(-aw / 2, -ah / 2, aw, ah);
-      g.lineStyle(4, HEX.azulClaro, 1).strokeRect(-aw / 2 + 20, -ah / 2 + 20, aw - 40, ah - 40);
+      g.fillStyle(HEX.hielo, 1).fillRect(-aw / 2, yFoto - ah / 2, aw, ah);
+      g.lineStyle(4, HEX.azulClaro, 1).strokeRect(-aw / 2 + 20, yFoto - ah / 2 + 20, aw - 40, ah - 40);
       foto.add(g);
-      foto.add(this.add.image(0, -20, 'marco-foto').setScale(1.4));
-      foto.add(this.add.text(0, 70, `${f.etiqueta}: foto pendiente`, { fontFamily: FUENTE, fontSize: '24px', color: COLOR.real }).setOrigin(0.5));
+      foto.add(this.add.image(0, yFoto - 20, 'marco-foto').setScale(1.4));
+      foto.add(this.add.text(0, yFoto + 70, `${f.etiqueta}: foto pendiente`, { fontFamily: FUENTE, fontSize: '24px', color: COLOR.real }).setOrigin(0.5));
     }
-    foto.add(this.add.text(0, ah / 2 + marco + 22, f.pie, { fontFamily: FUENTE, fontSize: '24px', color: COLOR.tinta, align: 'center', wordWrap: { width: aw } }).setOrigin(0.5));
+    foto.add(pie.setY(yFoto + ah / 2 + hueco));
     capa.add(foto);
     foto.setScale(0.6).setAlpha(0);
     this.tweens.add({ targets: foto, scale: 1, alpha: 1, duration: 260, ease: 'Back.out' });
@@ -296,14 +319,18 @@ export class VitrinaScene extends Phaser.Scene {
     const { width: W, height: H } = this.scale;
     const capa = this.add.container(0, 0).setDepth(100);
     const velo = this.add.rectangle(0, 0, W, H, HEX.tinta, 0.85).setOrigin(0).setInteractive();
+    // el texto va bajo el nombre; si ocupa muchas líneas, el panel crece hacia abajo y todo sube para seguir centrado
+    const desc = this.add.text(W / 2, 0, o.texto, { fontFamily: FUENTE, fontSize: '22px', color: COLOR.tinta, align: 'center', wordWrap: { width: 640 } }).setOrigin(0.5, 0);
+    const abajo = Math.max(230, 104 + desc.height + 28);
+    const y0 = H / 2 - (abajo - 230) / 2;
+    desc.setY(y0 + 104);
     const panel = this.add.graphics();
-    panel.fillStyle(HEX.papel, 1).fillRoundedRect(W / 2 - 360, H / 2 - 230, 720, 460, 24);
-    panel.lineStyle(5, HEX.amarillo, 1).strokeRoundedRect(W / 2 - 360, H / 2 - 230, 720, 460, 24);
-    const img = this.add.image(W / 2, H / 2 - 80, claveObjeto(o));
+    panel.fillStyle(HEX.papel, 1).fillRoundedRect(W / 2 - 360, y0 - 230, 720, 230 + abajo, 24);
+    panel.lineStyle(5, HEX.amarillo, 1).strokeRoundedRect(W / 2 - 360, y0 - 230, 720, 230 + abajo, 24);
+    const img = this.add.image(W / 2, y0 - 80, claveObjeto(o));
     img.setScale(220 / Math.max(img.width, img.height));
     this.tweens.add({ targets: img, angle: { from: -5, to: 5 }, duration: 1400, yoyo: true, repeat: -1, ease: 'Sine.inOut' });
-    const nombre = this.add.text(W / 2, H / 2 + 60, o.nombre, { fontFamily: FUENTE_TITULO, fontSize: '36px', color: COLOR.real, fontStyle: 'bold' }).setOrigin(0.5);
-    const desc = this.add.text(W / 2, H / 2 + 130, o.texto, { fontFamily: FUENTE, fontSize: '22px', color: COLOR.tinta, align: 'center', wordWrap: { width: 640 } }).setOrigin(0.5);
+    const nombre = this.add.text(W / 2, y0 + 60, o.nombre, { fontFamily: FUENTE_TITULO, fontSize: '36px', color: COLOR.real, fontStyle: 'bold' }).setOrigin(0.5);
     capa.add([velo, panel, img, nombre, desc]);
     velo.on('pointerup', () => capa.destroy());
   }

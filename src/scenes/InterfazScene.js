@@ -5,7 +5,6 @@ import { Controles } from '../systems/Controles.js';
 import { FUENTE, FUENTE_TITULO, COLOR, HEX, ajustarTam } from '../estilo.js';
 import { Audio } from '../audio/Audio.js';
 import { Boton } from '../ui/Boton.js';
-import { recortarCubriendo } from './MenusScene.js';
 
 const ESC = 0.5;
 const TAM_ICONO = 40; // px en pantalla de los coleccionables junto a las velas
@@ -209,20 +208,24 @@ export class InterfazScene extends Phaser.Scene {
     const etiqueta = (x, txt, tiene) => this.add.text(x, yEtiqueta, txt, { fontFamily: FUENTE, fontSize: '26px', color: tiene ? '#1e4fa3' : '#8c95ab', fontStyle: 'bold', align: 'center', wordWrap: { width: pw / 2 - 40 } }).setOrigin(0.5, 0);
     if (datosFoto) {
       const x = -pw / 4;
-      const fw = 260;
-      const fh = 195;
+      let fw = 260;
+      let fh = 195;
       const marco = 12;
       const polaroid = this.add.container(x, yCentro).setAngle(-3);
       const papel = this.add.graphics();
       if (foto) {
+        // la foto se ve entera y el marco toma sus proporciones, sin pasar de 300×250
+        const img = this.textures.exists(claveFoto) ? this.add.image(0, 0, claveFoto) : null;
+        if (img) {
+          img.setScale(Math.min(300 / img.width, 250 / img.height));
+          fw = img.displayWidth;
+          fh = img.displayHeight;
+        }
         papel.fillStyle(0xffffff, 1).fillRect(-fw / 2 - marco, -fh / 2 - marco, fw + marco * 2, fh + marco * 2);
         papel.lineStyle(2, 0xd5dbe8, 1).strokeRect(-fw / 2 - marco, -fh / 2 - marco, fw + marco * 2, fh + marco * 2);
         polaroid.add(papel);
-        if (this.textures.exists(claveFoto)) {
-          const img = this.add.image(0, 0, claveFoto);
-          recortarCubriendo(img, fw, fh);
-          polaroid.add(img);
-        } else polaroid.add(ajustarTam(this.add.image(0, 0, 'marco-foto'), 150));
+        if (img) polaroid.add(img);
+        else polaroid.add(ajustarTam(this.add.image(0, 0, 'marco-foto'), 150));
       } else {
         // silueta de la foto
         papel.fillStyle(0x0d1b3d, 0.45).fillRect(-fw / 2 - marco, -fh / 2 - marco, fw + marco * 2, fh + marco * 2);
