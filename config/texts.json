@@ -56,6 +56,7 @@
     "monstruos": "Enciclopedia de monstruos",
     "queHace": "Qué te hace",
     "comoLibrarte": "Cómo librarte",
+    "ojo": "¡Ojo!",
     "niveles": "Niveles",
     "noConseguida": "Todavía no la has encontrado",
     "noConseguido": "Todavía no lo has encontrado",
@@ -69,19 +70,19 @@
     "volver": "Volver",
     "cerrar": "Cerrar"
   },
-  "_monstruos": "Fichas de la colección de monstruos, en el orden en que aparecen. La clave es el dibujo (sprite) del enemigo.",
+  "_monstruos": "Fichas de la colección de monstruos, en el orden en que aparecen. La clave es el dibujo (sprite) del enemigo. 'ojo' (opcional): variantes que solo salen en algunos niveles.",
   "monstruos": {
-    "pato": { "nombre": "El patito de goma", "efecto": "Te empuja hacia atrás, pero no te apaga ninguna vela.", "truco": "Salta encima o tírale una caja. Si cantas cerca, se queda dormido." },
-    "cochecito": { "nombre": "El cochecito", "efecto": "Te empuja hacia atrás, pero no te apaga ninguna vela.", "truco": "Salta encima o tírale una caja. Si cantas cerca, se queda dormido." },
-    "urraca": { "nombre": "La urraca", "efecto": "Te roba la foto o el objeto que lleves y sale volando con él.", "truco": "Alcánzala y tócala para recuperarlo." },
-    "mochila": { "nombre": "La mochila", "efecto": "Te empuja hacia atrás, pero no te apaga ninguna vela.", "truco": "Salta encima o tírale una caja. Si cantas cerca, se queda dormida." },
-    "mosquito": { "nombre": "El mosquito", "efecto": "Si te pica, te apaga una vela.", "truco": "Salta encima. Si cantas cerca, sale huyendo." },
-    "avion-papel": { "nombre": "El avión de papel", "efecto": "Si te da, te apaga una vela (los más afilados, dos).", "truco": "Salta encima. Si cantas cerca, cambia de rumbo." },
-    "boligrafo": { "nombre": "El bolígrafo gigante", "efecto": "No hace daño, pero te corta el paso.", "truco": "Canta cerca y se apartará." },
-    "metronomo": { "nombre": "El metrónomo desafinado", "efecto": "Te empuja hacia atrás. Y si cantas cerca, te cambia la izquierda por la derecha durante unos segundos.", "truco": "Tírale una caja... y no le cantes." },
-    "despertador": { "nombre": "El despertador", "efecto": "Te empuja hacia atrás. Y si cantas cerca, te cambia la izquierda por la derecha durante unos segundos.", "truco": "Tírale una caja... y no le cantes." },
-    "examenes": { "nombre": "La pila de exámenes", "efecto": "No hace daño, pero te corta el paso.", "truco": "Canta cerca y se apartará." },
-    "notificacion": { "nombre": "La notificación", "efecto": "Si te da, te apaga una vela.", "truco": "Salta encima. Si cantas cerca, sale huyendo." }
+    "pato": { "nombre": "El patito de goma", "efecto": "Pasea de un lado a otro y se da la vuelta al llegar a una pared o al borde del suelo. Si te choca, te empuja hacia atrás, pero no te apaga ninguna vela.", "truco": "Sáltale encima o déjale caer una caja y se convierte en notas. Si le cantas cerca, se duerme unos segundos: dormido puedes pasar a través de él, pero tampoco se le puede aplastar.", "ojo": "Los patos de la piscina no se dejan aplastar: rebotas en ellos. A uno le puedes cantar la nana, pero a los otros dos les enfada y corren el doble de rápido un rato." },
+    "cochecito": { "nombre": "El cochecito", "efecto": "Va y viene más rápido que el patito y se da la vuelta en las paredes y en los bordes. Si te ve delante y cerca, embiste: acelera de golpe. Si te choca, te empuja hacia atrás (cuidado cerca de un hueco), pero no te apaga ninguna vela.", "truco": "Sáltale encima o déjale caer una caja. Mejor por la espalda, o salta antes de que te alcance. Si le cantas cerca, se duerme unos segundos y puedes pasar a través de él (dormido no se le puede aplastar)." },
+    "urraca": { "nombre": "La urraca", "efecto": "Pasea despacio. Si te toca mientras llevas la foto o el objeto del nivel, te lo roba (primero la foto) y sale corriendo lejos de ti, saltando lo que encuentra. Si no llevas nada, solo te empuja. Nunca apaga velas.", "truco": "No se puede derrotar. Alcánzala y tócala, o sáltale encima, para recuperar lo robado; luego se queda quieta un momento. Corre más que tú andando, así que corre. Y no le cantes: se enfada y va el doble de rápido unos segundos.", "ojo": "En el jardín del banquete hay una urraca más grande y todavía más rápida." },
+    "mochila": { "nombre": "La mochila", "efecto": "Pasea de un lado a otro y se da la vuelta en las paredes y en los bordes. Si te choca, te empuja hacia atrás (cuidado si hay pinchos detrás), pero no te apaga ninguna vela.", "truco": "Sáltale encima o déjale caer una caja. Es muy dormilona: si le cantas cerca, se duerme el doble que los demás. Dormida puedes pasar a través de ella, pero no aplastarla." },
+    "mosquito": { "nombre": "El mosquito", "efecto": "Vuela de un lado a otro subiendo y bajando. Si te pica, te apaga una vela.", "truco": "Sáltale encima: es la única forma de eliminarlo (las cajas no le hacen nada). Si le cantas cerca, se duerme en el aire unos segundos: dormido no pica y puedes pasar a través de él, pero tampoco se le puede aplastar." },
+    "avion-papel": { "nombre": "El avión de papel", "efecto": "Planea de un lado a otro subiendo y bajando. Si te da, te apaga una vela.", "truco": "Sáltale encima: es la única forma de eliminarlo. Si le cantas cerca, cambia de rumbo y se aleja un momento, pero luego vuelve. También puedes esperar a que se aleje y pasar.", "ojo": "En el volcán hay uno más grande que los demás: ese te apaga dos velas." },
+    "boligrafo": { "nombre": "El bolígrafo gigante", "efecto": "No se mueve ni hace daño, pero es como una pared: te corta el paso y no te quita el ojo de encima.", "truco": "No se puede derrotar. Cántale cerca: dice «Uy, perdón...», se hace a un lado, se vuelve transparente y ya puedes pasar a través. No vuelve a su sitio.", "ojo": "El bolígrafo del profe dormilón no se aparta: si le cantas, se duerme ahí mismo y te toca buscar otro camino." },
+    "metronomo": { "nombre": "El metrónomo desafinado", "efecto": "Pasea despacio, balanceándose. Si te choca, te empuja hacia atrás sin apagarte velas. Y si cantas cerca de él, te cambia la izquierda por la derecha durante 4 segundos.", "truco": "Déjale caer una caja encima. Saltarle encima no sirve: rebotas. Y no le cantes.", "ojo": "El metrónomo grande del huerto sí se deja aplastar de un salto. Los de la audición no te cambian los controles: si les cantas, se aceleran y van el doble de rápido un rato." },
+    "despertador": { "nombre": "El despertador", "efecto": "Pasea muy despacio. Si te choca, te empuja hacia atrás sin apagarte velas. Y si cantas cerca de él, te cambia la izquierda por la derecha durante 4 segundos.", "truco": "Déjale caer una caja encima. Saltarle encima no sirve: rebotas. Y canta lejos de él." },
+    "examenes": { "nombre": "La pila de exámenes", "efecto": "No hace daño, pero es como una pared: te corta el paso.", "truco": "Empújala despacio, como una caja pesada, o cántale cerca y desaparecerá en una nube de notas. Si la empujas a un mal sitio, siempre puedes cantarle.", "ojo": "En la biblioteca hay pilas mucho más altas, pero se empujan y desaparecen igual." },
+    "notificacion": { "nombre": "La notificación", "efecto": "Revolotea subiendo y bajando. Hay de tres tipos: las que se quedan en su sitio, las que van y vienen, y las grandes, que van y vienen más deprisa. Las que se mueven son muy pesadas: si te tienen cerca, van despacito a por ti. Si te da cualquiera de ellas, te apaga una vela.", "truco": "Sáltale encima: es la única forma de eliminarla, sea del tamaño que sea. Si le cantas cerca, se aparta volando un momento, pero luego vuelve. Y no te quedes quieta: si te alejas, acaba volviendo a su ruta." }
   },
   "juego": {
     "fotoConseguida": "¡Foto encontrada!",
@@ -131,7 +132,7 @@
         "hola": "¡Sofía, ya andas de pie! Ahora solo tienes una vela, así que mira bien antes de saltar.",
         "arenero": "La alfombra del salón: montañas de cojines y huecos entre ellas. Paso a paso, Sofía.",
         "columpio": "No saltes a lo loco: espera a que el trenecito venga hacia ti. Y el de arriba del todo esconde algo... si te atreves.",
-        "patos": "Los patos de goma de la bañera se han escapado por la casa, y se han traído a sus amigos los cochecitos. Ninguno hace daño, pero empujan... y cerca de un hueco, un empujón es un viaje.",
+        "patos": "Los patos de goma de la bañera se han escapado por la casa, y se han traído a sus amigos los cochecitos. Ninguno hace daño, pero empujan... y cerca de un hueco, un empujón es un viaje. Y ojo con los cochecitos: si te ven delante, aceleran.",
         "aparcado": "Cochecito aparcado. No se mueve de ahí. Palabra de cochecito.",
         "tobogan": "La escalera de casa se baja saltando, no rodando. Debajo dicen que se perdió un chupete..."
       }
@@ -254,7 +255,7 @@
         "poraquino": "POR AQUÍ NO ➡ (Lo pintó alguien que lleva tres semanas sin salir de casa y con los controles al revés. Como tú ahora mismo.)",
         "alreves": "De vuelta al insti, con mascarilla y distancia de seguridad. Esta escalera se sube por el techo: cuando estés boca abajo, saltar es hacia abajo y los agujeros del techo dan al cielo. ¡No mires arriba! Bueno, abajo. Bueno, tú me entiendes.",
         "final": "Último pasillo. Si te sale todo al revés, es que vas bien. Ya queda menos para quitarnos la mascarilla.",
-        "examenes": "Una pila de exámenes online te corta el paso. No muerde ni empuja, pero no hay quien la salte. Cántale y se apartará... con los controles al revés, eso sí."
+        "examenes": "Una pila de exámenes online te corta el paso. No muerde ni empuja, pero no hay quien la salte. Empújala despacito o cántale y se esfumará... con los controles al revés, eso sí."
       }
     },
     {
@@ -271,7 +272,7 @@
     {
       "nombre": "Las redes sociales",
       "pistas": {
-        "hola": "¡Sofía, bienvenida a las redes sociales! Tu móvil ha crecido más que tú y no para de sonar. A las notificaciones: sáltales encima o cántales.",
+        "hola": "¡Sofía, bienvenida a las redes sociales! Tu móvil ha crecido más que tú y no para de sonar. Las notificaciones son pesadas: si te ven cerca, vienen a por ti. Sáltales encima; si les cantas, solo se apartan un momento.",
         "movil": "Estamos dentro del móvil. Regla de oro: no te fíes de NINGÚN aviso. Ni del suelo. Ni de mí, si me apuras.",
         "metaFalsa": "¡Es broma! Te quedan tres tramos.",
         "legos": "Cuidado: piezas de Lego en el suelo de tu cuarto. Duelen el triple.",

@@ -364,16 +364,18 @@ export class JuegoScene extends Phaser.Scene {
     fis.add.collider(this.cajas, this.cajas);
     // Sofía no se deja empujar: si cae encima de una caja (o la golpea desde abajo), la hundiría en lo que tenga
     // debajo. En los choques verticales la caja no se mueve y es Sofía la que se coloca; de lado, la empuja.
-    fis.add.collider(s, this.cajas, (sofia, caja) => {
+    const empujar = (sofia, caja) => {
       contacto();
       this.alTocarCaja(caja);
-    }, (sofia, caja) => {
+    };
+    const soloDeLado = (sofia, caja) => {
       const b = s.body;
       const cb = caja.body;
       const vertical = b.prev.y + b.height <= cb.prev.y + 8 || b.prev.y >= cb.prev.y + cb.height - 8;
       cb.immovable = caja.fija || vertical;
       return true;
-    });
+    };
+    fis.add.collider(s, this.cajas, empujar, soloDeLado);
     // plataformas especiales: cuerpo en su 'zona'
     const zonasEspeciales = [...this.movibles, ...this.pisables, ...(this.pisablesFijos || [])].map((p) => p.zona).filter((z, i, a) => a.indexOf(z) === i);
     const esNube = (z) => z.height <= 24;
@@ -394,7 +396,9 @@ export class JuegoScene extends Phaser.Scene {
       fis.add.collider(e, this.nubes, null, unaDireccion);
       fis.add.collider(e, zonasEspeciales);
       fis.add.collider(e, this.cajas, (en, caja) => this.cajaSobreEnemigo(caja, en));
-      if (e.tipo === 'bloqueador') fis.add.collider(s, e, contacto);
+      // los que se dejan empujar (pila de exámenes) son como una caja pesada
+      if (e.tipo === 'bloqueador' && e.def.empujable) fis.add.collider(s, e, empujar, soloDeLado);
+      else if (e.tipo === 'bloqueador') fis.add.collider(s, e, contacto);
       else fis.add.overlap(s, e, () => this.tocarEnemigo(e));
     }
     // un peligro que avanza (marea...) no deja quedarse donde se está: cuenta como caída

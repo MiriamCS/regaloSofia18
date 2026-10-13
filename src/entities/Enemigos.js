@@ -8,6 +8,10 @@
 //   eliminable: lista con 'salto', 'caja', 'canto' (p.ej. "salto,caja")
 //   canto: reacción al cantar cerca: dormir | huir | enfadar | apartar | invertir | nada
 //   danio: velas que quita (voladores; por defecto 1)
+//   dormirMs: cuánto duerme al cantarle (por defecto JUEGO.canto.dormirMs)
+//   embiste: acelera cuando ve a Sofía delante y cerca (patrulleros)
+//   insistente: se acerca despacio a Sofía cuando la tiene cerca (voladores que se mueven)
+//   empujable: Sofía lo empuja despacio, como una caja pesada (bloqueadores)
 import Phaser from 'phaser';
 import { JUEGO, TILE, ENEMIGOS } from '../config.js';
 import { FUENTE } from '../estilo.js';
@@ -17,17 +21,31 @@ const ESC = 0.5;
 
 const POR_DEFECTO = {
   patrullero: { sprite: 'pato', velocidad: 70, rango: 3, eliminable: 'salto,caja', canto: 'dormir' },
-  // al cantarles, los voladores huyen (como dicen sus fichas): solo se eliminan saltándoles encima
+  // al cantarles, los voladores huyen (salvo el mosquito, que se duerme): solo se eliminan saltándoles encima
   volador: { sprite: 'mosquito', velocidad: 60, rango: 3, amplitud: 1, periodo: 1800, eliminable: 'salto', canto: 'huir' },
   bloqueador: { sprite: 'boligrafo', eliminable: '', canto: 'apartar' },
   ladron: { sprite: 'urraca', velocidad: 110, rango: 4, eliminable: '', canto: 'enfadar' },
   desafinado: { sprite: 'metronomo', velocidad: 40, rango: 2, eliminable: 'caja', canto: 'invertir' },
 };
 
+// Lo que distingue a monstruos de la misma clase (se aplica antes que las propiedades del nivel)
+const POR_SPRITE = {
+  cochecito: { embiste: true },
+  mochila: { dormirMs: 7000 },
+  mosquito: { canto: 'dormir' },
+  notificacion: { insistente: true },
+  // al cantarle desaparece del todo: aunque la hayas empujado a un mal sitio, nunca bloquea el nivel
+  examenes: { empujable: true, eliminable: 'canto' },
+};
+// Embestida del cochecito: a qué distancia te ve (tiles por delante, y de alto) y cuánto acelera
+const EMBESTIDA = { lejos: 4, alto: 1, factor: 1.8 };
+// Notificación insistente: a qué distancia te nota (tiles), cuánto se aleja de su ruta para seguirte y a qué parte de su velocidad
+const INSISTENTE = { radio: 5, correa: 3, factor: 0.6 };
+
 export class Enemigo extends Phaser.Physics.Arcade.Image {
   constructor(scene, o) {
     const tipo = o.p.clase || 'patrullero';
-    const def = { ...POR_DEFECTO[tipo], ...o.p };
+    const def = { ...POR_DEFECTO[tipo], ...POR_SPRITE[o.p.sprite || POR_DEFECTO[tipo].sprite], ...o.p };
     super(scene, o.pieX, o.pieY, def.sprite);
     this.tipo = tipo;
     this.def = def;
@@ -56,7 +74,13 @@ export class Enemigo extends Phaser.Physics.Arcade.Image {
       this.amplitud = (def.amplitud || 0) * TILE;
       this.periodo = def.periodo || 1800;
     }
-    if (tipo === 'bloqueador') {
+    if (tipo === 'bloqueador' && def.empujable) {
+      // como las cajas: cae, frena en seco al dejar de empujarlo y Sofía va lenta al empujar (pesada)
+      b.pushable = true;
+      b.setDragX(3000);
+      b.setMaxVelocity(400, 1000);
+      this.pesada = true;
+    } else if (tipo === 'bloqueador') {
       b.setAllowGravity(false);
       b.setImmovable(true);
     }
@@ -89,9 +113,10 @@ export class Enemigo extends Phaser.Physics.Arcade.Image {
         else if (b.blocked.right) this.dir = -1;
         else if (this.rango && Math.abs(this.x - this.inicioX) > this.rango) this.dir = this.x > this.inicioX ? -1 : 1;
         else if (b.blocked.down && !this.haySueloDelante()) this.dir *= -1;
-        b.setVelocityX(this.dir * this.vel * enfado);
+        const embiste = this.def.embiste && this.teVeDelante(sofia) ? EMBESTIDA.factor : 1;
+        b.setVelocityX(this.dir * this.vel * enfado * embiste);
         this.mirarHacia(this.dir);
-        this.setAngle(Math.sin(t / 110 + this.t0) * 5);
+        this.setAngle(Math.sin(t / (embiste > 1 ? 50 : 110) + this.t0) * 5);
         if (this.tipo === 'desafinado') this.setAngle(Math.sin(t / 90) * 14);
         break;
       }
@@ -99,6 +124,16 @@ export class Enemigo extends Phaser.Physics.Arcade.Image {
         const tt = t + this.t0;
         if (this.huyendoHasta > t) {
           b.setVelocity(Math.sign(this.x - sofia.x) * 260, -140);
+        } else if (this.def.insistente && this.vel && this.tienesCerca(sofia, INSISTENTE.radio * TILE)) {
+          // va hacia Sofía, sin alejarse demasiado de su ruta
+          const correa = this.rango + INSISTENTE.correa * TILE;
+          const ox = Phaser.Math.Clamp(sofia.x, this.inicioX - correa, this.inicioX + correa);
+          const oy = Phaser.Math.Clamp(sofia.y - 30, this.inicioY - 2 * TILE, this.inicioY + 2 * TILE);
+          const v = new Phaser.Math.Vector2(ox - this.x, oy - this.y);
+          if (v.length() > 4) v.setLength(this.vel * INSISTENTE.factor);
+          else v.reset();
+          b.setVelocity(v.x, v.y);
+          if (v.x) this.dir = Math.sign(v.x);
         } else {
           const objetivoY = this.inicioY + Math.sin((tt / this.periodo) * Math.PI * 2) * this.amplitud;
           if (this.rango && Math.abs(this.x - this.inicioX) > this.rango) this.dir = this.x > this.inicioX ? -1 : 1;
@@ -127,7 +162,9 @@ export class Enemigo extends Phaser.Physics.Arcade.Image {
         break;
       }
       case 'bloqueador':
-        // no se mueve, pero mira a Sofía
+        // empujado a un hueco: se pierde (como si le hubieras cantado)
+        if (this.def.empujable && this.y > this.scene.datos.alto + 200) this.derrotar();
+        // no se mueve solo, pero mira a Sofía
         this.mirarHacia(sofia.x - this.x);
         this.setAngle(Math.sin(t / 500) * 1.5);
         break;
@@ -140,6 +177,16 @@ export class Enemigo extends Phaser.Physics.Arcade.Image {
   mirarHacia(dir) {
     if (this.mira === 'frente' || !dir) return;
     this.setFlipX(this.mira === 'derecha' ? dir < 0 : dir > 0);
+  }
+
+  // Sofía está por delante, cerca y más o menos a su altura
+  teVeDelante(sofia) {
+    const dx = (sofia.x - this.x) * this.dir;
+    return dx > 0 && dx < EMBESTIDA.lejos * TILE && Math.abs(sofia.y - this.y) < EMBESTIDA.alto * TILE;
+  }
+
+  tienesCerca(sofia, radio) {
+    return Phaser.Math.Distance.Between(sofia.x, sofia.y - 30, this.x, this.y - this.displayHeight / 2) < radio;
   }
 
   haySueloDelante(dir = this.dir) {
@@ -157,7 +204,7 @@ export class Enemigo extends Phaser.Physics.Arcade.Image {
     }
     switch (this.reaccion) {
       case 'dormir':
-        this.dormidoHasta = t + (JUEGO.canto.dormirMs || 3500);
+        this.dormidoHasta = t + (this.def.dormirMs || JUEGO.canto.dormirMs || 3500);
         break;
       case 'huir':
         this.huyendoHasta = t + 1500;

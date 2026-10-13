@@ -371,31 +371,41 @@ export class MonstruosScene extends Phaser.Scene {
   ver(id, aviso) {
     quitarAviso(aviso, 'monstruos', id);
     const { width: W, height: H } = this.scale;
-    const pw = Math.min(840, W - 60);
-    const ph = 380;
+    const pw = Math.min(900, W - 60);
     const capa = this.add.container(0, 0).setDepth(100);
     const velo = this.add.rectangle(0, 0, W, H, HEX.tinta, 0.85).setOrigin(0).setInteractive();
     const panel = this.add.graphics();
-    panel.fillStyle(HEX.papel, 1).fillRoundedRect(W / 2 - pw / 2, H / 2 - ph / 2, pw, ph, 24);
-    panel.lineStyle(5, HEX.amarillo, 1).strokeRoundedRect(W / 2 - pw / 2, H / 2 - ph / 2, pw, ph, 24);
     capa.add([velo, panel]);
+    // ficha a la derecha del dibujo: nombre, qué te hace, cómo librarte y, si hay, las variantes de algunos niveles
+    const x = W / 2 - pw / 2 + 330;
+    const ancho = pw - 330 - 40;
+    const textos = [];
+    let y = 0;
+    const linea = (txt, estilo, hueco) => {
+      const t = this.add.text(x, y, txt, { fontFamily: FUENTE, wordWrap: { width: ancho }, lineSpacing: 2, ...estilo });
+      textos.push(t);
+      y += t.height + hueco;
+    };
+    const ficha = TEXTOS.monstruos[id];
+    linea(ficha.nombre, { fontFamily: FUENTE_TITULO, fontSize: '34px', color: COLOR.real, fontStyle: 'bold' }, 16);
+    linea(texto('galerias.queHace'), { fontSize: '19px', color: COLOR.vivo, fontStyle: 'bold' }, 2);
+    linea(ficha.efecto, { fontSize: '20px', color: COLOR.tinta }, 14);
+    linea(texto('galerias.comoLibrarte'), { fontSize: '19px', color: COLOR.vivo, fontStyle: 'bold' }, 2);
+    linea(ficha.truco, { fontSize: '20px', color: COLOR.tinta }, 14);
+    if (ficha.ojo) {
+      linea(texto('galerias.ojo'), { fontSize: '19px', color: COLOR.vivo, fontStyle: 'bold' }, 2);
+      linea(ficha.ojo, { fontSize: '20px', color: COLOR.tinta }, 14);
+    }
+    // el panel crece con el texto (sin pasar de la pantalla) y queda centrado
+    const ph = Math.min(H - 20, Math.max(380, y - 14 + 64));
+    const arriba = H / 2 - ph / 2;
+    panel.fillStyle(HEX.papel, 1).fillRoundedRect(W / 2 - pw / 2, arriba, pw, ph, 24);
+    panel.lineStyle(5, HEX.amarillo, 1).strokeRoundedRect(W / 2 - pw / 2, arriba, pw, ph, 24);
     const img = ajustarTam(this.add.image(W / 2 - pw / 2 + 170, H / 2, id), 240);
     this.tweens.add({ targets: img, angle: { from: -5, to: 5 }, duration: 1400, yoyo: true, repeat: -1, ease: 'Sine.inOut' });
     capa.add(img);
-    // ficha a la derecha del dibujo: nombre, qué te hace y cómo librarte
-    const x = W / 2 - pw / 2 + 330;
-    const ancho = pw - 330 - 40;
-    let y = H / 2 - ph / 2 + 40;
-    const linea = (txt, estilo, hueco) => {
-      const t = this.add.text(x, y, txt, { fontFamily: FUENTE, wordWrap: { width: ancho }, ...estilo });
-      capa.add(t);
-      y += t.height + hueco;
-    };
-    linea(texto(`monstruos.${id}.nombre`), { fontFamily: FUENTE_TITULO, fontSize: '36px', color: COLOR.real, fontStyle: 'bold' }, 22);
-    linea(texto('galerias.queHace'), { fontSize: '20px', color: COLOR.vivo, fontStyle: 'bold' }, 4);
-    linea(texto(`monstruos.${id}.efecto`), { fontSize: '23px', color: COLOR.tinta }, 22);
-    linea(texto('galerias.comoLibrarte'), { fontSize: '20px', color: COLOR.vivo, fontStyle: 'bold' }, 4);
-    linea(texto(`monstruos.${id}.truco`), { fontSize: '23px', color: COLOR.tinta }, 0);
+    for (const t of textos) t.y += arriba + 32;
+    capa.add(textos);
     velo.on('pointerup', () => capa.destroy());
   }
 }
