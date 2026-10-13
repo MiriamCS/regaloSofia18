@@ -6,16 +6,16 @@ import { PISTAS } from '../audio/musica.js';
 import { Guardado } from '../systems/Guardado.js';
 import { HEX } from '../estilo.js';
 import { ANCHO_CORONA, FUNDIDO, RGB_TINTA, corona, joyaSaltarina } from '../ui/Marca.js';
+import { svgVela } from '../ui/velaSvg.js';
 
 // Iconos de línea de los menús (blancos, se tiñen al usarlos): textura 'ic-<nombre>'
 export const ICONOS = ['play', 'niveles', 'albumes', 'ajustes', 'volver', 'tarta'];
 
-// Velas de la pantalla de Niveles: vela-cuerpo.svg estirada a la altura de cada año (es vectorial, así que no pierde
-// nitidez). VISTA_CUERPO recorta el lienzo del SVG al cuerpo y la mecha. La llama es la de vela-on.svg.
+// Velas de la pantalla de Niveles: cuerpo y mecha dibujados a la altura de cada año (las rayas se repiten, no se
+// estiran) y sin márgenes a los lados. La llama es la de vela-on.svg.
 export const ANCHO_VELA = 16;
 export const altoVela = (n) => 120 + n * 12;
 export const claveVela = (n) => `vela-alto-${n}`;
-const VISTA_CUERPO = '202 22 96 455';
 const VELAS_NIVELES = 19;
 const ETAPAS_MIRIAM = ['nina', 'preado', 'adolescente', 'adulta'];
 // Cosas que caen en las zonas de lluvia y adornos de los niveles (texturas 'obj-*'); no son los coleccionables
@@ -72,15 +72,10 @@ export class BootScene extends Phaser.Scene {
     }
     for (const n of LLUVIA) this.load.svg(`obj-${n}`, `sprites/objetos/${n}.svg`, S);
     this.load.image('logo', 'logo.png');
-    this.load.text('svg-vela-cuerpo', 'sprites/escenario/vela-cuerpo.svg');
-    this.load.once('filecomplete-text-svg-vela-cuerpo', (k, t, svg) => {
-      for (let n = 0; n < VELAS_NIVELES; n++) {
-        const w = ANCHO_VELA * ESCALA_TEXTURAS;
-        const h = altoVela(n) * ESCALA_TEXTURAS;
-        const estirada = svg.replace(/<svg([^>]*)>/, (_, attrs) => `<svg${attrs.replace(/\s(width|height|viewBox|preserveAspectRatio)="[^"]*"/g, '')} width="${w}" height="${h}" viewBox="${VISTA_CUERPO}" preserveAspectRatio="none">`);
-        this.load.svg(claveVela(n), URL.createObjectURL(new Blob([estirada], { type: 'image/svg+xml' })));
-      }
-    });
+    for (let n = 0; n < VELAS_NIVELES; n++) {
+      const svg = svgVela({ alto: altoVela(n), recorte: true, escala: ESCALA_TEXTURAS });
+      this.load.svg(claveVela(n), URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' })));
+    }
     for (const n of ICONOS) this.load.svg(`ic-${n}`, `sprites/iconos/${n}.svg`, { width: 96, height: 96 });
     // Música: si existen JSON convertidos de MIDI (tools/midi-a-json.mjs) se usan en lugar de los provisionales
     this.load.once('filecomplete-json-indice-musica', (k, t, indice) => {

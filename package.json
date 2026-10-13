@@ -12,6 +12,7 @@
     "fotogramas": "node tools/video-a-sprites.mjs",
     "imagenes": "node tools/preparar-imagenes.mjs",
     "iconos": "node tools/generar-iconos.mjs",
+    "velas": "node tools/generar-velas.mjs",
     "niveles": "node tools/generar-niveles.mjs",
     "validar": "node tools/validar-niveles.mjs"
   },
