@@ -10,7 +10,7 @@
  "tileheight": 48,
  "infinite": false,
  "nextlayerid": 4,
- "nextobjectid": 67,
+ "nextobjectid": 76,
  "properties": [
   {
    "name": "nivel",
@@ -100,7 +100,19 @@
      "properties": []
     },
     {
-     "id": 6,
+     "id": 7,
+     "name": "",
+     "type": "nube",
+     "x": 5424,
+     "y": 192,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 8,
      "name": "",
      "type": "nube",
      "x": 8736,
@@ -112,7 +124,7 @@
      "properties": []
     },
     {
-     "id": 11,
+     "id": 13,
      "name": "",
      "type": "nube",
      "x": 5040,
@@ -124,7 +136,7 @@
      "properties": []
     },
     {
-     "id": 12,
+     "id": 14,
      "name": "",
      "type": "nube",
      "x": 9024,
@@ -136,7 +148,7 @@
      "properties": []
     },
     {
-     "id": 14,
+     "id": 16,
      "name": "",
      "type": "nube",
      "x": 11520,
@@ -148,7 +160,7 @@
      "properties": []
     },
     {
-     "id": 15,
+     "id": 17,
      "name": "",
      "type": "solido",
      "x": 960,
@@ -160,7 +172,7 @@
      "properties": []
     },
     {
-     "id": 17,
+     "id": 19,
      "name": "",
      "type": "nube",
      "x": 10944,
@@ -172,7 +184,7 @@
      "properties": []
     },
     {
-     "id": 19,
+     "id": 21,
      "name": "",
      "type": "nube",
      "x": 10368,
@@ -184,7 +196,7 @@
      "properties": []
     },
     {
-     "id": 20,
+     "id": 22,
      "name": "",
      "type": "nube",
      "x": 12048,
@@ -196,7 +208,7 @@
      "properties": []
     },
     {
-     "id": 21,
+     "id": 23,
      "name": "",
      "type": "nube",
      "x": 4752,
@@ -208,7 +220,7 @@
      "properties": []
     },
     {
-     "id": 22,
+     "id": 24,
      "name": "",
      "type": "plataforma-temporizada",
      "x": 8448,
@@ -236,7 +248,7 @@
      ]
     },
     {
-     "id": 23,
+     "id": 25,
      "name": "",
      "type": "plataforma-temporizada",
      "x": 8688,
@@ -264,7 +276,7 @@
      ]
     },
     {
-     "id": 24,
+     "id": 26,
      "name": "",
      "type": "plataforma-temporizada",
      "x": 8928,
@@ -292,7 +304,7 @@
      ]
     },
     {
-     "id": 25,
+     "id": 27,
      "name": "",
      "type": "nube",
      "x": 11232,
@@ -304,7 +316,7 @@
      "properties": []
     },
     {
-     "id": 26,
+     "id": 28,
      "name": "",
      "type": "nube",
      "x": 11808,
@@ -316,7 +328,7 @@
      "properties": []
     },
     {
-     "id": 27,
+     "id": 29,
      "name": "",
      "type": "plataforma-cae",
      "x": 1920,
@@ -328,7 +340,7 @@
      "properties": []
     },
     {
-     "id": 28,
+     "id": 30,
      "name": "",
      "type": "plataforma-cae",
      "x": 2160,
@@ -340,7 +352,7 @@
      "properties": []
     },
     {
-     "id": 29,
+     "id": 31,
      "name": "",
      "type": "plataforma-cae",
      "x": 2400,
@@ -352,7 +364,7 @@
      "properties": []
     },
     {
-     "id": 30,
+     "id": 32,
      "name": "",
      "type": "plataforma-cae",
      "x": 2640,
@@ -364,7 +376,7 @@
      "properties": []
     },
     {
-     "id": 31,
+     "id": 33,
      "name": "",
      "type": "nube",
      "x": 10080,
@@ -376,7 +388,7 @@
      "properties": []
     },
     {
-     "id": 32,
+     "id": 34,
      "name": "",
      "type": "nube",
      "x": 10656,
@@ -388,7 +400,7 @@
      "properties": []
     },
     {
-     "id": 37,
+     "id": 40,
      "name": "",
      "type": "plataforma-temporizada",
      "x": 3216,
@@ -421,7 +433,7 @@
      ]
     },
     {
-     "id": 38,
+     "id": 41,
      "name": "",
      "type": "plataforma-temporizada",
      "x": 3504,
@@ -454,7 +466,7 @@
      ]
     },
     {
-     "id": 39,
+     "id": 42,
      "name": "",
      "type": "plataforma-temporizada",
      "x": 3792,
@@ -487,7 +499,7 @@
      ]
     },
     {
-     "id": 40,
+     "id": 43,
      "name": "",
      "type": "plataforma-temporizada",
      "x": 4080,
@@ -520,7 +532,7 @@
      ]
     },
     {
-     "id": 44,
+     "id": 48,
      "name": "",
      "type": "puerta",
      "x": 5664,
@@ -538,12 +550,12 @@
       {
        "name": "secuencia",
        "type": "string",
-       "value": "G4,G4,A4,G4,C5,B4"
+       "value": "G4,G4,A4,G4,C5,B4,G4,G4,A4,G4,D5,C5"
       }
      ]
     },
     {
-     "id": 50,
+     "id": 54,
      "name": "",
      "type": "solido",
      "x": 0,
@@ -555,7 +567,7 @@
      "properties": []
     },
     {
-     "id": 51,
+     "id": 55,
      "name": "",
      "type": "solido",
      "x": 1632,
@@ -567,7 +579,7 @@
      "properties": []
     },
     {
-     "id": 52,
+     "id": 56,
      "name": "",
      "type": "solido",
      "x": 2784,
@@ -579,7 +591,7 @@
      "properties": []
     },
     {
-     "id": 54,
+     "id": 58,
      "name": "",
      "type": "solido",
      "x": 4464,
@@ -591,7 +603,7 @@
      "properties": []
     },
     {
-     "id": 55,
+     "id": 59,
      "name": "",
      "type": "solido",
      "x": 9216,
@@ -603,7 +615,7 @@
      "properties": []
     },
     {
-     "id": 56,
+     "id": 60,
      "name": "",
      "type": "plataforma-falsa",
      "x": 9312,
@@ -615,7 +627,7 @@
      "properties": []
     },
     {
-     "id": 57,
+     "id": 61,
      "name": "",
      "type": "solido",
      "x": 9456,
@@ -627,7 +639,7 @@
      "properties": []
     },
     {
-     "id": 58,
+     "id": 62,
      "name": "",
      "type": "solido",
      "x": 12288,
@@ -639,7 +651,7 @@
      "properties": []
     },
     {
-     "id": 60,
+     "id": 64,
      "name": "",
      "type": "solido",
      "x": 3648,
@@ -651,7 +663,7 @@
      "properties": []
     },
     {
-     "id": 62,
+     "id": 66,
      "name": "",
      "type": "solido",
      "x": 0,
@@ -663,7 +675,7 @@
      "properties": []
     },
     {
-     "id": 63,
+     "id": 67,
      "name": "",
      "type": "solido",
      "x": 4464,
@@ -687,7 +699,30 @@
    "y": 0,
    "objects": [
     {
-     "id": 7,
+     "id": 6,
+     "name": "",
+     "type": "campana",
+     "x": 5472,
+     "y": 96,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "nota",
+       "type": "string",
+       "value": "D5"
+      },
+      {
+       "name": "grupo",
+       "type": "string",
+       "value": "feliz"
+      }
+     ]
+    },
+    {
+     "id": 9,
      "name": "",
      "type": "enemigo",
      "x": 11088,
@@ -730,7 +765,7 @@
      ]
     },
     {
-     "id": 8,
+     "id": 10,
      "name": "",
      "type": "enemigo",
      "x": 2544,
@@ -773,7 +808,7 @@
      ]
     },
     {
-     "id": 9,
+     "id": 11,
      "name": "",
      "type": "campana",
      "x": 5136,
@@ -796,7 +831,7 @@
      ]
     },
     {
-     "id": 10,
+     "id": 12,
      "name": "",
      "type": "enemigo",
      "x": 11712,
@@ -839,7 +874,7 @@
      ]
     },
     {
-     "id": 13,
+     "id": 15,
      "name": "",
      "type": "enemigo",
      "x": 10512,
@@ -882,7 +917,7 @@
      ]
     },
     {
-     "id": 16,
+     "id": 18,
      "name": "",
      "type": "enemigo",
      "x": 2256,
@@ -925,7 +960,7 @@
      ]
     },
     {
-     "id": 18,
+     "id": 20,
      "name": "",
      "type": "campana",
      "x": 4848,
@@ -948,7 +983,7 @@
      ]
     },
     {
-     "id": 33,
+     "id": 35,
      "name": "",
      "type": "inicio",
      "x": 96,
@@ -960,7 +995,7 @@
      "properties": []
     },
     {
-     "id": 34,
+     "id": 36,
      "name": "",
      "type": "miriam",
      "x": 240,
@@ -978,7 +1013,7 @@
      ]
     },
     {
-     "id": 35,
+     "id": 37,
      "name": "",
      "type": "caja",
      "x": 576,
@@ -990,7 +1025,7 @@
      "properties": []
     },
     {
-     "id": 36,
+     "id": 38,
      "name": "",
      "type": "checkpoint",
      "x": 2928,
@@ -1002,7 +1037,40 @@
      "properties": []
     },
     {
-     "id": 41,
+     "id": 39,
+     "name": "",
+     "type": "enemigo",
+     "x": 2976,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "patrullero"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "mochila"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 70
+      }
+     ]
+    },
+    {
+     "id": 44,
      "name": "",
      "type": "campana",
      "x": 4560,
@@ -1025,7 +1093,7 @@
      ]
     },
     {
-     "id": 42,
+     "id": 45,
      "name": "",
      "type": "miriam",
      "x": 4704,
@@ -1043,7 +1111,40 @@
      ]
     },
     {
-     "id": 43,
+     "id": 46,
+     "name": "",
+     "type": "enemigo",
+     "x": 5088,
+     "y": 576,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "desafinado"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "despertador"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 30
+      }
+     ]
+    },
+    {
+     "id": 47,
      "name": "",
      "type": "campana",
      "x": 5424,
@@ -1066,7 +1167,7 @@
      ]
     },
     {
-     "id": 45,
+     "id": 49,
      "name": "",
      "type": "checkpoint",
      "x": 5856,
@@ -1078,7 +1179,7 @@
      "properties": []
     },
     {
-     "id": 47,
+     "id": 51,
      "name": "",
      "type": "cartel",
      "x": 9216,
@@ -1096,7 +1197,7 @@
      ]
     },
     {
-     "id": 48,
+     "id": 52,
      "name": "",
      "type": "checkpoint",
      "x": 9600,
@@ -1108,7 +1209,7 @@
      "properties": []
     },
     {
-     "id": 49,
+     "id": 53,
      "name": "",
      "type": "miriam",
      "x": 9744,
@@ -1126,7 +1227,7 @@
      ]
     },
     {
-     "id": 53,
+     "id": 57,
      "name": "",
      "type": "objeto",
      "x": 3696,
@@ -1138,7 +1239,7 @@
      "properties": []
     },
     {
-     "id": 65,
+     "id": 69,
      "name": "",
      "type": "gravedad",
      "x": 6576,
@@ -1156,7 +1257,7 @@
      ]
     },
     {
-     "id": 66,
+     "id": 70,
      "name": "",
      "type": "final",
      "x": 12576,
@@ -1166,6 +1267,196 @@
      "rotation": 0,
      "visible": true,
      "properties": []
+    },
+    {
+     "id": 71,
+     "name": "",
+     "type": "muerte",
+     "x": 9936,
+     "y": 720,
+     "width": 2400,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 3
+      }
+     ]
+    },
+    {
+     "id": 72,
+     "name": "",
+     "type": "enemigo",
+     "x": 9120,
+     "y": 288,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "notificacion"
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 80
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "amplitud",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 1400
+      }
+     ]
+    },
+    {
+     "id": 73,
+     "name": "",
+     "type": "enemigo",
+     "x": 11040,
+     "y": 240,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "notificacion"
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 90
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 4
+      },
+      {
+       "name": "amplitud",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 1300
+      }
+     ]
+    },
+    {
+     "id": 74,
+     "name": "",
+     "type": "enemigo",
+     "x": 10272,
+     "y": 384,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "avion-papel"
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 70
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "amplitud",
+       "type": "float",
+       "value": 1.5
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 2000
+      }
+     ]
+    },
+    {
+     "id": 75,
+     "name": "",
+     "type": "enemigo",
+     "x": 11808,
+     "y": 288,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "avion-papel"
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 80
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "amplitud",
+       "type": "float",
+       "value": 1.5
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 1800
+      }
+     ]
     }
    ]
   },
@@ -1180,7 +1471,7 @@
    "y": 0,
    "objects": [
     {
-     "id": 46,
+     "id": 50,
      "name": "",
      "type": "pinchos",
      "x": 6672,
@@ -1198,7 +1489,7 @@
      ]
     },
     {
-     "id": 59,
+     "id": 63,
      "name": "",
      "type": "pinchos",
      "x": 1200,
@@ -1216,7 +1507,7 @@
      ]
     },
     {
-     "id": 61,
+     "id": 65,
      "name": "",
      "type": "pinchos",
      "x": 8400,
@@ -1234,7 +1525,7 @@
      ]
     },
     {
-     "id": 64,
+     "id": 68,
      "name": "",
      "type": "pinchos",
      "x": 9312,
@@ -1247,7 +1538,7 @@
       {
        "name": "danio",
        "type": "int",
-       "value": 1
+       "value": 3
       }
      ]
     }

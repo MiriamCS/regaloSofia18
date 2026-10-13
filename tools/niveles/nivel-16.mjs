@@ -7,7 +7,7 @@
 // Foto: mirador de noche en lo alto de la montaña, rodeado de pinchos de día.
 // Objeto (maleta): andén alto sobre el tren, por nubes alternas de día y de noche.
 // Broma: la maleta de la consigna, que de noche lleva gafas de sol. Miriam: estación y campanas.
-// Leyenda: a/b sólido de día/noche · d/n nube de día/noche · p/q pinchos (2 velas) de día/noche.
+// Leyenda: a/b sólido de día/noche · d/n nube de día/noche · p/q pinchos (3 velas) de día/noche · ^ pinchos de 2 velas.
 export default {
   props: { tema: 'viaje', mundos: true, edad: 16 },
   leyenda: {
@@ -15,8 +15,9 @@ export default {
     b: { tipo: 'solido', capa: 'solidos', fusion: 'h', mundo: 'B' },
     d: { tipo: 'nube', capa: 'solidos', fusion: 'h', mundo: 'A' },
     n: { tipo: 'nube', capa: 'solidos', fusion: 'h', mundo: 'B' },
-    p: { tipo: 'pinchos', capa: 'zonas', fusion: 'h', danio: 2, mundo: 'A' },
-    q: { tipo: 'pinchos', capa: 'zonas', fusion: 'h', danio: 2, mundo: 'B' },
+    p: { tipo: 'pinchos', capa: 'zonas', fusion: 'h', danio: 3, mundo: 'A' },
+    q: { tipo: 'pinchos', capa: 'zonas', fusion: 'h', danio: 3, mundo: 'B' },
+    '^': { tipo: 'pinchos', capa: 'zonas', fusion: 'h', danio: 2 },
     M: { tipo: 'miriam', pista: 'mundos' },
     N: { tipo: 'miriam', pista: 'campanas' },
     K: { tipo: 'cartel', pista: 'consigna' },
@@ -42,6 +43,10 @@ export default {
     { tipo: 'enemigo', x: 148, y: 9, clase: 'volador', sprite: 'avion-papel', rango: 3, velocidad: 60, amplitud: 1, eliminable: 'salto', canto: 'huir' },
     { tipo: 'enemigo', x: 186, y: 14, clase: 'volador', sprite: 'avion-papel', rango: 3, velocidad: 50, amplitud: 1, eliminable: 'salto', canto: 'huir' },
     { tipo: 'enemigo', x: 290, y: 13, clase: 'volador', sprite: 'avion-papel', rango: 4, velocidad: 70, amplitud: 1.5, eliminable: 'salto', canto: 'huir' },
+    { tipo: 'enemigo', x: 130, y: 9, clase: 'volador', sprite: 'avion-papel', rango: 3, velocidad: 70, amplitud: 1 },
+    { tipo: 'enemigo', x: 200, y: 6, clase: 'volador', sprite: 'avion-papel', rango: 4, velocidad: 60, amplitud: 1.5 },
+    { tipo: 'enemigo', x: 240, y: 10, clase: 'volador', sprite: 'avion-papel', rango: 3, velocidad: 70, amplitud: 1 },
+    { tipo: 'enemigo', x: 266, y: 8, clase: 'volador', sprite: 'avion-papel', rango: 3, velocidad: 80, amplitud: 1 },
   ],
   mapa: `
 #                                                                                                                                                                                                                                                                                                          #

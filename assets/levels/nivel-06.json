@@ -10,7 +10,7 @@
  "tileheight": 48,
  "infinite": false,
  "nextlayerid": 4,
- "nextobjectid": 80,
+ "nextobjectid": 81,
  "properties": [
   {
    "name": "nivel",
@@ -518,7 +518,7 @@
      ]
     },
     {
-     "id": 63,
+     "id": 64,
      "name": "",
      "type": "puerta",
      "x": 10128,
@@ -541,7 +541,7 @@
      ]
     },
     {
-     "id": 66,
+     "id": 67,
      "name": "",
      "type": "puerta",
      "x": 10560,
@@ -569,7 +569,7 @@
      ]
     },
     {
-     "id": 70,
+     "id": 71,
      "name": "",
      "type": "solido",
      "x": 0,
@@ -581,7 +581,7 @@
      "properties": []
     },
     {
-     "id": 71,
+     "id": 72,
      "name": "",
      "type": "solido",
      "x": 1488,
@@ -593,10 +593,22 @@
      "properties": []
     },
     {
-     "id": 72,
+     "id": 73,
      "name": "",
      "type": "solido",
      "x": 2976,
+     "y": 576,
+     "width": 1152,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 75,
+     "name": "",
+     "type": "solido",
+     "x": 4416,
      "y": 576,
      "width": 1008,
      "height": 48,
@@ -605,36 +617,12 @@
      "properties": []
     },
     {
-     "id": 74,
+     "id": 77,
      "name": "",
      "type": "solido",
-     "x": 4416,
+     "x": 6096,
      "y": 576,
-     "width": 864,
-     "height": 48,
-     "rotation": 0,
-     "visible": true,
-     "properties": []
-    },
-    {
-     "id": 76,
-     "name": "",
-     "type": "solido",
-     "x": 6288,
-     "y": 576,
-     "width": 2256,
-     "height": 48,
-     "rotation": 0,
-     "visible": true,
-     "properties": []
-    },
-    {
-     "id": 78,
-     "name": "",
-     "type": "solido",
-     "x": 9936,
-     "y": 576,
-     "width": 2064,
+     "width": 2784,
      "height": 48,
      "rotation": 0,
      "visible": true,
@@ -642,6 +630,18 @@
     },
     {
      "id": 79,
+     "name": "",
+     "type": "solido",
+     "x": 9600,
+     "y": 576,
+     "width": 2400,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 80,
      "name": "",
      "type": "solido",
      "x": 2976,
@@ -1199,6 +1199,24 @@
     {
      "id": 56,
      "name": "",
+     "type": "cartel",
+     "x": 6384,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "boligrafo"
+      }
+     ]
+    },
+    {
+     "id": 57,
+     "name": "",
      "type": "enemigo",
      "x": 6624,
      "y": 528,
@@ -1225,7 +1243,7 @@
      ]
     },
     {
-     "id": 57,
+     "id": 58,
      "name": "",
      "type": "enemigo",
      "x": 7008,
@@ -1263,7 +1281,7 @@
      ]
     },
     {
-     "id": 58,
+     "id": 59,
      "name": "",
      "type": "cartel",
      "x": 7536,
@@ -1281,7 +1299,7 @@
      ]
     },
     {
-     "id": 59,
+     "id": 60,
      "name": "",
      "type": "enemigo",
      "x": 7728,
@@ -1309,7 +1327,7 @@
      ]
     },
     {
-     "id": 60,
+     "id": 61,
      "name": "",
      "type": "checkpoint",
      "x": 8112,
@@ -1321,7 +1339,7 @@
      "properties": []
     },
     {
-     "id": 61,
+     "id": 62,
      "name": "",
      "type": "miriam",
      "x": 8208,
@@ -1339,7 +1357,7 @@
      ]
     },
     {
-     "id": 62,
+     "id": 63,
      "name": "",
      "type": "campana",
      "x": 8400,
@@ -1362,7 +1380,7 @@
      ]
     },
     {
-     "id": 64,
+     "id": 65,
      "name": "",
      "type": "cartel",
      "x": 10224,
@@ -1380,7 +1398,7 @@
      ]
     },
     {
-     "id": 65,
+     "id": 66,
      "name": "",
      "type": "campana",
      "x": 10320,
@@ -1403,7 +1421,7 @@
      ]
     },
     {
-     "id": 67,
+     "id": 68,
      "name": "",
      "type": "objeto",
      "x": 10800,
@@ -1415,7 +1433,7 @@
      "properties": []
     },
     {
-     "id": 68,
+     "id": 69,
      "name": "",
      "type": "cartel",
      "x": 11520,
@@ -1433,7 +1451,7 @@
      ]
     },
     {
-     "id": 69,
+     "id": 70,
      "name": "",
      "type": "meta",
      "x": 11760,
@@ -1475,12 +1493,12 @@
      ]
     },
     {
-     "id": 73,
+     "id": 74,
      "name": "",
      "type": "pinchos",
-     "x": 3984,
+     "x": 4128,
      "y": 576,
-     "width": 432,
+     "width": 288,
      "height": 48,
      "rotation": 0,
      "visible": true,
@@ -1493,12 +1511,12 @@
      ]
     },
     {
-     "id": 75,
+     "id": 76,
      "name": "",
      "type": "pinchos",
-     "x": 5280,
+     "x": 5424,
      "y": 576,
-     "width": 1008,
+     "width": 672,
      "height": 48,
      "rotation": 0,
      "visible": true,
@@ -1511,12 +1529,12 @@
      ]
     },
     {
-     "id": 77,
+     "id": 78,
      "name": "",
      "type": "pinchos",
-     "x": 8544,
+     "x": 8880,
      "y": 576,
-     "width": 1392,
+     "width": 720,
      "height": 48,
      "rotation": 0,
      "visible": true,

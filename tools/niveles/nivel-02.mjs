@@ -4,6 +4,8 @@
 // Foto: en lo alto de la estantería, pasando por una repisa que se cae.
 // Objeto (patito): en la bañera, al fondo del pasillo lateral del baño con lluvia de juguetes muy densa.
 // Broma: el cartel «No corras por casa» justo antes del hueco que solo se salta corriendo.
+// Monstruo nuevo: la urraca (se presenta en el cartel 5). Es la rápida: huye más deprisa de lo que anda Sofía, así que
+// para recuperar la foto hay que correr. Está en la explanada final, cerrada por la pared: no puede caerse a un hueco.
 export default {
   props: { tema: 'casa', edad: 2 },
   leyenda: {
@@ -13,6 +15,8 @@ export default {
     2: { tipo: 'cartel', pista: 'nocorras' },
     3: { tipo: 'cartel', pista: 'cocina' },
     4: { tipo: 'cartel', pista: 'escalera' },
+    5: { tipo: 'cartel', pista: 'urraca' },
+    U: { tipo: 'enemigo', clase: 'ladron', sprite: 'urraca', rango: 4, velocidad: 170 },
   },
   objetos: [
     // lluvia de juguetes: caen desde el borde superior de la zona (x, y = esquina superior izquierda)
@@ -33,7 +37,7 @@ export default {
 #                                                                                                                           #                                                                                                          #
 #                                                                                                                         O #                      ####     #####                                                                      #
 #                                                                                                                ############                      ####         #                                                                      #
-#                                                                             ###             ###             ===############                  B   ####         #                                                                  G   #
+#                                                                             ###             ###             ===############                  B   ####         #                                                     5      U     G   #
 #                                                                                                                                           ###########         #                                       ####  vvv   ####################
 #                                                         C                                              =====                              ###########         #                       ####     ###    ####        ####################
 # S M  1          ######            2                  ########## 3                                                            C  N    B    ###########         #     C 4        ###    ####     ###    ####        ####################

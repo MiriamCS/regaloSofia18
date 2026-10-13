@@ -17,7 +17,8 @@ const ESC = 0.5;
 
 const POR_DEFECTO = {
   patrullero: { sprite: 'pato', velocidad: 70, rango: 3, eliminable: 'salto,caja', canto: 'dormir' },
-  volador: { sprite: 'mosquito', velocidad: 60, rango: 3, amplitud: 1, periodo: 1800, eliminable: 'salto,canto', canto: 'huir' },
+  // al cantarles, los voladores huyen (como dicen sus fichas): solo se eliminan saltándoles encima
+  volador: { sprite: 'mosquito', velocidad: 60, rango: 3, amplitud: 1, periodo: 1800, eliminable: 'salto', canto: 'huir' },
   bloqueador: { sprite: 'boligrafo', eliminable: '', canto: 'apartar' },
   ladron: { sprite: 'urraca', velocidad: 110, rango: 4, eliminable: '', canto: 'enfadar' },
   desafinado: { sprite: 'metronomo', velocidad: 40, rango: 2, eliminable: 'caja', canto: 'invertir' },

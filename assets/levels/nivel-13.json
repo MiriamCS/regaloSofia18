@@ -10,7 +10,7 @@
  "tileheight": 48,
  "infinite": false,
  "nextlayerid": 4,
- "nextobjectid": 123,
+ "nextobjectid": 132,
  "properties": [
   {
    "name": "nivel",
@@ -444,7 +444,7 @@
      "x": 10800,
      "y": 384,
      "width": 192,
-     "height": 192,
+     "height": 144,
      "rotation": 0,
      "visible": true,
      "properties": []
@@ -764,7 +764,7 @@
      "properties": []
     },
     {
-     "id": 80,
+     "id": 81,
      "name": "",
      "type": "plataforma-falsa",
      "x": 5280,
@@ -782,7 +782,7 @@
      ]
     },
     {
-     "id": 83,
+     "id": 84,
      "name": "",
      "type": "plataforma-temporizada",
      "x": 7440,
@@ -810,7 +810,19 @@
      ]
     },
     {
-     "id": 91,
+     "id": 89,
+     "name": "",
+     "type": "solido",
+     "x": 10848,
+     "y": 528,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 96,
      "name": "",
      "type": "solido",
      "x": 0,
@@ -822,7 +834,7 @@
      "properties": []
     },
     {
-     "id": 92,
+     "id": 97,
      "name": "",
      "type": "solido",
      "x": 960,
@@ -834,7 +846,7 @@
      "properties": []
     },
     {
-     "id": 93,
+     "id": 98,
      "name": "",
      "type": "plataforma-falsa",
      "x": 3888,
@@ -852,7 +864,7 @@
      ]
     },
     {
-     "id": 94,
+     "id": 99,
      "name": "",
      "type": "solido",
      "x": 4080,
@@ -864,7 +876,7 @@
      "properties": []
     },
     {
-     "id": 95,
+     "id": 100,
      "name": "",
      "type": "solido",
      "x": 4512,
@@ -876,7 +888,7 @@
      "properties": []
     },
     {
-     "id": 96,
+     "id": 101,
      "name": "",
      "type": "plataforma-falsa",
      "x": 4752,
@@ -894,7 +906,7 @@
      ]
     },
     {
-     "id": 97,
+     "id": 102,
      "name": "",
      "type": "solido",
      "x": 4944,
@@ -906,7 +918,7 @@
      "properties": []
     },
     {
-     "id": 98,
+     "id": 103,
      "name": "",
      "type": "solido",
      "x": 6048,
@@ -918,7 +930,7 @@
      "properties": []
     },
     {
-     "id": 99,
+     "id": 104,
      "name": "",
      "type": "solido",
      "x": 6624,
@@ -930,7 +942,7 @@
      "properties": []
     },
     {
-     "id": 100,
+     "id": 105,
      "name": "",
      "type": "solido",
      "x": 10032,
@@ -942,7 +954,7 @@
      "properties": []
     },
     {
-     "id": 101,
+     "id": 106,
      "name": "",
      "type": "solido",
      "x": 11376,
@@ -954,7 +966,7 @@
      "properties": []
     },
     {
-     "id": 102,
+     "id": 107,
      "name": "",
      "type": "solido",
      "x": 12096,
@@ -966,7 +978,7 @@
      "properties": []
     },
     {
-     "id": 103,
+     "id": 108,
      "name": "",
      "type": "plataforma-falsa",
      "x": 12624,
@@ -984,7 +996,7 @@
      ]
     },
     {
-     "id": 104,
+     "id": 109,
      "name": "",
      "type": "solido",
      "x": 12816,
@@ -996,7 +1008,7 @@
      "properties": []
     },
     {
-     "id": 105,
+     "id": 110,
      "name": "",
      "type": "solido",
      "x": 13632,
@@ -1008,7 +1020,7 @@
      "properties": []
     },
     {
-     "id": 108,
+     "id": 113,
      "name": "",
      "type": "solido",
      "x": 0,
@@ -1020,7 +1032,7 @@
      "properties": []
     },
     {
-     "id": 109,
+     "id": 114,
      "name": "",
      "type": "solido",
      "x": 4512,
@@ -1032,7 +1044,7 @@
      "properties": []
     },
     {
-     "id": 110,
+     "id": 115,
      "name": "",
      "type": "solido",
      "x": 6048,
@@ -1044,7 +1056,7 @@
      "properties": []
     },
     {
-     "id": 111,
+     "id": 116,
      "name": "",
      "type": "solido",
      "x": 12816,
@@ -2234,7 +2246,7 @@
      "properties": []
     },
     {
-     "id": 78,
+     "id": 79,
      "name": "",
      "type": "miriam",
      "x": 3696,
@@ -2252,7 +2264,7 @@
      ]
     },
     {
-     "id": 79,
+     "id": 80,
      "name": "",
      "type": "meta-falsa",
      "x": 4800,
@@ -2275,7 +2287,7 @@
      ]
     },
     {
-     "id": 81,
+     "id": 82,
      "name": "",
      "type": "enemigo",
      "x": 6768,
@@ -2308,7 +2320,7 @@
      ]
     },
     {
-     "id": 82,
+     "id": 83,
      "name": "",
      "type": "checkpoint",
      "x": 7104,
@@ -2320,7 +2332,7 @@
      "properties": []
     },
     {
-     "id": 84,
+     "id": 85,
      "name": "",
      "type": "enemigo",
      "x": 10128,
@@ -2353,7 +2365,7 @@
      ]
     },
     {
-     "id": 85,
+     "id": 86,
      "name": "",
      "type": "checkpoint",
      "x": 10272,
@@ -2365,7 +2377,7 @@
      "properties": []
     },
     {
-     "id": 86,
+     "id": 87,
      "name": "",
      "type": "enemigo",
      "x": 10464,
@@ -2398,7 +2410,7 @@
      ]
     },
     {
-     "id": 87,
+     "id": 91,
      "name": "",
      "type": "enemigo",
      "x": 12240,
@@ -2431,7 +2443,7 @@
      ]
     },
     {
-     "id": 89,
+     "id": 94,
      "name": "",
      "type": "cartel",
      "x": 13776,
@@ -2449,7 +2461,7 @@
      ]
     },
     {
-     "id": 90,
+     "id": 95,
      "name": "",
      "type": "meta",
      "x": 13872,
@@ -2461,7 +2473,7 @@
      "properties": []
     },
     {
-     "id": 112,
+     "id": 117,
      "name": "",
      "type": "decorado",
      "x": 3552,
@@ -2484,7 +2496,7 @@
      ]
     },
     {
-     "id": 113,
+     "id": 118,
      "name": "",
      "type": "decorado",
      "x": 5280,
@@ -2507,7 +2519,7 @@
      ]
     },
     {
-     "id": 114,
+     "id": 119,
      "name": "",
      "type": "decorado",
      "x": 5808,
@@ -2530,7 +2542,179 @@
      ]
     },
     {
-     "id": 115,
+     "id": 120,
+     "name": "",
+     "type": "enemigo",
+     "x": 7680,
+     "y": 288,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "notificacion"
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 70
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "amplitud",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 1500
+      }
+     ]
+    },
+    {
+     "id": 121,
+     "name": "",
+     "type": "enemigo",
+     "x": 9600,
+     "y": 240,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "notificacion"
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 80
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "amplitud",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 1300
+      }
+     ]
+    },
+    {
+     "id": 122,
+     "name": "",
+     "type": "enemigo",
+     "x": 11520,
+     "y": 288,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "notificacion"
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 70
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 4
+      },
+      {
+       "name": "amplitud",
+       "type": "float",
+       "value": 1.2
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 1700
+      }
+     ]
+    },
+    {
+     "id": 123,
+     "name": "",
+     "type": "enemigo",
+     "x": 13056,
+     "y": 336,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "notificacion"
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 90
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "amplitud",
+       "type": "float",
+       "value": 0.8
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 1200
+      }
+     ]
+    },
+    {
+     "id": 124,
      "name": "",
      "type": "aviso",
      "x": 4752,
@@ -2553,7 +2737,7 @@
      ]
     },
     {
-     "id": 116,
+     "id": 125,
      "name": "",
      "type": "aviso",
      "x": 5040,
@@ -2576,7 +2760,7 @@
      ]
     },
     {
-     "id": 117,
+     "id": 126,
      "name": "",
      "type": "aviso",
      "x": 6192,
@@ -2599,7 +2783,7 @@
      ]
     },
     {
-     "id": 118,
+     "id": 127,
      "name": "",
      "type": "aviso",
      "x": 6864,
@@ -2622,7 +2806,7 @@
      ]
     },
     {
-     "id": 119,
+     "id": 128,
      "name": "",
      "type": "aviso",
      "x": 8160,
@@ -2645,7 +2829,7 @@
      ]
     },
     {
-     "id": 120,
+     "id": 129,
      "name": "",
      "type": "aviso",
      "x": 10800,
@@ -2668,7 +2852,7 @@
      ]
     },
     {
-     "id": 121,
+     "id": 130,
      "name": "",
      "type": "invertir",
      "x": 10992,
@@ -2680,7 +2864,7 @@
      "properties": []
     },
     {
-     "id": 122,
+     "id": 131,
      "name": "",
      "type": "aviso",
      "x": 13392,
@@ -2787,7 +2971,61 @@
      ]
     },
     {
+     "id": 78,
+     "name": "",
+     "type": "pinchos",
+     "x": 3360,
+     "y": 528,
+     "width": 144,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 2
+      }
+     ]
+    },
+    {
      "id": 88,
+     "name": "",
+     "type": "pinchos",
+     "x": 10752,
+     "y": 528,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 2
+      }
+     ]
+    },
+    {
+     "id": 90,
+     "name": "",
+     "type": "pinchos",
+     "x": 12000,
+     "y": 528,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 2
+      }
+     ]
+    },
+    {
+     "id": 92,
      "name": "",
      "type": "pinchos",
      "x": 12432,
@@ -2805,7 +3043,25 @@
      ]
     },
     {
-     "id": 106,
+     "id": 93,
+     "name": "",
+     "type": "pinchos",
+     "x": 13680,
+     "y": 528,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 2
+      }
+     ]
+    },
+    {
+     "id": 111,
      "name": "",
      "type": "pinchos",
      "x": 768,
@@ -2823,7 +3079,7 @@
      ]
     },
     {
-     "id": 107,
+     "id": 112,
      "name": "",
      "type": "pinchos",
      "x": 6432,

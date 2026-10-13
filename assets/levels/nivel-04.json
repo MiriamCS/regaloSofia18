@@ -10,7 +10,7 @@
  "tileheight": 48,
  "infinite": false,
  "nextlayerid": 4,
- "nextobjectid": 64,
+ "nextobjectid": 67,
  "properties": [
   {
    "name": "nivel",
@@ -848,9 +848,14 @@
        "value": "mosquito"
       },
       {
+       "name": "rango",
+       "type": "float",
+       "value": 1.5
+      },
+      {
        "name": "velocidad",
        "type": "int",
-       "value": 0
+       "value": 45
       },
       {
        "name": "amplitud",
@@ -886,9 +891,14 @@
        "value": "mosquito"
       },
       {
+       "name": "rango",
+       "type": "float",
+       "value": 1.5
+      },
+      {
        "name": "velocidad",
        "type": "int",
-       "value": 0
+       "value": 45
       },
       {
        "name": "amplitud",
@@ -967,9 +977,14 @@
        "value": "mosquito"
       },
       {
+       "name": "rango",
+       "type": "float",
+       "value": 1.5
+      },
+      {
        "name": "velocidad",
        "type": "int",
-       "value": 0
+       "value": 45
       },
       {
        "name": "amplitud",
@@ -1249,6 +1264,135 @@
        "name": "angulo",
        "type": "int",
        "value": -8
+      }
+     ]
+    },
+    {
+     "id": 64,
+     "name": "",
+     "type": "enemigo",
+     "x": 7056,
+     "y": 240,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "mosquito"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 2
+      },
+      {
+       "name": "amplitud",
+       "type": "float",
+       "value": 1.5
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 2000
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 45
+      }
+     ]
+    },
+    {
+     "id": 65,
+     "name": "",
+     "type": "enemigo",
+     "x": 8208,
+     "y": 288,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "mosquito"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "amplitud",
+       "type": "float",
+       "value": 1.5
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 2200
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 50
+      }
+     ]
+    },
+    {
+     "id": 66,
+     "name": "",
+     "type": "enemigo",
+     "x": 9600,
+     "y": 384,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "mosquito"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 2
+      },
+      {
+       "name": "amplitud",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 1800
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 55
       }
      ]
     }

@@ -32,6 +32,11 @@ export default {
     { tipo: 'decorado', x: 74, y: 11, sprite: 'obj-movil', escala: 2.6 },
     { tipo: 'decorado', x: 110, y: 9, sprite: 'nota-dorada', escala: 0.5 },
     { tipo: 'decorado', x: 121, y: 3, sprite: 'nota-dorada', escala: 0.4 },
+    // más notificaciones sobre las apps que se cierran y en el modo avión
+    { tipo: 'enemigo', clase: 'volador', sprite: 'notificacion', x: 160, y: 6, velocidad: 70, rango: 3, amplitud: 1, periodo: 1500 },
+    { tipo: 'enemigo', clase: 'volador', sprite: 'notificacion', x: 200, y: 5, velocidad: 80, rango: 3, amplitud: 1, periodo: 1300 },
+    { tipo: 'enemigo', clase: 'volador', sprite: 'notificacion', x: 240, y: 6, velocidad: 70, rango: 4, amplitud: 1.2, periodo: 1700 },
+    { tipo: 'enemigo', clase: 'volador', sprite: 'notificacion', x: 272, y: 7, velocidad: 90, rango: 3, amplitud: 0.8, periodo: 1200 },
     // avisos que mienten
     { tipo: 'aviso', x: 99, y: 6, w: 2, h: 6, pista: 'completado', duracion: 2600 },
     { tipo: 'aviso', x: 105, y: 0, w: 2, h: 12, pista: 'sinSalida', duracion: 2600 },
@@ -55,7 +60,7 @@ export default {
 #                 u                    #                   vv                              n                  HH           N            u                                                                jj                      ####      n        ###             n                              #
 #                           u   u   u  #    ===        ==                                                     HH tt                u                                 tt   ##        vv   xx          kk      kk                  ####               ###                             u         n    #
 #           ####     ##                #             u                                                        HH                                                yy        ##   vv             ####                               ####             #####                                            #
-# S   K  d  ####     ##     w   w   w O# 1 wwwwwwwwwwwwwwwwww     C          M                      m         HH                             d      C      tt             ##                  ####                 d  C   d      ####             #####        d   wwww                        2 G #
+# S   K  d  ####     ##     w   w   w O# 1 wwwwwwwwwwwwwwwwww     C   www    M                      m         HH                             d      C      tt             ##                  ####                 d  C   d     ww###             #####   ww   d   wwww                      ww2 G #
 ################    #############################################################xxxx####     #####xxxx##################     ########    ###############                 ##                  ####               ########################    ##########     ###########xx  #####            ########
 ################wwww#############################################################    ####     #####    ##################     ########wwww###############                 ##                  ####               ########################    ##########     ###########    #####            ########
 #################################################################################    ####     ###########################     ###########################                 ##                  ####               ########################    ##########     ###########    #########################

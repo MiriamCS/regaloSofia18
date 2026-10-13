@@ -8,6 +8,7 @@
 // Objeto (mochila): en el armario de la puerta-melodía oculta (sin notas a la vista; el cartel da la adivinanza:
 // de la campana más alta a la más baja; la más alta solo suena cantando en lo alto de un doble salto).
 // Ojo: cantar cerca de una campana siempre la hace sonar; cada campana está lejos (>190 px) de las demás.
+// Monstruo nuevo: el bolígrafo gigante del profe (se presenta en el cartel 5, antes del primero).
 export default {
   props: { tema: 'colegio', edad: 6 },
   leyenda: {
@@ -42,6 +43,7 @@ export default {
     2: { tipo: 'cartel', pista: 'profe' },
     3: { tipo: 'cartel', pista: 'armario' },
     4: { tipo: 'cartel', pista: 'recreo' },
+    5: { tipo: 'cartel', pista: 'boligrafo' },
   },
   mapa: `
 #                                                                           #                      #                                  #########                                                                    #                                     #
@@ -55,8 +57,8 @@ export default {
 #                                                                           #                      #                     b            #########            ###########                                 ###         #        ########                     #
 #                                                        nn                         nn                            b    ####    b                     nn                                                                            #                     #
 #                        nn              nn          nn                                                         ####          ###                                                 nn                                     ##        #                     #
-#  S   M        1    nn                  ^^^                   C N  c   g   P    e             D   Q   C                                  T       b          2   Z       C L   k                                   R 3 d ## U    O #            4    G   #
-###################            ###################            #####################^^^^^^^^^##################^^^^^^^^^^^^^^^^^^^^^###############################################^^^^^^^^^^^^^^^^^^^^^^^^^^^^^###########################################
+#  S   M        1    nn                  ^^^                   C N  c   g   P    e             D   Q   C                             5    T       b          2   Z       C L   k                                   R 3 d ## U    O #            4    G   #
+###################            ###################            ########################^^^^^^#####################^^^^^^^^^^^^^^##########################################################^^^^^^^^^^^^^^^##################################################
 ###################            ###################            ############################################################################################################################################################################################
 ###################            ###################            ############################################################################################################################################################################################
 `,

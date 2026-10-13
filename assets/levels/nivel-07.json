@@ -10,7 +10,7 @@
  "tileheight": 48,
  "infinite": false,
  "nextlayerid": 4,
- "nextobjectid": 97,
+ "nextobjectid": 99,
  "properties": [
   {
    "name": "nivel",
@@ -888,9 +888,9 @@
      "id": 65,
      "name": "",
      "type": "solido",
-     "x": 2304,
+     "x": 1920,
      "y": 576,
-     "width": 192,
+     "width": 576,
      "height": 48,
      "rotation": 0,
      "visible": true,
@@ -1100,7 +1100,7 @@
      "type": "solido",
      "x": 4032,
      "y": 576,
-     "width": 1392,
+     "width": 1680,
      "height": 48,
      "rotation": 0,
      "visible": true,
@@ -1110,16 +1110,28 @@
      "id": 79,
      "name": "",
      "type": "solido",
-     "x": 7824,
+     "x": 6048,
      "y": 576,
-     "width": 720,
+     "width": 624,
      "height": 48,
      "rotation": 0,
      "visible": true,
      "properties": []
     },
     {
-     "id": 80,
+     "id": 81,
+     "name": "",
+     "type": "solido",
+     "x": 7248,
+     "y": 576,
+     "width": 1296,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 82,
      "name": "",
      "type": "tecla",
      "x": 8544,
@@ -1142,7 +1154,7 @@
      ]
     },
     {
-     "id": 81,
+     "id": 83,
      "name": "",
      "type": "tecla",
      "x": 8688,
@@ -1165,7 +1177,7 @@
      ]
     },
     {
-     "id": 82,
+     "id": 84,
      "name": "",
      "type": "tecla",
      "x": 8832,
@@ -1188,7 +1200,7 @@
      ]
     },
     {
-     "id": 83,
+     "id": 85,
      "name": "",
      "type": "tecla",
      "x": 8976,
@@ -1211,7 +1223,7 @@
      ]
     },
     {
-     "id": 84,
+     "id": 86,
      "name": "",
      "type": "solido",
      "x": 9456,
@@ -1223,7 +1235,7 @@
      "properties": []
     },
     {
-     "id": 85,
+     "id": 87,
      "name": "",
      "type": "solido",
      "x": 9792,
@@ -1235,7 +1247,7 @@
      "properties": []
     },
     {
-     "id": 86,
+     "id": 88,
      "name": "",
      "type": "solido",
      "x": 0,
@@ -1247,7 +1259,7 @@
      "properties": []
     },
     {
-     "id": 88,
+     "id": 90,
      "name": "",
      "type": "solido",
      "x": 8688,
@@ -1259,7 +1271,7 @@
      "properties": []
     },
     {
-     "id": 90,
+     "id": 92,
      "name": "",
      "type": "solido",
      "x": 8832,
@@ -1271,7 +1283,7 @@
      "properties": []
     },
     {
-     "id": 92,
+     "id": 94,
      "name": "",
      "type": "solido",
      "x": 8976,
@@ -1283,7 +1295,7 @@
      "properties": []
     },
     {
-     "id": 95,
+     "id": 97,
      "name": "",
      "type": "solido",
      "x": 0,
@@ -1658,7 +1670,7 @@
      "properties": []
     },
     {
-     "id": 96,
+     "id": 98,
      "name": "",
      "type": "aviso",
      "x": 4752,
@@ -1698,7 +1710,7 @@
      "type": "pinchos",
      "x": 1248,
      "y": 576,
-     "width": 1056,
+     "width": 672,
      "height": 48,
      "rotation": 0,
      "visible": true,
@@ -1714,9 +1726,9 @@
      "id": 78,
      "name": "",
      "type": "pinchos",
-     "x": 5424,
+     "x": 5712,
      "y": 576,
-     "width": 2400,
+     "width": 336,
      "height": 48,
      "rotation": 0,
      "visible": true,
@@ -1729,7 +1741,25 @@
      ]
     },
     {
-     "id": 87,
+     "id": 80,
+     "name": "",
+     "type": "pinchos",
+     "x": 6672,
+     "y": 576,
+     "width": 576,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 1
+      }
+     ]
+    },
+    {
+     "id": 89,
      "name": "",
      "type": "pinchos",
      "x": 8640,
@@ -1747,7 +1777,7 @@
      ]
     },
     {
-     "id": 89,
+     "id": 91,
      "name": "",
      "type": "pinchos",
      "x": 8784,
@@ -1765,7 +1795,7 @@
      ]
     },
     {
-     "id": 91,
+     "id": 93,
      "name": "",
      "type": "pinchos",
      "x": 8928,
@@ -1783,7 +1813,7 @@
      ]
     },
     {
-     "id": 93,
+     "id": 95,
      "name": "",
      "type": "pinchos",
      "x": 9072,
@@ -1801,7 +1831,7 @@
      ]
     },
     {
-     "id": 94,
+     "id": 96,
      "name": "",
      "type": "pinchos",
      "x": 9504,

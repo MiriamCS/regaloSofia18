@@ -1,16 +1,16 @@
 {
-  "_comentario": "Dibujo de cada enemigo. 'mira': hacia dónde mira el dibujo original (derecha | izquierda | frente); los laterales se dan la vuelta al cambiar de dirección y los de frente nunca. 'alto': altura en pantalla en px (el ancho sale de la proporción del dibujo). Tras cambiar 'alto' o el dibujo de originales/enemigos, ejecuta 'npm run imagenes'.",
+  "_comentario": "Dibujo de cada enemigo. 'mira': hacia dónde mira el dibujo original (derecha | izquierda | frente); los laterales se dan la vuelta al cambiar de dirección y los de frente nunca. 'alto': altura en pantalla en px (el ancho sale de la proporción del dibujo). Tras cambiar 'alto' o el dibujo de originales/enemigos, ejecuta 'npm run imagenes'. 'presenta': nivel en el que Miriam lo presenta; no puede salir antes y nunca se presentan dos en el mismo nivel (lo comprueba 'npm run validar').",
   "enemigos": {
-    "pato":         { "mira": "derecha",   "alto": 56 },
-    "cochecito":    { "mira": "derecha",   "alto": 46 },
-    "mochila":      { "mira": "frente",    "alto": 66 },
-    "mosquito":     { "mira": "derecha",   "alto": 48 },
-    "avion-papel":  { "mira": "derecha",   "alto": 40 },
-    "notificacion": { "mira": "frente",    "alto": 52 },
-    "boligrafo":    { "mira": "frente",    "alto": 150 },
-    "examenes":     { "mira": "frente",    "alto": 110 },
-    "urraca":       { "mira": "derecha",   "alto": 50 },
-    "metronomo":    { "mira": "frente",    "alto": 84 },
-    "despertador":  { "mira": "frente",    "alto": 70 }
+    "pato":         { "mira": "derecha",   "alto": 56,  "presenta": 0 },
+    "cochecito":    { "mira": "derecha",   "alto": 46,  "presenta": 1 },
+    "urraca":       { "mira": "derecha",   "alto": 50,  "presenta": 2 },
+    "mochila":      { "mira": "frente",    "alto": 66,  "presenta": 3 },
+    "mosquito":     { "mira": "derecha",   "alto": 48,  "presenta": 4 },
+    "avion-papel":  { "mira": "derecha",   "alto": 40,  "presenta": 5 },
+    "boligrafo":    { "mira": "frente",    "alto": 150, "presenta": 6 },
+    "metronomo":    { "mira": "frente",    "alto": 84,  "presenta": 7 },
+    "despertador":  { "mira": "frente",    "alto": 70,  "presenta": 11 },
+    "examenes":     { "mira": "frente",    "alto": 110, "presenta": 12 },
+    "notificacion": { "mira": "frente",    "alto": 52,  "presenta": 13 }
   }
 }

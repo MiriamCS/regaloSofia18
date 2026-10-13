@@ -3,6 +3,7 @@
 // | (3) aviones de papel entre azoteas | (4) carrera por los cables con plataformas que caen.
 // Foto: en la azotea de la torre, encadenando tres farolas (p, q, k). Objeto: en el callejón bajo el cable,
 // entre pinchos de 2 velas. Broma: el semáforo para peatones (r) casi siempre está en rojo.
+// Aquí se estrenan las temporizadas y el daño de 2 velas (pinchos naranjas y el avión grande).
 // Temporizadas: a/b se alternan (ciclo 3 s); d/e/f se encienden en ola, de izquierda a derecha (ciclo 2,7 s); p/q/k suben en cadena.
 export default {
   props: { tema: 'ciudad-noche' },
@@ -27,13 +28,13 @@ export default {
     c: { tipo: 'enemigo', clase: 'patrullero', sprite: 'cochecito', rango: 3, velocidad: 80 },
   },
   objetos: [
-    { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', x: 163, y: 6, velocidad: 60, rango: 2, amplitud: 1.5, periodo: 1700, eliminable: 'salto', canto: 'dormir' },
-    { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', x: 176, y: 5, velocidad: 70, rango: 2, amplitud: 2, periodo: 1500, eliminable: 'salto', canto: 'dormir' },
-    { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', x: 189, y: 4, velocidad: 60, rango: 2, amplitud: 2.5, periodo: 1900, eliminable: 'salto', canto: 'dormir' },
-    { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', x: 201, y: 4, velocidad: 60, rango: 3, amplitud: 1, periodo: 1300, eliminable: 'salto', canto: 'dormir' },
-    { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', x: 248, y: 5, velocidad: 60, rango: 2, amplitud: 2, periodo: 1600, eliminable: 'salto', canto: 'dormir' },
-    { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', x: 264, y: 6, velocidad: 60, rango: 2, amplitud: 2.5, periodo: 2200, eliminable: 'salto', canto: 'dormir', escala: 1.4, danio: 2 },
-    { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', x: 277, y: 4, velocidad: 80, rango: 2, amplitud: 1.5, periodo: 1400, eliminable: 'salto', canto: 'dormir' },
+    { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', x: 163, y: 6, velocidad: 60, rango: 2, amplitud: 1.5, periodo: 1700 },
+    { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', x: 176, y: 5, velocidad: 70, rango: 2, amplitud: 2, periodo: 1500 },
+    { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', x: 189, y: 4, velocidad: 60, rango: 2, amplitud: 2.5, periodo: 1900 },
+    { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', x: 201, y: 4, velocidad: 60, rango: 3, amplitud: 1, periodo: 1300 },
+    { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', x: 248, y: 5, velocidad: 60, rango: 2, amplitud: 2, periodo: 1600 },
+    { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', x: 264, y: 6, velocidad: 60, rango: 2, amplitud: 2.5, periodo: 2200, escala: 1.4, danio: 2 },
+    { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', x: 277, y: 4, velocidad: 80, rango: 2, amplitud: 1.5, periodo: 1400 },
   ],
   mapa: `
 #                                                                      F                                                                                                                                                                                                                            #
@@ -48,7 +49,7 @@ export default {
 # S   M        aa  ###########          ############# rrrr                 2  C                                             ddd       fff       eee  ############     ########     ########     #####         #####################=======vuvuvu                    ===                   ###########
 #############      ###########          #############      #####################  aaa  bbb  aaa  ##  bbb  aaa  bbb  ######                           ############     ########     ########     #####        ######################                                                       ###########
 #############      ###########          #############      #####################                 ##                 ######                           ############     ########     ########     #####         #####################                                                       ###########
-#############      ###########          #############      #####################WWWWWWWWWWWWWWWWW##WWWWWWWWWWWWWWWWW######WWWWWWWWWWWWWWWWWWWWWWWWWWW############     ########     ########     #####   O     #####################                                                       ###########
+#############      ###########          #############      ##############################WWWWWWWW##WWWWWWWWWWWW#####################WWWWWWWWW####################     ########     ########     #####   O     #####################                                                       ###########
 #############      ###########          #############      ######################################################################################################     ########     ########     #####WWW##WWWW#####################                                                       ###########
 #############      ###########          #############      ######################################################################################################     ########     ########     ###################################                                                       ###########
 `,

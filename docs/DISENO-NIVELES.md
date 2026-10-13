@@ -9,6 +9,21 @@ idea principal; foto y objeto en zonas opcionales y difíciles; Miriam al menos 
 puzle más complicado; al menos una broma o trampa graciosa por nivel; nunca más de ~3 minutos
 entre checkpoints. La dificultad sube claramente de un nivel al siguiente.
 
+### Monstruos y curva de dificultad (acordado en octubre)
+- **Un monstruo nuevo por nivel, nunca dos**, y siempre presentado (pista de Miriam o cartel) antes de que salga el
+  primero: 0 pato · 1 cochecito · 2 urraca · 3 mochila · 4 mosquito · 5 avión de papel · 6 bolígrafo · 7 metrónomo ·
+  11 despertador · 12 pila de exámenes · 13 notificación. El nivel de cada uno está en `config/enemigos.json`
+  (`presenta`) y `npm run validar` comprueba que ninguno salga antes.
+- Daño de los monstruos: patrulleros, urraca, bloqueadores y desafinados no quitan velas (empujan, roban, cortan el
+  paso o invierten los controles si les cantas); los voladores quitan 1 (algún avión, 2). Al cantarles, los voladores
+  huyen; solo se eliminan saltándoles encima.
+- La urraca huye más rápido de lo que anda Sofía (velocidad 150-200): para recuperar lo robado hay que correr.
+- **Presión** de un nivel = daño total que contiene ÷ velas. Como las velas crecen con la edad, cada nivel tiene que
+  añadir daño para no quedar más fácil que el anterior. No cuenta los huecos, así que los niveles con muchos abismos
+  (4, 8) o mucha carga musical (11) son más duros de lo que dice el número.
+- Pinchos: 1 vela hasta el 9, 2 desde el 10, 3 desde el 14. En el último tramo del 18, caer al abismo cuesta 3 velas.
+- Cambios de orden: el verano pasó al 9 y el conservatorio al 11; exámenes al 14 y la audición al 15.
+
 ---
 
 ## Parte 1 · Diseño por nivel
@@ -42,6 +57,7 @@ entre checkpoints. La dificultad sube claramente de un nivel al siguiente.
 - **Broma:** un cartel «No corras por casa» justo antes del hueco que solo se puede saltar corriendo.
 - **Foto:** en lo alto de la estantería (tramo 3), pasando por una repisa que se cae.
 - **Objeto (patito):** en la bañera, al fondo de un pasillo lateral con lluvia de juguetes muy densa.
+- **Cambios (oct.):** Se presenta la urraca: una rápida en la explanada final (cerrada por la pared), hay que correr para recuperar la foto.
 - **Miriam:** en el salón, junto a las cajas.
 
 ### Nivel 3 · 3 años · La guardería — 3 velas
@@ -52,6 +68,7 @@ entre checkpoints. La dificultad sube claramente de un nivel al siguiente.
 - **Broma:** una caja «pesada» (mueble) que no se mueve nada... salvo que la empujes desde el otro lado, donde resbala sola.
 - **Foto:** sobre una torre que requiere apilar las tres cajas del último puzle de forma distinta a la «obvia».
 - **Objeto (ceras):** en un hueco bajo el suelo al que se accede tras dejar caer una caja que tapa la entrada.
+- **Cambios (oct.):** Foso de pinchos de 15 casillas acortado a 8.
 - **Miriam:** junto al gran puzle final.
 
 ### Nivel 4 · 4 años · La playa — 4 velas
@@ -62,6 +79,7 @@ entre checkpoints. La dificultad sube claramente de un nivel al siguiente.
 - **Broma:** un mosquito gigante que da miedo... y se va volando en cuanto te acercas.
 - **Foto:** en una nube alta sobre el agua, solo con doble salto perfecto desde una tabla hundiéndose.
 - **Objeto (cubo de playa):** al final de un muelle lateral que se hunde muy rápido.
+- **Cambios (oct.):** Los mosquitos se mueven todos y hay 3 más, siempre después del cartel que los presenta.
 - **Miriam:** antes del muelle.
 
 ### Nivel 5 · 5 años · La fiesta de cumpleaños — 5 velas
@@ -73,6 +91,7 @@ entre checkpoints. La dificultad sube claramente de un nivel al siguiente.
 - **Broma:** el nivel entero; Miriam confiesa en el último tramo que el cartel del principio mentía.
 - **Foto:** detrás de una pared que parece sólida.
 - **Objeto (corona):** en lo alto, sobre una nube que solo aparece cuando la meta falsa sale huyendo.
+- **Cambios (oct.):** Se presenta el avión de papel (cartel 7). Las nubes intermitentes de la corona son ahora globos que caen y reaparecen (las temporizadas se estrenan en el 10). Dos aviones más.
 - **Miriam:** en el tramo 2 (te dice justo lo contrario de lo que hay que hacer, y luego se disculpa).
 
 ### Nivel 6 · 6 años · El primer cole — 6 velas
@@ -83,6 +102,7 @@ entre checkpoints. La dificultad sube claramente de un nivel al siguiente.
 - **Broma:** un profesor bloqueador que, en vez de apartarse, se queda dormido... encima de la salida (hay que rodearlo).
 - **Foto:** sobre una cadena de plataformas musicales que hay que encadenar sin dejar de cantar.
 - **Objeto (mochila):** tras una puerta-melodía oculta (sin notas a la vista: hay que escucharla).
+- **Cambios (oct.):** Cartel que presenta el bolígrafo antes del primero. Unos 40 % menos de pinchos (es donde se aprende a cantar).
 - **Miriam:** en el pasillo de las puertas.
 
 ### Nivel 7 · 7 años · La clase de música — 7 velas
@@ -93,6 +113,7 @@ entre checkpoints. La dificultad sube claramente de un nivel al siguiente.
 - **Broma:** la primera puerta se abre tocando «el himno de la alegría»... y lo que se abre es un armario con un metrónomo.
 - **Foto:** encima del gran piano, tocando una melodía secreta (el inicio de «Cumpleaños feliz»).
 - **Objeto (partituras):** en el foso del piano, entre pinchos.
+- **Cambios (oct.):** El foso de pinchos se reduce a la mitad (quedan los de debajo de las plataformas musicales).
 - **Miriam:** junto al gran piano.
 
 ### Nivel 8 · 8 años · La excursión al bosque — 8 velas
@@ -103,17 +124,19 @@ entre checkpoints. La dificultad sube claramente de un nivel al siguiente.
 - **Broma:** una urraca que roba... un calcetín imaginario y te lo devuelve muy ofendida.
 - **Foto:** pronto en el nivel y fácil de coger, pero con urracas por todo el camino (hay que protegerla).
 - **Objeto (brújula):** en la copa del árbol más alto.
+- **Cambios (oct.):** Urracas más rápidas, zarzas (pinchos) en el sendero y más mosquitos. Miriam ya no presenta la urraca.
 - **Miriam:** en el claro.
 
-### Nivel 9 · 9 años · El conservatorio — 9 velas
-- **Foco:** **melodías largas bajo presión**.
-- **Tramos:** (1) pasillos de campanas con melodías de 5 notas; (2) sala de ensayo con un peligro que
-  avanza desde la izquierda (`peligro-movil`, «la profesora de solfeo con prisa») mientras tocas;
-  (3) escalera de teclas temporizadas; (4) audición: melodía de 7 notas con campanas en plataformas musicales.
-- **Broma:** una puerta que pide la melodía... y al tocarla bien se abre la de al lado.
-- **Foto:** en la sala de ensayo, en una desviación que te deja muy cerca del peligro que avanza.
-- **Objeto (metrónomo):** tras una puerta-melodía oculta de 5 notas.
-- **Miriam:** antes de la audición.
+### Nivel 9 · 9 años · Vacaciones de verano — 9 velas
+- **Foco:** **combinación** de cajas + canto + enemigos.
+- **Tramos:** (1) piscina: cajas flotantes (plataformas que se hunden) y patos dormidos con canto;
+  (2) chiringuito: puzle de cajas con plataformas musicales; (3) camping: mochilas, mosquitos y
+  desafinados juntos; (4) puesta de sol: puerta-melodía de 5 notas en una zona con plataformas que caen.
+- **Broma:** cantar para dormir al pato... y se despiertan todos los demás (`canto: enfadar`).
+- **Foto:** sobre la sombrilla más alta (cajas apiladas encima de plataforma musical).
+- **Objeto (gafas de sol):** bajo el agua (zona de gravedad baja: «buceando»).
+- **Cambios (oct.):** viene del antiguo 11. El despertador del camping es ahora un metrónomo (el despertador se presenta en el 11); más erizos y mosquitos.
+- **Miriam:** en el chiringuito.
 
 ### Nivel 10 · 10 años · La ciudad de noche — 10 velas
 - **Foco:** **peligros de 2 velas** y **plataformas temporizadas**.
@@ -122,17 +145,19 @@ entre checkpoints. La dificultad sube claramente de un nivel al siguiente.
 - **Broma:** un semáforo para peatones (plataforma temporizada) que está en rojo justo cuando llegas, siempre.
 - **Foto:** en la azotea más alta, encadenando tres farolas temporizadas.
 - **Objeto (farolillo):** en un callejón bajo la ciudad lleno de pinchos de 2 velas.
+- **Cambios (oct.):** Unos 30 pinchos de 2 velas menos. Al cantarles, los aviones cambian de rumbo (ya no se duermen).
 - **Miriam:** en la carrera por cables.
 
-### Nivel 11 · 11 años · Vacaciones de verano — 11 velas
-- **Foco:** **combinación** de cajas + canto + enemigos.
-- **Tramos:** (1) piscina: cajas flotantes (plataformas que se hunden) y patos dormidos con canto;
-  (2) chiringuito: puzle de cajas con plataformas musicales; (3) camping: mochilas, mosquitos y
-  desafinados juntos; (4) puesta de sol: puerta-melodía de 5 notas en una zona con plataformas que caen.
-- **Broma:** cantar para dormir al pato... y se despiertan todos los demás (`canto: enfadar`).
-- **Foto:** sobre la sombrilla más alta (cajas apiladas encima de plataforma musical).
-- **Objeto (gafas de sol):** bajo el agua (zona de gravedad baja: «buceando»).
-- **Miriam:** en el chiringuito.
+### Nivel 11 · 11 años · El conservatorio — 11 velas
+- **Foco:** **melodías largas bajo presión**.
+- **Tramos:** (1) pasillos de campanas con melodías de 5 notas; (2) sala de ensayo con un peligro que
+  avanza desde la izquierda (`peligro-movil`, «la profesora de solfeo con prisa») mientras tocas;
+  (3) escalera de teclas temporizadas; (4) audición: melodía de 7 notas con campanas en plataformas musicales.
+- **Broma:** una puerta que pide la melodía... y al tocarla bien se abre la de al lado.
+- **Foto:** en la sala de ensayo, en una desviación que te deja muy cerca del peligro que avanza.
+- **Objeto (metrónomo):** tras una puerta-melodía oculta de 5 notas.
+- **Cambios (oct.):** viene del antiguo 9. Aquí se presenta el despertador (cartel al empezar; uno junto a la campana del fa y otro antes de la audición). La profe con prisa va más rápido y quita 2 velas; pinchos de 2 velas.
+- **Miriam:** antes de la audición.
 
 ### Nivel 12 · 12 años · Primer día de instituto — 12 velas
 - **Foco:** **gravedad y controles cambiantes** (estilo That Level Again).
@@ -142,6 +167,7 @@ entre checkpoints. La dificultad sube claramente de un nivel al siguiente.
 - **Broma:** un cartel «Por aquí no» con la flecha al revés, en la zona de controles invertidos.
 - **Foto:** en el techo del gimnasio, solo alcanzable con gravedad invertida.
 - **Objeto (agenda):** en una taquilla al fondo de la zona invertida.
+- **Cambios (oct.):** Se presenta la pila de exámenes (cartel 3). Los pinchos pasan a 2 velas (y algo menos de ellos).
 - **Miriam:** al empezar la escalera al revés.
 
 ### Nivel 13 · 13 años · La habitación adolescente y el móvil gigante — 13 velas
@@ -152,9 +178,20 @@ entre checkpoints. La dificultad sube claramente de un nivel al siguiente.
 - **Broma:** «Batería baja: 1%»... y en lugar de apagarse, todo el nivel sigue igual (pero lo crees).
 - **Foto:** en la galería del móvil, tras una pared falsa.
 - **Objeto (primer móvil):** en un cajón del escritorio, protegido por notificaciones.
+- **Cambios (oct.):** Más pinchos de 2 velas y 4 notificaciones más.
 - **Miriam:** dentro del móvil (avisa de que no te fíes de los avisos).
 
-### Nivel 14 · 14 años · La audición — 14 velas
+### Nivel 14 · 14 años · Exámenes — 14 velas
+- **Foco:** **peligros de 3 velas** y **escape vertical** (`peligro-movil` hacia arriba: la marea de apuntes).
+- **Tramos:** (1) la biblioteca: subida con pilas de exámenes bloqueadores; (2) escape vertical por estanterías;
+  (3) zona de pinchos de 3 velas («el suspenso»); (4) escape final más rápido con plataformas que caen.
+- **Broma:** un examen sorpresa (bloqueador) que aparece de golpe... con la nota «10» (y se aparta solo).
+- **Foto:** en un saliente lateral durante el escape vertical (arriesgado: hay que desviarse).
+- **Objeto (boli de la suerte):** sobre los pinchos de 3 velas.
+- **Cambios (oct.):** viene del antiguo 15. Aquí se estrenan los pinchos de 3 velas; la marea sube algo más rápido y hay más aviones. Las pilas de exámenes ya se presentaron en el 12.
+- **Miriam:** al principio del escape.
+
+### Nivel 15 · 15 años · La audición — 15 velas
 - **Foco:** **ritmo**: secciones a compás de la música (`plataforma-temporizada` con `ritmo`).
 - **Tramos:** (1) entre bastidores: plataformas a negras; (2) el foso de la orquesta: plataformas a corcheas
   y metrónomos; (3) el escenario: campanas que hay que tocar a tiempo mientras las plataformas laten;
@@ -162,16 +199,8 @@ entre checkpoints. La dificultad sube claramente de un nivel al siguiente.
 - **Broma:** un metrónomo desafinado que, si le cantas, en lugar de invertir los controles cambia el tempo.
 - **Foto:** en el palco, sobre plataformas a contratiempo.
 - **Objeto (entrada):** debajo del escenario.
+- **Cambios (oct.):** viene del antiguo 14. La ovación final es sobre pinchos de 3 velas y con más aviones. Sofía ya lleva gafas.
 - **Miriam:** entre bastidores («cuenta: un, dos, tres...»).
-
-### Nivel 15 · 15 años · Exámenes — 15 velas
-- **Foco:** **peligros de 3 velas** y **escape vertical** (`peligro-movil` hacia arriba: la marea de apuntes).
-- **Tramos:** (1) la biblioteca: subida con pilas de exámenes bloqueadores; (2) escape vertical por estanterías;
-  (3) zona de pinchos de 3 velas («el suspenso»); (4) escape final más rápido con plataformas que caen.
-- **Broma:** un examen sorpresa (bloqueador) que aparece de golpe... con la nota «10» (y se aparta solo).
-- **Foto:** en un saliente lateral durante el escape vertical (arriesgado: hay que desviarse).
-- **Objeto (boli de la suerte):** sobre los pinchos de 3 velas.
-- **Miriam:** al principio del escape.
 
 ### Nivel 16 · 16 años · El viaje — 16 velas
 - **Foco:** **mundo que cambia al cantar** (dos versiones del nivel: A de día, B de noche).
@@ -181,6 +210,7 @@ entre checkpoints. La dificultad sube claramente de un nivel al siguiente.
 - **Broma:** una maleta (caja) que en el otro mundo es... la misma maleta, pero con gafas.
 - **Foto:** en un mirador que solo existe en el mundo B, rodeado de pinchos del mundo A.
 - **Objeto (maleta):** en el andén del tren.
+- **Cambios (oct.):** Pinchos de los mundos de 3 velas, los sueltos de 2, y 4 aviones más.
 - **Miriam:** en la estación.
 
 ### Nivel 17 · 17 años · Selectividad y biblioteca — 17 velas
@@ -191,6 +221,7 @@ entre checkpoints. La dificultad sube claramente de un nivel al siguiente.
 - **Broma:** el «temario» es una pared enorme... que es falsa y se atraviesa.
 - **Foto:** en el centro del laberinto.
 - **Objeto (auriculares):** en la sala de estudio, tras una melodía oculta.
+- **Cambios (oct.):** Los pinchos de 1 vela pasan a 2.
 - **Miriam:** en el laberinto («yo me perdí aquí también»).
 
 ### Nivel 18 · 18 años · El gran concierto — 18 velas
@@ -202,6 +233,7 @@ entre checkpoints. La dificultad sube claramente de un nivel al siguiente.
   suave, el cartel «Continuará...» (el nivel se guarda como completado) y, más allá, la tarta con 18 velas.
 - **Foto:** no hay (Sofía aún no tiene foto de los 18): solo objeto.
 - **Objeto (copa de vino):** en el foso.
+- **Cambios (oct.):** «Cumpleaños feliz» entero (12 notas, con una campana re en lo más alto), despertador junto a las campanas, mochila, notificaciones y más aviones. La trampilla del «suelo seguro» quita 3 velas y caer al abismo del último tramo, también.
 - **Miriam:** en el escenario, antes del último tramo (pista emotiva).
 
 ---
@@ -271,7 +303,7 @@ Los objetos con posición exacta o tamaño especial van en `objetos: [{ tipo, x,
 | `puerta` | `grupo`, `secuencia` (`"C5,E5,G5"`), `oculta` (no muestra las notas; cantar junto a la puerta la hace tocar su melodía) |
 | `caja`, `mueble` | `estilo` (`juguete`/`madera`/`carton`/`libros`), `pesada`, `fija` |
 | `enemigo` | `clase` (`patrullero`/`volador`/`bloqueador`/`ladron`/`desafinado`), `sprite`, `velocidad`, `rango`, `amplitud`, `periodo`, `eliminable` (`salto,caja,canto`), `canto` (`dormir`/`huir`/`enfadar`/`apartar`/`invertir`/`nada`), `danio`, `escala` |
-| `pinchos` | `danio` (1; 2 desde nivel 10; 3 desde nivel 15) |
+| `pinchos` | `danio`: 1 hasta el nivel 9; 2 desde el 10 (ya no hay de 1); 3 desde el 14 |
 | `lluvia` | `intervalo` (ms), `texturas`, `velocidad`, `danio` |
 | `peligro-movil` | `dir` (`arriba`/`derecha`), `velocidad` (px/s), `desdeX` (casilla que lo activa; no se ve ni mata hasta entonces), `hastaX`/`hastaY` (casilla donde se para), `margen`, `color`, `danio` |
 | `meta-falsa` | `dx` (casillas que huye), `pista` (lo que dice) |

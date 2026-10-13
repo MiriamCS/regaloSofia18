@@ -10,7 +10,7 @@
  "tileheight": 48,
  "infinite": false,
  "nextlayerid": 4,
- "nextobjectid": 70,
+ "nextobjectid": 72,
  "properties": [
   {
    "name": "nivel",
@@ -21,6 +21,11 @@
    "name": "tema",
    "type": "string",
    "value": "instituto"
+  },
+  {
+   "name": "edad",
+   "type": "int",
+   "value": 12
   }
  ],
  "layers": [
@@ -287,7 +292,7 @@
      "properties": []
     },
     {
-     "id": 44,
+     "id": 46,
      "name": "",
      "type": "solido",
      "x": 10848,
@@ -299,7 +304,7 @@
      "properties": []
     },
     {
-     "id": 51,
+     "id": 53,
      "name": "",
      "type": "solido",
      "x": 0,
@@ -311,7 +316,7 @@
      "properties": []
     },
     {
-     "id": 52,
+     "id": 54,
      "name": "",
      "type": "solido",
      "x": 1440,
@@ -323,7 +328,7 @@
      "properties": []
     },
     {
-     "id": 53,
+     "id": 55,
      "name": "",
      "type": "solido",
      "x": 1968,
@@ -335,7 +340,7 @@
      "properties": []
     },
     {
-     "id": 54,
+     "id": 56,
      "name": "",
      "type": "solido",
      "x": 2448,
@@ -347,7 +352,7 @@
      "properties": []
     },
     {
-     "id": 55,
+     "id": 57,
      "name": "",
      "type": "solido",
      "x": 12912,
@@ -359,7 +364,7 @@
      "properties": []
     },
     {
-     "id": 56,
+     "id": 58,
      "name": "",
      "type": "solido",
      "x": 13488,
@@ -445,6 +450,24 @@
     {
      "id": 28,
      "name": "",
+     "type": "cartel",
+     "x": 1440,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "pista",
+       "type": "string",
+       "value": "examenes"
+      }
+     ]
+    },
+    {
+     "id": 29,
+     "name": "",
      "type": "enemigo",
      "x": 1632,
      "y": 528,
@@ -471,7 +494,7 @@
      ]
     },
     {
-     "id": 31,
+     "id": 32,
      "name": "",
      "type": "checkpoint",
      "x": 3120,
@@ -483,7 +506,7 @@
      "properties": []
     },
     {
-     "id": 35,
+     "id": 37,
      "name": "",
      "type": "checkpoint",
      "x": 6912,
@@ -495,7 +518,7 @@
      "properties": []
     },
     {
-     "id": 36,
+     "id": 38,
      "name": "",
      "type": "miriam",
      "x": 7008,
@@ -513,7 +536,7 @@
      ]
     },
     {
-     "id": 38,
+     "id": 40,
      "name": "",
      "type": "objeto",
      "x": 9696,
@@ -525,7 +548,7 @@
      "properties": []
     },
     {
-     "id": 40,
+     "id": 42,
      "name": "",
      "type": "checkpoint",
      "x": 10176,
@@ -537,7 +560,7 @@
      "properties": []
     },
     {
-     "id": 41,
+     "id": 43,
      "name": "",
      "type": "enemigo",
      "x": 10368,
@@ -570,7 +593,7 @@
      ]
     },
     {
-     "id": 42,
+     "id": 44,
      "name": "",
      "type": "enemigo",
      "x": 10656,
@@ -598,7 +621,7 @@
      ]
     },
     {
-     "id": 47,
+     "id": 49,
      "name": "",
      "type": "enemigo",
      "x": 13056,
@@ -626,7 +649,7 @@
      ]
     },
     {
-     "id": 48,
+     "id": 50,
      "name": "",
      "type": "enemigo",
      "x": 13152,
@@ -659,7 +682,7 @@
      ]
     },
     {
-     "id": 49,
+     "id": 51,
      "name": "",
      "type": "cartel",
      "x": 13632,
@@ -677,7 +700,7 @@
      ]
     },
     {
-     "id": 50,
+     "id": 52,
      "name": "",
      "type": "meta",
      "x": 13920,
@@ -689,7 +712,7 @@
      "properties": []
     },
     {
-     "id": 57,
+     "id": 59,
      "name": "",
      "type": "invertir",
      "x": 576,
@@ -701,7 +724,7 @@
      "properties": []
     },
     {
-     "id": 58,
+     "id": 60,
      "name": "",
      "type": "invertir",
      "x": 1536,
@@ -713,7 +736,7 @@
      "properties": []
     },
     {
-     "id": 59,
+     "id": 61,
      "name": "",
      "type": "invertir",
      "x": 2352,
@@ -725,7 +748,7 @@
      "properties": []
     },
     {
-     "id": 60,
+     "id": 62,
      "name": "",
      "type": "gravedad",
      "x": 3168,
@@ -743,7 +766,7 @@
      ]
     },
     {
-     "id": 61,
+     "id": 63,
      "name": "",
      "type": "gravedad",
      "x": 5280,
@@ -761,7 +784,7 @@
      ]
     },
     {
-     "id": 62,
+     "id": 64,
      "name": "",
      "type": "gravedad",
      "x": 7104,
@@ -779,7 +802,7 @@
      ]
     },
     {
-     "id": 63,
+     "id": 65,
      "name": "",
      "type": "enemigo",
      "x": 8928,
@@ -818,21 +841,11 @@
        "name": "velocidad",
        "type": "int",
        "value": 60
-      },
-      {
-       "name": "eliminable",
-       "type": "string",
-       "value": "salto"
-      },
-      {
-       "name": "canto",
-       "type": "string",
-       "value": "dormir"
       }
      ]
     },
     {
-     "id": 64,
+     "id": 66,
      "name": "",
      "type": "enemigo",
      "x": 8160,
@@ -871,21 +884,11 @@
        "name": "velocidad",
        "type": "int",
        "value": 50
-      },
-      {
-       "name": "eliminable",
-       "type": "string",
-       "value": "salto"
-      },
-      {
-       "name": "canto",
-       "type": "string",
-       "value": "dormir"
       }
      ]
     },
     {
-     "id": 65,
+     "id": 67,
      "name": "",
      "type": "gravedad",
      "x": 9648,
@@ -903,7 +906,7 @@
      ]
     },
     {
-     "id": 66,
+     "id": 68,
      "name": "",
      "type": "gravedad",
      "x": 11088,
@@ -921,7 +924,7 @@
      ]
     },
     {
-     "id": 67,
+     "id": 69,
      "name": "",
      "type": "invertir",
      "x": 11328,
@@ -933,7 +936,7 @@
      "properties": []
     },
     {
-     "id": 68,
+     "id": 70,
      "name": "",
      "type": "gravedad",
      "x": 12144,
@@ -951,7 +954,7 @@
      ]
     },
     {
-     "id": 69,
+     "id": 71,
      "name": "",
      "type": "invertir",
      "x": 12672,
@@ -988,7 +991,7 @@
       {
        "name": "danio",
        "type": "int",
-       "value": 1
+       "value": 2
       }
      ]
     },
@@ -1006,12 +1009,12 @@
       {
        "name": "danio",
        "type": "int",
-       "value": 1
+       "value": 2
       }
      ]
     },
     {
-     "id": 29,
+     "id": 30,
      "name": "",
      "type": "pinchos",
      "x": 2064,
@@ -1024,12 +1027,12 @@
       {
        "name": "danio",
        "type": "int",
-       "value": 1
+       "value": 2
       }
      ]
     },
     {
-     "id": 30,
+     "id": 31,
      "name": "",
      "type": "pinchos",
      "x": 2640,
@@ -1042,25 +1045,7 @@
       {
        "name": "danio",
        "type": "int",
-       "value": 1
-      }
-     ]
-    },
-    {
-     "id": 32,
-     "name": "",
-     "type": "pinchos",
-     "x": 3360,
-     "y": 528,
-     "width": 576,
-     "height": 48,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "danio",
-       "type": "int",
-       "value": 1
+       "value": 2
       }
      ]
     },
@@ -1068,9 +1053,9 @@
      "id": 33,
      "name": "",
      "type": "pinchos",
-     "x": 4368,
+     "x": 3360,
      "y": 528,
-     "width": 624,
+     "width": 384,
      "height": 48,
      "rotation": 0,
      "visible": true,
@@ -1078,12 +1063,48 @@
       {
        "name": "danio",
        "type": "int",
-       "value": 1
+       "value": 2
       }
      ]
     },
     {
      "id": 34,
+     "name": "",
+     "type": "pinchos",
+     "x": 3888,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 2
+      }
+     ]
+    },
+    {
+     "id": 35,
+     "name": "",
+     "type": "pinchos",
+     "x": 4368,
+     "y": 528,
+     "width": 432,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 2
+      }
+     ]
+    },
+    {
+     "id": 36,
      "name": "",
      "type": "pinchos",
      "x": 5952,
@@ -1096,12 +1117,12 @@
       {
        "name": "danio",
        "type": "int",
-       "value": 1
+       "value": 2
       }
      ]
     },
     {
-     "id": 37,
+     "id": 39,
      "name": "",
      "type": "pinchos",
      "x": 9456,
@@ -1114,12 +1135,12 @@
       {
        "name": "danio",
        "type": "int",
-       "value": 1
+       "value": 2
       }
      ]
     },
     {
-     "id": 39,
+     "id": 41,
      "name": "",
      "type": "pinchos",
      "x": 9888,
@@ -1132,12 +1153,12 @@
       {
        "name": "danio",
        "type": "int",
-       "value": 1
+       "value": 2
       }
      ]
     },
     {
-     "id": 43,
+     "id": 45,
      "name": "",
      "type": "pinchos",
      "x": 10752,
@@ -1150,12 +1171,12 @@
       {
        "name": "danio",
        "type": "int",
-       "value": 1
+       "value": 2
       }
      ]
     },
     {
-     "id": 45,
+     "id": 47,
      "name": "",
      "type": "pinchos",
      "x": 10944,
@@ -1168,17 +1189,17 @@
       {
        "name": "danio",
        "type": "int",
-       "value": 1
+       "value": 2
       }
      ]
     },
     {
-     "id": 46,
+     "id": 48,
      "name": "",
      "type": "pinchos",
      "x": 11232,
      "y": 528,
-     "width": 672,
+     "width": 480,
      "height": 48,
      "rotation": 0,
      "visible": true,
@@ -1186,7 +1207,7 @@
       {
        "name": "danio",
        "type": "int",
-       "value": 1
+       "value": 2
       }
      ]
     }

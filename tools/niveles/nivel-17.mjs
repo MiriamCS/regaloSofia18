@@ -16,6 +16,7 @@ export default {
     H: { tipo: 'plataforma-falsa', capa: 'solidos', fusion: 'h', modo: 'fantasma' },
     w: { tipo: 'pinchos', capa: 'zonas', fusion: 'h', danio: 2 },
     W: { tipo: 'pinchos', capa: 'zonas', fusion: 'h', danio: 3 },
+    '^': { tipo: 'pinchos', capa: 'zonas', fusion: 'h', danio: 2 },
     u: { tipo: 'plataforma-musical', capa: 'solidos', fusion: 'h', modo: 'aparece' },
     t: { tipo: 'plataforma-temporizada', capa: 'solidos', fusion: 'h', on: 1800, off: 1400, desfase: 0 },
     y: { tipo: 'plataforma-temporizada', capa: 'solidos', fusion: 'h', on: 1800, off: 1400, desfase: 2100 },

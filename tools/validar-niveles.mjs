@@ -8,7 +8,16 @@ const raiz = join(dirname(fileURLToPath(import.meta.url)), '..');
 const textos = JSON.parse(readFileSync(join(raiz, 'config', 'texts.json'), 'utf8'));
 const conFoto = new Set(JSON.parse(readFileSync(join(raiz, 'config', 'photos.json'), 'utf8')).fotos.map((f) => f.nivel));
 const juego = JSON.parse(readFileSync(join(raiz, 'config', 'juego.json'), 'utf8'));
-const SPRITES_ENEMIGOS = Object.keys(JSON.parse(readFileSync(join(raiz, 'config', 'enemigos.json'), 'utf8')).enemigos);
+const ENEMIGOS = JSON.parse(readFileSync(join(raiz, 'config', 'enemigos.json'), 'utf8')).enemigos;
+const SPRITES_ENEMIGOS = Object.keys(ENEMIGOS);
+// nivel en el que se presenta cada monstruo: no puede salir antes, y dos no se presentan en el mismo nivel
+const presentados = {};
+for (const [sprite, e] of Object.entries(ENEMIGOS)) {
+  if (e.presenta === undefined) continue;
+  if (presentados[e.presenta]) console.log(`  ✗ ${sprite} y ${presentados[e.presenta]} se presentan los dos en el nivel ${e.presenta} (config/enemigos.json)`);
+  presentados[e.presenta] = sprite;
+}
+const vistosEn = {};
 const TIPOS = new Set(['solido', 'nube', 'plataforma-movil', 'plataforma-cae', 'plataforma-falsa', 'plataforma-temporizada', 'plataforma-musical', 'tecla', 'campana', 'puerta', 'checkpoint', 'foto', 'objeto', 'meta', 'meta-falsa', 'miriam', 'cartel', 'caja', 'mueble', 'enemigo', 'pinchos', 'lluvia', 'peligro-movil', 'muerte', 'invertir', 'gravedad', 'final', 'aviso', 'decorado', 'inicio']);
 
 const pedidos = process.argv.slice(2).map(Number);
@@ -54,8 +63,11 @@ for (let n = 0; n <= 18; n++) {
     if (o.type === 'miriam' && !o.p.pista) err(`Miriam (id ${o.id}) sin pista`);
     if (o.type === 'enemigo' && o.p.sprite && !SPRITES_ENEMIGOS.includes(o.p.sprite)) err(`sprite de enemigo desconocido '${o.p.sprite}'`);
     if (o.type === 'puerta' && !o.p.secuencia) err(`puerta (id ${o.id}) sin secuencia`);
+    if (o.type === 'enemigo' && o.p.sprite && ENEMIGOS[o.p.sprite]?.presenta > n) err(`${o.p.sprite} sale antes de presentarse (se presenta en el nivel ${ENEMIGOS[o.p.sprite].presenta})`);
+    if (o.type === 'enemigo' && o.p.sprite) (vistosEn[o.p.sprite] ||= new Set()).add(n);
     if (o.type === 'pinchos' && o.p.danio >= 2 && n < 10) err(`peligro de ${o.p.danio} velas antes del nivel 10`);
-    if (o.type === 'pinchos' && o.p.danio >= 3 && n < 15) err(`peligro de 3 velas antes del nivel 15`);
+    if (o.type === 'pinchos' && o.p.danio >= 3 && n < 14) err(`peligro de 3 velas antes del nivel 14`);
+    if (o.type === 'pinchos' && (o.p.danio || 1) < 2 && n >= 10) err(`pinchos de 1 vela desde el nivel 10 (id ${o.id})`);
     if (o.type === 'enemigo' && o.p.clase === 'desafinado' && n < juego.habilidades.cantar) aviso('enemigo desafinado antes de poder cantar');
   }
   const usaCanto = objetos.some((o) => ['plataforma-musical', 'campana'].includes(o.type));
@@ -66,6 +78,15 @@ for (let n = 0; n <= 18; n++) {
   const xs = [objetos.find((o) => o.type === 'inicio')?.x || 0, ...objetos.filter((o) => o.type === 'checkpoint').map((o) => o.x).sort((a, b) => a - b)];
   for (let i = 1; i < xs.length; i++) if (xs[i] - xs[i - 1] > 110 * 48) aviso(`tramo largo entre checkpoints (${Math.round((xs[i] - xs[i - 1]) / 48)} casillas)`);
   if (errores === erroresAntes) console.log('  ✓ correcto');
+}
+// cada monstruo tiene que salir en el nivel donde se presenta (solo si se han validado todos)
+if (!pedidos.length) {
+  for (const [sprite, e] of Object.entries(ENEMIGOS)) {
+    if (e.presenta !== undefined && !vistosEn[sprite]?.has(e.presenta)) {
+      errores++;
+      console.log(`  ✗ ${sprite} se presenta en el nivel ${e.presenta} pero no sale en él`);
+    }
+  }
 }
 console.log(`\n${errores} errores, ${avisos} avisos`);
 process.exit(errores ? 1 : 0);

@@ -6,8 +6,9 @@
 //         | (4) la tarta de mentira: zona de controles invertidos y una segunda meta falsa que se mete en la
 //           pared del final... que también es falsa: la meta de verdad está dentro.
 // Foto: dentro del montículo del tramo 2 (pared fantasma por la derecha, col. 108-113; la delata una nota dorada).
-// Objeto (corona): arriba a la izquierda del inicio, por nubes intermitentes sobre pinchos (adaptación: el
-// motor no tiene nubes que aparezcan al huir la meta falsa; se usan plataformas temporizadas).
+// Objeto (corona): arriba a la izquierda del inicio, por globos que se pinchan al pisarlos (plataformas que caen y
+// reaparecen) sobre pinchos. Las temporizadas no se estrenan hasta el nivel 10.
+// Monstruo nuevo: el avión de papel (se presenta en el cartel 7, antes del primero).
 export default {
   props: { tema: 'fiesta', edad: 5 },
   leyenda: {
@@ -17,9 +18,9 @@ export default {
     w: { tipo: 'meta-falsa', dx: 9, pista: 'otra' },
     x: { tipo: 'plataforma-falsa', capa: 'solidos', fusion: 'h', modo: 'desaparece', retardo: 280 },
     H: { tipo: 'plataforma-falsa', capa: 'solidos', fusion: 'h', modo: 'fantasma' },
-    T: { tipo: 'plataforma-temporizada', capa: 'solidos', fusion: 'h', on: 2000, off: 1000, desfase: 0 },
-    U: { tipo: 'plataforma-temporizada', capa: 'solidos', fusion: 'h', on: 2000, off: 1000, desfase: 2200 },
-    V: { tipo: 'plataforma-temporizada', capa: 'solidos', fusion: 'h', on: 2000, off: 1000, desfase: 1000 },
+    T: { tipo: 'plataforma-cae', capa: 'solidos', fusion: 'h', retardo: 450 },
+    U: { tipo: 'plataforma-cae', capa: 'solidos', fusion: 'h', retardo: 450 },
+    V: { tipo: 'plataforma-cae', capa: 'solidos', fusion: 'h', retardo: 450 },
     c: { tipo: 'enemigo', clase: 'patrullero', sprite: 'cochecito', rango: 3, velocidad: 85 },
     a: { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', rango: 3, amplitud: 1, periodo: 1600, velocidad: 70 },
     n: { tipo: 'decorado', sprite: 'nota-dorada', escala: 0.6 },
@@ -29,6 +30,7 @@ export default {
     4: { tipo: 'cartel', pista: 'decoracion' },
     5: { tipo: 'cartel', pista: 'atras' },
     6: { tipo: 'cartel', pista: 'fin' },
+    7: { tipo: 'cartel', pista: 'aviones' },
   },
   objetos: [
     // la tarta de mentira: aquí izquierda y derecha van al revés
@@ -46,11 +48,11 @@ export default {
 #      VV                                                                                                                                                                                                                                   HHHHHHHHH#
 #                                                                                                                                                                                                                                           HHHHHHHHH#
 #                                     HH                                      ===              ==                                                                                                                                           HHHHHHHHH#
-#  UU                                 HH                                            ==                   #########                                      ###                       a                                                         HHHHHHHHH#
-#                                     HH                                                  a              ###HHHHHH                          B           ###                 a                                                               HHHHHHHHH#
+#  UU                                 HH                                            ==                   #########                   a                  ###                       a                                                         HHHHHHHHH#
+#                                     HH                                                  a              ###HHHHHH                          B           ###                 a                                             a                 HHHHHHHHH#
 #       TT                            HH       ##                       ###   xxx        ###   xxx       ###HHHHHH n                      ###           ###                                                  ##                             HHHHHHHHH#
 #                                     HH       ##                  ===                                 #####HHHHHH                                      ###                                                  ##                             HHHHHHHHH#
-#^^^^^^^^  S  1   m  2             3  HH       ##     c   M  C                                         #####HHHHHH        C   4  ^^^^                   ###    ^^  c    ^^              C    N   5           ##          ^^ c          w 6  HHHHHHHHH#
+#^^^^^^^^  S  1   m  2             3  HH       ##     c   M  C 7                                       #####HHHHHH        C   4  ^^^^                   ###    ^^  c    ^^              C    N   5           ##          ^^ c          w 6  HHHHHHHHH#
 ########################xxxxxxx##################################                                    #################################  ###############################################################   #######     #########   ####################
 ########################       ##################################                                    #################################  ###############################################################   #######     #########   ####################
 ########################       ##################################                                    #################################  ###############################################################   #######     #########   ####################

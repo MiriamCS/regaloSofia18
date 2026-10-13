@@ -5,6 +5,7 @@
 // con un doble salto rápido HACIA ATRÁS desde la tabla de las col. 94-95 antes de que se hunda.
 // Objeto (cubo): al final del muelle lateral de tablas que se hunden muy deprisa (col. 123-136, sobre el agua).
 // Broma: el mosquito gigante del cartel... es de cartón piedra (decorado).
+// Monstruo nuevo: el mosquito, el primero que apaga velas (se presenta en el cartel 2).
 export default {
   props: { tema: 'playa', edad: 4 },
   leyenda: {
@@ -15,7 +16,7 @@ export default {
     p: { tipo: 'enemigo', clase: 'patrullero', sprite: 'pato', rango: 2, velocidad: 70 },
     q: { tipo: 'enemigo', clase: 'patrullero', sprite: 'pato', rango: 1, velocidad: 60 },
     z: { tipo: 'enemigo', clase: 'volador', sprite: 'mosquito', rango: 2, amplitud: 1, periodo: 1700, velocidad: 55 },
-    Z: { tipo: 'enemigo', clase: 'volador', sprite: 'mosquito', velocidad: 0, amplitud: 1.5, periodo: 2400 },
+    Z: { tipo: 'enemigo', clase: 'volador', sprite: 'mosquito', rango: 1.5, velocidad: 45, amplitud: 1.5, periodo: 2400 },
     1: { tipo: 'cartel', pista: 'doble' },
     2: { tipo: 'cartel', pista: 'mosquito' },
     3: { tipo: 'cartel', pista: 'toalla' },
@@ -23,6 +24,10 @@ export default {
   objetos: [
     // el mosquito gigante (broma): es un decorado, no hace nada
     { tipo: 'decorado', x: 142, y: 6, sprite: 'mosquito', escala: 1.6, angulo: -8 },
+    // más mosquitos sobre los saltos largos, siempre después del cartel que los presenta (col. 140)
+    { tipo: 'enemigo', clase: 'volador', sprite: 'mosquito', x: 147, y: 5, rango: 2, amplitud: 1.5, periodo: 2000, velocidad: 45 },
+    { tipo: 'enemigo', clase: 'volador', sprite: 'mosquito', x: 171, y: 6, rango: 3, amplitud: 1.5, periodo: 2200, velocidad: 50 },
+    { tipo: 'enemigo', clase: 'volador', sprite: 'mosquito', x: 200, y: 8, rango: 2, amplitud: 1, periodo: 1800, velocidad: 55 },
   ],
   mapa: `
 #                                                                                                                                                                                                                                                        #

@@ -1,11 +1,10 @@
 {
-  "nombre": "Exámenes",
+  "nombre": "La audición",
   "pistas": {
-    "escape": "Sofi, en cuanto pases de aquí empieza a subir la marea de apuntes. No te pares a releer nada: ¡arriba!",
-    "sorpresa": "Examen sorpresa. Nota: 10. Es tan majo que se aparta si le cantas.",
-    "suspenso": "Peligro: pinchos rojos. Quitan 3 velas. Les llaman «el suspenso».",
-    "avisoSorpresa": "¡EXAMEN SORPRESA!",
-    "avisoMarea": "¡Sube la marea de apuntes!",
-    "avisoFinal": "Última pregunta... ¡y la marea va más rápido!"
+    "cuenta": "Sofi, aquí todo va a compás. Cuenta conmigo: un, dos, tres, cuatro... Salta cuando tu plataforma empiece a parpadear.",
+    "puerta": "La puerta pide mi, sol, la, do. Cántale a cada campana sin caerte... y ni se te ocurra tocar el si.",
+    "metronomo": "Aviso: no le cantes al metrónomo. No se enfada... se acelera.",
+    "ovacion": "Escucha la ovación: ¡el público pide otra!",
+    "avisoOvacion": "¡Última pieza! Corre a compás."
   }
 }

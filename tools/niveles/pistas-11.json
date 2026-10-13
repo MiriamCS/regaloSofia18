@@ -1,10 +1,11 @@
 {
-  "nombre": "Vacaciones de verano",
+  "nombre": "El conservatorio",
   "pistas": {
-    "hola": "¡Verano, Sofi! Ojo con la piscina: las colchonetas se hunden si te quedas quieta encima. Y no, hoy no hay socorrista.",
-    "pato": "Si le cantas una nana al pato, se duerme. Al pato. A los demás, no sé yo...",
-    "buceo": "Zona de buceo. Aquí abajo todo flota... menos los erizos, que pinchan.",
-    "chiringuito": "La barra está altísima. Esa caja de ahí arriba sería un buen taburete... si consigues bajarla. Cantar ayuda a subir.",
-    "atardecer": "La puerta del atardecer pide cinco notas: do, mi, re, sol, la. Sí, el re está antes que el mi... toca volver atrás. ¡Rápido, que todo se hunde!"
+    "hola": "¡Bienvenida al conservatorio, Sofi! Aquí las puertas piden melodías enteras. Canta junto a cada campana, en orden... y sin prisa. Bueno, de momento.",
+    "taquilla": "Taquilla del conserje. Combinación: el timbre del recreo (sol, mi, do... y vuelta a subir).",
+    "puerta": "Puerta de la sala de ensayo. Funciona... más o menos.",
+    "audicion": "¡Tu primera audición! «Oda a la alegría»: mi mi fa sol sol fa mi. Ojo: si cantas cerca de una campana, suena aunque no quieras.",
+    "despertador": "El despertador del conserje. No se le puede saltar encima, y si le cantas cerca te lía: izquierda por derecha durante un rato. Canta lejos de él.",
+    "profe": "Sala de ensayo. La profe de solfeo llega tarde y viene con mucha prisa: si te alcanza, te apaga DOS velas. ¡No te pares!"
   }
 }

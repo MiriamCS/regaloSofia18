@@ -10,7 +10,7 @@
  "tileheight": 48,
  "infinite": false,
  "nextlayerid": 4,
- "nextobjectid": 69,
+ "nextobjectid": 76,
  "properties": [
   {
    "name": "nivel",
@@ -593,7 +593,7 @@
      "properties": []
     },
     {
-     "id": 64,
+     "id": 68,
      "name": "",
      "type": "solido",
      "x": 0,
@@ -605,7 +605,7 @@
      "properties": []
     },
     {
-     "id": 65,
+     "id": 69,
      "name": "",
      "type": "solido",
      "x": 1872,
@@ -617,7 +617,7 @@
      "properties": []
     },
     {
-     "id": 66,
+     "id": 70,
      "name": "",
      "type": "solido",
      "x": 5952,
@@ -629,7 +629,7 @@
      "properties": []
     },
     {
-     "id": 67,
+     "id": 71,
      "name": "",
      "type": "solido",
      "x": 8928,
@@ -967,7 +967,7 @@
       {
        "name": "velocidad",
        "type": "int",
-       "value": 110
+       "value": 150
       }
      ]
     },
@@ -1000,7 +1000,7 @@
       {
        "name": "velocidad",
        "type": "int",
-       "value": 110
+       "value": 150
       }
      ]
     },
@@ -1033,7 +1033,7 @@
       {
        "name": "velocidad",
        "type": "int",
-       "value": 110
+       "value": 150
       }
      ]
     },
@@ -1068,7 +1068,7 @@
      ]
     },
     {
-     "id": 56,
+     "id": 57,
      "name": "",
      "type": "enemigo",
      "x": 1152,
@@ -1096,12 +1096,12 @@
       {
        "name": "velocidad",
        "type": "int",
-       "value": 110
+       "value": 150
       }
      ]
     },
     {
-     "id": 57,
+     "id": 60,
      "name": "",
      "type": "enemigo",
      "x": 2784,
@@ -1129,12 +1129,12 @@
       {
        "name": "velocidad",
        "type": "int",
-       "value": 110
+       "value": 150
       }
      ]
     },
     {
-     "id": 58,
+     "id": 61,
      "name": "",
      "type": "checkpoint",
      "x": 3120,
@@ -1146,7 +1146,7 @@
      "properties": []
     },
     {
-     "id": 59,
+     "id": 63,
      "name": "",
      "type": "checkpoint",
      "x": 6288,
@@ -1158,7 +1158,7 @@
      "properties": []
     },
     {
-     "id": 60,
+     "id": 64,
      "name": "",
      "type": "miriam",
      "x": 9120,
@@ -1176,7 +1176,7 @@
      ]
     },
     {
-     "id": 61,
+     "id": 65,
      "name": "",
      "type": "caja",
      "x": 9456,
@@ -1188,7 +1188,7 @@
      "properties": []
     },
     {
-     "id": 62,
+     "id": 66,
      "name": "",
      "type": "caja",
      "x": 10176,
@@ -1200,7 +1200,7 @@
      "properties": []
     },
     {
-     "id": 63,
+     "id": 67,
      "name": "",
      "type": "enemigo",
      "x": 10752,
@@ -1228,7 +1228,7 @@
       {
        "name": "velocidad",
        "type": "int",
-       "value": 170
+       "value": 200
       },
       {
        "name": "escala",
@@ -1238,7 +1238,7 @@
      ]
     },
     {
-     "id": 68,
+     "id": 72,
      "name": "",
      "type": "aviso",
      "x": 240,
@@ -1259,6 +1259,135 @@
        "value": 4200
       }
      ]
+    },
+    {
+     "id": 73,
+     "name": "",
+     "type": "enemigo",
+     "x": 3600,
+     "y": 1104,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "mosquito"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "amplitud",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 1900
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 60
+      }
+     ]
+    },
+    {
+     "id": 74,
+     "name": "",
+     "type": "enemigo",
+     "x": 8064,
+     "y": 336,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "mosquito"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 3
+      },
+      {
+       "name": "amplitud",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 1700
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 65
+      }
+     ]
+    },
+    {
+     "id": 75,
+     "name": "",
+     "type": "enemigo",
+     "x": 8736,
+     "y": 336,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "clase",
+       "type": "string",
+       "value": "volador"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "mosquito"
+      },
+      {
+       "name": "rango",
+       "type": "int",
+       "value": 2
+      },
+      {
+       "name": "amplitud",
+       "type": "float",
+       "value": 1.5
+      },
+      {
+       "name": "periodo",
+       "type": "int",
+       "value": 2100
+      },
+      {
+       "name": "velocidad",
+       "type": "int",
+       "value": 55
+      }
+     ]
     }
    ]
   },
@@ -1271,7 +1400,80 @@
    "visible": true,
    "x": 0,
    "y": 0,
-   "objects": []
+   "objects": [
+    {
+     "id": 56,
+     "name": "",
+     "type": "pinchos",
+     "x": 816,
+     "y": 1344,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 1
+      }
+     ]
+    },
+    {
+     "id": 58,
+     "name": "",
+     "type": "pinchos",
+     "x": 1296,
+     "y": 1344,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 1
+      }
+     ]
+    },
+    {
+     "id": 59,
+     "name": "",
+     "type": "pinchos",
+     "x": 2688,
+     "y": 1344,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 1
+      }
+     ]
+    },
+    {
+     "id": 62,
+     "name": "",
+     "type": "pinchos",
+     "x": 5904,
+     "y": 1344,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 1
+      }
+     ]
+    }
+   ]
   }
  ],
  "tilesets": []

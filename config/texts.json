@@ -73,12 +73,12 @@
   "monstruos": {
     "pato": { "nombre": "El patito de goma", "efecto": "Te empuja hacia atrás, pero no te apaga ninguna vela.", "truco": "Salta encima o tírale una caja. Si cantas cerca, se queda dormido." },
     "cochecito": { "nombre": "El cochecito", "efecto": "Te empuja hacia atrás, pero no te apaga ninguna vela.", "truco": "Salta encima o tírale una caja. Si cantas cerca, se queda dormido." },
+    "urraca": { "nombre": "La urraca", "efecto": "Te roba la foto o el objeto que lleves y sale volando con él.", "truco": "Alcánzala y tócala para recuperarlo." },
     "mochila": { "nombre": "La mochila", "efecto": "Te empuja hacia atrás, pero no te apaga ninguna vela.", "truco": "Salta encima o tírale una caja. Si cantas cerca, se queda dormida." },
     "mosquito": { "nombre": "El mosquito", "efecto": "Si te pica, te apaga una vela.", "truco": "Salta encima. Si cantas cerca, sale huyendo." },
     "avion-papel": { "nombre": "El avión de papel", "efecto": "Si te da, te apaga una vela (los más afilados, dos).", "truco": "Salta encima. Si cantas cerca, cambia de rumbo." },
     "boligrafo": { "nombre": "El bolígrafo gigante", "efecto": "No hace daño, pero te corta el paso.", "truco": "Canta cerca y se apartará." },
     "metronomo": { "nombre": "El metrónomo desafinado", "efecto": "Te empuja hacia atrás. Y si cantas cerca, te cambia la izquierda por la derecha durante unos segundos.", "truco": "Tírale una caja... y no le cantes." },
-    "urraca": { "nombre": "La urraca", "efecto": "Te roba la foto o el objeto que lleves y sale volando con él.", "truco": "Alcánzala y tócala para recuperarlo." },
     "despertador": { "nombre": "El despertador", "efecto": "Te empuja hacia atrás. Y si cantas cerca, te cambia la izquierda por la derecha durante unos segundos.", "truco": "Tírale una caja... y no le cantes." },
     "examenes": { "nombre": "La pila de exámenes", "efecto": "No hace daño, pero te corta el paso.", "truco": "Canta cerca y se apartará." },
     "notificacion": { "nombre": "La notificación", "efecto": "Si te da, te apaga una vela.", "truco": "Salta encima. Si cantas cerca, sale huyendo." }
@@ -131,7 +131,7 @@
         "hola": "¡Sofi, ya andas de pie! Ahora solo tienes una vela, así que mira bien antes de saltar.",
         "arenero": "Arenero municipal. Prohibido comerse la arena (sí, va por ti).",
         "columpio": "No saltes a lo loco: espera a que el columpio venga hacia ti. Y el de arriba del todo esconde algo... si te atreves.",
-        "patos": "Cuidado con los patos: no hacen daño, pero empujan. Y cerca de un hueco, un empujón es un viaje.",
+        "patos": "Los patos de la cuna se han mudado al parque, y se han traído a sus amigos los cochecitos. Ninguno hace daño, pero empujan... y cerca de un hueco, un empujón es un viaje.",
         "aparcado": "Cochecito aparcado. No se mueve de ahí. Palabra de cochecito.",
         "tobogan": "El tobogán se baja saltando, no rodando. Debajo dicen que se perdió un sonajero..."
       }
@@ -144,7 +144,8 @@
         "nocorras": "NO CORRAS POR CASA. Firmado: mamá.",
         "cocina": "¡Lluvia de juguetes desde la encimera! Las baldas te protegen: corre de refugio en refugio.",
         "cajas": "El sofá está muy alto para ti, pero las cajas no se quejan si te subes encima. Empújalas hasta la pared.",
-        "escalera": "La escalera de casa: peldaños gigantes y huecos de miedo. ¡Ahora sí puedes correr!"
+        "escalera": "La escalera de casa: peldaños gigantes y huecos de miedo. ¡Ahora sí puedes correr!",
+        "urraca": "¡Una urraca! No hace daño, pero si te toca mientras llevas la foto o el objeto, se lo lleva volando. Tócala para recuperarlo... y corre, que andando no la alcanzas."
       }
     },
     {
@@ -180,7 +181,8 @@
         "confiesa": "Vale, confieso: el cartel del principio mentía, y yo también. ¡Perdón, Sofi! Ahora en serio: aquí izquierda es derecha.",
         "atras": "Atajo a la tarta: ¡hacia atrás! Tú pulsa al revés y no hagas preguntas.",
         "otra": "¡Que no soy yo, pesada!",
-        "fin": "Fin del nivel. Aquí ya no hay nada. Nada de nada. Esa pared es muy pared."
+        "fin": "Fin del nivel. Aquí ya no hay nada. Nada de nada. Esa pared es muy pared.",
+        "aviones": "¡Aviones de papel! Estos sí pican: si te dan, te apagan una vela. Sáltales encima o pasa cuando se alejen."
       }
     },
     {
@@ -192,7 +194,8 @@
         "profe": "Shhh... El profe se ha quedado dormido. Justo delante de la salida. Habrá que dar la vuelta por arriba.",
         "aula": "La puerta del aula pide cuatro notas: do, mi, sol y do agudo. Cada campana te sube a la siguiente... si cantas en orden.",
         "armario": "Armario de la clase. Contraseña: de la campana más alta a la más baja.",
-        "recreo": "¡Riiiing! Se acabó la clase. ¡Al recreo!"
+        "recreo": "¡Riiiing! Se acabó la clase. ¡Al recreo!",
+        "boligrafo": "Bolígrafo gigante del profe. No hace daño, pero no deja pasar a nadie... salvo a quien le cante."
       }
     },
     {
@@ -208,28 +211,9 @@
     {
       "nombre": "La excursión al bosque",
       "pistas": {
-        "hola": "¡Excursión, Sofi! Ojo con las urracas: si llevas la foto y te tocan, te la roban y salen corriendo. Tócalas para recuperarla.",
+        "hola": "¡Excursión, Sofi! Las urracas del bosque son primas de la de casa, pero mucho más rápidas. Y cuidado con las zarzas del sendero, que pinchan.",
         "calcetin": "¡Una urraca te ha robado... un calcetín imaginario! Te lo devuelve muy ofendida: «no es de mi talla».",
         "claro": "Esa urraca es rapidísima, pero los muros no los salta. Y para salir de aquí te hará falta una caja junto al muro."
-      }
-    },
-    {
-      "nombre": "El conservatorio",
-      "pistas": {
-        "hola": "¡Bienvenida al conservatorio, Sofi! Aquí las puertas piden melodías enteras. Canta junto a cada campana, en orden... y sin prisa. Bueno, de momento.",
-        "taquilla": "Taquilla del conserje. Combinación: el timbre del recreo (sol, mi, do... y vuelta a subir).",
-        "puerta": "Puerta de la sala de ensayo. Funciona... más o menos.",
-        "audicion": "¡Tu primera audición! «Oda a la alegría»: mi mi fa sol sol fa mi. Ojo: si cantas cerca de una campana, suena aunque no quieras."
-      }
-    },
-    {
-      "nombre": "La ciudad de noche",
-      "pistas": {
-        "hola": "¡Sofi, diez años y paseando por los tejados de noche! Las farolas se encienden y se apagan: písalas solo cuando brillen.",
-        "semaforo": "Semáforo para peatones. Tiempo de espera estimado: siempre. (Saltar corriendo no está prohibido... creo.)",
-        "naranja": "Aviso municipal: los pinchos naranjas apagan DOS velas de golpe. No los pises ni para hacerte una foto.",
-        "cables": "Yo cruzaba estos cables con los ojos cerrados. Bueno, cerrados del miedo. No te pares: los trozos que tiemblan se caen.",
-        "aviones": "Zona de aviones de papel. Si les cantas una nana, se quedan dormidos en el aire un momento. Si no, salta en el momento justo... o encima de ellos."
       }
     },
     {
@@ -243,12 +227,34 @@
       }
     },
     {
+      "nombre": "La ciudad de noche",
+      "pistas": {
+        "hola": "¡Sofi, diez años y paseando por los tejados de noche! Las farolas se encienden y se apagan: písalas solo cuando brillen.",
+        "semaforo": "Semáforo para peatones. Tiempo de espera estimado: siempre. (Saltar corriendo no está prohibido... creo.)",
+        "naranja": "Aviso municipal: los pinchos naranjas apagan DOS velas de golpe. No los pises ni para hacerte una foto.",
+        "cables": "Yo cruzaba estos cables con los ojos cerrados. Bueno, cerrados del miedo. No te pares: los trozos que tiemblan se caen.",
+        "aviones": "Zona de aviones de papel. Si les cantas, cambian de rumbo. Y ojo con el grande: ese, si te da, te apaga DOS velas."
+      }
+    },
+    {
+      "nombre": "El conservatorio",
+      "pistas": {
+        "hola": "¡Bienvenida al conservatorio, Sofi! Aquí las puertas piden melodías enteras. Canta junto a cada campana, en orden... y sin prisa. Bueno, de momento.",
+        "taquilla": "Taquilla del conserje. Combinación: el timbre del recreo (sol, mi, do... y vuelta a subir).",
+        "puerta": "Puerta de la sala de ensayo. Funciona... más o menos.",
+        "audicion": "¡Tu primera audición! «Oda a la alegría»: mi mi fa sol sol fa mi. Ojo: si cantas cerca de una campana, suena aunque no quieras.",
+        "despertador": "El despertador del conserje. No se le puede saltar encima, y si le cantas cerca te lía: izquierda por derecha durante un rato. Canta lejos de él.",
+        "profe": "Sala de ensayo. La profe de solfeo llega tarde y viene con mucha prisa: si te alcanza, te apaga DOS velas. ¡No te pares!"
+      }
+    },
+    {
       "nombre": "Primer día de instituto",
       "pistas": {
         "hola": "¡Primer día de insti, Sofi! Aquí nada funciona como en el cole: ni las flechas, ni la gravedad, ni el horario. Tú respira.",
         "poraquino": "POR AQUÍ NO ➡ (La flecha la pintó alguien con los controles al revés. Como tú ahora mismo.)",
         "alreves": "Esta escalera se sube por el techo. Cuando estés boca abajo, saltar es hacia abajo y los agujeros del techo dan al cielo. ¡No mires arriba! Bueno, abajo. Bueno, tú me entiendes.",
-        "final": "Último pasillo. Si te sale todo al revés, es que vas bien. ¡Ya casi eres de instituto!"
+        "final": "Último pasillo. Si te sale todo al revés, es que vas bien. ¡Ya casi eres de instituto!",
+        "examenes": "Una pila de exámenes te corta el paso. No muerde ni empuja, pero no hay quien la salte. Cántale y se apartará... con los controles al revés, eso sí."
       }
     },
     {
@@ -269,6 +275,17 @@
       }
     },
     {
+      "nombre": "Exámenes",
+      "pistas": {
+        "escape": "Sofi, en cuanto pases de aquí empieza a subir la marea de apuntes. No te pares a releer nada: ¡arriba!",
+        "sorpresa": "Examen sorpresa. Nota: 10. El examen más majo del mundo... y aun así te corta el paso.",
+        "suspenso": "Peligro: pinchos rojos. Quitan 3 velas. Les llaman «el suspenso».",
+        "avisoSorpresa": "¡EXAMEN SORPRESA!",
+        "avisoMarea": "¡Sube la marea de apuntes!",
+        "avisoFinal": "Última pregunta... ¡y la marea va más rápido!"
+      }
+    },
+    {
       "nombre": "La audición",
       "pistas": {
         "cuenta": "Sofi, aquí todo va a compás. Cuenta conmigo: un, dos, tres, cuatro... Salta cuando tu plataforma empiece a parpadear.",
@@ -276,17 +293,6 @@
         "metronomo": "Aviso: no le cantes al metrónomo. No se enfada... se acelera.",
         "ovacion": "Escucha la ovación: ¡el público pide otra!",
         "avisoOvacion": "¡Última pieza! Corre a compás."
-      }
-    },
-    {
-      "nombre": "Exámenes",
-      "pistas": {
-        "escape": "Sofi, en cuanto pases de aquí empieza a subir la marea de apuntes. No te pares a releer nada: ¡arriba!",
-        "sorpresa": "Examen sorpresa. Nota: 10. Es tan majo que se aparta si le cantas.",
-        "suspenso": "Peligro: pinchos rojos. Quitan 3 velas. Les llaman «el suspenso».",
-        "avisoSorpresa": "¡EXAMEN SORPRESA!",
-        "avisoMarea": "¡Sube la marea de apuntes!",
-        "avisoFinal": "Última pregunta... ¡y la marea va más rápido!"
       }
     },
     {
@@ -307,7 +313,7 @@
         "atajo": "Atajo a la salida →  (Firmado: alguien que nunca ha salido de aquí.)",
         "nada": "Aquí no hay nada. Bueno, sí: un cartel diciéndote que aquí no hay nada.",
         "silencio": "Sala de estudio. Silencio, por favor. Bueno... se permite cantar bajito.",
-        "estudio": "Las campanas suenan si cantas cerca, Sofi. Pero ojo con el metrónomo: si le cantas al lado, te lía los controles.",
+        "estudio": "Las campanas suenan si cantas cerca, Sofi. Y ya conoces al metrónomo: a ese, ni una nota.",
         "examen": "Examen final. Lea atentamente el enunciado y, si hace falta, dele la vuelta a la hoja.",
         "vuelta": "Den la vuelta al examen... ¡y a la gravedad!",
         "nota": "¡Corre, Sofi, que viene la marea de apuntes! Las puertas se abren con su melodía: campanas primero, teclas después.",
@@ -318,9 +324,9 @@
       "nombre": "El gran concierto",
       "pistas": {
         "inicio": "Sofi, es la noche del gran concierto. Todo lo que has aprendido en 18 años vas a necesitarlo hoy. Empieza por esa caja: ya sabes qué hacer.",
-        "melodia": "La puerta solo se abre con la canción más importante de hoy. Sol, sol, la, sol, do, si... ¿te suena?",
+        "melodia": "La puerta solo se abre con la canción más importante de hoy, y entera: sol, sol, la, sol, do, si... sol, sol, la, sol, re, do. ¿Te suena? (El re está en lo más alto.)",
         "seguro": "¡Este suelo es 100% seguro! Firmado: el mismo de siempre.",
-        "ultimo": "Este es el último tramo, Sofi. El más difícil de todos. Pase lo que pase al otro lado... estoy muy orgullosa de ti."
+        "ultimo": "Este es el último tramo, Sofi. El más difícil de todos: aquí, caerse cuesta tres velas. Pase lo que pase al otro lado... estoy muy orgullosa de ti."
       }
     }
   ]
