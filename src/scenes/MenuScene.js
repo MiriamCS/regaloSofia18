@@ -18,9 +18,6 @@ export class MenuScene extends Phaser.Scene {
     fondoMenu(this);
     Audio.tocarMusica(PISTAS.inicio);
 
-    const clave = this.add.image(W * 0.2, H * 0.5, 'clave').setScale(1.4).setAlpha(0.18);
-    this.tweens.add({ targets: clave, angle: { from: -3, to: 3 }, duration: 3000, yoyo: true, repeat: -1, ease: 'Sine.inOut' });
-
     // Logo (assets/logo.png, se genera con npm run iconos) y el subtítulo justo debajo
     const logo = this.add.image(W * 0.3, 24, 'logo').setOrigin(0.5, 0);
     logo.setScale(Math.min((W * 0.48) / logo.width, (H * 0.32) / logo.height));

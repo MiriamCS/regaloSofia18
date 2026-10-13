@@ -57,7 +57,7 @@ export class Boton extends Phaser.GameObjects.Container {
   }
 }
 
-// Fondo azul con claves de sol flotando, usado en todos los menús.
+// Fondo azul con notas musicales flotando, usado en todos los menús.
 export function fondoMenu(scene) {
   const { width: W, height: H } = scene.scale;
   const g = scene.add.graphics();
