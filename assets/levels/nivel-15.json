@@ -10,7 +10,7 @@
  "tileheight": 48,
  "infinite": false,
  "nextlayerid": 4,
- "nextobjectid": 105,
+ "nextobjectid": 104,
  "properties": [
   {
    "name": "nivel",
@@ -2703,29 +2703,6 @@
     },
     {
      "id": 103,
-     "name": "",
-     "type": "decorado",
-     "x": 8160,
-     "y": 624,
-     "width": 48,
-     "height": 48,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "sprite",
-       "type": "string",
-       "value": "nota-dorada"
-      },
-      {
-       "name": "escala",
-       "type": "float",
-       "value": 0.45
-      }
-     ]
-    },
-    {
-     "id": 104,
      "name": "",
      "type": "aviso",
      "x": 10416,

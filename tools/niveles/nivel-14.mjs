@@ -31,10 +31,8 @@ export default {
   objetos: [
     // de la habitación al interior del móvil
     { tipo: 'fondo', x: 74, y: 0, w: 1, h: 1, tema: 'redes' },
-    // el móvil gigante (decorado de fondo) y la nota dorada que delata la pared falsa
+    // el móvil gigante (decorado de fondo)
     { tipo: 'decorado', x: 74, y: 11, sprite: 'obj-movil', escala: 2.6 },
-    { tipo: 'decorado', x: 110, y: 9, sprite: 'nota-dorada', escala: 0.5 },
-    { tipo: 'decorado', x: 121, y: 3, sprite: 'nota-dorada', escala: 0.4 },
     // más notificaciones sobre las apps que se cierran y en el modo avión
     { tipo: 'enemigo', clase: 'volador', sprite: 'notificacion', x: 100, y: 4, velocidad: 80, rango: 3, amplitud: 1, periodo: 1400 },
     { tipo: 'enemigo', clase: 'volador', sprite: 'notificacion', x: 180, y: 5, velocidad: 80, rango: 3, amplitud: 1, periodo: 1500 },

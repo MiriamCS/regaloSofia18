@@ -10,7 +10,7 @@
  "tileheight": 48,
  "infinite": false,
  "nextlayerid": 4,
- "nextobjectid": 136,
+ "nextobjectid": 134,
  "properties": [
   {
    "name": "nivel",
@@ -2516,52 +2516,6 @@
     {
      "id": 120,
      "name": "",
-     "type": "decorado",
-     "x": 5280,
-     "y": 432,
-     "width": 48,
-     "height": 48,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "sprite",
-       "type": "string",
-       "value": "nota-dorada"
-      },
-      {
-       "name": "escala",
-       "type": "float",
-       "value": 0.5
-      }
-     ]
-    },
-    {
-     "id": 121,
-     "name": "",
-     "type": "decorado",
-     "x": 5808,
-     "y": 144,
-     "width": 48,
-     "height": 48,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "sprite",
-       "type": "string",
-       "value": "nota-dorada"
-      },
-      {
-       "name": "escala",
-       "type": "float",
-       "value": 0.4
-      }
-     ]
-    },
-    {
-     "id": 122,
-     "name": "",
      "type": "enemigo",
      "x": 4800,
      "y": 192,
@@ -2603,7 +2557,7 @@
      ]
     },
     {
-     "id": 123,
+     "id": 121,
      "name": "",
      "type": "enemigo",
      "x": 8640,
@@ -2646,7 +2600,7 @@
      ]
     },
     {
-     "id": 124,
+     "id": 122,
      "name": "",
      "type": "enemigo",
      "x": 7680,
@@ -2689,7 +2643,7 @@
      ]
     },
     {
-     "id": 125,
+     "id": 123,
      "name": "",
      "type": "enemigo",
      "x": 9600,
@@ -2732,7 +2686,7 @@
      ]
     },
     {
-     "id": 126,
+     "id": 124,
      "name": "",
      "type": "enemigo",
      "x": 11520,
@@ -2775,7 +2729,7 @@
      ]
     },
     {
-     "id": 127,
+     "id": 125,
      "name": "",
      "type": "enemigo",
      "x": 13056,
@@ -2818,7 +2772,7 @@
      ]
     },
     {
-     "id": 128,
+     "id": 126,
      "name": "",
      "type": "aviso",
      "x": 4752,
@@ -2841,7 +2795,7 @@
      ]
     },
     {
-     "id": 129,
+     "id": 127,
      "name": "",
      "type": "aviso",
      "x": 5040,
@@ -2864,7 +2818,7 @@
      ]
     },
     {
-     "id": 130,
+     "id": 128,
      "name": "",
      "type": "aviso",
      "x": 6192,
@@ -2887,7 +2841,7 @@
      ]
     },
     {
-     "id": 131,
+     "id": 129,
      "name": "",
      "type": "aviso",
      "x": 6864,
@@ -2910,7 +2864,7 @@
      ]
     },
     {
-     "id": 132,
+     "id": 130,
      "name": "",
      "type": "aviso",
      "x": 8160,
@@ -2933,7 +2887,7 @@
      ]
     },
     {
-     "id": 133,
+     "id": 131,
      "name": "",
      "type": "aviso",
      "x": 10800,
@@ -2956,7 +2910,7 @@
      ]
     },
     {
-     "id": 134,
+     "id": 132,
      "name": "",
      "type": "invertir",
      "x": 10992,
@@ -2968,7 +2922,7 @@
      "properties": []
     },
     {
-     "id": 135,
+     "id": 133,
      "name": "",
      "type": "aviso",
      "x": 13392,

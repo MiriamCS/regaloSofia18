@@ -6,7 +6,7 @@
 // la puerta pide mi-sol-la-do (hay una campana «si» de despiste) | (4) la ovación: carrera a ritmo sobre pinchos de 3 velas, con aviones.
 // Broma: el metrónomo desafinado no invierte los controles: si le cantas se acelera («cambia el tempo»).
 // Foto: en el palco, subiendo por plataformas a contratiempo. Objeto (entrada): en el sótano del escenario, tras
-// una pared falsa a la que se llega dejándose caer a una cornisa del foso (la delata una nota dorada).
+// una pared falsa a la que se llega dejándose caer a una cornisa del foso.
 // Miriam: entre bastidores («cuenta...») y junto a la puerta.
 export default {
   props: { tema: 'concierto', edad: 15, gafas: true },
@@ -42,7 +42,6 @@ export default {
     2: { tipo: 'cartel', pista: 'ovacion' },
   },
   objetos: [
-    { tipo: 'decorado', x: 170, y: 13, sprite: 'nota-dorada', escala: 0.45 },
     { tipo: 'aviso', x: 217, y: 0, w: 1, h: 12, pista: 'avisoOvacion', duracion: 2600 },
   ],
   mapa: `
