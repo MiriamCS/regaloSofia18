@@ -1,11 +1,11 @@
 {
   "nombre": "La universidad y el gran concierto",
   "pistas": {
-    "inicio": "Sofi, primer curso de Informática... y esta noche, el gran concierto. Hoy irás de la facultad al escenario y vuelta. Todo lo que has aprendido en 18 años vas a necesitarlo. Empieza por esa caja: ya sabes qué hacer.",
+    "inicio": "Sofía, primer curso de Informática... y esta noche, el gran concierto. Hoy irás de la facultad al escenario y vuelta. Todo lo que has aprendido en 18 años vas a necesitarlo. Empieza por esa caja: ya sabes qué hacer.",
     "sala": "Sala de conciertos → Prueba de sonido: no toques nada... salvo las campanas.",
     "facultad": "Facultad de Informática. Clase de Física a primera hora: hoy toca la gravedad... al revés.",
     "melodia": "La puerta solo se abre con la canción más importante de hoy, y entera: sol, sol, la, sol, do, si... sol, sol, la, sol, re, do. ¿Te suena? (El re está en lo más alto.)",
     "seguro": "¡Este suelo es 100% seguro! Firmado: el mismo de siempre.",
-    "ultimo": "Este es el último tramo, Sofi. El más difícil de todos: aquí, caerse cuesta tres velas. Pase lo que pase al otro lado... estoy muy orgullosa de ti."
+    "ultimo": "Este es el último tramo, Sofía. El más difícil de todos: aquí, caerse cuesta tres velas. Pase lo que pase al otro lado... estoy muy orgullosa de ti."
   }
 }

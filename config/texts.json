@@ -114,7 +114,7 @@
     {
       "nombre": "La cuna",
       "pistas": {
-        "hola": "¡Hola, Sofi! Soy Miriam, tu hermana. Te iré dando pistas por el camino... aunque alguna vez puede que te mienta un poquito.",
+        "hola": "¡Hola, Sofía! Soy Miriam, tu hermana. Te iré dando pistas por el camino... aunque alguna vez puede que te mienta un poquito.",
         "mover": "Muévete con las flechas de la izquierda. ¡A gatas también se llega lejos!",
         "saltar": "Para subir, pulsa el botón de saltar (abajo a la derecha).",
         "hueco": "Un hueco. Salta un poco antes del borde. Tranquila: a esta edad tienes velas infinitas.",
@@ -128,8 +128,8 @@
     {
       "nombre": "Primeros pasos en casa",
       "pistas": {
-        "hola": "¡Sofi, ya andas de pie! Ahora solo tienes una vela, así que mira bien antes de saltar.",
-        "arenero": "La alfombra del salón: montañas de cojines y huecos entre ellas. Paso a paso, Sofi.",
+        "hola": "¡Sofía, ya andas de pie! Ahora solo tienes una vela, así que mira bien antes de saltar.",
+        "arenero": "La alfombra del salón: montañas de cojines y huecos entre ellas. Paso a paso, Sofía.",
         "columpio": "No saltes a lo loco: espera a que el trenecito venga hacia ti. Y el de arriba del todo esconde algo... si te atreves.",
         "patos": "Los patos de goma de la bañera se han escapado por la casa, y se han traído a sus amigos los cochecitos. Ninguno hace daño, pero empujan... y cerca de un hueco, un empujón es un viaje.",
         "aparcado": "Cochecito aparcado. No se mueve de ahí. Palabra de cochecito.",
@@ -139,7 +139,7 @@
     {
       "nombre": "Los juegos infantiles",
       "pistas": {
-        "hola": "¡Sofi, ya tienes dos años y dos velas! ¡Nos vamos al parque! Y una novedad: si mantienes la flecha un ratito, ¡corres!",
+        "hola": "¡Sofía, ya tienes dos años y dos velas! ¡Nos vamos al parque! Y una novedad: si mantienes la flecha un ratito, ¡corres!",
         "correr": "Mantén la flecha pulsada y Sofía echa a correr. Corriendo se saltan huecos mucho más largos.",
         "nocorras": "PROHIBIDO CORRER EN LA ZONA DE JUEGOS. Firmado: el ayuntamiento.",
         "cocina": "¡La piscina de bolas! Las pelotas llueven desde arriba: refúgiate bajo las pasarelas y corre de una a otra.",
@@ -151,7 +151,7 @@
     {
       "nombre": "La fiesta",
       "pistas": {
-        "hola": "¡Sofi, hoy hay fiesta de disfraces! Los regalos se apilan, se empujan y se tiran. Tú empuja, que pensar ya lo hacemos juntas.",
+        "hola": "¡Sofía, hoy hay fiesta de disfraces! Los regalos se apilan, se empujan y se tiran. Tú empuja, que pensar ya lo hacemos juntas.",
         "cubos": "Ese muro es altísimo. Pero el hueco de abajo tiene hambre de regalos... y dos regalos juntos llegan más alto que uno.",
         "puente": "Ese foso no se salta ni corriendo. Pero los regalos se tiran de cabeza encantados: uno desde el suelo y otro desde la balda de arriba.",
         "mochilas": "Las mochilas de los invitados se pasean solas: no muerden, pero empujan... y detrás hay pinchos. Un saltito encima y se vuelven notas.",
@@ -164,7 +164,7 @@
       "nombre": "De excursión",
       "pistas": {
         "doble": "¡Nuevo! Pulsa saltar otra vez en el aire para hacer un doble salto. Los montones de nieve no perdonan.",
-        "muelle": "Sofi, el lago está helado... pero el hielo se rompe en cuanto lo pisas. ¡No te pares a mirar! El agua helada cuesta una vela.",
+        "muelle": "Sofía, el lago está helado... pero el hielo se rompe en cuanto lo pisas. ¡No te pares a mirar! El agua helada cuesta una vela.",
         "mosquito": "¡De la nieve a la playa! Y cuidado: ¡PELIGRO! Mosquito gigante. Tranquila: es de cartón piedra. Los que pican son sus primos pequeñitos de ahí delante.",
         "toalla": "Toalla reservada para Sofía. Llevas todo el día de excursión: ya casi puedes tumbarte."
       }
@@ -176,9 +176,9 @@
         "huye": "¡Ja! ¿Creías que iba a ser tan fácil?",
         "puente": "Rampa de confianza. Revisada ayer. Más o menos.",
         "pared": "Pared infranqueable. Ni lo intentes. En serio, ni la toques.",
-        "confia": "Sofi, hazme caso: los bloques con pinta de sólidos son los de fiar. Las nubes, ni tocarlas, que se deshacen.",
+        "confia": "Sofía, hazme caso: los bloques con pinta de sólidos son los de fiar. Las nubes, ni tocarlas, que se deshacen.",
         "decoracion": "Conos de decoración. Totalmente inofensivos. Firmado: el que revisó la rampa.",
-        "confiesa": "Vale, confieso: el cartel del principio mentía, y yo también. ¡Perdón, Sofi! Ahora en serio: aquí izquierda es derecha.",
+        "confiesa": "Vale, confieso: el cartel del principio mentía, y yo también. ¡Perdón, Sofía! Ahora en serio: aquí izquierda es derecha.",
         "atras": "Atajo a la salida: ¡patina hacia atrás! Tú pulsa al revés y no hagas preguntas.",
         "otra": "¡Que no soy yo, pesada!",
         "fin": "Fin de la pista. Aquí ya no hay nada. Nada de nada. Esa pared es muy pared.",
@@ -188,11 +188,11 @@
     {
       "nombre": "Empieza el cole",
       "pistas": {
-        "cantar": "¡Sofi, primer día de cole y ya vas a música! Pulsa el botón de la nota para cantar: lo que hay a tu alrededor te escucha.",
+        "cantar": "¡Sofía, primer día de cole y ya vas a música! Pulsa el botón de la nota para cantar: lo que hay a tu alrededor te escucha.",
         "musical": "Plataformas musicales: solo existen mientras les cantas cerca. Canta, salta... y vuelve a cantar.",
         "pasillo": "Cada puerta quiere su melodía. Canta junto a las campanas en el orden de las notas que hay encima. Si te equivocas, vuelta a empezar.",
         "profe": "Shhh... El profe se ha quedado dormido. Justo delante de la salida. Habrá que dar la vuelta por arriba.",
-        "aula": "La clase de danza, Sofi. La puerta pide cuatro notas: do, mi, sol y do agudo. Cada campana te sube a la siguiente... como en una coreografía.",
+        "aula": "La clase de danza, Sofía. La puerta pide cuatro notas: do, mi, sol y do agudo. Cada campana te sube a la siguiente... como en una coreografía.",
         "armario": "Taquilla del vestuario de danza. Contraseña: de la campana más alta a la más baja.",
         "recreo": "¡Riiiing! Se acabó la clase. ¡Al recreo!",
         "boligrafo": "Bolígrafo gigante del profe. No hace daño, pero no deja pasar a nadie... salvo a quien le cante."
@@ -201,17 +201,17 @@
     {
       "nombre": "El huerto",
       "pistas": {
-        "hola": "¡Sofi, hoy la clase es en el huerto del cole! Y estos bancales son musicales: cada uno que pisas, suena.",
+        "hola": "¡Sofía, hoy la clase es en el huerto del cole! Y estos bancales son musicales: cada uno que pisas, suena.",
         "teclas": "Las puertas del huerto se abren pisando los bancales de sus notas, en orden. Pisa solo los que toquen.",
         "armario": "Era la caseta de las herramientas. Dentro: un metrónomo con muy mal carácter. ¿Y si el himno tenía una segunda mitad?",
-        "piano": "El gran bancal, Sofi. La salida quiere «Estrellita». Y arriba hay una puerta secreta que pide la canción que te cantamos en cada cumpleaños...",
+        "piano": "El gran bancal, Sofía. La salida quiere «Estrellita». Y arriba hay una puerta secreta que pide la canción que te cantamos en cada cumpleaños...",
         "metronomo": "¡Ojo con los metrónomos! Alguien se los dejó en el huerto y siguen desafinando: si cantas cerca de uno, te cambia la izquierda por la derecha durante unos segundos."
       }
     },
     {
       "nombre": "La comunión",
       "pistas": {
-        "hola": "¡Sofi, qué guapa vas de comunión! Pero cuidado en el jardín del banquete: las urracas de aquí son rapidísimas y les encanta todo lo que brilla. Y las zarzas pinchan.",
+        "hola": "¡Sofía, qué guapa vas de comunión! Pero cuidado en el jardín del banquete: las urracas de aquí son rapidísimas y les encanta todo lo que brilla. Y las zarzas pinchan.",
         "calcetin": "¡Una urraca te ha robado... un calcetín imaginario! Te lo devuelve muy ofendida: «no va con el vestido».",
         "claro": "Esa urraca es rapidísima, pero los muros del jardín no los salta. Y para salir de aquí te hará falta una caja junto al muro."
       }
@@ -219,7 +219,7 @@
     {
       "nombre": "Verano: playa y piscina",
       "pistas": {
-        "hola": "¡Verano, Sofi! Ojo con la piscina: las colchonetas se hunden si te quedas quieta encima. Y no, hoy no hay socorrista.",
+        "hola": "¡Verano, Sofía! Ojo con la piscina: las colchonetas se hunden si te quedas quieta encima. Y no, hoy no hay socorrista.",
         "pato": "Si le cantas una nana al pato, se duerme. Al pato. A los demás, no sé yo...",
         "buceo": "Zona de buceo. Aquí abajo todo flota... menos los erizos, que pinchan.",
         "chiringuito": "La barra está altísima. Esa caja de ahí arriba sería un buen taburete... si consigues bajarla. Cantar ayuda a subir.",
@@ -229,7 +229,7 @@
     {
       "nombre": "Los volcanes",
       "pistas": {
-        "hola": "¡Sofi, diez años y de excursión por los volcanes! Las rocas aparecen y desaparecen entre el humo: písalas solo cuando se vean bien.",
+        "hola": "¡Sofía, diez años y de excursión por los volcanes! Las rocas aparecen y desaparecen entre el humo: písalas solo cuando se vean bien.",
         "semaforo": "Géiser puntual. Próxima erupción: dentro de un momento. Siempre dentro de un momento. (Saltar corriendo no está prohibido... creo.)",
         "naranja": "Aviso del parque nacional: la lava apaga DOS velas de golpe. No la pises ni para hacerte una foto.",
         "cables": "Yo cruzaba estas coladas con los ojos cerrados. Bueno, cerrados del miedo. No te pares: las piedras que tiemblan se caen.",
@@ -239,7 +239,7 @@
     {
       "nombre": "El conservatorio profesional",
       "pistas": {
-        "hola": "¡Grado profesional, Sofi! Bienvenida al conservatorio de los mayores: aquí las puertas piden melodías enteras. Canta junto a cada campana, en orden... y sin prisa. Bueno, de momento.",
+        "hola": "¡Grado profesional, Sofía! Bienvenida al conservatorio de los mayores: aquí las puertas piden melodías enteras. Canta junto a cada campana, en orden... y sin prisa. Bueno, de momento.",
         "taquilla": "Taquilla del conserje. Combinación: el timbre del recreo (sol, mi, do... y vuelta a subir).",
         "puerta": "Puerta de la sala de ensayo. Funciona... más o menos.",
         "audicion": "¡La prueba de acceso! «Oda a la alegría»: mi mi fa sol sol fa mi. Ojo: si cantas cerca de una campana, suena aunque no quieras.",
@@ -250,7 +250,7 @@
     {
       "nombre": "La pandemia",
       "pistas": {
-        "hola": "Sofi, ha llegado una pandemia mundial: todos en casa, clases por el ordenador y nada funciona como siempre. Ni las flechas, ni la gravedad, ni el horario. Tú respira... con mascarilla.",
+        "hola": "Sofía, ha llegado una pandemia mundial: todos en casa, clases por el ordenador y nada funciona como siempre. Ni las flechas, ni la gravedad, ni el horario. Tú respira... con mascarilla.",
         "poraquino": "POR AQUÍ NO ➡ (Lo pintó alguien que lleva tres semanas sin salir de casa y con los controles al revés. Como tú ahora mismo.)",
         "alreves": "De vuelta al insti, con mascarilla y distancia de seguridad. Esta escalera se sube por el techo: cuando estés boca abajo, saltar es hacia abajo y los agujeros del techo dan al cielo. ¡No mires arriba! Bueno, abajo. Bueno, tú me entiendes.",
         "final": "Último pasillo. Si te sale todo al revés, es que vas bien. Ya queda menos para quitarnos la mascarilla.",
@@ -260,7 +260,7 @@
     {
       "nombre": "La biblioteca",
       "pistas": {
-        "escape": "Sofi, bienvenida a la biblioteca. En cuanto pases de aquí empieza a subir la marea de apuntes. No te pares a releer nada: ¡arriba!",
+        "escape": "Sofía, bienvenida a la biblioteca. En cuanto pases de aquí empieza a subir la marea de apuntes. No te pares a releer nada: ¡arriba!",
         "sorpresa": "Examen sorpresa. Nota: 10. El examen más majo del mundo... y aun así te corta el paso.",
         "suspenso": "Peligro: pinchos rojos. Quitan 3 velas. Les llaman «el suspenso».",
         "avisoSorpresa": "¡EXAMEN SORPRESA!",
@@ -271,7 +271,7 @@
     {
       "nombre": "Las redes sociales",
       "pistas": {
-        "hola": "¡Sofi, bienvenida a las redes sociales! Tu móvil ha crecido más que tú y no para de sonar. A las notificaciones: sáltales encima o cántales.",
+        "hola": "¡Sofía, bienvenida a las redes sociales! Tu móvil ha crecido más que tú y no para de sonar. A las notificaciones: sáltales encima o cántales.",
         "movil": "Estamos dentro del móvil. Regla de oro: no te fíes de NINGÚN aviso. Ni del suelo. Ni de mí, si me apuras.",
         "metaFalsa": "¡Es broma! Te quedan tres tramos.",
         "legos": "Cuidado: piezas de Lego en el suelo de tu cuarto. Duelen el triple.",
@@ -288,7 +288,7 @@
     {
       "nombre": "La audición",
       "pistas": {
-        "cuenta": "Sofi, aquí todo va a compás. Cuenta conmigo: un, dos, tres, cuatro... Salta cuando tu plataforma empiece a parpadear.",
+        "cuenta": "Sofía, aquí todo va a compás. Cuenta conmigo: un, dos, tres, cuatro... Salta cuando tu plataforma empiece a parpadear.",
         "puerta": "La puerta pide mi, sol, la, do. Cántale a cada campana sin caerte... y ni se te ocurra tocar el si.",
         "metronomo": "Aviso: no le cantes al metrónomo. No se enfada... se acelera.",
         "ovacion": "Escucha la ovación: ¡el público pide otra!",
@@ -298,37 +298,37 @@
     {
       "nombre": "La cita",
       "pistas": {
-        "mundos": "¡Sofi, tienes una cita! Aquí, cada vez que cantas, se hace de noche (o de día). Lo que ves transparente existe en el otro momento del día.",
+        "mundos": "¡Sofía, tienes una cita! Aquí, cada vez que cantas, se hace de noche (o de día). Lo que ves transparente existe en el otro momento del día.",
         "consigna": "Reloj de la estación: llegas tarde. Bueno, llegas puntual, pero tú lo vives como si llegaras tarde.",
         "puentes": "Canta en tierra firme, no encima del puente que necesitas. Créeme.",
         "tren": "El tren de la cita: pinchos de día en los vagones de noche (y viceversa). Se ruega cambiar de hora con los pies en lugar seguro.",
-        "campanas": "Ojo, Sofi: cada campana que tocas también cambia el mundo. Si necesitas cambiar sin tocar ninguna, canta lejos de ellas... y lejos del despertador."
+        "campanas": "Ojo, Sofía: cada campana que tocas también cambia el mundo. Si necesitas cambiar sin tocar ninguna, canta lejos de ellas... y lejos del despertador."
       }
     },
     {
       "nombre": "Selectividad",
       "pistas": {
-        "perdi": "Sofi, yo me perdí aquí también, el año de mi Selectividad: tantas aulas iguales... Un consejo: no todas las paredes son lo que parecen.",
+        "perdi": "Sofía, yo me perdí aquí también, el año de mi Selectividad: tantas aulas iguales... Un consejo: no todas las paredes son lo que parecen.",
         "temario": "TEMARIO DE SELECTIVIDAD. 1.342 páginas. Imposible de atravesar.",
         "atajo": "Atajo a la salida →  (Firmado: alguien que nunca ha salido de aquí.)",
         "nada": "Aquí no hay nada. Bueno, sí: un cartel diciéndote que aquí no hay nada.",
         "silencio": "Aula de examen. Silencio, por favor. Bueno... se permite cantar bajito.",
-        "estudio": "Las campanas suenan si cantas cerca, Sofi. Y ya conoces al metrónomo: a ese, ni una nota.",
+        "estudio": "Las campanas suenan si cantas cerca, Sofía. Y ya conoces al metrónomo: a ese, ni una nota.",
         "examen": "Examen final. Lea atentamente el enunciado y, si hace falta, dele la vuelta a la hoja.",
         "vuelta": "Den la vuelta al examen... ¡y a la gravedad!",
-        "nota": "¡Corre, Sofi, que viene la marea de apuntes! Las puertas se abren con su melodía: campanas primero, teclas después.",
+        "nota": "¡Corre, Sofía, que viene la marea de apuntes! Las puertas se abren con su melodía: campanas primero, teclas después.",
         "aprobada": "Resultados de Selectividad: ¡APROBADA! (Nosotras ya lo sabíamos.)"
       }
     },
     {
       "nombre": "La universidad y el gran concierto",
       "pistas": {
-        "inicio": "Sofi, primer curso de Informática... y esta noche, el gran concierto. Hoy irás de la facultad al escenario y vuelta. Todo lo que has aprendido en 18 años vas a necesitarlo. Empieza por esa caja: ya sabes qué hacer.",
+        "inicio": "Sofía, primer curso de Informática... y esta noche, el gran concierto. Hoy irás de la facultad al escenario y vuelta. Todo lo que has aprendido en 18 años vas a necesitarlo. Empieza por esa caja: ya sabes qué hacer.",
         "sala": "Sala de conciertos → Prueba de sonido: no toques nada... salvo las campanas.",
         "facultad": "Facultad de Informática. Clase de Física a primera hora: hoy toca la gravedad... al revés.",
         "melodia": "La puerta solo se abre con la canción más importante de hoy, y entera: sol, sol, la, sol, do, si... sol, sol, la, sol, re, do. ¿Te suena? (El re está en lo más alto.)",
         "seguro": "¡Este suelo es 100% seguro! Firmado: el mismo de siempre.",
-        "ultimo": "Este es el último tramo, Sofi. El más difícil de todos: aquí, caerse cuesta tres velas. Pase lo que pase al otro lado... estoy muy orgullosa de ti."
+        "ultimo": "Este es el último tramo, Sofía. El más difícil de todos: aquí, caerse cuesta tres velas. Pase lo que pase al otro lado... estoy muy orgullosa de ti."
       }
     }
   ]

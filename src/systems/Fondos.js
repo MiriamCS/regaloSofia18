@@ -2,6 +2,7 @@
 // Cada capa es un patrón que se repite (TileSprite), así pesa poco y va fluido en móvil.
 import Phaser from 'phaser';
 import { PALETAS } from '../estilo.js';
+import { JUEGO } from '../config.js';
 
 const ANCHO_PATRON = 1536;
 // Altura de la línea del suelo en un nivel de 15 filas (el suelo del juego tapa lo que queda por debajo)
@@ -20,6 +21,22 @@ function envolver(fn, x, w) {
   fn(x);
   if (x + w > ANCHO_PATRON) fn(x - ANCHO_PATRON);
   if (x < 0) fn(x + ANCHO_PATRON);
+}
+
+// Los colores de acento (cortinas, pósters, globos...) se mezclan con el color de la capa para que ningún
+// fondo destaque más que otro: así todos quedan igual de suaves
+const MEZCLA_ACENTOS = 0.5;
+function mezclar(a, b, k) {
+  const c = (v, s) => (v >> s) & 255;
+  const m = (s) => Math.round(c(a, s) * (1 - k) + c(b, s) * k) << s;
+  return m(16) | m(8) | m(0);
+}
+function graficoSuave(g, base) {
+  const fill = g.fillStyle.bind(g);
+  const line = g.lineStyle.bind(g);
+  g.fillStyle = (c, a) => fill(c === base ? c : mezclar(c, base, MEZCLA_ACENTOS), a);
+  g.lineStyle = (w, c, a) => line(w, c === base ? c : mezclar(c, base, MEZCLA_ACENTOS), a);
+  return g;
 }
 
 const DECORADOS = {
@@ -203,6 +220,46 @@ const DECORADOS = {
       x += w * 0.6;
     }
     g.fillRect(0, h * 0.85, ANCHO_PATRON, h);
+  },
+  // ---- playa ----
+  palmeras(g, h, color, r, { n = 4 } = {}) {
+    const b = h * SUELO;
+    for (let i = 0; i < n; i++) {
+      const cx = (i / n) * ANCHO_PATRON + 60 + r() * 120;
+      envolver((x) => {
+        g.fillStyle(0xb07a45, 1);
+        for (let k = 0; k < 9; k++) g.fillEllipse(x + k * 3, b - 12 - k * 24, 22, 28);
+        g.fillStyle(0x4cbf5a, 1);
+        const tx = x + 26, ty = b - 222;
+        g.fillEllipse(tx - 50, ty + 8, 110, 26);
+        g.fillEllipse(tx + 50, ty + 8, 110, 26);
+        g.fillEllipse(tx - 30, ty - 16, 90, 24);
+        g.fillEllipse(tx + 34, ty - 16, 90, 24);
+        g.fillStyle(0x8a5a30, 1);
+        g.fillCircle(tx - 6, ty + 14, 8);
+        g.fillCircle(tx + 8, ty + 16, 8);
+      }, cx - 90, 200);
+    }
+  },
+  sombrillas(g, h, color, r) {
+    const b = h * SUELO;
+    const cols = [0xff5d5d, 0xffd23f, 0x3f8cff];
+    for (let x = 240; x < ANCHO_PATRON; x += 384) {
+      const c = cols[Math.floor(x / 384) % 3];
+      g.fillStyle(color, 1);
+      g.fillRect(x - 3, b - 150, 6, 150);
+      g.fillStyle(c, 1);
+      g.fillTriangle(x - 90, b - 140, x, b - 190, x + 90, b - 140);
+      g.fillStyle(0xffffff, 0.9);
+      g.fillTriangle(x - 30, b - 140, x, b - 190, x + 30, b - 140);
+      // toalla
+      g.fillStyle(c, 1);
+      g.fillRect(x + 30, b - 10, 90, 10);
+      g.fillStyle(0xffffff, 0.8);
+      g.fillRect(x + 50, b - 10, 14, 10);
+      g.fillRect(x + 86, b - 10, 14, 10);
+    }
+    void r;
   },
   // ---- casa ----
   paredCasa(g, h, color, r) {
@@ -883,14 +940,14 @@ const TEMAS = {
   casa: { lejos: [['paredCasa']], medio: [['mueblesCasa']] },
   juegos: { lejos: [['nubes'], ['colinas', { base: 0.74 }], ['arboles', { base: 0.8, n: 6 }]], medio: [['columpios'], ['piscinaBolas']] },
   guarderia: { lejos: [['nubes'], ['colinas']], medio: [['estanterias', { base: 1 }]] },
-  playa: { lejos: [['sol'], ['nubes']], medio: [['olas']] },
+  playa: { lejos: [['sol'], ['nubes'], ['olas', { base: 0.62 }]], medio: [['sombrillas']] },
   fiesta: { lejos: [['guirnalda'], ['globos']], medio: [['globos', { n: 6 }]] },
   colegio: { lejos: [['nubes'], ['escuela']], medio: [['patio']] },
   'clase-musica': { lejos: [['pentagrama']], medio: [['estanterias']] },
   bosque: { lejos: [['colinas', { base: 0.6 }], ['arboles', { base: 0.7 }]], medio: [['arboles', { n: 14 }]] },
   conservatorio: { lejos: [['pentagrama']], medio: [['columnas']] },
   'ciudad-noche': { lejos: [['estrellas'], ['luna'], ['edificios', { base: 0.92 }]], medio: [['edificios']] },
-  verano: { lejos: [['sol'], ['nubes'], ['colinas']], medio: [['olas', { base: 0.85 }]] },
+  verano: { lejos: [['sol'], ['nubes'], ['olas', { base: 0.6 }]], medio: [['palmeras'], ['sombrillas']] },
   instituto: { lejos: [['nubes'], ['escuela', { pisos: 3 }]], medio: [['arboles', { n: 5 }]] },
   'insti-pandemia': { lejos: [['nubes'], ['escuela', { pisos: 3 }]], medio: [['avisosPandemia']] },
   confinamiento: { lejos: [['paredCuarto', { arcoiris: true }]], medio: [['muebleCuarto', { videollamada: true }]] },
@@ -915,7 +972,7 @@ const TEMAS = {
 
 function texturaCapa(scene, clave, h, elementos, color, semilla) {
   if (scene.textures.exists(clave)) return clave;
-  const g = scene.make.graphics({ x: 0, y: 0 }, false);
+  const g = graficoSuave(scene.make.graphics({ x: 0, y: 0 }, false), color);
   const r = rnd(semilla);
   for (const [nombre, op] of elementos) DECORADOS[nombre]?.(g, h, color, r, op || {});
   g.generateTexture(clave, ANCHO_PATRON, h);
@@ -925,6 +982,8 @@ function texturaCapa(scene, clave, h, elementos, color, semilla) {
 
 // Fundido entre el fondo de un tramo y el del siguiente (px de recorrido de la cámara)
 const FUNDIDO = 420;
+// Todas las capas de todos los fondos se ven con la misma intensidad, suave, sobre el cielo
+const INTENSIDAD = JUEGO.fondo?.intensidad ?? 0.4;
 
 export class Fondo {
   // 'tramos': [{ x, tema }] (zonas 'fondo' del mapa): a partir de x, el fondo pasa a ese tema con un fundido suave
@@ -947,11 +1006,11 @@ export class Fondo {
       const capas = [];
       if (def.lejos.length) {
         const k = texturaCapa(scene, `fondo-${etapa}-${t}-lejos`, H, def.lejos, pal.lejos, semilla);
-        capas.push({ s: scene.add.tileSprite(0, 0, W, H, k).setOrigin(0).setScrollFactor(0).setDepth(-90), f: 0.15, alfa: 1 });
+        capas.push({ s: scene.add.tileSprite(0, 0, W, H, k).setOrigin(0).setScrollFactor(0).setDepth(-90).setAlpha(INTENSIDAD), f: 0.15, alfa: INTENSIDAD });
       }
       if (def.medio.length) {
         const k = texturaCapa(scene, `fondo-${etapa}-${t}-medio`, H, def.medio, pal.medio, semilla + 7);
-        capas.push({ s: scene.add.tileSprite(0, 0, W, H, k).setOrigin(0).setScrollFactor(0).setDepth(-80).setAlpha(0.85), f: 0.4, alfa: 0.85 });
+        capas.push({ s: scene.add.tileSprite(0, 0, W, H, k).setOrigin(0).setScrollFactor(0).setDepth(-80).setAlpha(INTENSIDAD), f: 0.4, alfa: INTENSIDAD });
       }
       this.porTema[t] = capas;
       this.capas.push(...capas);

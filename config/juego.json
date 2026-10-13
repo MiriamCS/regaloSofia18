@@ -55,5 +55,9 @@
   "final": {
     "segundosCaminoBlanco": 75,
     "distanciaCartelATarta": 2400
+  },
+  "fondo": {
+    "_comentario": "Intensidad de los dibujos del fondo sobre el cielo (0 = no se ven, 1 = color pleno). La misma para todos los niveles, baja para que se distingan bien Sofía y los enemigos.",
+    "intensidad": 0.4
   }
 }
