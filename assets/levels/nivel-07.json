@@ -20,7 +20,17 @@
   {
    "name": "tema",
    "type": "string",
-   "value": "clase-musica"
+   "value": "huerto"
+  },
+  {
+   "name": "edad",
+   "type": "int",
+   "value": 7
+  },
+  {
+   "name": "teclas",
+   "type": "string",
+   "value": "bancal"
   }
  ],
  "layers": [

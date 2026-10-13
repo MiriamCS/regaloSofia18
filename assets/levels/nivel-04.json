@@ -10,7 +10,7 @@
  "tileheight": 48,
  "infinite": false,
  "nextlayerid": 4,
- "nextobjectid": 67,
+ "nextobjectid": 68,
  "properties": [
   {
    "name": "nivel",
@@ -20,7 +20,7 @@
   {
    "name": "tema",
    "type": "string",
-   "value": "playa"
+   "value": "nieve"
   },
   {
    "name": "edad",
@@ -1242,6 +1242,24 @@
     {
      "id": 63,
      "name": "",
+     "type": "fondo",
+     "x": 6576,
+     "y": 0,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "tema",
+       "type": "string",
+       "value": "playa"
+      }
+     ]
+    },
+    {
+     "id": 64,
+     "name": "",
      "type": "decorado",
      "x": 6816,
      "y": 288,
@@ -1268,7 +1286,7 @@
      ]
     },
     {
-     "id": 64,
+     "id": 65,
      "name": "",
      "type": "enemigo",
      "x": 7056,
@@ -1311,7 +1329,7 @@
      ]
     },
     {
-     "id": 65,
+     "id": 66,
      "name": "",
      "type": "enemigo",
      "x": 8208,
@@ -1354,7 +1372,7 @@
      ]
     },
     {
-     "id": 66,
+     "id": 67,
      "name": "",
      "type": "enemigo",
      "x": 9600,

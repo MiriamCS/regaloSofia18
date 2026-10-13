@@ -360,7 +360,8 @@ export class PlataformaMusical extends Bloque {
 // ---- Teclas de piano gigantes ---------------------------------------------------
 
 export class TeclaPiano {
-  constructor(scene, o) {
+  // 'estilo': 'piano' (tecla blanca o negra) o 'bancal' (huerto: jardinera de madera con brotes)
+  constructor(scene, o, estilo = 'piano') {
     this.scene = scene;
     this.o = o;
     this.nota = o.p.nota || 'C4';
@@ -369,13 +370,31 @@ export class TeclaPiano {
     this.zona = cuerpoEstatico(scene, o.x, o.y, o.w, o.h);
     this.zona.elemento = this;
     const g = scene.add.graphics().setDepth(20);
-    g.fillStyle(this.negra ? 0x1d2233 : 0xfafcff, 1);
-    g.lineStyle(3, 0x1b2a4a, 1);
-    g.fillRoundedRect(0, 0, o.w, o.h, { tl: 2, tr: 2, bl: 8, br: 8 });
-    g.strokeRoundedRect(0, 0, o.w, o.h, { tl: 2, tr: 2, bl: 8, br: 8 });
+    const bancal = (o.p.estilo || estilo) === 'bancal';
+    if (bancal) {
+      g.fillStyle(0xb07a45, 1);
+      g.lineStyle(3, 0x1b2a4a, 1);
+      g.fillRoundedRect(0, 0, o.w, o.h, 6);
+      g.strokeRoundedRect(0, 0, o.w, o.h, 6);
+      g.fillStyle(0x5a3b22, 1);
+      g.fillRect(4, 4, o.w - 8, 10);
+      g.fillStyle(0x8a5a30, 1);
+      for (let y = 24; y < o.h - 6; y += 16) g.fillRect(4, y, o.w - 8, 3);
+      for (let x = 12; x < o.w - 6; x += 22) {
+        g.fillStyle(0x4cbf5a, 1);
+        g.fillEllipse(x - 4, 0, 10, 16);
+        g.fillEllipse(x + 4, -1, 10, 18);
+      }
+    } else {
+      g.fillStyle(this.negra ? 0x1d2233 : 0xfafcff, 1);
+      g.lineStyle(3, 0x1b2a4a, 1);
+      g.fillRoundedRect(0, 0, o.w, o.h, { tl: 2, tr: 2, bl: 8, br: 8 });
+      g.strokeRoundedRect(0, 0, o.w, o.h, { tl: 2, tr: 2, bl: 8, br: 8 });
+    }
     g.setPosition(o.x, o.y);
     this.g = g;
-    this.etiqueta = scene.add.text(o.x + o.w / 2, o.y + o.h - 18, nombreNota(this.nota), estiloTexto(14, this.negra ? '#cfd8ff' : '#7e8aa8')).setOrigin(0.5).setDepth(21);
+    const colorEtiqueta = bancal ? '#ffe9c4' : this.negra ? '#cfd8ff' : '#7e8aa8';
+    this.etiqueta = scene.add.text(o.x + o.w / 2, o.y + o.h - 18, nombreNota(this.nota), estiloTexto(14, colorEtiqueta)).setOrigin(0.5).setDepth(21);
     this.pisadaAntes = false;
   }
   pisada(t) {
@@ -727,7 +746,7 @@ export class LluviaObjetos {
     this.scene = scene;
     this.o = o;
     this.intervalo = o.p.intervalo || 1100;
-    this.texturas = String(o.p.texturas || 'obj-patito,obj-sonajero,obj-ceras').split(',');
+    this.texturas = String(o.p.texturas || 'obj-pelota').split(',');
     this.grupo = grupoPeligros;
     this.siguiente = (o.p.desfase || 0);
   }

@@ -10,7 +10,7 @@
  "tileheight": 48,
  "infinite": false,
  "nextlayerid": 4,
- "nextobjectid": 72,
+ "nextobjectid": 70,
  "properties": [
   {
    "name": "nivel",
@@ -20,7 +20,7 @@
   {
    "name": "tema",
    "type": "string",
-   "value": "instituto"
+   "value": "confinamiento"
   },
   {
    "name": "edad",
@@ -292,7 +292,7 @@
      "properties": []
     },
     {
-     "id": 46,
+     "id": 44,
      "name": "",
      "type": "solido",
      "x": 10848,
@@ -304,7 +304,7 @@
      "properties": []
     },
     {
-     "id": 53,
+     "id": 50,
      "name": "",
      "type": "solido",
      "x": 0,
@@ -316,7 +316,7 @@
      "properties": []
     },
     {
-     "id": 54,
+     "id": 51,
      "name": "",
      "type": "solido",
      "x": 1440,
@@ -328,7 +328,7 @@
      "properties": []
     },
     {
-     "id": 55,
+     "id": 52,
      "name": "",
      "type": "solido",
      "x": 1968,
@@ -340,7 +340,7 @@
      "properties": []
     },
     {
-     "id": 56,
+     "id": 53,
      "name": "",
      "type": "solido",
      "x": 2448,
@@ -352,7 +352,7 @@
      "properties": []
     },
     {
-     "id": 57,
+     "id": 54,
      "name": "",
      "type": "solido",
      "x": 12912,
@@ -364,7 +364,7 @@
      "properties": []
     },
     {
-     "id": 58,
+     "id": 55,
      "name": "",
      "type": "solido",
      "x": 13488,
@@ -506,7 +506,7 @@
      "properties": []
     },
     {
-     "id": 37,
+     "id": 36,
      "name": "",
      "type": "checkpoint",
      "x": 6912,
@@ -518,7 +518,7 @@
      "properties": []
     },
     {
-     "id": 38,
+     "id": 37,
      "name": "",
      "type": "miriam",
      "x": 7008,
@@ -536,7 +536,7 @@
      ]
     },
     {
-     "id": 40,
+     "id": 39,
      "name": "",
      "type": "objeto",
      "x": 9696,
@@ -548,7 +548,7 @@
      "properties": []
     },
     {
-     "id": 42,
+     "id": 41,
      "name": "",
      "type": "checkpoint",
      "x": 10176,
@@ -560,7 +560,7 @@
      "properties": []
     },
     {
-     "id": 43,
+     "id": 42,
      "name": "",
      "type": "enemigo",
      "x": 10368,
@@ -593,7 +593,7 @@
      ]
     },
     {
-     "id": 44,
+     "id": 43,
      "name": "",
      "type": "enemigo",
      "x": 10656,
@@ -621,7 +621,7 @@
      ]
     },
     {
-     "id": 49,
+     "id": 46,
      "name": "",
      "type": "enemigo",
      "x": 13056,
@@ -649,7 +649,7 @@
      ]
     },
     {
-     "id": 50,
+     "id": 47,
      "name": "",
      "type": "enemigo",
      "x": 13152,
@@ -682,7 +682,7 @@
      ]
     },
     {
-     "id": 51,
+     "id": 48,
      "name": "",
      "type": "cartel",
      "x": 13632,
@@ -700,7 +700,7 @@
      ]
     },
     {
-     "id": 52,
+     "id": 49,
      "name": "",
      "type": "meta",
      "x": 13920,
@@ -712,7 +712,25 @@
      "properties": []
     },
     {
-     "id": 59,
+     "id": 56,
+     "name": "",
+     "type": "fondo",
+     "x": 3072,
+     "y": 0,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "tema",
+       "type": "string",
+       "value": "insti-pandemia"
+      }
+     ]
+    },
+    {
+     "id": 57,
      "name": "",
      "type": "invertir",
      "x": 576,
@@ -724,7 +742,7 @@
      "properties": []
     },
     {
-     "id": 60,
+     "id": 58,
      "name": "",
      "type": "invertir",
      "x": 1536,
@@ -736,7 +754,7 @@
      "properties": []
     },
     {
-     "id": 61,
+     "id": 59,
      "name": "",
      "type": "invertir",
      "x": 2352,
@@ -748,7 +766,7 @@
      "properties": []
     },
     {
-     "id": 62,
+     "id": 60,
      "name": "",
      "type": "gravedad",
      "x": 3168,
@@ -766,7 +784,7 @@
      ]
     },
     {
-     "id": 63,
+     "id": 61,
      "name": "",
      "type": "gravedad",
      "x": 5280,
@@ -784,7 +802,7 @@
      ]
     },
     {
-     "id": 64,
+     "id": 62,
      "name": "",
      "type": "gravedad",
      "x": 7104,
@@ -802,7 +820,7 @@
      ]
     },
     {
-     "id": 65,
+     "id": 63,
      "name": "",
      "type": "enemigo",
      "x": 8928,
@@ -845,7 +863,7 @@
      ]
     },
     {
-     "id": 66,
+     "id": 64,
      "name": "",
      "type": "enemigo",
      "x": 8160,
@@ -888,7 +906,7 @@
      ]
     },
     {
-     "id": 67,
+     "id": 65,
      "name": "",
      "type": "gravedad",
      "x": 9648,
@@ -906,7 +924,7 @@
      ]
     },
     {
-     "id": 68,
+     "id": 66,
      "name": "",
      "type": "gravedad",
      "x": 11088,
@@ -924,7 +942,7 @@
      ]
     },
     {
-     "id": 69,
+     "id": 67,
      "name": "",
      "type": "invertir",
      "x": 11328,
@@ -936,7 +954,7 @@
      "properties": []
     },
     {
-     "id": 70,
+     "id": 68,
      "name": "",
      "type": "gravedad",
      "x": 12144,
@@ -954,7 +972,7 @@
      ]
     },
     {
-     "id": 71,
+     "id": 69,
      "name": "",
      "type": "invertir",
      "x": 12672,
@@ -1071,24 +1089,6 @@
      "id": 34,
      "name": "",
      "type": "pinchos",
-     "x": 3888,
-     "y": 528,
-     "width": 48,
-     "height": 48,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "danio",
-       "type": "int",
-       "value": 2
-      }
-     ]
-    },
-    {
-     "id": 35,
-     "name": "",
-     "type": "pinchos",
      "x": 4368,
      "y": 528,
      "width": 432,
@@ -1104,7 +1104,7 @@
      ]
     },
     {
-     "id": 36,
+     "id": 35,
      "name": "",
      "type": "pinchos",
      "x": 5952,
@@ -1122,7 +1122,7 @@
      ]
     },
     {
-     "id": 39,
+     "id": 38,
      "name": "",
      "type": "pinchos",
      "x": 9456,
@@ -1140,7 +1140,7 @@
      ]
     },
     {
-     "id": 41,
+     "id": 40,
      "name": "",
      "type": "pinchos",
      "x": 9888,
@@ -1159,42 +1159,6 @@
     },
     {
      "id": 45,
-     "name": "",
-     "type": "pinchos",
-     "x": 10752,
-     "y": 528,
-     "width": 96,
-     "height": 48,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "danio",
-       "type": "int",
-       "value": 2
-      }
-     ]
-    },
-    {
-     "id": 47,
-     "name": "",
-     "type": "pinchos",
-     "x": 10944,
-     "y": 528,
-     "width": 96,
-     "height": 48,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "danio",
-       "type": "int",
-       "value": 2
-      }
-     ]
-    },
-    {
-     "id": 48,
      "name": "",
      "type": "pinchos",
      "x": 11232,

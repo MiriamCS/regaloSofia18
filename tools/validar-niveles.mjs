@@ -18,7 +18,7 @@ for (const [sprite, e] of Object.entries(ENEMIGOS)) {
   presentados[e.presenta] = sprite;
 }
 const vistosEn = {};
-const TIPOS = new Set(['solido', 'nube', 'plataforma-movil', 'plataforma-cae', 'plataforma-falsa', 'plataforma-temporizada', 'plataforma-musical', 'tecla', 'campana', 'puerta', 'checkpoint', 'foto', 'objeto', 'meta', 'meta-falsa', 'miriam', 'cartel', 'caja', 'mueble', 'enemigo', 'pinchos', 'lluvia', 'peligro-movil', 'muerte', 'invertir', 'gravedad', 'final', 'aviso', 'decorado', 'inicio']);
+const TIPOS = new Set(['solido', 'nube', 'plataforma-movil', 'plataforma-cae', 'plataforma-falsa', 'plataforma-temporizada', 'plataforma-musical', 'tecla', 'campana', 'puerta', 'checkpoint', 'foto', 'objeto', 'meta', 'meta-falsa', 'miriam', 'cartel', 'caja', 'mueble', 'enemigo', 'pinchos', 'lluvia', 'peligro-movil', 'muerte', 'invertir', 'gravedad', 'final', 'aviso', 'decorado', 'inicio', 'fondo']);
 
 const pedidos = process.argv.slice(2).map(Number);
 let errores = 0;
@@ -66,7 +66,7 @@ for (let n = 0; n <= 18; n++) {
     if (o.type === 'enemigo' && o.p.sprite && ENEMIGOS[o.p.sprite]?.presenta > n) err(`${o.p.sprite} sale antes de presentarse (se presenta en el nivel ${ENEMIGOS[o.p.sprite].presenta})`);
     if (o.type === 'enemigo' && o.p.sprite) (vistosEn[o.p.sprite] ||= new Set()).add(n);
     if (o.type === 'pinchos' && o.p.danio >= 2 && n < 10) err(`peligro de ${o.p.danio} velas antes del nivel 10`);
-    if (o.type === 'pinchos' && o.p.danio >= 3 && n < 14) err(`peligro de 3 velas antes del nivel 14`);
+    if (o.type === 'pinchos' && o.p.danio >= 3 && n < 13) err(`peligro de 3 velas antes del nivel 13`);
     if (o.type === 'pinchos' && (o.p.danio || 1) < 2 && n >= 10) err(`pinchos de 1 vela desde el nivel 10 (id ${o.id})`);
     if (o.type === 'enemigo' && o.p.clase === 'desafinado' && n < juego.habilidades.cantar) aviso('enemigo desafinado antes de poder cantar');
   }

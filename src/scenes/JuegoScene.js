@@ -57,7 +57,9 @@ export class JuegoScene extends Phaser.Scene {
     this.physics.world.gravity.y = JUEGO.fisica.gravedad;
     this.cameras.main.setBackgroundColor('#ffffff');
 
-    this.fondo = new Fondo(this, this.etapa, this.tema, mundo);
+    // zonas 'fondo': a partir de su x el fondo cambia de tema (niveles con escenarios por tramos)
+    const tramosFondo = mundo.objetos.filter((o) => o.tipo === 'fondo' && o.p.tema).map((o) => ({ x: o.x, tema: o.p.tema }));
+    this.fondo = new Fondo(this, this.etapa, this.tema, mundo, tramosFondo);
 
     this.solidos = this.physics.add.staticGroup();
     this.nubes = [];
@@ -220,7 +222,7 @@ export class JuegoScene extends Phaser.Scene {
         break;
       }
       case 'tecla': {
-        const t = new TeclaPiano(this, o);
+        const t = new TeclaPiano(this, o, this.datos.props.teclas);
         this.actualizables.push(t);
         this.pisables.push(t);
         this.graficos.push(t.g, t.etiqueta);

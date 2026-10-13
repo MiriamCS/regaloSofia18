@@ -1,17 +1,17 @@
-// Nivel 17 — 17 años: Selectividad y biblioteca. 17 velas. Foco: TODAS las mecánicas juntas y un laberinto.
-// Tramos: (1) el laberinto de estanterías: cuatro pisos, escaleras de nubes, callejones sin salida,
-// suelo falso, caja y el «temario», una pared gigante que es falsa | (2) la sala de estudio: puente de
+// Nivel 17 — 17 años: Selectividad, en las aulas de examen. 17 velas. Foco: TODAS las mecánicas juntas y un laberinto.
+// Tramos: (1) el laberinto de aulas: cuatro pisos, escaleras de nubes, callejones sin salida,
+// suelo falso, caja y el «temario», una pared gigante que es falsa | (2) el aula de examen: puente de
 // plataformas musicales, campanas en repisas (una sobre escalera musical, otra temporizada, otra con caja),
 // metrónomo desafinado | (3) el examen: plataformas temporizadas con notificaciones, montón de exámenes
 // (bloqueador), gravedad invertida con controles invertidos y huecos al cielo, plataformas que caen |
 // (4) la nota: escape por el pasillo de abajo huyendo de la marea de apuntes (peligro que avanza), con
 // dos puertas-melodía (campanas y teclas) y plataformas que caen.
 // Foto: en el centro del laberinto (piso 2 izquierdo, sobre pinchos con plataformas temporizadas).
-// Objeto (auriculares): sala secreta tras una puerta de melodía oculta (teclas en el estante alto).
-// Broma: el temario. Miriam: en el laberinto, en la sala de estudio y al empezar la escapada.
+// Objeto (diploma y birrete): sala secreta tras una puerta de melodía oculta (teclas en el estante alto).
+// Broma: el temario. Miriam: en el laberinto, en el aula de examen y al empezar la escapada.
 // Sin mundos A/B: cantar sirve para campanas, plataformas musicales y enemigos.
 export default {
-  props: { tema: 'biblioteca', edad: 17, gafas: true },
+  props: { tema: 'aulas', edad: 17, gafas: true },
   leyenda: {
     H: { tipo: 'plataforma-falsa', capa: 'solidos', fusion: 'h', modo: 'fantasma' },
     w: { tipo: 'pinchos', capa: 'zonas', fusion: 'h', danio: 2 },

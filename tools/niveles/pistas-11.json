@@ -1,10 +1,10 @@
 {
-  "nombre": "El conservatorio",
+  "nombre": "El conservatorio profesional",
   "pistas": {
-    "hola": "¡Bienvenida al conservatorio, Sofi! Aquí las puertas piden melodías enteras. Canta junto a cada campana, en orden... y sin prisa. Bueno, de momento.",
+    "hola": "¡Grado profesional, Sofi! Bienvenida al conservatorio de los mayores: aquí las puertas piden melodías enteras. Canta junto a cada campana, en orden... y sin prisa. Bueno, de momento.",
     "taquilla": "Taquilla del conserje. Combinación: el timbre del recreo (sol, mi, do... y vuelta a subir).",
     "puerta": "Puerta de la sala de ensayo. Funciona... más o menos.",
-    "audicion": "¡Tu primera audición! «Oda a la alegría»: mi mi fa sol sol fa mi. Ojo: si cantas cerca de una campana, suena aunque no quieras.",
+    "audicion": "¡La prueba de acceso! «Oda a la alegría»: mi mi fa sol sol fa mi. Ojo: si cantas cerca de una campana, suena aunque no quieras.",
     "despertador": "El despertador del conserje. No se le puede saltar encima, y si le cantas cerca te lía: izquierda por derecha durante un rato. Canta lejos de él.",
     "profe": "Sala de ensayo. La profe de solfeo llega tarde y viene con mucha prisa: si te alcanza, te apaga DOS velas. ¡No te pares!"
   }

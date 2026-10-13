@@ -1,13 +1,15 @@
-// Nivel 4 — 4 años: la playa. Foco: doble salto y tablas que se hunden. 4 velas.
-// Tramos: (1) dunas con huecos de 5-7 casillas | (2) el muelle: tablas que se hunden sobre el agua
-//         | (3) castillos de arena que se desmoronan y mosquitos | (4) las rocas: subida en zigzag por nubes.
-// El agua es el vacío: caer = una vela. Foto: flota sobre una nube alta encima del agua (col. 91); se coge
-// con un doble salto rápido HACIA ATRÁS desde la tabla de las col. 94-95 antes de que se hunda.
-// Objeto (cubo): al final del muelle lateral de tablas que se hunden muy deprisa (col. 123-136, sobre el agua).
+// Nivel 4 — 4 años: de excursión, primero a la nieve y luego a la playa. Foco: doble salto y suelos que se hunden. 4 velas.
+// Tramos: (1) montones de nieve con huecos de 5-7 casillas | (2) el lago helado: placas de hielo que se hunden
+// | (3) en la playa: castillos de arena que se desmoronan y mosquitos | (4) las rocas: subida en zigzag por nubes.
+// El fondo pasa de nieve a playa en la col. 137 (zona 'fondo'), justo antes del cartel del mosquito.
+// El agua es el vacío: caer = una vela. Foto: flota sobre una nube alta encima del lago (col. 91); se coge
+// con un doble salto rápido HACIA ATRÁS desde la placa de las col. 94-95 antes de que se hunda.
+// Objeto (libro de Pía): al final de la orilla lateral de placas que se hunden muy deprisa (col. 123-136).
 // Broma: el mosquito gigante del cartel... es de cartón piedra (decorado).
-// Monstruo nuevo: el mosquito, el primero que apaga velas (se presenta en el cartel 2).
+// Monstruo nuevo: el mosquito, el primero que apaga velas (se presenta en el cartel 2). Los patos de goma de la
+// nieve son de repaso.
 export default {
-  props: { tema: 'playa', edad: 4 },
+  props: { tema: 'nieve', edad: 4 },
   leyenda: {
     M: { tipo: 'miriam', pista: 'muelle' },
     t: { tipo: 'plataforma-cae', capa: 'solidos', fusion: 'h', modo: 'hunde', profundidad: 7, velocidad: 75 },
@@ -22,6 +24,8 @@ export default {
     3: { tipo: 'cartel', pista: 'toalla' },
   },
   objetos: [
+    // de la nieve a la playa
+    { tipo: 'fondo', x: 137, y: 0, w: 1, h: 1, tema: 'playa' },
     // el mosquito gigante (broma): es un decorado, no hace nada
     { tipo: 'decorado', x: 142, y: 6, sprite: 'mosquito', escala: 1.6, angulo: -8 },
     // más mosquitos sobre los saltos largos, siempre después del cartel que los presenta (col. 140)

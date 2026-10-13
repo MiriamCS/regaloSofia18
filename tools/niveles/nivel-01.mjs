@@ -1,10 +1,11 @@
-// Nivel 1 — 1 año: el parque. Ya anda de pie. Foco: saltos precisos y primer enemigo. 1 vela.
-// Tramos: (1) el arenero | (2) los columpios (plataformas móviles) | (3) patos y cochecitos | (4) el tobogán.
-// Foto: sobre el columpio más alto (hay que saltar en lo alto de su recorrido).
-// Objeto (sonajero): en la cornisa bajo el tobogán; se llega dejándose caer con precisión por el borde.
+// Nivel 1 — 1 año: primeros pasos en casa. Ya anda de pie. Foco: saltos precisos y primer enemigo. 1 vela.
+// Tramos: (1) la alfombra del salón | (2) el trenecito de juguete (plataformas móviles) | (3) patos de goma y
+// cochecitos | (4) la escalera de casa (bajada con huecos y un peldaño que se cae).
+// Foto: sobre el trenecito más alto (hay que saltar en lo alto de su recorrido).
+// Objeto (chupete): en la cornisa bajo la escalera; se llega dejándose caer con precisión por el borde.
 // Broma: el cochecito «aparcado» que da vueltas sin parar en una plataforma minúscula.
 export default {
-  props: { tema: 'parque', edad: 1 },
+  props: { tema: 'casa', edad: 1 },
   leyenda: {
     M: { tipo: 'miriam', pista: 'hola' },
     N: { tipo: 'miriam', pista: 'columpio', radio: 200 },

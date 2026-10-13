@@ -1,13 +1,13 @@
-// Nivel 2 — 2 años: la casa vista a ras de suelo. Foco: CORRER (mantener la flecha 0,5 s) y objetos que caen. 2 velas.
-// Tramos: (1) el pasillo: huecos de 4-5 entre muebles | (2) la cocina: lluvia de juguetes desde la encimera,
-// con baldas donde refugiarse | (3) el salón: sofá y estanterías con cajas | (4) la escalera: carrera final.
-// Foto: en lo alto de la estantería, pasando por una repisa que se cae.
-// Objeto (patito): en la bañera, al fondo del pasillo lateral del baño con lluvia de juguetes muy densa.
-// Broma: el cartel «No corras por casa» justo antes del hueco que solo se salta corriendo.
+// Nivel 2 — 2 años: los juegos infantiles. Foco: CORRER (mantener la flecha 0,5 s) y objetos que caen. 2 velas.
+// Tramos: (1) las pasarelas del parque: huecos de 4-5 | (2) la piscina de bolas: lluvia de pelotas, con pasarelas
+// donde refugiarse | (3) la casita: cajas para subir | (4) la torre del tobogán: carrera final.
+// Foto: en lo alto de la casita, pasando por una repisa que se cae.
+// Objeto (peluche): en el rincón de la piscina de bolas, al fondo del pasillo lateral con lluvia de pelotas muy densa.
+// Broma: el cartel «Prohibido correr» justo antes del hueco que solo se salta corriendo.
 // Monstruo nuevo: la urraca (se presenta en el cartel 5). Es la rápida: huye más deprisa de lo que anda Sofía, así que
 // para recuperar la foto hay que correr. Está en la explanada final, cerrada por la pared: no puede caerse a un hueco.
 export default {
-  props: { tema: 'casa', edad: 2 },
+  props: { tema: 'juegos', edad: 2 },
   leyenda: {
     M: { tipo: 'miriam', pista: 'hola' },
     N: { tipo: 'miriam', pista: 'cajas', radio: 220 },
@@ -19,14 +19,14 @@ export default {
     U: { tipo: 'enemigo', clase: 'ladron', sprite: 'urraca', rango: 4, velocidad: 170 },
   },
   objetos: [
-    // lluvia de juguetes: caen desde el borde superior de la zona (x, y = esquina superior izquierda)
-    { tipo: 'lluvia', x: 67, y: 4, w: 11, h: 1, intervalo: 700, texturas: 'obj-patito,obj-sonajero,obj-cubo' },
-    { tipo: 'lluvia', x: 81, y: 4, w: 13, h: 1, intervalo: 600, texturas: 'obj-patito,obj-ceras,obj-cubo' },
-    { tipo: 'lluvia', x: 97, y: 4, w: 13, h: 1, intervalo: 520, texturas: 'obj-sonajero,obj-ceras,obj-patito' },
-    // el baño: lluvia muy densa sobre el pasillo lateral
-    { tipo: 'lluvia', x: 115, y: 0, w: 9, h: 1, intervalo: 300, texturas: 'obj-cubo,obj-sonajero' },
-    // escalera: juguetes que bajan rodando del piso de arriba
-    { tipo: 'lluvia', x: 213, y: 0, w: 12, h: 1, intervalo: 900, texturas: 'obj-cubo,obj-sonajero' },
+    // lluvia de pelotas: caen desde el borde superior de la zona (x, y = esquina superior izquierda)
+    { tipo: 'lluvia', x: 67, y: 4, w: 11, h: 1, intervalo: 700, texturas: 'obj-pelota' },
+    { tipo: 'lluvia', x: 81, y: 4, w: 13, h: 1, intervalo: 600, texturas: 'obj-pelota' },
+    { tipo: 'lluvia', x: 97, y: 4, w: 13, h: 1, intervalo: 520, texturas: 'obj-pelota' },
+    // el rincón de la piscina de bolas: lluvia muy densa sobre el pasillo lateral
+    { tipo: 'lluvia', x: 115, y: 0, w: 9, h: 1, intervalo: 300, texturas: 'obj-pelota' },
+    // la torre del tobogán: pelotas que bajan rodando desde arriba
+    { tipo: 'lluvia', x: 213, y: 0, w: 12, h: 1, intervalo: 900, texturas: 'obj-pelota' },
   ],
   mapa: `
 #                                                               #################################################                                                                                                                      #

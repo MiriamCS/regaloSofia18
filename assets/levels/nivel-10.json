@@ -20,7 +20,12 @@
   {
    "name": "tema",
    "type": "string",
-   "value": "ciudad-noche"
+   "value": "volcan"
+  },
+  {
+   "name": "edad",
+   "type": "int",
+   "value": 10
   }
  ],
  "layers": [

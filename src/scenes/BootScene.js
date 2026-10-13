@@ -18,8 +18,8 @@ export const altoVela = (n) => 120 + n * 12;
 export const claveVela = (n) => `vela-alto-${n}`;
 const VELAS_NIVELES = 19;
 const ETAPAS_MIRIAM = ['nina', 'preado', 'adolescente', 'adulta'];
-// Cosas que caen en las zonas de lluvia y adornos de los niveles (texturas 'obj-*'); no son los coleccionables
-const LLUVIA = ['patito', 'sonajero', 'ceras', 'cubo', 'boligrafo', 'agenda', 'movil', 'maleta', 'gafas-sol'];
+// Cosas que caen en las zonas de lluvia (texturas 'obj-*'). Si alguna es también un coleccionable, ya se carga con ellos
+const LLUVIA = ['pelota', 'boligrafo', 'agenda'];
 const ESCENARIO = ['vela-on', 'vela-off', 'vela-cuerpo', 'atril-off', 'atril-on', 'caja-juguete', 'caja-madera', 'caja-carton', 'caja-libros', 'mueble', 'pinchos', 'marco-foto', 'nota-azul', 'nota-dorada', 'nota-rosa', 'nota-verde', 'campana', 'meta', 'puerta', 'tarta', 'cartel-continuara', 'candado', 'icono-objeto', 'clave', 'boton-izq', 'boton-der', 'boton-saltar', 'boton-cantar', 'boton-pausa'];
 
 // [clave de textura y animación, datos] de cada animación del índice de fotogramas
@@ -70,7 +70,7 @@ export class BootScene extends Phaser.Scene {
       if (ruta.endsWith('.svg')) this.load.svg(claveObjeto(o), ruta, S);
       else this.load.image(claveObjeto(o), ruta);
     }
-    for (const n of LLUVIA) this.load.svg(`obj-${n}`, `sprites/objetos/${n}.svg`, S);
+    for (const n of LLUVIA) if (!OBJETOS.objetos.some((o) => claveObjeto(o) === `obj-${n}`)) this.load.svg(`obj-${n}`, `sprites/objetos/${n}.svg`, S);
     this.load.image('logo', 'logo.png');
     for (let n = 0; n < VELAS_NIVELES; n++) {
       const svg = svgVela({ alto: altoVela(n), recorte: true, escala: ESCALA_TEXTURAS });

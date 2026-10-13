@@ -1,8 +1,8 @@
 {
-  "nombre": "La excursión al bosque",
+  "nombre": "La comunión",
   "pistas": {
-    "hola": "¡Excursión, Sofi! Las urracas del bosque son primas de la de casa, pero mucho más rápidas. Y cuidado con las zarzas del sendero, que pinchan.",
-    "calcetin": "¡Una urraca te ha robado... un calcetín imaginario! Te lo devuelve muy ofendida: «no es de mi talla».",
-    "claro": "Esa urraca es rapidísima, pero los muros no los salta. Y para salir de aquí te hará falta una caja junto al muro."
+    "hola": "¡Sofi, qué guapa vas de comunión! Pero cuidado en el jardín del banquete: las urracas de aquí son rapidísimas y les encanta todo lo que brilla. Y las zarzas pinchan.",
+    "calcetin": "¡Una urraca te ha robado... un calcetín imaginario! Te lo devuelve muy ofendida: «no va con el vestido».",
+    "claro": "Esa urraca es rapidísima, pero los muros del jardín no los salta. Y para salir de aquí te hará falta una caja junto al muro."
   }
 }

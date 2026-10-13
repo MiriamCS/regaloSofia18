@@ -11,6 +11,6 @@
     "metronomo":    { "mira": "frente",    "alto": 84,  "presenta": 7 },
     "despertador":  { "mira": "frente",    "alto": 70,  "presenta": 11 },
     "examenes":     { "mira": "frente",    "alto": 110, "presenta": 12 },
-    "notificacion": { "mira": "frente",    "alto": 52,  "presenta": 13 }
+    "notificacion": { "mira": "frente",    "alto": 52,  "presenta": 14 }
   }
 }

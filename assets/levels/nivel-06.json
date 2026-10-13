@@ -10,7 +10,7 @@
  "tileheight": 48,
  "infinite": false,
  "nextlayerid": 4,
- "nextobjectid": 81,
+ "nextobjectid": 82,
  "properties": [
   {
    "name": "nivel",
@@ -1461,6 +1461,24 @@
      "rotation": 0,
      "visible": true,
      "properties": []
+    },
+    {
+     "id": 81,
+     "name": "",
+     "type": "fondo",
+     "x": 8064,
+     "y": 0,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "tema",
+       "type": "string",
+       "value": "danza"
+      }
+     ]
     }
    ]
   },

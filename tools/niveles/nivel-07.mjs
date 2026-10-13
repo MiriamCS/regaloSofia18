@@ -1,13 +1,14 @@
-// Nivel 7 — 7 años: la clase de música. Foco: teclas de piano gigantes (suelo que suena y abre caminos).
-// Tramos: (1) teclado-escalera y la puerta «sol-mi-do» (hay que tocarla al revés) | (2) el himno de la alegría:
-// la puerta se abre... y es un armario con un metrónomo; la segunda mitad del himno abre el fondo del armario
-// | (3) «teclas» que se hunden sobre pinchos, plataformas musicales y metrónomos desafinados (no cantes cerca)
-// | (4) el gran piano: teclas en dos alturas. «Estrellita» (do do sol sol la la) abre la salida;
+// Nivel 7 — 7 años: el huerto del cole. Foco: bancales musicales (suelo que suena y abre caminos).
+// Los bancales son teclas (tipo 'tecla') dibujadas como jardineras: props.teclas = 'bancal'.
+// Tramos: (1) bancales en escalera y la puerta «sol-mi-do» (hay que tocarla al revés) | (2) el himno de la alegría:
+// la puerta se abre... y es la caseta de las herramientas con un metrónomo; la segunda mitad del himno abre el fondo
+// | (3) tablas que se hunden sobre pinchos, plataformas musicales y metrónomos desafinados (no cantes cerca)
+// | (4) el gran bancal: bancales en dos alturas. «Estrellita» (do do sol sol la la) abre la salida;
 // «Cumpleaños feliz» (sol sol la sol do si) abre la puerta secreta de arriba, donde está la foto.
-// Foto: en el cuarto encima del gran piano (melodía secreta). Objeto: en el foso del piano, entre pinchos.
-// Broma: el armario del metrónomo. Las teclas que se hunden son plataformas 'hunde' (no hay teclas que se hundan).
+// Foto: en el cuarto encima del gran bancal (melodía secreta). Objeto (rábano): en el foso del gran bancal, entre pinchos.
+// Broma: la caseta del metrónomo. Las tablas que se hunden son plataformas 'hunde'.
 export default {
-  props: { tema: 'clase-musica' },
+  props: { tema: 'huerto', edad: 7, teclas: 'bancal' },
   leyenda: {
     M: { tipo: 'miriam', pista: 'hola' },
     N: { tipo: 'miriam', pista: 'piano' },

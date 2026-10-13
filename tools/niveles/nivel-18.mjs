@@ -1,18 +1,22 @@
-// Nivel 18 — 18 años: el gran concierto. El nivel más difícil y el final abierto (SPEC §7).
-// Tramos: (1) bastidores: caja + doble salto, foso de pinchos de 3 velas, plataformas que caen y aviones de papel;
-// (2) el foso: plataformas a ritmo, una mochila y la melodía más larga del juego, «Cumpleaños feliz» entera
-// (sol sol la sol do si · sol sol la sol re do: 12 notas), con un despertador rondando las campanas;
-// (3) el escenario: gravedad invertida por el techo, luces temporizadas y un suelo «seguro»;
-// (4) el último tramo: nubes pequeñas sobre el abismo con aviones y notificaciones; aquí caer cuesta 3 velas.
+// Nivel 18 — 18 años: la universidad (Informática) y el gran concierto. El nivel más difícil y el final abierto (SPEC §7).
+// El escenario se va alternando (zonas 'fondo'): facultad → sala de conciertos (col. 57) → facultad (col. 120) →
+// sala de conciertos (col. 196). Los carteles E e I marcan los dos primeros cambios.
+// Tramos: (1) la facultad: caja + doble salto, foso de pinchos de 3 velas, plataformas que caen y aviones de papel;
+// (2) la sala de conciertos: plataformas a ritmo, una mochila y la melodía más larga del juego, «Cumpleaños feliz»
+// entera (sol sol la sol do si · sol sol la sol re do: 12 notas), con un despertador rondando las campanas;
+// (3) la facultad: la clase de Física, gravedad invertida por el techo, luces temporizadas y un suelo «seguro»;
+// (4) el escenario: nubes pequeñas sobre el abismo con aviones y notificaciones; aquí caer cuesta 3 velas.
 // Donde debería estar la meta empieza la zona 'final': camino blanco, «Continuará...» y la tarta.
-// Sin foto (aún no hay foto de los 18). Objeto: en una repisa escondida en el foso del tramo 2.
+// Sin foto (aún no hay foto de los 18). Objeto (portátil): en una repisa escondida en el foso del tramo 2.
 export default {
-  props: { tema: 'escenario', edad: 18 },
+  props: { tema: 'universidad', edad: 18 },
   leyenda: {
     M: { tipo: 'miriam', pista: 'inicio' },
     N: { tipo: 'miriam', pista: 'melodia' },
     R: { tipo: 'miriam', pista: 'ultimo' },
     Q: { tipo: 'cartel', pista: 'seguro' },
+    E: { tipo: 'cartel', pista: 'sala' },
+    I: { tipo: 'cartel', pista: 'facultad' },
     '%': { tipo: 'pinchos', capa: 'zonas', fusion: 'h', danio: 3 },
     '^': { tipo: 'pinchos', capa: 'zonas', fusion: 'h', danio: 3 },
     m: { tipo: 'enemigo', clase: 'patrullero', sprite: 'mochila', rango: 1, velocidad: 70 },
@@ -30,6 +34,10 @@ export default {
     P: { tipo: 'puerta', capa: 'solidos', grupo: 'feliz', secuencia: 'G4,G4,A4,G4,C5,B4,G4,G4,A4,G4,D5,C5', h: 3 },
   },
   objetos: [
+    // la facultad y la sala de conciertos se van turnando
+    { tipo: 'fondo', x: 57, y: 0, w: 1, h: 1, tema: 'escenario' },
+    { tipo: 'fondo', x: 120, y: 0, w: 1, h: 1, tema: 'universidad' },
+    { tipo: 'fondo', x: 196, y: 0, w: 1, h: 1, tema: 'escenario' },
     { tipo: 'gravedad', x: 137, y: 0, w: 35, h: 13, factor: -1 },
     { tipo: 'final', x: 262, y: 9, w: 2, h: 4 },
     // el último tramo: caer al abismo cuesta 3 velas

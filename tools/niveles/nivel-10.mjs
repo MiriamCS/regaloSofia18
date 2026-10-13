@@ -1,12 +1,13 @@
-// Nivel 10 — 10 años: la ciudad de noche. Foco: peligros de 2 velas y plataformas temporizadas.
-// Tramos: (1) azoteas con farolas temporizadas y el semáforo | (2) carteles luminosos sobre pinchos de 2 velas
-// | (3) aviones de papel entre azoteas | (4) carrera por los cables con plataformas que caen.
-// Foto: en la azotea de la torre, encadenando tres farolas (p, q, k). Objeto: en el callejón bajo el cable,
-// entre pinchos de 2 velas. Broma: el semáforo para peatones (r) casi siempre está en rojo.
-// Aquí se estrenan las temporizadas y el daño de 2 velas (pinchos naranjas y el avión grande).
+// Nivel 10 — 10 años: los volcanes. Foco: peligros de 2 velas (la lava) y plataformas temporizadas.
+// Tramos: (1) las rocas que aparecen entre el humo (temporizadas) y el géiser | (2) rocas que se encienden y se
+// apagan sobre ríos de lava de 2 velas | (3) aviones de papel entre las cumbres | (4) carrera por las coladas
+// con piedras que se caen.
+// Foto: en la cumbre más alta, encadenando tres rocas (p, q, k). Objeto (pendiente; de momento la pelota): en la
+// grieta bajo la colada, entre lava de 2 velas. Broma: el géiser puntual (r), que casi nunca está.
+// Aquí se estrenan las temporizadas y el daño de 2 velas (la lava naranja y el avión grande).
 // Temporizadas: a/b se alternan (ciclo 3 s); d/e/f se encienden en ola, de izquierda a derecha (ciclo 2,7 s); p/q/k suben en cadena.
 export default {
-  props: { tema: 'ciudad-noche' },
+  props: { tema: 'volcan', edad: 10 },
   leyenda: {
     M: { tipo: 'miriam', pista: 'hola' },
     N: { tipo: 'miriam', pista: 'cables' },

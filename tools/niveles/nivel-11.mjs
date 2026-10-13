@@ -1,13 +1,13 @@
-// Nivel 11 — 11 años: el conservatorio. Foco: melodías largas bajo presión.
+// Nivel 11 — 11 años: el conservatorio, ya en el grado profesional. Foco: melodías largas bajo presión.
 // El conservatorio tiene dos pisos. Tramo 1 (arriba): pasillo de campanas
 // «do-re-mi-fa-sol» con las campanas desordenadas, y la broma de las dos puertas («mi-re-do-re-mi»: la que
 // enseña las notas no se abre nunca; se abre la de encima). Tramo 2 (abajo): la sala
 // de ensayo (se baja por el hueco del final), «Para Elisa» (9 notas) mientras la profe de solfeo con prisa
 // (peligro que avanza por la franja del piso de abajo, filas 21-33) te pisa los talones.
 // Tramo 3: escalera de teclas, «do-mi-sol-do» saltándose las teclas equivocadas por las nubes temporizadas.
-// Tramo 4: la audición, «Oda a la alegría» (7 notas) con campanas en lo alto a las que se llega por plataformas musicales (cantar cerca de una campana la hace sonar).
+// Tramo 4: la prueba de acceso, «Oda a la alegría» (7 notas) con campanas en lo alto a las que se llega por plataformas musicales (cantar cerca de una campana la hace sonar).
 // Foto: al salir de la sala, un desvío de vuelta por lo alto de la sala, hacia la profe que avanza.
-// Objeto (metrónomo): en la taquilla del conserje, tras una puerta oculta de 5 notas («sol-mi-do-mi-sol», con las campanas del tramo 1).
+// Objeto (cello): en la taquilla del conserje, tras una puerta oculta de 5 notas («sol-mi-do-mi-sol», con las campanas del tramo 1).
 // Monstruo nuevo: el despertador del conserje (se presenta en el cartel J, al empezar). Hay uno cerca de la campana
 // del fa (tramo 1) y otro antes de la puerta de la audición: cantar a su lado invierte los controles, así que hay
 // que elegir bien desde dónde se canta. La profe con prisa quita 2 velas (se avisa en el cartel I).

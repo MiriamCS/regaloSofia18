@@ -1,12 +1,12 @@
 {
-  "nombre": "La guardería",
+  "nombre": "La fiesta",
   "pistas": {
-    "hola": "¡Primer día de guarde, Sofi! Hoy toca jugar con cajas. Tú empuja, que pensar ya lo hacemos juntas.",
-    "cubos": "Ese muro es altísimo. Pero el hueco de abajo tiene hambre de cajas... y dos cajas juntas llegan más alto que una.",
-    "puente": "Ese foso no se salta ni corriendo. Pero las cajas se tiran de cabeza encantadas: una desde el suelo y otra desde la balda de arriba.",
-    "mochilas": "Mochilas patrulleras: no muerden, pero empujan... y detrás hay pinchos. Un saltito encima y se vuelven notas.",
-    "mueble": "Mueble pesadísimo de la guardería. No se mueve ni a la de tres. Ni lo intentes.",
-    "puzle": "El puzle gordo: cajas a tres alturas. Bájalas de una en una: una al hueco y otra encima. ¿Y si la de la repisa larga se para a mitad de camino? Mira arriba.",
-    "final": "¡Lo conseguiste! Mañana, más cajas. Bueno, no: mañana, ¡la playa!"
+    "hola": "¡Sofi, hoy hay fiesta de disfraces! Los regalos se apilan, se empujan y se tiran. Tú empuja, que pensar ya lo hacemos juntas.",
+    "cubos": "Ese muro es altísimo. Pero el hueco de abajo tiene hambre de regalos... y dos regalos juntos llegan más alto que uno.",
+    "puente": "Ese foso no se salta ni corriendo. Pero los regalos se tiran de cabeza encantados: uno desde el suelo y otro desde la balda de arriba.",
+    "mochilas": "Las mochilas de los invitados se pasean solas: no muerden, pero empujan... y detrás hay pinchos. Un saltito encima y se vuelven notas.",
+    "mueble": "La mesa de la tarta. Pesa una tonelada. No se mueve ni a la de tres. Ni lo intentes.",
+    "puzle": "El puzle gordo: regalos a tres alturas. Bájalos de uno en uno: uno al hueco y otro encima. ¿Y si el de la repisa larga se para a mitad de camino? Mira arriba.",
+    "final": "¡Lo conseguiste! Y ahora, a soplar las velas... Bueno, no: ¡nos vamos de excursión!"
   }
 }

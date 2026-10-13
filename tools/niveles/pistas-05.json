@@ -1,16 +1,16 @@
 {
-  "nombre": "La fiesta de cumpleaños",
+  "nombre": "La pista de patinaje",
   "pistas": {
-    "corto": "¿Ya está? ¡Qué nivel tan cortito! Seguro que es el más fácil de todo el juego.",
+    "corto": "¿Ya está? ¡Qué pista tan cortita! Seguro que es la más fácil de todo el juego.",
     "huye": "¡Ja! ¿Creías que iba a ser tan fácil?",
-    "puente": "Puente de confianza. Revisado ayer. Más o menos.",
+    "puente": "Rampa de confianza. Revisada ayer. Más o menos.",
     "pared": "Pared infranqueable. Ni lo intentes. En serio, ni la toques.",
-    "confia": "Sofi, hazme caso: los bloques con pinta de sólidos son los de fiar. Las nubes de globo, ni tocarlas, que explotan.",
-    "decoracion": "Pinchos de decoración. Totalmente inofensivos. Firmado: el que revisó el puente.",
+    "confia": "Sofi, hazme caso: los bloques con pinta de sólidos son los de fiar. Las nubes, ni tocarlas, que se deshacen.",
+    "decoracion": "Conos de decoración. Totalmente inofensivos. Firmado: el que revisó la rampa.",
     "confiesa": "Vale, confieso: el cartel del principio mentía, y yo también. ¡Perdón, Sofi! Ahora en serio: aquí izquierda es derecha.",
-    "atras": "Atajo a la tarta: ¡hacia atrás! Tú pulsa al revés y no hagas preguntas.",
+    "atras": "Atajo a la salida: ¡patina hacia atrás! Tú pulsa al revés y no hagas preguntas.",
     "otra": "¡Que no soy yo, pesada!",
-    "fin": "Fin del nivel. Aquí ya no hay nada. Nada de nada. Esa pared es muy pared.",
+    "fin": "Fin de la pista. Aquí ya no hay nada. Nada de nada. Esa pared es muy pared.",
     "aviones": "¡Aviones de papel! Estos sí pican: si te dan, te apagan una vela. Sáltales encima o pasa cuando se alejen."
   }
 }

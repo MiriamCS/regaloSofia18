@@ -10,7 +10,7 @@
  "tileheight": 48,
  "infinite": false,
  "nextlayerid": 4,
- "nextobjectid": 76,
+ "nextobjectid": 79,
  "properties": [
   {
    "name": "nivel",
@@ -20,7 +20,7 @@
   {
    "name": "tema",
    "type": "string",
-   "value": "escenario"
+   "value": "universidad"
   },
   {
    "name": "edad",
@@ -1241,6 +1241,60 @@
     {
      "id": 69,
      "name": "",
+     "type": "fondo",
+     "x": 2736,
+     "y": 0,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "tema",
+       "type": "string",
+       "value": "escenario"
+      }
+     ]
+    },
+    {
+     "id": 70,
+     "name": "",
+     "type": "fondo",
+     "x": 5760,
+     "y": 0,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "tema",
+       "type": "string",
+       "value": "universidad"
+      }
+     ]
+    },
+    {
+     "id": 71,
+     "name": "",
+     "type": "fondo",
+     "x": 9408,
+     "y": 0,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "tema",
+       "type": "string",
+       "value": "escenario"
+      }
+     ]
+    },
+    {
+     "id": 72,
+     "name": "",
      "type": "gravedad",
      "x": 6576,
      "y": 0,
@@ -1257,7 +1311,7 @@
      ]
     },
     {
-     "id": 70,
+     "id": 73,
      "name": "",
      "type": "final",
      "x": 12576,
@@ -1269,7 +1323,7 @@
      "properties": []
     },
     {
-     "id": 71,
+     "id": 74,
      "name": "",
      "type": "muerte",
      "x": 9936,
@@ -1287,7 +1341,7 @@
      ]
     },
     {
-     "id": 72,
+     "id": 75,
      "name": "",
      "type": "enemigo",
      "x": 9120,
@@ -1330,7 +1384,7 @@
      ]
     },
     {
-     "id": 73,
+     "id": 76,
      "name": "",
      "type": "enemigo",
      "x": 11040,
@@ -1373,7 +1427,7 @@
      ]
     },
     {
-     "id": 74,
+     "id": 77,
      "name": "",
      "type": "enemigo",
      "x": 10272,
@@ -1416,7 +1470,7 @@
      ]
     },
     {
-     "id": 75,
+     "id": 78,
      "name": "",
      "type": "enemigo",
      "x": 11808,

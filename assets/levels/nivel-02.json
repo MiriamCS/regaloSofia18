@@ -20,7 +20,7 @@
   {
    "name": "tema",
    "type": "string",
-   "value": "casa"
+   "value": "juegos"
   },
   {
    "name": "edad",
@@ -690,7 +690,7 @@
       {
        "name": "texturas",
        "type": "string",
-       "value": "obj-patito,obj-sonajero,obj-cubo"
+       "value": "obj-pelota"
       }
      ]
     },
@@ -713,7 +713,7 @@
       {
        "name": "texturas",
        "type": "string",
-       "value": "obj-patito,obj-ceras,obj-cubo"
+       "value": "obj-pelota"
       }
      ]
     },
@@ -736,7 +736,7 @@
       {
        "name": "texturas",
        "type": "string",
-       "value": "obj-sonajero,obj-ceras,obj-patito"
+       "value": "obj-pelota"
       }
      ]
     },
@@ -759,7 +759,7 @@
       {
        "name": "texturas",
        "type": "string",
-       "value": "obj-cubo,obj-sonajero"
+       "value": "obj-pelota"
       }
      ]
     },
@@ -782,7 +782,7 @@
       {
        "name": "texturas",
        "type": "string",
-       "value": "obj-cubo,obj-sonajero"
+       "value": "obj-pelota"
       }
      ]
     }

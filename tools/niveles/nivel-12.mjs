@@ -1,17 +1,17 @@
-// Nivel 12 — 12 años: primer día de instituto. Foco: gravedad y controles cambiantes (estilo That Level Again).
-// Tramos: (1) pasillo con zonas de controles invertidos (en la segunda, un examen obliga a pararse y cantar; la
-// última empieza en mitad de un salto) |
-// (2) el gimnasio con gravedad baja (factor 0,4) | (3) la escalera al revés: gravedad invertida, se anda por
-// el techo y los huecos del techo son precipicios hacia el cielo | (4) todo mezclado, con exámenes bloqueadores
-// (cantarles los aparta) y metrónomos que invierten los controles si cantas cerca.
+// Nivel 12 — 12 años: la pandemia mundial. Foco: gravedad y controles cambiantes: nada funciona como siempre.
+// Tramos: (1) en casa, confinada: pasillo con zonas de controles invertidos (en la segunda, un examen online obliga
+// a pararse y cantar; la última empieza en mitad de un salto) | desde la col. 64 (zona 'fondo'), de vuelta al insti
+// con mascarilla: (2) el gimnasio con gravedad baja (factor 0,4) | (3) la escalera al revés: gravedad invertida, se
+// anda por el techo y los huecos del techo son precipicios hacia el cielo | (4) todo mezclado, con exámenes
+// bloqueadores (cantarles los aparta) y metrónomos que invierten los controles si cantas cerca.
 // Foto: en un hueco del techo del gimnasio; se llega saltando (doble) hasta la canasta antigravedad.
-// Objeto: en la taquilla del fondo de la zona invertida: una ventana de gravedad normal te deja caer hasta ella.
+// Objeto (mascarilla): en la taquilla del fondo de la zona invertida: una ventana de gravedad normal te deja caer hasta ella.
 // Broma: el cartel «Por aquí no» con la flecha al revés, dentro del pasillo invertido.
 // Las zonas (invertir, gravedad) van en 'objetos'; si se solapan dos de gravedad, manda la última de la lista.
 // Monstruo nuevo: la pila de exámenes (se presenta en el cartel 3, justo antes de la primera). Desde el nivel 10 los
 // pinchos quitan 2 velas.
 export default {
-  props: { tema: 'instituto', edad: 12 },
+  props: { tema: 'confinamiento', edad: 12 },
   leyenda: {
     M: { tipo: 'miriam', pista: 'hola' },
     N: { tipo: 'miriam', pista: 'alreves' },
@@ -23,6 +23,8 @@ export default {
     T: { tipo: 'enemigo', clase: 'desafinado', sprite: 'metronomo', rango: 1, velocidad: 35 },
   },
   objetos: [
+    // del confinamiento en casa a la vuelta al insti
+    { tipo: 'fondo', x: 64, y: 0, w: 1, h: 1, tema: 'insti-pandemia' },
     { tipo: 'invertir', x: 12, y: 2, w: 13, h: 10 },
     { tipo: 'invertir', x: 32, y: 2, w: 14, h: 10 },
     { tipo: 'invertir', x: 49, y: 2, w: 12, h: 10 },
@@ -49,7 +51,7 @@ export default {
 #                                                                                  === ##     ===                              ===                                                                                                            ==                ##                                     #
 #                                                                                      ##                                               ##                                                                                                                      ##                                     #
 #                                                                                      ##                                               ##                                                                                                                      ##                                     #
-# S  M       1  ^^   ^^       3   E        ^^          ^^        C    ^^^^^^^^   ^     ##  ^^^^^^^^^                        ^^^^^^^^^^  ##      C N                                                  ^^   O   ^^^   C   T     E ^^##^^    ^^^^^^^^^^            ##              E T         2     G    #
+# S  M       1  ^^   ^^       3   E        ^^          ^^        C    ^^^^^^^^         ##  ^^^^^^^^^                        ^^^^^^^^^^  ##      C N                                                  ^^   O   ^^^   C   T     E   ##      ^^^^^^^^^^            ##              E T         2     G    #
 ###########################   ########   #######   ######################################################################################################################################################################################################################    ##########  ###############
 ###########################   ########   #######   ######################################################################################################################################################################################################################    ##########  ###############
 ###########################   ########   #######   ######################################################################################################################################################################################################################    ##########  ###############

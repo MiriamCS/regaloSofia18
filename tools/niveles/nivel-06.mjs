@@ -1,12 +1,13 @@
-// Nivel 6 — 6 años: el primer cole. Se desbloquea CANTAR (tecla de la nota). 6 velas.
+// Nivel 6 — 6 años: empieza el cole (y la clase de danza). Se desbloquea CANTAR (tecla de la nota). 6 velas.
 // Tramos: (1) el patio: plataformas musicales que solo existen si les cantas cerca
 //         | (2) el pasillo: puertas-melodía de 2 y 3 notas (Simón dice) con campanas
-//         | (3) mochilas dormilonas sobre pinchos (cantar las duerme), el profe que se aparta al cantarle
-//           y el profe dormilón (broma: se duerme justo delante de la salida y hay que dar la vuelta por arriba)
-//         | (4) el aula: puerta de 4 notas con las campanas en salientes sobre pinchos, a distintas alturas.
+//         | (3) mochilas dormilonas sobre pinchos (cantar las duerme), el bolígrafo del profe que se aparta al
+//           cantarle y el profe dormilón (broma: se duerme justo delante de la salida y hay que dar la vuelta)
+//         | (4) la clase de danza (fondo de espejos y barra desde la col. 168): puerta de 4 notas con las campanas
+//           en salientes sobre pinchos, a distintas alturas, como una coreografía.
 // Foto: en lo alto de la cadena de plataformas musicales del patio (col. 34-45).
-// Objeto (mochila): en el armario de la puerta-melodía oculta (sin notas a la vista; el cartel da la adivinanza:
-// de la campana más alta a la más baja; la más alta solo suena cantando en lo alto de un doble salto).
+// Objeto (tutú): en la taquilla del vestuario de danza, tras la puerta-melodía oculta (sin notas a la vista; el
+// cartel da la adivinanza: de la campana más alta a la más baja; la más alta solo suena cantando en lo alto de un doble salto).
 // Ojo: cantar cerca de una campana siempre la hace sonar; cada campana está lejos (>190 px) de las demás.
 // Monstruo nuevo: el bolígrafo gigante del profe (se presenta en el cartel 5, antes del primero).
 export default {
@@ -45,6 +46,10 @@ export default {
     4: { tipo: 'cartel', pista: 'recreo' },
     5: { tipo: 'cartel', pista: 'boligrafo' },
   },
+  objetos: [
+    // el último tramo es la clase de danza
+    { tipo: 'fondo', x: 168, y: 0, w: 1, h: 1, tema: 'danza' },
+  ],
   mapa: `
 #                                                                           #                      #                                  #########                                                                    #                                     #
 #                                                                           #                      #                                  #########                                                                    #                                     #

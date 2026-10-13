@@ -1,16 +1,16 @@
-// Nivel 5 — 5 años: la fiesta de cumpleaños. Primer nivel-trampa: nada es lo que parece. 5 velas.
-// Tramos: (1) la meta está al principio... y sale corriendo; puente que se desmorona y pared que no existe
-//         | (2) suelo de globos: los bloques con pinta de sólidos (x) se esfuman y las nubes sí aguantan
-//         | (3) la piñata: pinchos «de decoración» (pican) y el regalo de la mesa, que hay que tirar
-//           y empujar hasta el muro para subirlo (si se empuja hacia atrás cae al hueco y vuelve a la mesa)
-//         | (4) la tarta de mentira: zona de controles invertidos y una segunda meta falsa que se mete en la
+// Nivel 5 — 5 años: la pista de patinaje sobre ruedas. Primer nivel-trampa: nada es lo que parece. 5 velas.
+// Tramos: (1) la salida está al principio... y sale patinando; rampa que se desmorona y pared que no existe
+//         | (2) la pista: los bloques con pinta de sólidos (x) se esfuman y las nubes sí aguantan
+//         | (3) la zona de saltos: conos «de decoración» (pican) y la caja de los patines de alquiler, que hay
+//           que tirar y empujar hasta el muro para subirlo (si se empuja hacia atrás cae al hueco y vuelve)
+//         | (4) la salida de mentira: zona de controles invertidos y una segunda meta falsa que se mete en la
 //           pared del final... que también es falsa: la meta de verdad está dentro.
 // Foto: dentro del montículo del tramo 2 (pared fantasma por la derecha, col. 108-113; la delata una nota dorada).
-// Objeto (corona): arriba a la izquierda del inicio, por globos que se pinchan al pisarlos (plataformas que caen y
-// reaparecen) sobre pinchos. Las temporizadas no se estrenan hasta el nivel 10.
+// Objeto (patines): arriba a la izquierda del inicio, por plataformas que caen al pisarlas y reaparecen, sobre
+// pinchos. Las temporizadas no se estrenan hasta el nivel 10.
 // Monstruo nuevo: el avión de papel (se presenta en el cartel 7, antes del primero).
 export default {
-  props: { tema: 'fiesta', edad: 5 },
+  props: { tema: 'patinaje', edad: 5 },
   leyenda: {
     M: { tipo: 'miriam', pista: 'confia' },
     N: { tipo: 'miriam', pista: 'confiesa' },

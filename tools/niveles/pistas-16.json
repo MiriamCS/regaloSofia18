@@ -1,10 +1,10 @@
 {
-  "nombre": "El viaje",
+  "nombre": "La cita",
   "pistas": {
-    "mundos": "¡Sofi, nos vamos de viaje! Aquí, cada vez que cantas, se hace de noche (o de día). Lo que ves transparente existe en el otro mundo.",
-    "consigna": "Consigna: maleta sin dueña. De día parece una maleta normal. De noche se pone sus gafas de sol.",
+    "mundos": "¡Sofi, tienes una cita! Aquí, cada vez que cantas, se hace de noche (o de día). Lo que ves transparente existe en el otro momento del día.",
+    "consigna": "Reloj de la estación: llegas tarde. Bueno, llegas puntual, pero tú lo vives como si llegaras tarde.",
     "puentes": "Canta en tierra firme, no encima del puente que necesitas. Créeme.",
-    "tren": "Tren nocturno con pinchos diurnos (y viceversa). Se ruega cambiar de mundo con los pies en lugar seguro.",
+    "tren": "El tren de la cita: pinchos de día en los vagones de noche (y viceversa). Se ruega cambiar de hora con los pies en lugar seguro.",
     "campanas": "Ojo, Sofi: cada campana que tocas también cambia el mundo. Si necesitas cambiar sin tocar ninguna, canta lejos de ellas... y lejos del despertador."
   }
 }

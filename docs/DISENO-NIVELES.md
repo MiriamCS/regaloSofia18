@@ -1,8 +1,7 @@
 # Diseño de niveles
 
 Diseño escrito de los 19 niveles (parte 1) y guía técnica para construirlos (parte 2).
-Las ambientaciones son las propuestas por defecto de la SPEC: cuando Miriam pase recuerdos
-reales de algún año (fecha límite: 19 oct), ese nivel se adapta.
+Las ambientaciones siguen las fotos y los objetos de cada año (revisadas con Miriam en octubre).
 
 Reglas comunes (SPEC §5): 3-4 tramos separados por checkpoints (atriles), cada tramo con una
 idea principal; foto y objeto en zonas opcionales y difíciles; Miriam al menos una vez, cerca del
@@ -12,7 +11,7 @@ entre checkpoints. La dificultad sube claramente de un nivel al siguiente.
 ### Monstruos y curva de dificultad (acordado en octubre)
 - **Un monstruo nuevo por nivel, nunca dos**, y siempre presentado (pista de Miriam o cartel) antes de que salga el
   primero: 0 pato · 1 cochecito · 2 urraca · 3 mochila · 4 mosquito · 5 avión de papel · 6 bolígrafo · 7 metrónomo ·
-  11 despertador · 12 pila de exámenes · 13 notificación. El nivel de cada uno está en `config/enemigos.json`
+  11 despertador · 12 pila de exámenes · 14 notificación. El nivel de cada uno está en `config/enemigos.json`
   (`presenta`) y `npm run validar` comprueba que ninguno salga antes.
 - Daño de los monstruos: patrulleros, urraca, bloqueadores y desafinados no quitan velas (empujan, roban, cortan el
   paso o invierten los controles si les cantas); los voladores quitan 1 (algún avión, 2). Al cantarles, los voladores
@@ -21,220 +20,310 @@ entre checkpoints. La dificultad sube claramente de un nivel al siguiente.
 - **Presión** de un nivel = daño total que contiene ÷ velas. Como las velas crecen con la edad, cada nivel tiene que
   añadir daño para no quedar más fácil que el anterior. No cuenta los huecos, así que los niveles con muchos abismos
   (4, 8) o mucha carga musical (11) son más duros de lo que dice el número.
-- Pinchos: 1 vela hasta el 9, 2 desde el 10, 3 desde el 14. En el último tramo del 18, caer al abismo cuesta 3 velas.
-- Cambios de orden: el verano pasó al 9 y el conservatorio al 11; exámenes al 14 y la audición al 15.
+- Pinchos: 1 vela hasta el 9, 2 desde el 10, 3 desde el 13. En el último tramo del 18, caer al abismo cuesta 3 velas.
+- Cambios de orden: el verano pasó al 9 y el conservatorio al 11; la biblioteca (antes exámenes) al 13, las redes sociales
+  (antes el móvil gigante) al 14 y la audición al 15.
+- Fondos por tramos: una zona `fondo` con `tema` cambia el fondo a partir de su x, con un fundido suave (niveles 4, 6, 12, 14 y 18).
 
 ---
 
 ## Parte 1 · Diseño por nivel
 
-### Nivel 0 · Año 0 · La cuna — ∞ velas
-- **Foco:** tutorial a gatas: moverse, saltar, empujar.
-- **Tramos:** (1) primeros pasos: escalón y hueco de una casilla; (2) la caja: empujarla hasta el
-  muro para subir; (3) el pato de goma y la broma; (4) puzle de las dos cajas: tirar una caja desde
-  el estante para que caiga encima de la otra.
-- **Broma:** cartel «¡Este suelo es 100% seguro! Firmado: nadie», y el suelo se hunde en una piscina de bolas.
-- **Foto:** en lo alto de una escalera de nubes que exige saltos precisos.
-- **Objeto (chupete):** en una habitación secreta tras una pared falsa al final (la delata una nota dorada).
-- **Miriam:** al principio (se presenta) y junto al puzle de las cajas.
-- **Estado:** ✅ construido (`tools/niveles/nivel-00.mjs`).
+Generada a partir de los niveles construidos (cabeceras de `tools/niveles`, `config/objetos.json` y los mapas).
 
-### Nivel 1 · 1 año · El parque — 1 vela
-- **Foco:** saltos precisos y primer enemigo. Ya anda de pie. Con una sola vela, cada error devuelve al atril.
-- **Tramos:** (1) arenero con montículos de 1-2 casillas y huecos de 2; (2) los columpios:
-  plataformas móviles que van y vienen; (3) patos y cochecitos patrullando entre huecos (saltarles
-  encima o esquivarlos); (4) el tobogán: bajada con huecos y una plataforma que se cae.
-- **Broma:** un cochecito de juguete que «patrulla» en círculos sobre una plataforma minúscula y nunca se mueve de ahí... hasta que te acercas.
-- **Foto:** encima del columpio más alto, saltando en el punto alto de su recorrido.
-- **Objeto (sonajero):** debajo del tobogán, en una cornisa a la que se llega dejándose caer con precisión.
-- **Miriam:** antes de los columpios («espera a que el columpio venga hacia ti»).
+### Nivel 0 · La cuna — ∞ velas
+- **Fondo:** cuna
+- **Foto:** bebé en la cama · **Objeto:** El certificado de nacimiento
+- **Monstruos:** patito de goma ×1
+- **Diseño** (de `tools/niveles/nivel-00.mjs`):
+  Nivel 0 — Año 0: la habitación del bebé. Tutorial a gatas: moverse, saltar y empujar.
+  Velas infinitas. Tramos: primeros pasos | la caja | el pato y la broma | el puzle de las dos cajas.
+  Foto: en lo alto de la escalera de nubes (saltos precisos). Objeto: tras la pared falsa del final.
 
-### Nivel 2 · 2 años · La casa vista a ras de suelo — 2 velas
-- **Foco:** **correr** (mantener la flecha 0,5 s) y objetos que caen.
-- **Tramos:** (1) el pasillo: huecos de 4-5 casillas entre muebles que solo se pasan corriendo;
-  (2) la cocina: lluvia de juguetes desde la encimera (zonas `lluvia`), hay que correr entre ellos;
-  (3) el salón: subir por el sofá y las estanterías con cajas; (4) la escalera: carrera final con huecos largos.
-- **Broma:** un cartel «No corras por casa» justo antes del hueco que solo se puede saltar corriendo.
-- **Foto:** en lo alto de la estantería (tramo 3), pasando por una repisa que se cae.
-- **Objeto (patito):** en la bañera, al fondo de un pasillo lateral con lluvia de juguetes muy densa.
-- **Cambios (oct.):** Se presenta la urraca: una rápida en la explanada final (cerrada por la pared), hay que correr para recuperar la foto.
-- **Miriam:** en el salón, junto a las cajas.
+### Nivel 1 · Primeros pasos en casa — 1 vela
+- **Fondo:** casa
+- **Foto:** primeros pasos en casa con un juguete · **Objeto:** El chupete
+- **Monstruos:** cochecito ×3, patito de goma ×3
+- **Diseño** (de `tools/niveles/nivel-01.mjs`):
+  Nivel 1 — 1 año: primeros pasos en casa. Ya anda de pie. Foco: saltos precisos y primer enemigo. 1 vela.
+  Tramos: (1) la alfombra del salón | (2) el trenecito de juguete (plataformas móviles) | (3) patos de goma y
+  cochecitos | (4) la escalera de casa (bajada con huecos y un peldaño que se cae).
+  Foto: sobre el trenecito más alto (hay que saltar en lo alto de su recorrido).
+  Objeto (chupete): en la cornisa bajo la escalera; se llega dejándose caer con precisión por el borde.
+  Broma: el cochecito «aparcado» que da vueltas sin parar en una plataforma minúscula.
 
-### Nivel 3 · 3 años · La guardería — 3 velas
-- **Foco:** puzles de cajas básicos (empujar, apilar, usar cajas como escalón y como escudo).
-- **Tramos:** (1) torre de cubos: dos cajas para subir un muro de 4; (2) caja-puente: tirar una caja a un
-  foso de pinchos para poder pasar por encima; (3) las mochilas patrulleras: bloquearlas con una caja;
-  (4) gran puzle: tres cajas a distintas alturas que hay que bajar en orden.
-- **Broma:** una caja «pesada» (mueble) que no se mueve nada... salvo que la empujes desde el otro lado, donde resbala sola.
-- **Foto:** sobre una torre que requiere apilar las tres cajas del último puzle de forma distinta a la «obvia».
-- **Objeto (ceras):** en un hueco bajo el suelo al que se accede tras dejar caer una caja que tapa la entrada.
-- **Cambios (oct.):** Foso de pinchos de 15 casillas acortado a 8.
-- **Miriam:** junto al gran puzle final.
+### Nivel 2 · Los juegos infantiles — 2 velas
+- **Fondo:** parque
+- **Foto:** en la piscina de bolas · **Objeto:** El peluche
+- **Monstruos:** urraca ×1
+- **Diseño** (de `tools/niveles/nivel-02.mjs`):
+  Nivel 2 — 2 años: los juegos infantiles. Foco: CORRER (mantener la flecha 0,5 s) y objetos que caen. 2 velas.
+  Tramos: (1) las pasarelas del parque: huecos de 4-5 | (2) la piscina de bolas: lluvia de pelotas, con pasarelas
+  donde refugiarse | (3) la casita: cajas para subir | (4) la torre del tobogán: carrera final.
+  Foto: en lo alto de la casita, pasando por una repisa que se cae.
+  Objeto (peluche): en el rincón de la piscina de bolas, al fondo del pasillo lateral con lluvia de pelotas muy densa.
+  Broma: el cartel «Prohibido correr» justo antes del hueco que solo se salta corriendo.
+  Monstruo nuevo: la urraca (se presenta en el cartel 5). Es la rápida: huye más deprisa de lo que anda Sofía, así que
+  para recuperar la foto hay que correr. Está en la explanada final, cerrada por la pared: no puede caerse a un hueco.
 
-### Nivel 4 · 4 años · La playa — 4 velas
-- **Foco:** **doble salto** y plataformas que se hunden (`plataforma-cae` modo `hunde`).
-- **Tramos:** (1) dunas con huecos de 6-7 casillas (doble salto); (2) el muelle: tablas que se hunden
-  al pisarlas sobre el agua (caer al agua = vela); (3) castillos de arena (plataformas que caen) y
-  mosquitos voladores; (4) las rocas: doble salto vertical por una pared de nubes.
-- **Broma:** un mosquito gigante que da miedo... y se va volando en cuanto te acercas.
-- **Foto:** en una nube alta sobre el agua, solo con doble salto perfecto desde una tabla hundiéndose.
-- **Objeto (cubo de playa):** al final de un muelle lateral que se hunde muy rápido.
-- **Cambios (oct.):** Los mosquitos se mueven todos y hay 3 más, siempre después del cartel que los presenta.
-- **Miriam:** antes del muelle.
+### Nivel 3 · La fiesta — 3 velas
+- **Fondo:** fiesta
+- **Foto:** disfrazada, tocando el piano · **Objeto:** El piano
+- **Monstruos:** mochila ×6
+- **Diseño** (de `tools/niveles/nivel-03.mjs`):
+  Nivel 3 — 3 años: la fiesta de disfraces. Foco: puzles de cajas básicos (empujar, apilar, tirar a un foso). 3 velas.
+  Las cajas son los regalos de la fiesta. Tramos: (1) torre de regalos: dos cajas para un muro de 4 | (2) regalo-puente:
+  un foso de pinchos de 7 que solo se salta con dos cajas dentro | (3) las mochilas de los invitados, que empujan
+  hacia los pinchos, y la mesa de la tarta | (4) gran puzle: tres cajas a tres alturas (suelo, repisa de 4 y repisa
+  de 6) que hay que bajar de una en una: una rellena el hueco al pie del muro y otra queda encima como escalón.
+  Foto: sobre la mitad de la repisa larga; solo se alcanza subida a la caja media, empujada justo debajo (en vez de tirarla).
+  Objeto (piano): en el nicho bajo el tejadillo; una caja tapa la entrada y hay que empujarla hasta que cae al hueco.
+  Broma: la mesa de la tarta «que no se mueve ni a la de tres»... y que se mueve (despacito) si la empujas.
 
-### Nivel 5 · 5 años · La fiesta de cumpleaños — 5 velas
-- **Foco:** primer **nivel-trampa** (estilo That Level Again): nada es lo que parece.
-- **Tramos:** (1) la meta está al principio... y sale corriendo (`meta-falsa`); (2) suelo de globos:
-  algunos bloques son falsos (`plataforma-falsa`) y otros, que parecen aire, son paredes falsas transitables;
-  (3) la piñata: pinchos que «son de decoración» (no lo son) y regalos-caja para apilar; (4) la tarta
-  de mentira: un camino que solo existe si caminas «hacia atrás» un rato (zona `invertir`).
-- **Broma:** el nivel entero; Miriam confiesa en el último tramo que el cartel del principio mentía.
-- **Foto:** detrás de una pared que parece sólida.
-- **Objeto (corona):** en lo alto, sobre una nube que solo aparece cuando la meta falsa sale huyendo.
-- **Cambios (oct.):** Se presenta el avión de papel (cartel 7). Las nubes intermitentes de la corona son ahora globos que caen y reaparecen (las temporizadas se estrenan en el 10). Dos aviones más.
-- **Miriam:** en el tramo 2 (te dice justo lo contrario de lo que hay que hacer, y luego se disculpa).
+### Nivel 4 · De excursión — 4 velas
+- **Fondo:** nieve → playa (col. 137)
+- **Foto:** en la nieve · **Objeto:** El libro de Pía
+- **Monstruos:** mosquito ×9, patito de goma ×2
+- **Diseño** (de `tools/niveles/nivel-04.mjs`):
+  Nivel 4 — 4 años: de excursión, primero a la nieve y luego a la playa. Foco: doble salto y suelos que se hunden. 4 velas.
+  Tramos: (1) montones de nieve con huecos de 5-7 casillas | (2) el lago helado: placas de hielo que se hunden
+  | (3) en la playa: castillos de arena que se desmoronan y mosquitos | (4) las rocas: subida en zigzag por nubes.
+  El fondo pasa de nieve a playa en la col. 137 (zona 'fondo'), justo antes del cartel del mosquito.
+  El agua es el vacío: caer = una vela. Foto: flota sobre una nube alta encima del lago (col. 91); se coge
+  con un doble salto rápido HACIA ATRÁS desde la placa de las col. 94-95 antes de que se hunda.
+  Objeto (libro de Pía): al final de la orilla lateral de placas que se hunden muy deprisa (col. 123-136).
+  Broma: el mosquito gigante del cartel... es de cartón piedra (decorado).
+  Monstruo nuevo: el mosquito, el primero que apaga velas (se presenta en el cartel 2). Los patos de goma de la
+  nieve son de repaso.
 
-### Nivel 6 · 6 años · El primer cole — 6 velas
-- **Foco:** **cantar** (desbloqueo narrativo: empieza a estudiar música) y primeras puertas-melodía.
-- **Tramos:** (1) el patio: plataformas musicales que aparecen al cantar cerca; (2) el pasillo: puertas
-  de 2-3 notas con campanas (Simón dice); (3) las mochilas dormilonas (cantar las duerme) y el profesor
-  bloqueador que se aparta si le cantas; (4) el aula: puerta de 4 notas con las campanas repartidas en alturas.
-- **Broma:** un profesor bloqueador que, en vez de apartarse, se queda dormido... encima de la salida (hay que rodearlo).
-- **Foto:** sobre una cadena de plataformas musicales que hay que encadenar sin dejar de cantar.
-- **Objeto (mochila):** tras una puerta-melodía oculta (sin notas a la vista: hay que escucharla).
-- **Cambios (oct.):** Cartel que presenta el bolígrafo antes del primero. Unos 40 % menos de pinchos (es donde se aprende a cantar).
-- **Miriam:** en el pasillo de las puertas.
+### Nivel 5 · La pista de patinaje — 5 velas
+- **Fondo:** patinaje
+- **Foto:** con casco y patines · **Objeto:** Los patines
+- **Monstruos:** avión de papel ×5, cochecito ×3
+- **Diseño** (de `tools/niveles/nivel-05.mjs`):
+  Nivel 5 — 5 años: la pista de patinaje sobre ruedas. Primer nivel-trampa: nada es lo que parece. 5 velas.
+  Tramos: (1) la salida está al principio... y sale patinando; rampa que se desmorona y pared que no existe
+          | (2) la pista: los bloques con pinta de sólidos (x) se esfuman y las nubes sí aguantan
+          | (3) la zona de saltos: conos «de decoración» (pican) y la caja de los patines de alquiler, que hay
+            que tirar y empujar hasta el muro para subirlo (si se empuja hacia atrás cae al hueco y vuelve)
+          | (4) la salida de mentira: zona de controles invertidos y una segunda meta falsa que se mete en la
+            pared del final... que también es falsa: la meta de verdad está dentro.
+  Foto: dentro del montículo del tramo 2 (pared fantasma por la derecha, col. 108-113; la delata una nota dorada).
+  Objeto (patines): arriba a la izquierda del inicio, por plataformas que caen al pisarlas y reaparecen, sobre
+  pinchos. Las temporizadas no se estrenan hasta el nivel 10.
+  Monstruo nuevo: el avión de papel (se presenta en el cartel 7, antes del primero).
 
-### Nivel 7 · 7 años · La clase de música — 7 velas
-- **Foco:** **teclas de piano gigantes**: suelo que suena y abre caminos con la melodía correcta.
-- **Tramos:** (1) teclado-escalera (cada tecla una nota); (2) melodía de 4 teclas para abrir la puerta,
-  con metrónomos desafinados (si cantas cerca, invierten los controles); (3) teclas que se hunden y
-  plataformas musicales; (4) gran piano: melodía de 6 notas con teclas en dos alturas.
-- **Broma:** la primera puerta se abre tocando «el himno de la alegría»... y lo que se abre es un armario con un metrónomo.
-- **Foto:** encima del gran piano, tocando una melodía secreta (el inicio de «Cumpleaños feliz»).
-- **Objeto (partituras):** en el foso del piano, entre pinchos.
-- **Cambios (oct.):** El foso de pinchos se reduce a la mitad (quedan los de debajo de las plataformas musicales).
-- **Miriam:** junto al gran piano.
+### Nivel 6 · Empieza el cole — 6 velas
+- **Fondo:** colegio → danza (col. 168)
+- **Foto:** exhibición de gimnasia rítmica · **Objeto:** El tutú
+- **Monstruos:** avión de papel ×2, mochila ×4, bolígrafo gigante ×2
+- **Diseño** (de `tools/niveles/nivel-06.mjs`):
+  Nivel 6 — 6 años: empieza el cole (y la clase de danza). Se desbloquea CANTAR (tecla de la nota). 6 velas.
+  Tramos: (1) el patio: plataformas musicales que solo existen si les cantas cerca
+          | (2) el pasillo: puertas-melodía de 2 y 3 notas (Simón dice) con campanas
+          | (3) mochilas dormilonas sobre pinchos (cantar las duerme), el bolígrafo del profe que se aparta al
+            cantarle y el profe dormilón (broma: se duerme justo delante de la salida y hay que dar la vuelta)
+          | (4) la clase de danza (fondo de espejos y barra desde la col. 168): puerta de 4 notas con las campanas
+            en salientes sobre pinchos, a distintas alturas, como una coreografía.
+  Foto: en lo alto de la cadena de plataformas musicales del patio (col. 34-45).
+  Objeto (tutú): en la taquilla del vestuario de danza, tras la puerta-melodía oculta (sin notas a la vista; el
+  cartel da la adivinanza: de la campana más alta a la más baja; la más alta solo suena cantando en lo alto de un doble salto).
+  Ojo: cantar cerca de una campana siempre la hace sonar; cada campana está lejos (>190 px) de las demás.
+  Monstruo nuevo: el bolígrafo gigante del profe (se presenta en el cartel 5, antes del primero).
 
-### Nivel 8 · 8 años · La excursión al bosque — 8 velas
-- **Foco:** **enemigos ladrones** y persecución.
-- **Tramos:** (1) el sendero: primeras urracas (si te tocan con la foto u objeto, te lo roban y huyen);
-  (2) el río: plataformas móviles mientras persigues a una urraca; (3) los árboles: subida vertical con
-  nubes y mosquitos; (4) el claro: urraca final rápida que hay que acorralar contra un muro con cajas.
-- **Broma:** una urraca que roba... un calcetín imaginario y te lo devuelve muy ofendida.
-- **Foto:** pronto en el nivel y fácil de coger, pero con urracas por todo el camino (hay que protegerla).
-- **Objeto (brújula):** en la copa del árbol más alto.
-- **Cambios (oct.):** Urracas más rápidas, zarzas (pinchos) en el sendero y más mosquitos. Miriam ya no presenta la urraca.
-- **Miriam:** en el claro.
+### Nivel 7 · El huerto — 7 velas
+- **Fondo:** huerto · teclas con aspecto de `bancal`
+- **Foto:** en el huerto, con un rábano · **Objeto:** El rábano
+- **Monstruos:** avión de papel ×2, metrónomo desafinado ×3
+- **Diseño** (de `tools/niveles/nivel-07.mjs`):
+  Nivel 7 — 7 años: el huerto del cole. Foco: bancales musicales (suelo que suena y abre caminos).
+  Los bancales son teclas (tipo 'tecla') dibujadas como jardineras: props.teclas = 'bancal'.
+  Tramos: (1) bancales en escalera y la puerta «sol-mi-do» (hay que tocarla al revés) | (2) el himno de la alegría:
+  la puerta se abre... y es la caseta de las herramientas con un metrónomo; la segunda mitad del himno abre el fondo
+  | (3) tablas que se hunden sobre pinchos, plataformas musicales y metrónomos desafinados (no cantes cerca)
+  | (4) el gran bancal: bancales en dos alturas. «Estrellita» (do do sol sol la la) abre la salida;
+  «Cumpleaños feliz» (sol sol la sol do si) abre la puerta secreta de arriba, donde está la foto.
+  Foto: en el cuarto encima del gran bancal (melodía secreta). Objeto (rábano): en el foso del gran bancal, entre pinchos.
+  Broma: la caseta del metrónomo. Las tablas que se hunden son plataformas 'hunde'.
 
-### Nivel 9 · 9 años · Vacaciones de verano — 9 velas
-- **Foco:** **combinación** de cajas + canto + enemigos.
-- **Tramos:** (1) piscina: cajas flotantes (plataformas que se hunden) y patos dormidos con canto;
-  (2) chiringuito: puzle de cajas con plataformas musicales; (3) camping: mochilas, mosquitos y
-  desafinados juntos; (4) puesta de sol: puerta-melodía de 5 notas en una zona con plataformas que caen.
-- **Broma:** cantar para dormir al pato... y se despiertan todos los demás (`canto: enfadar`).
-- **Foto:** sobre la sombrilla más alta (cajas apiladas encima de plataforma musical).
-- **Objeto (gafas de sol):** bajo el agua (zona de gravedad baja: «buceando»).
-- **Cambios (oct.):** viene del antiguo 11. El despertador del camping es ahora un metrónomo (el despertador se presenta en el 11); más erizos y mosquitos.
-- **Miriam:** en el chiringuito.
+### Nivel 8 · La comunión — 8 velas
+- **Fondo:** jardin
+- **Foto:** primera comunión · **Objeto:** El rosario
+- **Monstruos:** mosquito ×8, urraca ×6
+- **Diseño** (de `tools/niveles/nivel-08.mjs`):
+  Nivel 8 — 8 años: la comunión, en el jardín del banquete. Foco: urracas ladronas y persecución.
+  Las urracas (clase 'ladron') roban la foto o el objeto si te tocan y huyen: hay que tocarlas para recuperarlo.
+  Tramos: (1) el camino del jardín: la foto sale enseguida (en el tocón) y hay urracas por todo el camino; los muros
+  de 3 las acorralan | (2) el estanque: plataformas móviles e islas con urraca y tronco | (3) los árboles del jardín:
+  subida vertical por ramas (nubes) con mosquitos y camino por las copas con ramas que se caen | (4) el patio del
+  restaurante: urraca rápida que acaba acorralada contra el muro; hay que empujar una caja hasta el muro para salir.
+  Foto: en el tocón del principio. Objeto (rosario): en la copa más alta, encima del atril de los árboles.
+  Broma: la urraca de la rama roba... un calcetín imaginario (zona 'aviso': no hay robos de mentira en el motor).
+  Las urracas ya se presentaron en el nivel 2: aquí son más rápidas (huyen más deprisa de lo que anda Sofía) y el
+  camino tiene zarzas (pinchos) entre ellas.
 
-### Nivel 10 · 10 años · La ciudad de noche — 10 velas
-- **Foco:** **peligros de 2 velas** y **plataformas temporizadas**.
-- **Tramos:** (1) azoteas con farolas temporizadas; (2) carteles luminosos que se encienden y apagan sobre
-  pinchos de 2 velas; (3) aviones de papel en onda; (4) carrera por cables (nubes) con plataformas que caen.
-- **Broma:** un semáforo para peatones (plataforma temporizada) que está en rojo justo cuando llegas, siempre.
-- **Foto:** en la azotea más alta, encadenando tres farolas temporizadas.
-- **Objeto (farolillo):** en un callejón bajo la ciudad lleno de pinchos de 2 velas.
-- **Cambios (oct.):** Unos 30 pinchos de 2 velas menos. Al cantarles, los aviones cambian de rumbo (ya no se duermen).
-- **Miriam:** en la carrera por cables.
+### Nivel 9 · Verano: playa y piscina — 9 velas
+- **Fondo:** verano
+- **Foto:** en la piscina · **Objeto:** El equipo de buceo
+- **Monstruos:** patito de goma ×3, urraca ×1, mochila ×3, metrónomo desafinado ×3, mosquito ×7
+- **Diseño** (de `tools/niveles/nivel-09.mjs`):
+  Nivel 9 — 9 años: verano en la playa y la piscina. Foco: combinación de cajas + canto + enemigos.
+  Tramos: (1) la piscina: cajas flotantes que se hunden (h/k), patos y la piscina de buceo | (2) el chiringuito:
+  caja en un estante alto (se sube con la plataforma musical m) para saltar la barra; la gaviota ladrona |
+  (3) el camping: puente musical con un metrónomo que desafina, mochilas, mosquitos, erizos y metrónomos |
+  (4) la puesta de sol: puerta-melodía de 5 notas con las campanas sobre plataformas que caen y se hunden.
+  Foto: en la sombrilla más alta (desde la caja, cantar y saltar a la plataforma musical j). Objeto (equipo de buceo): en el fondo de la
+  piscina de buceo (zona de gravedad baja), entre erizos. Broma: cantarle la nana al pato del medio (P)
+  enfada a los otros dos (Q). El agua es un 'peligro-movil' quieto (velocidad casi 0).
+  La puerta pide do, mi, re, sol, la: hay que volver atrás a por el re.
 
-### Nivel 11 · 11 años · El conservatorio — 11 velas
-- **Foco:** **melodías largas bajo presión**.
-- **Tramos:** (1) pasillos de campanas con melodías de 5 notas; (2) sala de ensayo con un peligro que
-  avanza desde la izquierda (`peligro-movil`, «la profesora de solfeo con prisa») mientras tocas;
-  (3) escalera de teclas temporizadas; (4) audición: melodía de 7 notas con campanas en plataformas musicales.
-- **Broma:** una puerta que pide la melodía... y al tocarla bien se abre la de al lado.
-- **Foto:** en la sala de ensayo, en una desviación que te deja muy cerca del peligro que avanza.
-- **Objeto (metrónomo):** tras una puerta-melodía oculta de 5 notas.
-- **Cambios (oct.):** viene del antiguo 9. Aquí se presenta el despertador (cartel al empezar; uno junto a la campana del fa y otro antes de la audición). La profe con prisa va más rápido y quita 2 velas; pinchos de 2 velas.
-- **Miriam:** antes de la audición.
+### Nivel 10 · Los volcanes — 10 velas
+- **Fondo:** volcan
+- **Foto:** saltando en el Teide · **Objeto:** pendiente (de momento, la pelota)
+- **Monstruos:** cochecito ×1, avión de papel ×7
+- **Diseño** (de `tools/niveles/nivel-10.mjs`):
+  Nivel 10 — 10 años: los volcanes. Foco: peligros de 2 velas (la lava) y plataformas temporizadas.
+  Tramos: (1) las rocas que aparecen entre el humo (temporizadas) y el géiser | (2) rocas que se encienden y se
+  apagan sobre ríos de lava de 2 velas | (3) aviones de papel entre las cumbres | (4) carrera por las coladas
+  con piedras que se caen.
+  Foto: en la cumbre más alta, encadenando tres rocas (p, q, k). Objeto (pendiente; de momento la pelota): en la
+  grieta bajo la colada, entre lava de 2 velas. Broma: el géiser puntual (r), que casi nunca está.
+  Aquí se estrenan las temporizadas y el daño de 2 velas (la lava naranja y el avión grande).
+  Temporizadas: a/b se alternan (ciclo 3 s); d/e/f se encienden en ola, de izquierda a derecha (ciclo 2,7 s); p/q/k suben en cadena.
 
-### Nivel 12 · 12 años · Primer día de instituto — 12 velas
-- **Foco:** **gravedad y controles cambiantes** (estilo That Level Again).
-- **Tramos:** (1) pasillo con zonas de controles invertidos; (2) el gimnasio: gravedad baja (`factor` 0,4);
-  (3) la escalera al revés: gravedad invertida (`factor` −1), se camina por el techo; (4) mezcla de las
-  tres con examenes-bloqueadores.
-- **Broma:** un cartel «Por aquí no» con la flecha al revés, en la zona de controles invertidos.
-- **Foto:** en el techo del gimnasio, solo alcanzable con gravedad invertida.
-- **Objeto (agenda):** en una taquilla al fondo de la zona invertida.
-- **Cambios (oct.):** Se presenta la pila de exámenes (cartel 3). Los pinchos pasan a 2 velas (y algo menos de ellos).
-- **Miriam:** al empezar la escalera al revés.
+### Nivel 11 · El conservatorio profesional — 11 velas
+- **Fondo:** conservatorio
+- **Foto:** con el cello · **Objeto:** El cello
+- **Monstruos:** avión de papel ×2, despertador ×2
+- **Diseño** (de `tools/niveles/nivel-11.mjs`):
+  Nivel 11 — 11 años: el conservatorio, ya en el grado profesional. Foco: melodías largas bajo presión.
+  El conservatorio tiene dos pisos. Tramo 1 (arriba): pasillo de campanas
+  «do-re-mi-fa-sol» con las campanas desordenadas, y la broma de las dos puertas («mi-re-do-re-mi»: la que
+  enseña las notas no se abre nunca; se abre la de encima). Tramo 2 (abajo): la sala
+  de ensayo (se baja por el hueco del final), «Para Elisa» (9 notas) mientras la profe de solfeo con prisa
+  (peligro que avanza por la franja del piso de abajo, filas 21-33) te pisa los talones.
+  Tramo 3: escalera de teclas, «do-mi-sol-do» saltándose las teclas equivocadas por las nubes temporizadas.
+  Tramo 4: la prueba de acceso, «Oda a la alegría» (7 notas) con campanas en lo alto a las que se llega por plataformas musicales (cantar cerca de una campana la hace sonar).
+  Foto: al salir de la sala, un desvío de vuelta por lo alto de la sala, hacia la profe que avanza.
+  Objeto (cello): en la taquilla del conserje, tras una puerta oculta de 5 notas («sol-mi-do-mi-sol», con las campanas del tramo 1).
+  Monstruo nuevo: el despertador del conserje (se presenta en el cartel J, al empezar). Hay uno cerca de la campana
+  del fa (tramo 1) y otro antes de la puerta de la audición: cantar a su lado invierte los controles, así que hay
+  que elegir bien desde dónde se canta. La profe con prisa quita 2 velas (se avisa en el cartel I).
 
-### Nivel 13 · 13 años · La habitación adolescente y el móvil gigante — 13 velas
-- **Foco:** **enemigos notificación** y **la interfaz que miente**.
-- **Tramos:** (1) la habitación: notificaciones voladoras; (2) dentro del móvil: un aviso «¡Nivel
-  completado!» falso (zona `aviso`) y una meta falsa; (3) apps-plataformas que se cierran (temporizadas)
-  y avisos que te dicen cosas falsas; (4) modo avión: tramo de controles invertidos con notificaciones.
-- **Broma:** «Batería baja: 1%»... y en lugar de apagarse, todo el nivel sigue igual (pero lo crees).
-- **Foto:** en la galería del móvil, tras una pared falsa.
-- **Objeto (primer móvil):** en un cajón del escritorio, protegido por notificaciones.
-- **Cambios (oct.):** Más pinchos de 2 velas y 4 notificaciones más.
-- **Miriam:** dentro del móvil (avisa de que no te fíes de los avisos).
+### Nivel 12 · La pandemia — 12 velas
+- **Fondo:** habitacion → instituto (col. 64)
+- **Foto:** con mascarilla y mochila · **Objeto:** La mascarilla
+- **Monstruos:** pila de exámenes ×3, metrónomo desafinado ×2, avión de papel ×2
+- **Diseño** (de `tools/niveles/nivel-12.mjs`):
+  Nivel 12 — 12 años: la pandemia mundial. Foco: gravedad y controles cambiantes: nada funciona como siempre.
+  Tramos: (1) en casa, confinada: pasillo con zonas de controles invertidos (en la segunda, un examen online obliga
+  a pararse y cantar; la última empieza en mitad de un salto) | desde la col. 64 (zona 'fondo'), de vuelta al insti
+  con mascarilla: (2) el gimnasio con gravedad baja (factor 0,4) | (3) la escalera al revés: gravedad invertida, se
+  anda por el techo y los huecos del techo son precipicios hacia el cielo | (4) todo mezclado, con exámenes
+  bloqueadores (cantarles los aparta) y metrónomos que invierten los controles si cantas cerca.
+  Foto: en un hueco del techo del gimnasio; se llega saltando (doble) hasta la canasta antigravedad.
+  Objeto (mascarilla): en la taquilla del fondo de la zona invertida: una ventana de gravedad normal te deja caer hasta ella.
+  Broma: el cartel «Por aquí no» con la flecha al revés, dentro del pasillo invertido.
+  Las zonas (invertir, gravedad) van en 'objetos'; si se solapan dos de gravedad, manda la última de la lista.
+  Monstruo nuevo: la pila de exámenes (se presenta en el cartel 3, justo antes de la primera). Desde el nivel 10 los
+  pinchos quitan 2 velas.
 
-### Nivel 14 · 14 años · Exámenes — 14 velas
-- **Foco:** **peligros de 3 velas** y **escape vertical** (`peligro-movil` hacia arriba: la marea de apuntes).
-- **Tramos:** (1) la biblioteca: subida con pilas de exámenes bloqueadores; (2) escape vertical por estanterías;
-  (3) zona de pinchos de 3 velas («el suspenso»); (4) escape final más rápido con plataformas que caen.
-- **Broma:** un examen sorpresa (bloqueador) que aparece de golpe... con la nota «10» (y se aparta solo).
-- **Foto:** en un saliente lateral durante el escape vertical (arriesgado: hay que desviarse).
-- **Objeto (boli de la suerte):** sobre los pinchos de 3 velas.
-- **Cambios (oct.):** viene del antiguo 15. Aquí se estrenan los pinchos de 3 velas; la marea sube algo más rápido y hay más aviones. Las pilas de exámenes ya se presentaron en el 12.
-- **Miriam:** al principio del escape.
+### Nivel 13 · La biblioteca — 13 velas
+- **Fondo:** biblioteca
+- **Foto:** en casa, con diadema · **Objeto:** La pila de libros
+- **Monstruos:** avión de papel ×11, pila de exámenes ×4, mochila ×2
+- **Diseño** (de `tools/niveles/nivel-13.mjs`):
+  Nivel 13 — 13 años: la biblioteca. 13 velas. Mapa alto (escape vertical): se empieza abajo a la izquierda.
+  Foco: peligros de 3 velas y escape vertical (peligro-movil hacia arriba: la marea de apuntes).
+  Tramos: (1) la sala de lectura: pilas de exámenes que cortan el paso (se apartan si les cantas) y huecos de 2 velas
+  | (2) escape vertical por el hueco de las estanterías con la marea de apuntes subiendo | (3) el suspenso:
+  pasillo de pinchos de 3 velas con plataformas que caen | (4) escape final, más rápido, por plataformas que caen.
+  Broma: el «examen sorpresa» que aparece al doblar la esquina... con un 10 (y se aparta en cuanto le cantas).
+  Foto: en una hornacina de la pared derecha del primer escape (hay que desviarse con la marea subiendo).
+  Objeto (pila de libros): en un poste bajito entre los pinchos de 3 velas. Miriam: al principio del escape.
+  Aquí se estrenan los pinchos de 3 velas (cartel 2). Las pilas de exámenes ya se presentaron en el nivel 12.
 
-### Nivel 15 · 15 años · La audición — 15 velas
-- **Foco:** **ritmo**: secciones a compás de la música (`plataforma-temporizada` con `ritmo`).
-- **Tramos:** (1) entre bastidores: plataformas a negras; (2) el foso de la orquesta: plataformas a corcheas
-  y metrónomos; (3) el escenario: campanas que hay que tocar a tiempo mientras las plataformas laten;
-  (4) ovación final: carrera a ritmo con pinchos de 2 velas.
-- **Broma:** un metrónomo desafinado que, si le cantas, en lugar de invertir los controles cambia el tempo.
-- **Foto:** en el palco, sobre plataformas a contratiempo.
-- **Objeto (entrada):** debajo del escenario.
-- **Cambios (oct.):** viene del antiguo 14. La ovación final es sobre pinchos de 3 velas y con más aviones. Sofía ya lleva gafas.
-- **Miriam:** entre bastidores («cuenta: un, dos, tres...»).
+### Nivel 14 · Las redes sociales — 14 velas
+- **Fondo:** habitacion → redes (col. 74)
+- **Foto:** en una comida · **Objeto:** El móvil
+- **Monstruos:** notificación ×29, despertador ×5
+- **Diseño** (de `tools/niveles/nivel-14.mjs`):
+  Nivel 14 — 14 años: las redes sociales. 14 velas.
+  Foco: enemigos notificación y «la interfaz que miente» (avisos falsos, meta falsa, paredes y suelos falsos).
+  Tramos: (1) la habitación: notificaciones y suelo de Lego (3 velas) | (2) dentro del móvil (fondo de apps desde la
+  col. 74): «¡Nivel completado!» falso, meta falsa y una pared «sin salida» que se atraviesa | (3) apps que se
+  cierran (temporizadas) sobre el vacío y suelos que desaparecen | (4) modo avión: controles invertidos con
+  notificaciones (se entra cayendo por detrás de un bloque y se sale por una zanja).
+  Broma: «Batería baja: 1%»... y no se apaga nada. Foto: en la galería del móvil, tras una pared falsa
+  (arriba, en el tramo 2). Objeto (móvil): en el cajón del escritorio, entre Legos y notificaciones.
+  Miriam: al empezar (presenta las notificaciones, el monstruo nuevo) y dentro del móvil (no te fíes de los avisos).
 
-### Nivel 16 · 16 años · El viaje — 16 velas
-- **Foco:** **mundo que cambia al cantar** (dos versiones del nivel: A de día, B de noche).
-- **Tramos:** (1) la estación: puentes que solo existen en un mundo; (2) el tren: pinchos que solo existen
-  en el otro; (3) la montaña: alternar mundos en el aire; (4) la ciudad nueva: puerta-melodía cuyas
-  campanas están repartidas entre los dos mundos.
-- **Broma:** una maleta (caja) que en el otro mundo es... la misma maleta, pero con gafas.
-- **Foto:** en un mirador que solo existe en el mundo B, rodeado de pinchos del mundo A.
-- **Objeto (maleta):** en el andén del tren.
-- **Cambios (oct.):** Pinchos de los mundos de 3 velas, los sueltos de 2, y 4 aviones más.
-- **Miriam:** en la estación.
+### Nivel 15 · La audición — 15 velas
+- **Fondo:** concierto
+- **Foto:** con vestido de concierto · **Objeto:** Las gafas
+- **Monstruos:** avión de papel ×13, metrónomo desafinado ×5
+- **Diseño** (de `tools/niveles/nivel-15.mjs`):
+  Nivel 15 — 15 años: la audición. 15 velas. Música de la etapa adolescente (120 bpm: un pulso = 0,5 s).
+  Foco: ritmo. Casi todas las plataformas van a compás de la música (plataforma-temporizada con ritmo: on/off en pulsos).
+  Tramos: (1) entre bastidores: plataformas a negras que se alternan (salta cuando la tuya empieza a parpadear)
+  | (2) el foso de la orquesta: un suelo que «late» (desaparece medio pulso cada dos: hay que saltar a compás) y
+  plataformas que solo están un pulso de cada dos | (3) el escenario: campanas sobre plataformas que laten;
+  la puerta pide mi-sol-la-do (hay una campana «si» de despiste) | (4) la ovación: carrera a ritmo sobre pinchos de 3 velas, con aviones.
+  Broma: el metrónomo desafinado no invierte los controles: si le cantas se acelera («cambia el tempo»).
+  Foto: en el palco, subiendo por plataformas a contratiempo. Objeto (entrada): en el sótano del escenario, tras
+  una pared falsa a la que se llega dejándose caer a una cornisa del foso (la delata una nota dorada).
+  Miriam: entre bastidores («cuenta...») y junto a la puerta.
 
-### Nivel 17 · 17 años · Selectividad y biblioteca — 17 velas
-- **Foco:** **combinación de todas las mecánicas**, laberinto.
-- **Tramos:** (1) laberinto de estanterías con paredes falsas y cajas; (2) sala de estudio: canto, campanas y
-  plataformas musicales; (3) el examen: gravedad invertida + temporizadas + notificaciones; (4) la nota:
-  escape con peligro que avanza y puertas-melodía.
-- **Broma:** el «temario» es una pared enorme... que es falsa y se atraviesa.
-- **Foto:** en el centro del laberinto.
-- **Objeto (auriculares):** en la sala de estudio, tras una melodía oculta.
-- **Cambios (oct.):** Los pinchos de 1 vela pasan a 2.
-- **Miriam:** en el laberinto («yo me perdí aquí también»).
+### Nivel 16 · La cita — 16 velas
+- **Fondo:** ciudad-noche
+- **Foto:** en un pasillo, con chaqueta · **Objeto:** El ramo de rosas
+- **Monstruos:** bolígrafo gigante ×1, mochila ×1, despertador ×1, avión de papel ×12
+- **Diseño** (de `tools/niveles/nivel-16.mjs`):
+  Nivel 16 — 16 años: la cita romántica. 16 velas. Foco: el mundo cambia al cantar (A = día, B = noche): la cita
+  empieza por la tarde y acaba de noche. Cada vez que Sofía canta se alterna el mundo; lo del otro mundo se ve
+  transparente y no existe.
+  Tramos: (1) la estación: puentes de un solo mundo | (2) el tren: pinchos de un solo mundo en el techo
+  de los vagones (y un túnel) | (3) el mirador del monte: cambiar de mundo en el aire, muros de un mundo a mitad de
+  salto y un teleférico con postes | (4) la ciudad: puerta-melodía con campanas en repisas de
+  mundos distintos (cada campana tocada también cambia el mundo).
+  Foto: mirador de noche en lo alto del monte, rodeado de pinchos de día.
+  Objeto (ramo de rosas): andén alto sobre el tren, por nubes alternas de día y de noche.
+  Broma: el reloj de la estación (siempre llegas tarde... aunque llegues puntual). Miriam: estación y campanas.
+  Leyenda: a/b sólido de día/noche · d/n nube de día/noche · p/q pinchos (3 velas) de día/noche · ^ pinchos de 2 velas.
 
-### Nivel 18 · 18 años · El gran concierto — 18 velas
-- **Foco:** el nivel **más difícil** y el final abierto (SPEC §7).
-- **Tramos:** (1) bastidores: repaso de cajas, correr y doble salto con peligros de 3 velas;
-  (2) el foso: ritmo + canto + mundos; (3) el escenario: todas las mecánicas a la vez;
-  (4) el último tramo, el más difícil del juego. Donde debería estar la meta empieza la zona `final`:
-  el escenario se desvanece, queda una pantalla blanca con solo el suelo, 60-90 s andando con piano
-  suave, el cartel «Continuará...» (el nivel se guarda como completado) y, más allá, la tarta con 18 velas.
-- **Foto:** no hay (Sofía aún no tiene foto de los 18): solo objeto.
-- **Objeto (copa de vino):** en el foso.
-- **Cambios (oct.):** «Cumpleaños feliz» entero (12 notas, con una campana re en lo más alto), despertador junto a las campanas, mochila, notificaciones y más aviones. La trampilla del «suelo seguro» quita 3 velas y caer al abismo del último tramo, también.
-- **Miriam:** en el escenario, antes del último tramo (pista emotiva).
+### Nivel 17 · Selectividad — 17 velas
+- **Fondo:** aulas
+- **Foto:** en la UJI · **Objeto:** El diploma y el birrete
+- **Monstruos:** metrónomo desafinado ×1, pila de exámenes ×1, mochila ×1, notificación ×5
+- **Diseño** (de `tools/niveles/nivel-17.mjs`):
+  Nivel 17 — 17 años: Selectividad, en las aulas de examen. 17 velas. Foco: TODAS las mecánicas juntas y un laberinto.
+  Tramos: (1) el laberinto de aulas: cuatro pisos, escaleras de nubes, callejones sin salida,
+  suelo falso, caja y el «temario», una pared gigante que es falsa | (2) el aula de examen: puente de
+  plataformas musicales, campanas en repisas (una sobre escalera musical, otra temporizada, otra con caja),
+  metrónomo desafinado | (3) el examen: plataformas temporizadas con notificaciones, montón de exámenes
+  (bloqueador), gravedad invertida con controles invertidos y huecos al cielo, plataformas que caen |
+  (4) la nota: escape por el pasillo de abajo huyendo de la marea de apuntes (peligro que avanza), con
+  dos puertas-melodía (campanas y teclas) y plataformas que caen.
+  Foto: en el centro del laberinto (piso 2 izquierdo, sobre pinchos con plataformas temporizadas).
+  Objeto (diploma y birrete): sala secreta tras una puerta de melodía oculta (teclas en el estante alto).
+  Broma: el temario. Miriam: en el laberinto, en el aula de examen y al empezar la escapada.
+  Sin mundos A/B: cantar sirve para campanas, plataformas musicales y enemigos.
+
+### Nivel 18 · La universidad y el gran concierto — 18 velas
+- **Fondo:** universidad → escenario (col. 57) → universidad (col. 120) → escenario (col. 196)
+- **Foto:** — (no hay foto de los 18) · **Objeto:** El ordenador portátil
+- **Monstruos:** avión de papel ×7, mochila ×1, despertador ×1, notificación ×2
+- **Diseño** (de `tools/niveles/nivel-18.mjs`):
+  Nivel 18 — 18 años: la universidad (Informática) y el gran concierto. El nivel más difícil y el final abierto (SPEC §7).
+  El escenario se va alternando (zonas 'fondo'): facultad → sala de conciertos (col. 57) → facultad (col. 120) →
+  sala de conciertos (col. 196). Los carteles E e I marcan los dos primeros cambios.
+  Tramos: (1) la facultad: caja + doble salto, foso de pinchos de 3 velas, plataformas que caen y aviones de papel;
+  (2) la sala de conciertos: plataformas a ritmo, una mochila y la melodía más larga del juego, «Cumpleaños feliz»
+  entera (sol sol la sol do si · sol sol la sol re do: 12 notas), con un despertador rondando las campanas;
+  (3) la facultad: la clase de Física, gravedad invertida por el techo, luces temporizadas y un suelo «seguro»;
+  (4) el escenario: nubes pequeñas sobre el abismo con aviones y notificaciones; aquí caer cuesta 3 velas.
+  Donde debería estar la meta empieza la zona 'final': camino blanco, «Continuará...» y la tarta.
+  Sin foto (aún no hay foto de los 18). Objeto (portátil): en una repisa escondida en el foso del tramo 2.
 
 ---
 
@@ -303,7 +392,7 @@ Los objetos con posición exacta o tamaño especial van en `objetos: [{ tipo, x,
 | `puerta` | `grupo`, `secuencia` (`"C5,E5,G5"`), `oculta` (no muestra las notas; cantar junto a la puerta la hace tocar su melodía) |
 | `caja`, `mueble` | `estilo` (`juguete`/`madera`/`carton`/`libros`), `pesada`, `fija` |
 | `enemigo` | `clase` (`patrullero`/`volador`/`bloqueador`/`ladron`/`desafinado`), `sprite`, `velocidad`, `rango`, `amplitud`, `periodo`, `eliminable` (`salto,caja,canto`), `canto` (`dormir`/`huir`/`enfadar`/`apartar`/`invertir`/`nada`), `danio`, `escala` |
-| `pinchos` | `danio`: 1 hasta el nivel 9; 2 desde el 10 (ya no hay de 1); 3 desde el 14 |
+| `pinchos` | `danio`: 1 hasta el nivel 9; 2 desde el 10 (ya no hay de 1); 3 desde el 13 |
 | `lluvia` | `intervalo` (ms), `texturas`, `velocidad`, `danio` |
 | `peligro-movil` | `dir` (`arriba`/`derecha`), `velocidad` (px/s), `desdeX` (casilla que lo activa; no se ve ni mata hasta entonces), `hastaX`/`hastaY` (casilla donde se para), `margen`, `color`, `danio` |
 | `meta-falsa` | `dx` (casillas que huye), `pista` (lo que dice) |
@@ -314,7 +403,9 @@ Los objetos con posición exacta o tamaño especial van en `objetos: [{ tipo, x,
 | `muerte` | zona que quita `danio` velas |
 | `final` | (solo nivel 18) empieza el camino blanco; su borde inferior marca la altura del suelo |
 | `decorado` | `sprite`, `escala`, `angulo`, `delante` |
+| `fondo` | `tema`: desde su x, el fondo pasa a ese tema (fundido suave) |
 
-Propiedades del mapa (`props`): `tema` (fondo), `etapa` (si no, por edad), `musica`, `velas`, `gatas`, `gafas`, `mundos`.
+Propiedades del mapa (`props`): `tema` (fondo), `etapa` (si no, por edad), `musica`, `velas`, `gatas`, `gafas`, `mundos`, `teclas` (`bancal` para el huerto).
 Temas de fondo: `cuna`, `parque`, `casa`, `guarderia`, `playa`, `fiesta`, `colegio`, `clase-musica`, `bosque`,
-`conservatorio`, `ciudad-noche`, `verano`, `instituto`, `habitacion`, `concierto`, `examenes`, `viaje`, `biblioteca`, `escenario`.
+`conservatorio`, `ciudad-noche`, `verano`, `instituto`, `habitacion`, `concierto`, `examenes`, `viaje`, `biblioteca`, `escenario`,
+`nieve`, `patinaje`, `danza`, `huerto`, `jardin`, `volcan`, `redes`, `aulas`, `universidad`.

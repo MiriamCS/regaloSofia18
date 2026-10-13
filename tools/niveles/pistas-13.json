@@ -1,17 +1,11 @@
 {
-  "nombre": "La habitación y el móvil gigante",
+  "nombre": "La biblioteca",
   "pistas": {
-    "hola": "¡Sofi! Tu móvil ha crecido más que tú y no para de sonar. A las notificaciones: sáltales encima o cántales.",
-    "movil": "Estamos dentro del móvil. Regla de oro: no te fíes de NINGÚN aviso. Ni del suelo. Ni de mí, si me apuras.",
-    "metaFalsa": "¡Es broma! Te quedan tres tramos.",
-    "legos": "Cuidado: piezas de Lego en el suelo. Duelen el doble.",
-    "metaReal": "Meta. Esta sí es de verdad. Palabrita de cartel.",
-    "completado": "¡NIVEL COMPLETADO!",
-    "sinSalida": "Sin conexión. Callejón sin salida: vuelve atrás.",
-    "bateria": "Batería baja: 1%. El nivel se apagará en 5 segundos...",
-    "bateriaBroma": "...¿Ves? No se ha apagado nada. Los avisos mienten.",
-    "actualizacion": "Actualización disponible. No te muevas durante 10 minutos.",
-    "avion": "Modo avión activado. Las flechas también se han ido de viaje.",
-    "avionFuera": "Modo avión desactivado. Tienes 99+ notificaciones nuevas."
+    "escape": "Sofi, bienvenida a la biblioteca. En cuanto pases de aquí empieza a subir la marea de apuntes. No te pares a releer nada: ¡arriba!",
+    "sorpresa": "Examen sorpresa. Nota: 10. El examen más majo del mundo... y aun así te corta el paso.",
+    "suspenso": "Peligro: pinchos rojos. Quitan 3 velas. Les llaman «el suspenso».",
+    "avisoSorpresa": "¡EXAMEN SORPRESA!",
+    "avisoMarea": "¡Sube la marea de apuntes!",
+    "avisoFinal": "Última pregunta... ¡y la marea va más rápido!"
   }
 }

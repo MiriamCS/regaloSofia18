@@ -1,15 +1,15 @@
-// Nivel 8 — 8 años: la excursión al bosque. Foco: urracas ladronas y persecución.
+// Nivel 8 — 8 años: la comunión, en el jardín del banquete. Foco: urracas ladronas y persecución.
 // Las urracas (clase 'ladron') roban la foto o el objeto si te tocan y huyen: hay que tocarlas para recuperarlo.
-// Tramos: (1) el sendero: la foto sale enseguida (en el tocón) y hay urracas por todo el camino; los muros de 3
-// las acorralan | (2) el río: plataformas móviles e islas con urraca y tronco | (3) los árboles: subida vertical
-// por ramas (nubes) con mosquitos y camino por las copas con ramas que se caen | (4) el claro: urraca rápida
-// que acaba acorralada contra el muro; hay que empujar una caja hasta el muro para salir.
-// Foto: en el tocón del principio. Objeto (brújula): en la copa más alta, encima del atril de los árboles.
+// Tramos: (1) el camino del jardín: la foto sale enseguida (en el tocón) y hay urracas por todo el camino; los muros
+// de 3 las acorralan | (2) el estanque: plataformas móviles e islas con urraca y tronco | (3) los árboles del jardín:
+// subida vertical por ramas (nubes) con mosquitos y camino por las copas con ramas que se caen | (4) el patio del
+// restaurante: urraca rápida que acaba acorralada contra el muro; hay que empujar una caja hasta el muro para salir.
+// Foto: en el tocón del principio. Objeto (rosario): en la copa más alta, encima del atril de los árboles.
 // Broma: la urraca de la rama roba... un calcetín imaginario (zona 'aviso': no hay robos de mentira en el motor).
 // Las urracas ya se presentaron en el nivel 2: aquí son más rápidas (huyen más deprisa de lo que anda Sofía) y el
-// sendero tiene zarzas (pinchos) entre ellas.
+// camino tiene zarzas (pinchos) entre ellas.
 export default {
-  props: { tema: 'bosque' },
+  props: { tema: 'jardin', edad: 8 },
   leyenda: {
     M: { tipo: 'miriam', pista: 'hola' },
     N: { tipo: 'miriam', pista: 'claro' },

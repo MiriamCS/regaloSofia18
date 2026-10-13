@@ -20,7 +20,12 @@
   {
    "name": "tema",
    "type": "string",
-   "value": "bosque"
+   "value": "jardin"
+  },
+  {
+   "name": "edad",
+   "type": "int",
+   "value": 8
   }
  ],
  "layers": [

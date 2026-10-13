@@ -1,9 +1,9 @@
-// Nivel 9 — 9 años: vacaciones de verano. Foco: combinación de cajas + canto + enemigos.
+// Nivel 9 — 9 años: verano en la playa y la piscina. Foco: combinación de cajas + canto + enemigos.
 // Tramos: (1) la piscina: cajas flotantes que se hunden (h/k), patos y la piscina de buceo | (2) el chiringuito:
 // caja en un estante alto (se sube con la plataforma musical m) para saltar la barra; la gaviota ladrona |
 // (3) el camping: puente musical con un metrónomo que desafina, mochilas, mosquitos, erizos y metrónomos |
 // (4) la puesta de sol: puerta-melodía de 5 notas con las campanas sobre plataformas que caen y se hunden.
-// Foto: en la sombrilla más alta (desde la caja, cantar y saltar a la plataforma musical j). Objeto: en el fondo de la
+// Foto: en la sombrilla más alta (desde la caja, cantar y saltar a la plataforma musical j). Objeto (equipo de buceo): en el fondo de la
 // piscina de buceo (zona de gravedad baja), entre erizos. Broma: cantarle la nana al pato del medio (P)
 // enfada a los otros dos (Q). El agua es un 'peligro-movil' quieto (velocidad casi 0).
 // La puerta pide do, mi, re, sol, la: hay que volver atrás a por el re.
