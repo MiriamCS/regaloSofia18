@@ -1,7 +1,7 @@
-// Pantalla de inicio: Jugar/Continuar, Niveles, Álbum, Objetos, Opciones (y la tarta cuando se ha visto).
+// Pantalla de inicio: Jugar/Continuar, Niveles, Álbum, Objetos, Monstruos, Opciones (y la tarta cuando se ha visto).
 import Phaser from 'phaser';
 import { texto, NUM_NIVELES, etapaDeNivel } from '../config.js';
-import { Boton, fondoMenu } from '../ui/Boton.js';
+import { Boton, fondoMenu, insignia } from '../ui/Boton.js';
 import { Guardado } from '../systems/Guardado.js';
 import { Audio } from '../audio/Audio.js';
 import { PISTAS } from '../audio/musica.js';
@@ -32,23 +32,27 @@ export class MenuScene extends Phaser.Scene {
     this.sofia.body.enable = false;
 
     const x = W * 0.72;
-    let y = H * 0.2;
-    const paso = 86;
+    let y = H * 0.15;
+    const paso = 82;
+    const ancho = 400;
+    const alto = 68;
     const hay = Guardado.hayPartida();
     new Boton(this, x, y, hay ? texto('menu.continuar') : texto('menu.jugar'), () => {
       this.scene.start('Transicion', { nivel: Guardado.siguienteNivel() });
-    }, { ancho: 400, alto: 76, tam: 34, color: 0xe8b84a, borde: 0xffffff });
+    }, { ancho, alto: 76, tam: 34, color: 0xe8b84a, borde: 0xffffff });
     y += paso + 6;
-    new Boton(this, x, y, texto('menu.niveles'), () => this.scene.start('Niveles'), { ancho: 400 });
+    new Boton(this, x, y, texto('menu.niveles'), () => this.scene.start('Niveles'), { ancho, alto });
+    // las colecciones llevan aviso si tienen algo conseguido sin abrir todavía
+    for (const [clave, escena, coleccion] of [['menu.album', 'Album', 'fotos'], ['menu.objetos', 'Vitrina', 'objetos'], ['menu.monstruos', 'Monstruos', 'monstruos']]) {
+      y += paso;
+      new Boton(this, x, y, texto(clave), () => this.scene.start(escena), { ancho, alto });
+      if (Guardado.hayNuevos(coleccion)) insignia(this, x + ancho / 2 - 8, y - alto / 2 + 6);
+    }
     y += paso;
-    new Boton(this, x, y, texto('menu.album'), () => this.scene.start('Album'), { ancho: 400 });
-    y += paso;
-    new Boton(this, x, y, texto('menu.objetos'), () => this.scene.start('Vitrina'), { ancho: 400 });
-    y += paso;
-    new Boton(this, x, y, texto('menu.opciones'), () => this.scene.start('Opciones'), { ancho: 400 });
+    new Boton(this, x, y, texto('menu.opciones'), () => this.scene.start('Opciones'), { ancho, alto });
     if (Guardado.datos.tartaVista) {
       y += paso;
-      new Boton(this, x, y, `🎂 ${texto('menu.tarta')}`, () => this.scene.start('Tarta', { desdeMenu: true }), { ancho: 400, color: 0x7c4dff });
+      new Boton(this, x, y, `🎂 ${texto('menu.tarta')}`, () => this.scene.start('Tarta', { desdeMenu: true }), { ancho, alto, color: 0x7c4dff });
     }
 
     if (!Audio.ctx) {

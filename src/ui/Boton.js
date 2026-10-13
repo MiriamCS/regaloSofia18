@@ -70,6 +70,17 @@ export function fondoMenu(scene) {
   return g;
 }
 
+// Aviso de algo nuevo sin ver en una colección: círculo rojo con «!» que late
+export function insignia(scene, x, y) {
+  const c = scene.add.container(x, y);
+  const g = scene.add.graphics();
+  g.fillStyle(0xff4d6d, 1).fillCircle(0, 0, 15);
+  g.lineStyle(3, 0xffffff, 1).strokeCircle(0, 0, 15);
+  c.add([g, scene.add.text(0, 1, '!', { fontFamily: FUENTE, fontSize: '20px', color: COLOR.blanco, fontStyle: 'bold' }).setOrigin(0.5)]);
+  scene.tweens.add({ targets: c, scale: 1.15, duration: 600, yoyo: true, repeat: -1, ease: 'Sine.inOut' });
+  return c;
+}
+
 export function botonVolver(scene, destino = 'Menu', etiqueta = 'Volver') {
   return new Boton(scene, 110, 52, `‹ ${etiqueta}`, () => scene.scene.start(destino), { ancho: 180, alto: 60, tam: 24 });
 }

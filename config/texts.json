@@ -8,6 +8,7 @@
     "niveles": "Niveles",
     "album": "Álbum de fotos",
     "objetos": "Objetos",
+    "monstruos": "Monstruos",
     "opciones": "Opciones",
     "tarta": "La tarta",
     "tocaParaEmpezar": "Toca la pantalla para empezar"
@@ -45,6 +46,9 @@
   "galerias": {
     "album": "Álbum de fotos",
     "vitrina": "Vitrina de objetos",
+    "monstruos": "Colección de monstruos",
+    "queHace": "Qué te hace",
+    "comoLibrarte": "Cómo librarte",
     "niveles": "Niveles",
     "noConseguida": "Todavía no la has encontrado",
     "noConseguido": "Todavía no lo has encontrado",
@@ -52,6 +56,20 @@
     "nacimiento": "Nacimiento",
     "volver": "Volver",
     "cerrar": "Cerrar"
+  },
+  "_monstruos": "Fichas de la colección de monstruos, en el orden en que aparecen. La clave es el dibujo (sprite) del enemigo.",
+  "monstruos": {
+    "pato": { "nombre": "El patito de goma", "efecto": "Te empuja hacia atrás, pero no te apaga ninguna vela.", "truco": "Salta encima o tírale una caja. Si cantas cerca, se queda dormido." },
+    "cochecito": { "nombre": "El cochecito", "efecto": "Te empuja hacia atrás, pero no te apaga ninguna vela.", "truco": "Salta encima o tírale una caja. Si cantas cerca, se queda dormido." },
+    "mochila": { "nombre": "La mochila", "efecto": "Te empuja hacia atrás, pero no te apaga ninguna vela.", "truco": "Salta encima o tírale una caja. Si cantas cerca, se queda dormida." },
+    "mosquito": { "nombre": "El mosquito", "efecto": "Si te pica, te apaga una vela.", "truco": "Salta encima. Si cantas cerca, sale huyendo." },
+    "avion-papel": { "nombre": "El avión de papel", "efecto": "Si te da, te apaga una vela (los más afilados, dos).", "truco": "Salta encima. Si cantas cerca, cambia de rumbo." },
+    "boligrafo": { "nombre": "El bolígrafo gigante", "efecto": "No hace daño, pero te corta el paso.", "truco": "Canta cerca y se apartará." },
+    "metronomo": { "nombre": "El metrónomo desafinado", "efecto": "Te empuja hacia atrás. Y si cantas cerca, te cambia la izquierda por la derecha durante unos segundos.", "truco": "Tírale una caja... y no le cantes." },
+    "urraca": { "nombre": "La urraca", "efecto": "Te roba la foto o el objeto que lleves y sale volando con él.", "truco": "Alcánzala y tócala para recuperarlo." },
+    "despertador": { "nombre": "El despertador", "efecto": "Te empuja hacia atrás. Y si cantas cerca, te cambia la izquierda por la derecha durante unos segundos.", "truco": "Tírale una caja... y no le cantes." },
+    "examenes": { "nombre": "La pila de exámenes", "efecto": "No hace daño, pero te corta el paso.", "truco": "Canta cerca y se apartará." },
+    "notificacion": { "nombre": "La notificación", "efecto": "Si te da, te apaga una vela.", "truco": "Salta encima. Si cantas cerca, sale huyendo." }
   },
   "juego": {
     "fotoConseguida": "¡Foto encontrada!",

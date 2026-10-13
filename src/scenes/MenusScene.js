@@ -1,7 +1,7 @@
-// Menú de niveles, álbum de fotos, vitrina de objetos y opciones.
+// Menú de niveles, álbum de fotos, vitrina de objetos, colección de monstruos y opciones.
 import Phaser from 'phaser';
-import { texto, NUM_NIVELES, FOTOS, OBJETOS, claveObjeto } from '../config.js';
-import { Boton, fondoMenu, botonVolver } from '../ui/Boton.js';
+import { texto, NUM_NIVELES, FOTOS, OBJETOS, TEXTOS, claveObjeto } from '../config.js';
+import { Boton, fondoMenu, botonVolver, insignia } from '../ui/Boton.js';
 import { Guardado } from '../systems/Guardado.js';
 import { Audio } from '../audio/Audio.js';
 import { FUENTE, FUENTE_TITULO, ajustarTam } from '../estilo.js';
@@ -42,6 +42,20 @@ function casilla(scene, x, y, tam, { activa, alPulsar }) {
     });
   }
   return c;
+}
+
+// Aviso de nuevo en la esquina de una casilla (si lo conseguido aún no se ha abierto)
+function avisoNuevo(scene, c, tam, coleccion, id) {
+  if (!Guardado.esNuevo(coleccion, id)) return null;
+  const a = insignia(scene, tam / 2 - 6, -tam / 2 + 6);
+  c.add(a);
+  return a;
+}
+
+// Al abrir la ficha o verlo en grande deja de ser nuevo
+function quitarAviso(aviso, coleccion, id) {
+  Guardado.marcarVisto(coleccion, id);
+  aviso?.destroy();
 }
 
 export class NivelesScene extends Phaser.Scene {
@@ -101,8 +115,8 @@ export class AlbumScene extends Phaser.Scene {
   // La foto del nacimiento va la primera, antes de las de cada año
   fotos() {
     const nace = FOTOS.nacimiento;
-    const lista = FOTOS.fotos.map((f) => ({ ...f, clave: `foto-${f.nivel}`, tiene: Guardado.tieneFoto(f.nivel), etiqueta: texto('galerias.nivel', { n: f.nivel }) }));
-    if (nace) lista.unshift({ ...nace, clave: CLAVE_FOTO_NACIMIENTO, tiene: Guardado.tieneFotoNacimiento(), etiqueta: texto('galerias.nacimiento') });
+    const lista = FOTOS.fotos.map((f) => ({ ...f, id: f.nivel, clave: `foto-${f.nivel}`, tiene: Guardado.tieneFoto(f.nivel), etiqueta: texto('galerias.nivel', { n: f.nivel }) }));
+    if (nace) lista.unshift({ ...nace, id: 'nacimiento', clave: CLAVE_FOTO_NACIMIENTO, tiene: Guardado.tieneFotoNacimiento(), etiqueta: texto('galerias.nacimiento') });
     return lista;
   }
 
@@ -115,7 +129,8 @@ export class AlbumScene extends Phaser.Scene {
     fotos.forEach((f, i) => {
       const { x, y } = posicionCasilla(this, i, tam, fotos.length);
       const tiene = f.tiene;
-      const c = casilla(this, x, y, tam, { activa: tiene, alPulsar: tiene ? () => this.ver(f) : null });
+      const c = casilla(this, x, y, tam, { activa: tiene, alPulsar: tiene ? () => this.ver(f, aviso) : null });
+      const aviso = avisoNuevo(this, c, tam, 'fotos', f.id);
       if (tiene) {
         if (this.textures.exists(f.clave)) {
           const img = this.add.image(0, -8, f.clave);
@@ -135,7 +150,8 @@ export class AlbumScene extends Phaser.Scene {
     });
   }
 
-  ver(f) {
+  ver(f, aviso) {
+    quitarAviso(aviso, 'fotos', f.id);
     const { width: W, height: H } = this.scale;
     const cfg = FOTOS.visualizacion;
     const capa = this.add.container(0, 0).setDepth(100);
@@ -187,16 +203,18 @@ export class VitrinaScene extends Phaser.Scene {
       const n = o.nivel;
       const { x, y } = posicionCasilla(this, n, tam);
       const tiene = Guardado.tieneObjeto(n);
-      const c = casilla(this, x, y, tam, { activa: tiene, alPulsar: tiene ? () => this.ver(o) : null });
+      const c = casilla(this, x, y, tam, { activa: tiene, alPulsar: tiene ? () => this.ver(o, aviso) : null });
       const img = this.add.image(0, -8, claveObjeto(o));
       img.setScale(72 / Math.max(img.width, img.height));
       if (!tiene) img.setTintFill(0x0d1b3d).setAlpha(0.75);
       c.add(img);
       c.add(this.add.text(0, tam / 2 - 14, texto('galerias.nivel', { n }), { fontFamily: FUENTE, fontSize: '15px', color: '#cfe0ff' }).setOrigin(0.5));
+      const aviso = avisoNuevo(this, c, tam, 'objetos', n);
     }
   }
 
-  ver(o) {
+  ver(o, aviso) {
+    quitarAviso(aviso, 'objetos', o.nivel);
     const { width: W, height: H } = this.scale;
     const capa = this.add.container(0, 0).setDepth(100);
     const velo = this.add.rectangle(0, 0, W, H, 0x000000, 0.75).setOrigin(0).setInteractive();
@@ -209,6 +227,71 @@ export class VitrinaScene extends Phaser.Scene {
     const nombre = this.add.text(W / 2, H / 2 + 60, o.nombre, { fontFamily: FUENTE_TITULO, fontSize: '36px', color: '#1e4fa3', fontStyle: 'bold' }).setOrigin(0.5);
     const desc = this.add.text(W / 2, H / 2 + 130, o.texto, { fontFamily: FUENTE, fontSize: '22px', color: '#1b2a4a', align: 'center', wordWrap: { width: 640 } }).setOrigin(0.5);
     capa.add([velo, panel, img, nombre, desc]);
+    velo.on('pointerup', () => capa.destroy());
+  }
+}
+
+// ---- Colección de monstruos -----------------------------------------------------------
+
+export class MonstruosScene extends Phaser.Scene {
+  constructor() {
+    super('Monstruos');
+  }
+
+  create() {
+    const { width: W, height: H } = this.scale;
+    fondoMenu(this);
+    titulo(this, texto('galerias.monstruos'));
+    botonVolver(this);
+    // en el orden de config/texts.json (el de aparición en el juego), en dos filas
+    const ids = Object.keys(TEXTOS.monstruos);
+    const tam = 120;
+    const porFila = Math.ceil(ids.length / 2);
+    const sep = Math.min(tam + 44, (W - 60) / porFila);
+    ids.forEach((id, i) => {
+      const fila = i < porFila ? 0 : 1;
+      const col = fila ? i - porFila : i;
+      const enFila = fila ? ids.length - porFila : porFila;
+      const x = W / 2 + (col - (enFila - 1) / 2) * sep;
+      const y = H * 0.33 + fila * (tam + 96);
+      const tiene = Guardado.tieneMonstruo(id);
+      const c = casilla(this, x, y, tam, { activa: tiene, alPulsar: tiene ? () => this.ver(id, aviso) : null });
+      const img = ajustarTam(this.add.image(0, 0, id), tam - 28);
+      if (!tiene) img.setTintFill(0x0d1b3d).setAlpha(0.75);
+      c.add(img);
+      this.add.text(x, y + tam / 2 + 12, tiene ? texto(`monstruos.${id}.nombre`) : '???', { fontFamily: FUENTE, fontSize: '17px', color: tiene ? '#ffffff' : '#8c95ab', fontStyle: 'bold', align: 'center', wordWrap: { width: sep - 8 } }).setOrigin(0.5, 0);
+      const aviso = avisoNuevo(this, c, tam, 'monstruos', id);
+    });
+  }
+
+  ver(id, aviso) {
+    quitarAviso(aviso, 'monstruos', id);
+    const { width: W, height: H } = this.scale;
+    const pw = Math.min(840, W - 60);
+    const ph = 380;
+    const capa = this.add.container(0, 0).setDepth(100);
+    const velo = this.add.rectangle(0, 0, W, H, 0x000000, 0.75).setOrigin(0).setInteractive();
+    const panel = this.add.graphics();
+    panel.fillStyle(0xfffaf0, 1).fillRoundedRect(W / 2 - pw / 2, H / 2 - ph / 2, pw, ph, 24);
+    panel.lineStyle(5, 0xe8b84a, 1).strokeRoundedRect(W / 2 - pw / 2, H / 2 - ph / 2, pw, ph, 24);
+    capa.add([velo, panel]);
+    const img = ajustarTam(this.add.image(W / 2 - pw / 2 + 170, H / 2, id), 240);
+    this.tweens.add({ targets: img, angle: { from: -5, to: 5 }, duration: 1400, yoyo: true, repeat: -1, ease: 'Sine.inOut' });
+    capa.add(img);
+    // ficha a la derecha del dibujo: nombre, qué te hace y cómo librarte
+    const x = W / 2 - pw / 2 + 330;
+    const ancho = pw - 330 - 40;
+    let y = H / 2 - ph / 2 + 40;
+    const linea = (txt, estilo, hueco) => {
+      const t = this.add.text(x, y, txt, { fontFamily: FUENTE, wordWrap: { width: ancho }, ...estilo });
+      capa.add(t);
+      y += t.height + hueco;
+    };
+    linea(texto(`monstruos.${id}.nombre`), { fontFamily: FUENTE_TITULO, fontSize: '36px', color: '#1e4fa3', fontStyle: 'bold' }, 22);
+    linea(texto('galerias.queHace'), { fontSize: '20px', color: '#b07a12', fontStyle: 'bold' }, 4);
+    linea(texto(`monstruos.${id}.efecto`), { fontSize: '23px', color: '#1b2a4a' }, 22);
+    linea(texto('galerias.comoLibrarte'), { fontSize: '20px', color: '#b07a12', fontStyle: 'bold' }, 4);
+    linea(texto(`monstruos.${id}.truco`), { fontSize: '23px', color: '#1b2a4a' }, 0);
     velo.on('pointerup', () => capa.destroy());
   }
 }

@@ -517,6 +517,13 @@ export class JuegoScene extends Phaser.Scene {
     }
 
     for (const e of this.enemigos) e.actualizar(t, dt, s);
+    // la primera vez que un monstruo sale en pantalla entra en su colección del menú
+    const vista = this.cameras.main.worldView;
+    for (const e of this.enemigos) {
+      if (e.descubierto || !e.vivo || !vista.contains(e.x, e.y - e.displayHeight / 2)) continue;
+      e.descubierto = true;
+      Guardado.descubrirMonstruo(e.def.sprite);
+    }
     // solo habla el más cercano (Miriam o cartel) para que no se pisen los bocadillos
     let cercano = null;
     let mejor = Infinity;
