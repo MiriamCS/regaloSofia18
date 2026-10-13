@@ -8,17 +8,27 @@ export const PALETAS = {
   blanco:      { cielo: [0xffffff, 0xffffff], lejos: 0xffffff, medio: 0xffffff, suelo: 0xf2f4f8, sueloBorde: 0xd5dbe8, acento: 0xffffff, plataforma: 0xffffff },
 };
 
-export const FUENTE = '"Trebuchet MS", "Segoe UI", system-ui, sans-serif';
-export const FUENTE_TITULO = 'Georgia, "Times New Roman", serif';
+// Quicksand Bold en todo el juego (se carga en index.html; cualquier peso usa la cara Bold)
+export const FUENTE = '"Quicksand", "Nunito", system-ui, sans-serif';
+export const FUENTE_TITULO = FUENTE;
 
+// Paleta del juego: azules sacados del logo de Sofía y el amarillo de marca M. Llorens como único acento
+// (reparto aproximado 60 % azul, 30 % blancos y claros, 10 % amarillo; el amarillo nunca para texto).
 export const COLOR = {
-  marino: '#0d1b3d',
-  azul: '#1e4fa3',
-  azulClaro: '#8fb8ff',
+  tinta: '#071A3D', // texto sobre claro, fondo más oscuro
+  noche: '#0B2A66', // fondo oscuro
+  superficie: '#12367D', // botones y tarjetas sobre noche
+  real: '#1550C8', // azul principal
+  vivo: '#2F6FEB', // variación
+  azulClaro: '#A9C3F5', // texto secundario sobre oscuro
+  hielo: '#DCE8FD', // superficie clara
+  papel: '#F4F7FE', // fondo claro
+  amarillo: '#F5C242', // acento de marca
+  rojo: '#A1243A', // solo para acciones que borran
   blanco: '#ffffff',
-  dorado: '#e8b84a',
-  texto: '#1b2a4a',
 };
+// Los mismos colores como número, para Graphics
+export const HEX = Object.fromEntries(Object.entries(COLOR).map(([k, v]) => [k, parseInt(v.slice(1), 16)]));
 
 // Ajusta una imagen a un tamaño en px (el lado mayor), sea cual sea el lienzo de su textura
 export function ajustarTam(img, px) {

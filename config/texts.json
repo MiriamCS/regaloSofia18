@@ -6,12 +6,12 @@
     "jugar": "Jugar",
     "continuar": "Continuar",
     "niveles": "Niveles",
-    "album": "Álbum de fotos",
-    "objetos": "Objetos",
-    "monstruos": "Monstruos",
-    "opciones": "Opciones",
+    "albumes": "Álbumes",
+    "opciones": "Configuración",
     "tarta": "La tarta",
-    "tocaParaEmpezar": "Toca la pantalla para empezar"
+    "programa": "Programa",
+    "velas": "{n} de 18 velas encendidas",
+    "tocaParaEmpezar": "Toca para empezar."
   },
   "prologo": {
     "encontrada": "¡Has encontrado una foto!",
@@ -32,7 +32,7 @@
     "menu": "Volver al menú"
   },
   "opciones": {
-    "titulo": "Opciones",
+    "titulo": "Configuración",
     "musica": "Música",
     "efectos": "Efectos",
     "borrar": "Borrar partida",
@@ -41,12 +41,19 @@
     "no": "No",
     "borrado": "Partida borrada",
     "volver": "Volver",
-    "pantallaCompleta": "Pantalla completa"
+    "pantallaCompleta": "Pantalla completa",
+    "creditos": "Créditos"
+  },
+  "creditos": {
+    "_comentario": "Pantalla de créditos (desde Configuración y al terminar la tarta). Cada línea va en un renglón.",
+    "lineas": ["Un regalo de cumpleaños para Sofía", "Hecho por Miriam"],
+    "volver": "Volver"
   },
   "galerias": {
+    "albumes": "Álbumes",
     "album": "Álbum de fotos",
-    "vitrina": "Vitrina de objetos",
-    "monstruos": "Colección de monstruos",
+    "vitrina": "Coleccionables",
+    "monstruos": "Enciclopedia de monstruos",
     "queHace": "Qué te hace",
     "comoLibrarte": "Cómo librarte",
     "niveles": "Niveles",
@@ -54,6 +61,11 @@
     "noConseguido": "Todavía no lo has encontrado",
     "nivel": "Año {n}",
     "nacimiento": "Nacimiento",
+    "superados": "{n} de {total}",
+    "conseguidos": "{n} de {total}",
+    "talonFotos": "Fotos",
+    "talonObjetos": "Objetos",
+    "talonMonstruos": "Monstruos",
     "volver": "Volver",
     "cerrar": "Cerrar"
   },

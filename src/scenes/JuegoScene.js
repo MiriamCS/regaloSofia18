@@ -2,7 +2,7 @@
 // y gestiona velas, checkpoints, canto, coleccionables, enemigos y el final del nivel 18.
 import Phaser from 'phaser';
 import { JUEGO, TEXTOS, TILE, OBJETOS, claveObjeto, etapaDeNivel, etapaMiriam, velasDeNivel, tieneHabilidad, texto } from '../config.js';
-import { PALETAS } from '../estilo.js';
+import { PALETAS, FUENTE } from '../estilo.js';
 import { leerNivel } from '../systems/Nivel.js';
 import { Controles } from '../systems/Controles.js';
 import { Guardado } from '../systems/Guardado.js';
@@ -675,7 +675,7 @@ export class JuegoScene extends Phaser.Scene {
   }
 
   globo(x, y, contenido) {
-    const t = this.add.text(x, y, contenido, { fontFamily: 'Trebuchet MS', fontSize: '20px', color: '#1b2a4a', backgroundColor: '#ffffff', padding: { x: 8, y: 4 } }).setOrigin(0.5, 1).setDepth(80);
+    const t = this.add.text(x, y, contenido, { fontFamily: FUENTE, fontSize: '20px', color: '#1b2a4a', backgroundColor: '#ffffff', padding: { x: 8, y: 4 } }).setOrigin(0.5, 1).setDepth(80);
     this.tweens.add({ targets: t, y: y - 30, alpha: 0, delay: 900, duration: 500, onComplete: () => t.destroy() });
   }
 

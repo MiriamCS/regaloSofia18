@@ -2,7 +2,7 @@
 import Phaser from 'phaser';
 import { JUEGO, FOTOS, OBJETOS, texto } from '../config.js';
 import { Controles } from '../systems/Controles.js';
-import { FUENTE, FUENTE_TITULO, ajustarTam } from '../estilo.js';
+import { FUENTE, FUENTE_TITULO, COLOR, HEX, ajustarTam } from '../estilo.js';
 import { Audio } from '../audio/Audio.js';
 import { Boton } from '../ui/Boton.js';
 import { recortarCubriendo } from './MenusScene.js';
@@ -200,7 +200,7 @@ export class InterfazScene extends Phaser.Scene {
     panel.fillStyle(0xfffaf0, 1).fillRoundedRect(-pw / 2, -ph / 2, pw, ph, 24);
     panel.lineStyle(5, 0xe8b84a, 1).strokeRoundedRect(-pw / 2, -ph / 2, pw, ph, 24);
     v.add(panel);
-    v.add(this.add.text(0, -ph / 2 + 56, texto('juego.nivelCompletado'), { fontFamily: FUENTE_TITULO, fontSize: '52px', color: '#1e4fa3', fontStyle: 'bold italic' }).setOrigin(0.5));
+    v.add(this.add.text(0, -ph / 2 + 56, texto('juego.nivelCompletado'), { fontFamily: FUENTE_TITULO, fontSize: '52px', color: '#1e4fa3', fontStyle: 'bold' }).setOrigin(0.5));
 
     // el nivel 18 no tiene foto: solo se enseña el objeto
     const xObjeto = datosFoto ? pw / 4 : 0;
@@ -244,7 +244,7 @@ export class InterfazScene extends Phaser.Scene {
       pulsado = true;
       this.juego.continuarTrasNivel();
     };
-    v.add(new Boton(this, 0, ph / 2 - 56,texto('juego.continuar'), continuar, { ancho: 320, alto: 68, color: 0xe8b84a, borde: 0xffffff }));
+    v.add(new Boton(this, 0, ph / 2 - 56,texto('juego.continuar'), continuar, { ancho: 320, alto: 68, color: HEX.amarillo, colorTexto: COLOR.tinta }));
     // en el ordenador también con Intro o Espacio (tras un momento, para no saltarla sin querer)
     this.time.delayedCall(700, () => {
       this.input.keyboard?.once('keydown-ENTER', continuar);
@@ -309,11 +309,11 @@ export class PausaScene extends Phaser.Scene {
   create() {
     const { width: W, height: H } = this.scale;
     this.add.rectangle(0, 0, W, H, 0x0d1b3d, 0.7).setOrigin(0).setInteractive();
-    this.add.text(W / 2, H * 0.2, texto('pausa.titulo'), { fontFamily: FUENTE_TITULO, fontSize: '60px', color: '#ffffff', fontStyle: 'bold italic' }).setOrigin(0.5);
+    this.add.text(W / 2, H * 0.2, texto('pausa.titulo'), { fontFamily: FUENTE_TITULO, fontSize: '60px', color: '#ffffff', fontStyle: 'bold' }).setOrigin(0.5);
     new Boton(this, W / 2, H * 0.4, texto('pausa.reanudar'), () => this.salir(() => {
       this.scene.resume('Juego');
       this.scene.stop();
-    }), { ancho: 420, color: 0xe8b84a, borde: 0xffffff });
+    }), { ancho: 420, color: HEX.amarillo, colorTexto: COLOR.tinta });
     new Boton(this, W / 2, H * 0.4 + 96, texto('pausa.reiniciar'), () => this.salir(() => {
       this.scene.stop('Juego');
       this.scene.start('Juego', { nivel: this.nivel });

@@ -4,7 +4,19 @@ import { OBJETOS, ENEMIGOS, claveObjeto } from '../config.js';
 import { ESCALA_TEXTURAS, claveFotogramas } from '../entities/Sofia.js';
 import { PISTAS } from '../audio/musica.js';
 import { Guardado } from '../systems/Guardado.js';
+import { HEX } from '../estilo.js';
+import { ANCHO_CORONA, FUNDIDO, RGB_TINTA, corona, joyaSaltarina } from '../ui/Marca.js';
 
+// Iconos de línea de los menús (blancos, se tiñen al usarlos): textura 'ic-<nombre>'
+export const ICONOS = ['play', 'niveles', 'albumes', 'ajustes', 'volver', 'tarta'];
+
+// Velas de la pantalla de Niveles: vela-cuerpo.svg estirada a la altura de cada año (es vectorial, así que no pierde
+// nitidez). VISTA_CUERPO recorta el lienzo del SVG al cuerpo y la mecha. La llama es la de vela-on.svg.
+export const ANCHO_VELA = 16;
+export const altoVela = (n) => 120 + n * 12;
+export const claveVela = (n) => `vela-alto-${n}`;
+const VISTA_CUERPO = '202 22 96 455';
+const VELAS_NIVELES = 19;
 const ETAPAS_MIRIAM = ['nina', 'preado', 'adolescente', 'adulta'];
 // Cosas que caen en las zonas de lluvia y adornos de los niveles (texturas 'obj-*'); no son los coleccionables
 const LLUVIA = ['patito', 'sonajero', 'ceras', 'cubo', 'boligrafo', 'agenda', 'movil', 'maleta', 'gafas-sol'];
@@ -28,15 +40,10 @@ export class BootScene extends Phaser.Scene {
   }
 
   preload() {
+    // Carga: la joya saltarina sobre la misma corona de la firma de inicio
     const { width: W, height: H } = this.scale;
-    const barra = this.add.graphics();
-    const texto = this.add.text(W / 2, H / 2 - 50, 'Cargando...', { fontFamily: 'Georgia', fontSize: '30px', color: '#ffffff' }).setOrigin(0.5);
-    this.load.on('progress', (p) => {
-      barra.clear();
-      barra.fillStyle(0x1e4fa3, 1).fillRoundedRect(W / 2 - 250, H / 2, 500, 24, 12);
-      barra.fillStyle(0xe8b84a, 1).fillRoundedRect(W / 2 - 248, H / 2 + 2, Math.max(20, 496 * p), 20, 10);
-    });
-    this.load.on('complete', () => texto.destroy());
+    this.cameras.main.setBackgroundColor(HEX.tinta);
+    this.joya = joyaSaltarina(this, corona(this, W / 2, H / 2, ANCHO_CORONA));
 
     const S = { scale: ESCALA_TEXTURAS };
     this.load.json('rig-sofia', 'sprites/sofia/rig.json');
@@ -65,6 +72,16 @@ export class BootScene extends Phaser.Scene {
     }
     for (const n of LLUVIA) this.load.svg(`obj-${n}`, `sprites/objetos/${n}.svg`, S);
     this.load.image('logo', 'logo.png');
+    this.load.text('svg-vela-cuerpo', 'sprites/escenario/vela-cuerpo.svg');
+    this.load.once('filecomplete-text-svg-vela-cuerpo', (k, t, svg) => {
+      for (let n = 0; n < VELAS_NIVELES; n++) {
+        const w = ANCHO_VELA * ESCALA_TEXTURAS;
+        const h = altoVela(n) * ESCALA_TEXTURAS;
+        const estirada = svg.replace(/<svg([^>]*)>/, (_, attrs) => `<svg${attrs.replace(/\s(width|height|viewBox|preserveAspectRatio)="[^"]*"/g, '')} width="${w}" height="${h}" viewBox="${VISTA_CUERPO}" preserveAspectRatio="none">`);
+        this.load.svg(claveVela(n), URL.createObjectURL(new Blob([estirada], { type: 'image/svg+xml' })));
+      }
+    });
+    for (const n of ICONOS) this.load.svg(`ic-${n}`, `sprites/iconos/${n}.svg`, { width: 96, height: 96 });
     // Música: si existen JSON convertidos de MIDI (tools/midi-a-json.mjs) se usan en lugar de los provisionales
     this.load.once('filecomplete-json-indice-musica', (k, t, indice) => {
       for (const clave of indice.pistas || []) this.load.json(`musica-${clave}`, `music/${clave}.json`);
@@ -86,12 +103,27 @@ export class BootScene extends Phaser.Scene {
         repeat: info.bucle ? -1 : 0,
       });
     }
+    // La llama de vela-on.svg sola (las 28 primeras filas de su textura), para encender velas de cualquier altura
+    const velaOn = this.textures.get('vela-on');
+    velaOn.add('llama', 0, 0, 0, 60, 28);
+    velaOn.firstFrame = '__BASE'; // Phaser convierte el primer fotograma añadido en el de por defecto: se deja la vela entera
+
     // Partícula redonda para efectos
     const g = this.make.graphics({ x: 0, y: 0 }, false);
     g.fillStyle(0xffffff, 1).fillCircle(8, 8, 8);
     g.generateTexture('punto', 16, 16);
     g.destroy();
 
+    // Quicksand tiene que estar lista antes del primer texto (Phaser no repinta si llega después)
+    const fuente = Promise.race([document.fonts?.load('700 32px Quicksand') ?? Promise.resolve(), new Promise((r) => setTimeout(r, 3000))]);
+    // la joya termina su salto, la pantalla funde y se entra al juego
+    this.joya.esperar(() => fuente.finally(() => {
+      this.cameras.main.fadeOut(FUNDIDO, ...RGB_TINTA);
+      this.cameras.main.once('camerafadeoutcomplete', () => this.entrar());
+    }));
+  }
+
+  entrar() {
     const params = new URLSearchParams(window.location.search);
     if (params.has('trucos')) Guardado.desbloquearTodo();
     if (params.has('nivel')) {

@@ -6,7 +6,8 @@ import { PISTAS } from '../audio/musica.js';
 import { Guardado } from '../systems/Guardado.js';
 import { Sofia } from '../entities/Sofia.js';
 import { Boton } from '../ui/Boton.js';
-import { FUENTE, FUENTE_TITULO } from '../estilo.js';
+import { FUENTE, FUENTE_TITULO, COLOR, HEX } from '../estilo.js';
+import { pieMarca } from '../ui/Marca.js';
 
 const NUM_VELAS = 18;
 // Superficie de arriba de la tarta, en px del lienzo de tarta.svg (480x340): las velas se reparten
@@ -32,6 +33,8 @@ export class TartaScene extends Phaser.Scene {
     this.cameras.main.fadeIn(900, 255, 255, 255);
     Audio.pararMusica();
     this.crearTexturaLlama();
+    // la corona de M. Llorens como pie (versión para fondo claro), por encima del velo del mensaje final
+    pieMarca(this, true).setDepth(60);
 
     // suelo blanco del camino
     const g = this.add.graphics();
@@ -151,15 +154,15 @@ export class TartaScene extends Phaser.Scene {
   mensaje() {
     const { width: W, height: H } = this.scale;
     const capa = this.add.container(0, 0).setDepth(50).setAlpha(0);
-    const velo = this.add.rectangle(0, 0, W, H, 0x0d1b3d, 0.55).setOrigin(0);
+    const velo = this.add.rectangle(0, 0, W, H, HEX.tinta, 0.55).setOrigin(0);
     const pw = Math.min(980, W - 80);
     const ph = H - 80;
     const panel = this.add.graphics();
-    panel.fillStyle(0xfffaf0, 1).fillRoundedRect(W / 2 - pw / 2, 40, pw, ph, 28);
-    panel.lineStyle(6, 0xe8b84a, 1).strokeRoundedRect(W / 2 - pw / 2, 40, pw, ph, 28);
-    const tit = this.add.text(W / 2, 100, texto('final.felicidades'), { fontFamily: FUENTE_TITULO, fontSize: '50px', color: '#1e4fa3', fontStyle: 'bold italic' }).setOrigin(0.5);
+    panel.fillStyle(HEX.papel, 1).fillRoundedRect(W / 2 - pw / 2, 40, pw, ph, 28);
+    panel.lineStyle(6, HEX.amarillo, 1).strokeRoundedRect(W / 2 - pw / 2, 40, pw, ph, 28);
+    const tit = this.add.text(W / 2, 100, texto('final.felicidades'), { fontFamily: FUENTE_TITULO, fontSize: '50px', color: COLOR.real, fontStyle: 'bold' }).setOrigin(0.5);
     const zonaTexto = { x: W / 2 - pw / 2 + 50, y: 160, w: pw - 100, h: ph - 230 };
-    const cuerpo = this.add.text(W / 2, zonaTexto.y, MENSAJE_FINAL.trim(), { fontFamily: '"Comic Sans MS", "Chalkboard SE", ' + FUENTE, fontSize: '26px', color: '#1b2a4a', align: 'center', lineSpacing: 8, wordWrap: { width: zonaTexto.w } }).setOrigin(0.5, 0);
+    const cuerpo = this.add.text(W / 2, zonaTexto.y, MENSAJE_FINAL.trim(), { fontFamily: FUENTE, fontSize: '26px', color: COLOR.tinta, align: 'center', lineSpacing: 8, wordWrap: { width: zonaTexto.w } }).setOrigin(0.5, 0);
     const mascara = this.make.graphics({}, false).fillRect(zonaTexto.x, zonaTexto.y, zonaTexto.w, zonaTexto.h);
     cuerpo.setMask(mascara.createGeometryMask());
     capa.add([velo, panel, tit, cuerpo]);
@@ -175,7 +178,7 @@ export class TartaScene extends Phaser.Scene {
       });
       this.input.on('wheel', (p, o, dx, dy) => (cuerpo.y = Phaser.Math.Clamp(cuerpo.y - dy, zonaTexto.y - sobra, zonaTexto.y)));
     }
-    const volver = new Boton(this, W / 2, 40 + ph - 45, texto('final.volverMenu'), () => this.scene.start('Menu'), { ancho: 380, alto: 64, tam: 26 });
+    const volver = new Boton(this, W / 2, 40 + ph - 45, texto('opciones.creditos'), () => this.scene.start('Creditos', { destino: 'Menu' }), { ancho: 380, alto: 64, tam: 26, color: HEX.real, colorTexto: COLOR.blanco });
     capa.add(volver);
     this.tweens.add({ targets: capa, alpha: 1, duration: 900 });
   }

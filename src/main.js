@@ -1,9 +1,12 @@
 import Phaser from 'phaser';
 import { JUEGO } from './config.js';
 import { Audio } from './audio/Audio.js';
+import { activarResolucion } from './systems/Resolucion.js';
+import { FirmaScene } from './scenes/FirmaScene.js';
 import { BootScene } from './scenes/BootScene.js';
+import { CreditosScene } from './scenes/CreditosScene.js';
 import { MenuScene } from './scenes/MenuScene.js';
-import { NivelesScene, AlbumScene, VitrinaScene, MonstruosScene, OpcionesScene } from './scenes/MenusScene.js';
+import { NivelesScene, AlbumesScene, AlbumScene, VitrinaScene, MonstruosScene, OpcionesScene } from './scenes/MenusScene.js';
 import { TransicionScene } from './scenes/TransicionScene.js';
 import { PrologoScene } from './scenes/PrologoScene.js';
 import { JuegoScene } from './scenes/JuegoScene.js';
@@ -21,7 +24,7 @@ function anchoJuego() {
 const juego = new Phaser.Game({
   type: new URLSearchParams(location.search).has('canvas') ? Phaser.CANVAS : Phaser.AUTO,
   parent: 'juego',
-  backgroundColor: '#0d1b3d',
+  backgroundColor: '#071A3D',
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
@@ -33,8 +36,11 @@ const juego = new Phaser.Game({
   input: { activePointers: 4 },
   audio: { noAudio: true }, // el audio lo gestiona src/audio (Web Audio propio)
   fps: { target: 60 },
-  scene: [BootScene, MenuScene, NivelesScene, AlbumScene, VitrinaScene, MonstruosScene, OpcionesScene, PrologoScene, TransicionScene, JuegoScene, InterfazScene, PausaScene, TartaScene, PosesScene],
+  scene: [FirmaScene, BootScene, MenuScene, NivelesScene, AlbumesScene, AlbumScene, VitrinaScene, MonstruosScene, OpcionesScene, PrologoScene, TransicionScene, JuegoScene, InterfazScene, PausaScene, TartaScene, CreditosScene, PosesScene],
 });
+
+// Dibujar con los píxeles reales de la pantalla para que letras y trazos se vean nítidos
+juego.events.once(Phaser.Core.Events.READY, () => activarResolucion(juego));
 
 // iOS/Android: el audio solo puede arrancar tras el primer toque
 const desbloquear = () => Audio.iniciar();

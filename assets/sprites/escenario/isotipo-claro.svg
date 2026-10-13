@@ -1,0 +1,13 @@
+<!--
+  Isotipo sobre fondo claro: la corona M/L sin wordmark. Mínimo 16 px de alto.
+  Generado por tools/build-brand-svg.py desde tools/brand-geometry.json.
+  No editar a mano: editar la geometría y volver a generar.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1124.92 456.6" width="1124.92" height="456.6" role="img" aria-label="M. Llorens">
+  <path d="M 215.88 214.1 L 35.55 61 A 8.5 8.5 0 0 0 21.8 69.52 L 104.98 405.75 A 35.5 35.5 0 0 0 139.34 432.73 L 980.5 435.05 A 42 42 0 0 0 1021.42 403.03 L 1103.12 68.97 A 8.5 8.5 0 0 0 1089.21 60.61 L 916.12 215.05"
+        fill="none" stroke="#F5C242" stroke-width="43.1"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 259.8 255.23 L 360.36 28.66 A 3.5 3.5 0 0 1 366.12 27.7 L 561.07 237.53 A 2 2 0 0 0 564.03 237.49 L 750.04 25.73 A 4.5 4.5 0 0 1 757.84 27.87 L 825.77 389.41 A 2 2 0 0 0 827.65 391.04 L 957.4 396.47"
+        fill="none" stroke="#141414" stroke-width="48.4"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

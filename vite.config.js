@@ -23,8 +23,8 @@ export default defineConfig({
         scope: './',
         display: 'fullscreen',
         orientation: 'landscape',
-        background_color: '#0d1b3d',
-        theme_color: '#1e4fa3',
+        background_color: '#071A3D',
+        theme_color: '#071A3D',
         icons: [
           { src: 'icons/icono-192.png', sizes: '192x192', type: 'image/png' },
           { src: 'icons/icono-512.png', sizes: '512x512', type: 'image/png' },
@@ -32,7 +32,7 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,json,svg,png,jpg,jpeg,webp,ogg,mp3,txt}'],
+        globPatterns: ['**/*.{js,css,html,json,svg,png,jpg,jpeg,webp,ogg,mp3,txt,woff2}'],
         maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
       },
     }),

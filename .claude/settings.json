@@ -23,7 +23,28 @@
       "Bash(timeout 300 node escenario2.cjs)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4790/)",
       "Bash(curl -s -o /dev/null http://localhost:4790/)",
-      "Bash(break)"
+      "Bash(break)",
+      "Bash(git rm *)",
+      "Bash(git check-ignore *)",
+      "Bash(mkdir -p originales/logo)",
+      "Bash(cp __TRACKED_VAR__/1.png originales/logo/logo-completo.png)",
+      "Bash(cp __TRACKED_VAR__/2.png originales/logo/logo-simple.png)",
+      "Bash(node tools/generar-iconos.mjs)",
+      "Bash(node -e \"const s=require\\('sharp'\\);s\\('assets/logo.png'\\).metadata\\(\\).then\\(m=>console.log\\(m.width,m.height\\)\\)\")",
+      "Bash(node -e \"require.resolve\\('playwright'\\)\")",
+      "Read(//c/Users/Miriam/AppData/Local/**)",
+      "Bash(cd \"C:/Users/Miriam/AppData/Local/Temp/claude/c--Users-Miriam-OneDrive-Juegos-regaloSofia18/83cf75df-4f6a-4a2b-9181-ddf117677c0b/scratchpad\" && npm init -y >/dev/null && npm i playwright-core@1.56.1 --silent 2>&1 | tail -2; ls \"/c/Program Files \\(x86\\)/Microsoft/Edge/Application/msedge.exe\" 2>&1)",
+      "Read(//c/Program Files \\\\\\(x86\\\\\\)/Microsoft/Edge/Application/**)",
+      "PowerShell(Get-NetTCPConnection -LocalPort 4317 -State Listen -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -Confirm:$false })",
+      "Bash(node -e \"const l=require\\('./assets/levels/nivel-07.json'\\);const s=JSON.stringify\\(l\\);console.log\\(\\(s.match\\(/invertir/g\\)||[]\\).length,'invertir;',\\(s.match\\(/desafinado/g\\)||[]\\).length,'desafinado'\\);console.log\\(Object.keys\\(l\\)\\)\")",
+      "Bash(sort -k3 -n)",
+      "Bash(node tools/fusionar-pistas.mjs)",
+      "Bash(git restore *)",
+      "Bash(node resumen.cjs)",
+      "PowerShell(Get-NetTCPConnection -LocalPort 4318 -State Listen -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -Confirm:$false })",
+      "Bash(sed -i 's/import { NivelesScene, AlbumScene, VitrinaScene, OpcionesScene } from/import { NivelesScene, AlbumScene, VitrinaScene, MonstruosScene, OpcionesScene } from/; s/AlbumScene, VitrinaScene, OpcionesScene, PrologoScene/AlbumScene, VitrinaScene, MonstruosScene, OpcionesScene, PrologoScene/' src/main.js)",
+      "Bash(sed -i 's#^// Menú de niveles, álbum de fotos, vitrina de objetos y opciones.#// Menú de niveles, álbum de fotos, vitrina de objetos, colección de monstruos y opciones.#' src/scenes/MenusScene.js)",
+      "Bash(node coleccion.cjs)"
     ]
   }
 }

@@ -549,7 +549,7 @@ export class Meta {
 // ---- Bocadillos (Miriam y carteles) ---------------------------------------------
 
 export class Bocadillo {
-  constructor(scene, x, y, contenido, { ancho = 330, color = 0xffffff, colorTexto = COLOR.texto } = {}) {
+  constructor(scene, x, y, contenido, { ancho = 330, color = 0xffffff, colorTexto = COLOR.tinta } = {}) {
     this.scene = scene;
     this.c = scene.add.container(x, y).setDepth(90).setAlpha(0);
     this.t = scene.add.text(0, 0, '', { fontFamily: FUENTE, fontSize: '20px', color: colorTexto, wordWrap: { width: ancho - 28 }, lineSpacing: 2 }).setOrigin(0.5, 1);

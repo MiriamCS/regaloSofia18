@@ -10,6 +10,7 @@
 //   danio: velas que quita (voladores; por defecto 1)
 import Phaser from 'phaser';
 import { JUEGO, TILE, ENEMIGOS } from '../config.js';
+import { FUENTE } from '../estilo.js';
 import { Audio } from '../audio/Audio.js';
 
 const ESC = 0.5;
@@ -62,7 +63,7 @@ export class Enemigo extends Phaser.Physics.Arcade.Image {
       this.botin = null;
       this.iconoBotin = scene.add.image(this.x, this.y, 'marco-foto').setScale(ESC * 0.6).setDepth(41).setVisible(false);
     }
-    this.zzz = scene.add.text(this.x, this.y, 'z z z', { fontFamily: 'Georgia', fontSize: '18px', color: '#ffffff', stroke: '#1b2a4a', strokeThickness: 4 }).setDepth(42).setVisible(false);
+    this.zzz = scene.add.text(this.x, this.y, 'z z z', { fontFamily: FUENTE, fontSize: '18px', color: '#ffffff', stroke: '#1b2a4a', strokeThickness: 4 }).setDepth(42).setVisible(false);
   }
 
   get dormido() {

@@ -7,19 +7,27 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Sofía 18" />
-  <meta name="theme-color" content="#1e4fa3" />
+  <meta name="theme-color" content="#071A3D" />
   <link rel="apple-touch-icon" href="icons/icono-192.png" />
   <link rel="icon" href="icons/favicon.png" type="image/png" />
   <title>Sofía: 18 años en clave de sol</title>
+  <link rel="preload" href="fonts/quicksand-700-latin.woff2" as="font" type="font/woff2" crossorigin />
   <style>
-    html, body { margin: 0; padding: 0; height: 100%; background: #0d1b3d; overflow: hidden;
+    /* Quicksand Bold es la única tipografía del juego: la cara cubre todos los pesos para que cualquier texto salga en negrita */
+    @font-face { font-family: 'Quicksand'; font-style: normal; font-weight: 100 900; font-display: block;
+      src: url(fonts/quicksand-700-latin.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'Quicksand'; font-style: normal; font-weight: 100 900; font-display: block;
+      src: url(fonts/quicksand-700-latin-ext.woff2) format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+    html, body { margin: 0; padding: 0; height: 100%; background: #071A3D; overflow: hidden;
       touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
     #juego { position: fixed; inset: 0; }
     #juego canvas { display: block; }
-    #girar { display: none; position: fixed; inset: 0; z-index: 10; background: #0d1b3d; color: #e8f0ff;
-      font-family: 'Trebuchet MS', system-ui, sans-serif; text-align: center; flex-direction: column;
+    #girar { display: none; position: fixed; inset: 0; z-index: 10; background: #071A3D; color: #DCE8FD;
+      font-family: 'Quicksand', 'Nunito', system-ui, sans-serif; font-weight: 700; text-align: center; flex-direction: column;
       align-items: center; justify-content: center; gap: 16px; font-size: 22px; padding: 24px; box-sizing: border-box; }
-    #girar .movil { width: 60px; height: 100px; border: 5px solid #8fb8ff; border-radius: 12px;
+    #girar .movil { width: 60px; height: 100px; border: 5px solid #A9C3F5; border-radius: 12px;
       animation: girar 2s ease-in-out infinite; }
     @keyframes girar { 0%, 30% { transform: rotate(0deg); } 60%, 100% { transform: rotate(-90deg); } }
     @media (orientation: portrait) and (pointer: coarse) { #girar { display: flex; } }

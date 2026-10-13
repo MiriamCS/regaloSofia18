@@ -1,7 +1,8 @@
 // Pantalla entre niveles: «Sofía cumple N años». Mientras se ve, se carga el JSON del nivel.
 import Phaser from 'phaser';
 import { texto } from '../config.js';
-import { FUENTE_TITULO } from '../estilo.js';
+import { FUENTE_TITULO, COLOR } from '../estilo.js';
+import { pieMarca } from '../ui/Marca.js';
 import { Audio } from '../audio/Audio.js';
 import { Guardado } from '../systems/Guardado.js';
 
@@ -29,10 +30,11 @@ export class TransicionScene extends Phaser.Scene {
       this.scene.start('Prologo');
       return;
     }
-    this.cameras.main.setBackgroundColor('#0d1b3d');
+    this.cameras.main.setBackgroundColor(COLOR.tinta);
+    pieMarca(this);
     Audio.fundirMusica(0.8);
     const frase = n === 0 ? texto('transicion.nacer') : n === 1 ? texto('transicion.uno') : texto('transicion.varios', { n });
-    const t = this.add.text(W / 2, H / 2, frase, { fontFamily: FUENTE_TITULO, fontSize: '64px', color: '#ffffff', fontStyle: 'italic' }).setOrigin(0.5).setAlpha(0);
+    const t = this.add.text(W / 2, H / 2, frase, { fontFamily: FUENTE_TITULO, fontSize: '64px', color: COLOR.blanco }).setOrigin(0.5).setAlpha(0);
     const clave = this.add.image(W / 2, H / 2 - 150, 'clave').setScale(0.6).setAlpha(0);
     // velas del nivel (hasta 18)
     const velas = [];
@@ -48,7 +50,7 @@ export class TransicionScene extends Phaser.Scene {
       });
     });
     if (n === 0) {
-      const inf = this.add.text(W / 2, H / 2 + 110, '∞', { fontFamily: FUENTE_TITULO, fontSize: '54px', color: '#ffd23f' }).setOrigin(0.5).setAlpha(0);
+      const inf = this.add.text(W / 2, H / 2 + 110, '∞', { fontFamily: FUENTE_TITULO, fontSize: '54px', color: COLOR.amarillo }).setOrigin(0.5).setAlpha(0);
       this.tweens.add({ targets: inf, alpha: 1, duration: 700, delay: 400 });
     }
     const espera = 2000 + n * 90;
