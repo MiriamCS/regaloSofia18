@@ -221,6 +221,64 @@ const DECORADOS = {
     }
     g.fillRect(0, h * 0.85, ANCHO_PATRON, h);
   },
+  // ---- fiesta ----
+  mesaFiesta(g, h, color, r) {
+    const b = h * SUELO;
+    const oscuro = Phaser.Display.Color.ValueToColor(color).darken(20).color;
+    for (let x = 0; x < ANCHO_PATRON; x += 512) {
+      // mesa con mantel
+      g.fillStyle(color, 1);
+      g.fillRect(x + 60, b - 110, 260, 110);
+      g.fillStyle(oscuro, 1);
+      for (let k = 0; k < 260; k += 26) g.fillTriangle(x + 60 + k, b - 110, x + 73 + k, b - 84, x + 86 + k, b - 110);
+      // tarta de dos pisos con velas
+      g.fillStyle(0xffffff, 1);
+      g.fillRect(x + 130, b - 170, 120, 60);
+      g.fillRect(x + 150, b - 215, 80, 45);
+      g.fillStyle(0xff8fb1, 1);
+      g.fillRect(x + 130, b - 150, 120, 10);
+      g.fillRect(x + 150, b - 198, 80, 8);
+      for (let k = 0; k < 4; k++) {
+        g.fillStyle(0xffd23f, 1);
+        g.fillRect(x + 162 + k * 18, b - 240, 6, 25);
+        g.fillStyle(0xff8c2a, 1);
+        g.fillCircle(x + 165 + k * 18, b - 246, 5);
+      }
+      // regalos apilados
+      g.fillStyle(color, 1);
+      g.fillRect(x + 360, b - 80, 80, 80);
+      g.fillRect(x + 450, b - 56, 56, 56);
+      g.fillRect(x + 375, b - 130, 50, 50);
+      g.fillStyle(0xff5d5d, 1);
+      g.fillRect(x + 396, b - 80, 8, 80);
+      g.fillRect(x + 474, b - 56, 8, 56);
+      g.fillRect(x + 396, b - 130, 8, 50);
+      // globos atados a la mesa
+      g.lineStyle(2, oscuro, 1);
+      g.lineBetween(x + 70, b - 110, x + 50, b - 260);
+      g.lineBetween(x + 310, b - 110, x + 330, b - 270);
+      g.fillStyle(color, 1);
+      g.fillEllipse(x + 50, b - 290, 50, 62);
+      g.fillEllipse(x + 330, b - 300, 50, 62);
+    }
+    void r;
+  },
+  // ---- pista de patinaje ----
+  gradas(g, h, color, r) {
+    const b = h * SUELO;
+    const oscuro = Phaser.Display.Color.ValueToColor(color).darken(20).color;
+    for (let k = 0; k < 4; k++) {
+      const y = b - 60 - k * 46;
+      g.fillStyle(k % 2 ? oscuro : color, 1);
+      g.fillRect(0, y, ANCHO_PATRON, 46);
+      g.fillStyle(oscuro, 1);
+      for (let x = (k % 2) * 24; x < ANCHO_PATRON; x += 48) {
+        if (r() < 0.35) continue;
+        g.fillCircle(x + 12, y - 14, 12);
+        g.fillEllipse(x + 12, y + 4, 30, 26);
+      }
+    }
+  },
   // ---- playa ----
   palmeras(g, h, color, r, { n = 4 } = {}) {
     const b = h * SUELO;
@@ -751,7 +809,7 @@ const DECORADOS = {
       }
     }
   },
-  barandilla(g, h, color, r, { base = 0.78 } = {}) {
+  barandilla(g, h, color, r, { base = SUELO - 0.1 } = {}) {
     g.fillStyle(color, 1);
     g.fillRect(0, h * base, ANCHO_PATRON, 10);
     g.fillRect(0, h * base + 40, ANCHO_PATRON, 6);
@@ -941,7 +999,7 @@ const TEMAS = {
   juegos: { lejos: [['nubes'], ['colinas', { base: 0.74 }], ['arboles', { base: 0.8, n: 6 }]], medio: [['columpios'], ['piscinaBolas']] },
   guarderia: { lejos: [['nubes'], ['colinas']], medio: [['estanterias', { base: 1 }]] },
   playa: { lejos: [['sol'], ['nubes'], ['olas', { base: 0.62 }]], medio: [['sombrillas']] },
-  fiesta: { lejos: [['guirnalda'], ['globos']], medio: [['globos', { n: 6 }]] },
+  fiesta: { lejos: [['guirnalda'], ['globos']], medio: [['mesaFiesta']] },
   colegio: { lejos: [['nubes'], ['escuela']], medio: [['patio']] },
   'clase-musica': { lejos: [['pentagrama']], medio: [['estanterias']] },
   bosque: { lejos: [['colinas', { base: 0.6 }], ['arboles', { base: 0.7 }]], medio: [['arboles', { n: 14 }]] },
@@ -959,7 +1017,7 @@ const TEMAS = {
   escenario: { lejos: [['focosColor'], ['telonRojo']], medio: [['publico']] },
   cita: { lejos: [['estrellas'], ['luna'], ['edificios', { base: 0.92 }]], medio: [['farolas']] },
   nieve: { lejos: [['montanasNevadas'], ['copos']], medio: [['pinos']] },
-  patinaje: { lejos: [['bombillas'], ['focos'], ['bolaDisco']], medio: [['barandilla']] },
+  patinaje: { lejos: [['bombillas'], ['bolaDisco'], ['gradas']], medio: [['barandilla']] },
   danza: { lejos: [['espejos']], medio: [['barra']] },
   huerto: { lejos: [['sol'], ['nubes'], ['colinas', { base: 0.76 }]], medio: [['valla'], ['bancales']] },
   jardin: { lejos: [['arboles', { base: 0.8 }], ['bombillas', { alto: 0.08 }]], medio: [['carpa']] },
