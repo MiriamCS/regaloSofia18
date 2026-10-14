@@ -1,0 +1,20 @@
+{
+  "_comentario": "Qué fotogramas de cada vídeo de docs/videos se usan para cada animación de Miriam (mismo formato que fotogramas-sofia.json). Miriam no se mueve: mira y habla hacia el lado en el que está Sofía y, al cambiar de lado, se gira pasando por la vista de frente. 'callada' y 'habla' van por lado (der: mirando a la derecha; izq: a la izquierda); 'girar' va de derecha a izquierda (de izquierda a derecha se reproduce al revés). Uso: npm run fotogramas -- miriam",
+  "nina": {
+    "pie": {
+      "alto": 95,
+      "videos": {
+        "nina_Miriam.mp4": {
+          "referencia": [0, 16],
+          "animaciones": {
+            "callada-der": { "de": 0, "a": 22, "fps": 16, "bucle": true },
+            "habla-der": { "de": 23, "a": 45, "fps": 20, "bucle": true, "vaiven": true },
+            "girar": { "de": 64, "a": 148, "sin": [74, 139], "fps": 24, "bucle": false },
+            "habla-izq": { "de": 148, "a": 180, "fps": 20, "bucle": true, "vaiven": true },
+            "callada-izq": { "de": 181, "a": 191, "fps": 8, "bucle": true, "vaiven": true }
+          }
+        }
+      }
+    }
+  }
+}

@@ -5,8 +5,8 @@ import { TRAZO, ANCHO_TRAZO as T, f } from './comun.mjs';
 const PIEL = '#e7b590';
 const PELO = '#5a3a28';
 
+// La niña no está aquí: se anima solo con los fotogramas de su vídeo (tools/video-a-sprites.mjs).
 const ETAPAS = {
-  nina: { piernas: 28, torso: 30, cabeza: 37, ropa: '#f5c542', abajo: '#4f7fd8' },
   preado: { piernas: 34, torso: 33, cabeza: 36, ropa: '#f5c542', abajo: '#4f7fd8' },
   adolescente: { piernas: 40, torso: 36, cabeza: 36, ropa: '#f5c542', abajo: '#3a4f8a' },
   adulta: { piernas: 42, torso: 38, cabeza: 36, ropa: '#f5c542', abajo: '#2b3a6b' },

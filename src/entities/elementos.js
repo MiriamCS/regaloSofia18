@@ -4,6 +4,7 @@ import Phaser from 'phaser';
 import { JUEGO, TILE, texto } from '../config.js';
 import { Audio, midi } from '../audio/Audio.js';
 import { estiloTexto, FUENTE, COLOR } from '../estilo.js';
+import { claveFotogramas } from './Sofia.js';
 
 const ESC = 0.5; // texturas SVG rasterizadas al doble
 
@@ -614,21 +615,60 @@ export class Bocadillo {
   }
 }
 
+// Miriam: mira hacia Sofía y le habla con un bocadillo. Las edades con vídeo (la niña) se animan con sus fotogramas:
+// callada o hablando hacia el lado de Sofía y, si Sofía se pasa al otro lado, se gira pasando por la vista de frente.
+// Las demás son un dibujo SVG que se voltea.
 export class Miriam {
   constructor(scene, o, etapa, textoPista) {
     this.scene = scene;
     this.x = o.pieX;
     this.y = o.pieY;
-    this.img = scene.add.image(this.x, this.y, `miriam-${etapa}`).setOrigin(0.5, 1).setScale(ESC).setDepth(45);
-    const alto = this.img.displayHeight;
+    this.etapa = etapa;
+    const info = scene.cache.json.get('fotogramas-miriam')?.[etapa]?.pie;
+    this.fotos = !!info && scene.anims.exists(this.clave('callada-der'));
+    if (this.fotos) {
+      this.img = scene.add.sprite(this.x, this.y, this.clave('callada-der')).setOrigin(info.origen[0], info.origen[1]);
+      this.img.on('animationcomplete', () => (this.girando = false));
+    } else {
+      this.img = scene.add.image(this.x, this.y, `miriam-${etapa}`).setOrigin(0.5, 1);
+    }
+    this.img.setScale(ESC).setDepth(45);
+    const alto = this.fotos ? info.altoJuego : this.img.displayHeight;
     this.bocadillo = new Bocadillo(scene, this.x, this.y - alto - 12, textoPista);
     this.radio = o.p.radio || 170;
     scene.tweens.add({ targets: this.img, scaleY: ESC * 1.03, duration: 800, yoyo: true, repeat: -1, ease: 'Sine.inOut' });
   }
+  clave(anim) {
+    return claveFotogramas(this.etapa, 'pie', anim, 'miriam');
+  }
   actualizar(sofia, dt, hablando) {
-    this.img.setFlipX(sofia.x < this.x);
     this.bocadillo.mostrar(hablando);
     this.bocadillo.actualizar(dt);
+    if (!this.fotos) {
+      this.img.setFlipX(sofia.x < this.x);
+      return;
+    }
+    // lado de Sofía (con un margen para no girarse sin parar si Sofía está justo encima)
+    const dx = sofia.x - this.x;
+    const lado = dx < -12 ? 'izq' : dx > 12 ? 'der' : this.lado || 'der';
+    if (!this.lado) this.lado = lado;
+    if (this.girando) return;
+    if (lado !== this.lado) {
+      // el vídeo gira de derecha a izquierda; al revés se reproduce hacia atrás
+      this.lado = lado;
+      this.girando = true;
+      this.animActual = 'girar';
+      if (lado === 'izq') this.img.play(this.clave('girar'));
+      else this.img.playReverse(this.clave('girar'));
+      return;
+    }
+    // mueve la boca mientras se escribe el bocadillo; después se queda callada mirando a Sofía
+    const b = this.bocadillo;
+    const anim = `${hablando && b.mostrado < b.completo.length ? 'habla' : 'callada'}-${this.lado}`;
+    if (anim !== this.animActual) {
+      this.animActual = anim;
+      this.img.play(this.clave(anim));
+    }
   }
 }
 

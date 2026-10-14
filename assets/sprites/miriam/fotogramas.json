@@ -1,0 +1,49 @@
+{
+  "_comentario": "Generado por tools/video-a-sprites.mjs a partir de tools/fotogramas-miriam.json.",
+  "nina": {
+    "pie": {
+      "ancho": 109,
+      "alto": 196,
+      "origen": [
+        0.578,
+        0.985
+      ],
+      "altoJuego": 95,
+      "animaciones": {
+        "callada-der": {
+          "archivo": "nina/fotogramas/pie-callada-der.png",
+          "fotogramas": 23,
+          "fps": 16,
+          "bucle": true
+        },
+        "habla-der": {
+          "archivo": "nina/fotogramas/pie-habla-der.png",
+          "fotogramas": 23,
+          "fps": 20,
+          "bucle": true,
+          "vaiven": true
+        },
+        "girar": {
+          "archivo": "nina/fotogramas/pie-girar.png",
+          "fotogramas": 19,
+          "fps": 24,
+          "bucle": false
+        },
+        "habla-izq": {
+          "archivo": "nina/fotogramas/pie-habla-izq.png",
+          "fotogramas": 33,
+          "fps": 20,
+          "bucle": true,
+          "vaiven": true
+        },
+        "callada-izq": {
+          "archivo": "nina/fotogramas/pie-callada-izq.png",
+          "fotogramas": 11,
+          "fps": 8,
+          "bucle": true,
+          "vaiven": true
+        }
+      }
+    }
+  }
+}

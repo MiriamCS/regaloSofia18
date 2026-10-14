@@ -1,25 +1,6 @@
 {
   "_comentario": "Generado por tools/generar-sprites.mjs. Coordenadas con origen en los pies (y negativa hacia arriba).",
   "etapas": {
-    "nina": {
-      "medidas": {
-        "alto": 95
-      },
-      "piezas": {
-        "cuerpo": {
-          "w": 83,
-          "h": 109,
-          "pivote": [
-            0,
-            0
-          ],
-          "origen": [
-            0.54,
-            0.94
-          ]
-        }
-      }
-    },
     "preado": {
       "medidas": {
         "alto": 103

@@ -241,6 +241,11 @@ niña, con esta descripción (la falda se mueve al correr y al saltar).
    tienen que ser lo más adelantado del dibujo, y si en el vídeo sale una caja hay que borrarla con `limpiar`.
 5. Las edades sin vídeo se dibujan con el personaje SVG por piezas (al empujar, las manos se apoyan igual en la
    caja). Con gafas también se usa el SVG.
+6. **Miriam:** sus vídeos se configuran igual, en [`tools/fotogramas-miriam.json`](../../tools/fotogramas-miriam.json)
+   (`npm run fotogramas -- miriam` para generar solo los suyos). Miriam no se mueve: necesita `callada-der`,
+   `habla-der`, `habla-izq`, `callada-izq` y `girar` (de derecha a izquierda pasando por la vista de frente; al
+   revés el juego lo reproduce hacia atrás). Mira siempre hacia Sofía y mueve la boca mientras se escribe su
+   bocadillo. De momento solo la niña (`nina_Miriam.mp4`, niveles 0-2) va con vídeo; las demás edades siguen en SVG.
 
 ## 7. Consejos al generar
 

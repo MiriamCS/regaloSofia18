@@ -17,18 +17,20 @@ export const ANCHO_VELA = 16;
 export const altoVela = (n) => 120 + n * 12;
 export const claveVela = (n) => `vela-alto-${n}`;
 const VELAS_NIVELES = 19;
-const ETAPAS_MIRIAM = ['nina', 'preado', 'adolescente', 'adulta'];
+// Edades de Miriam dibujadas en SVG (la niña va con los fotogramas de su vídeo)
+const ETAPAS_MIRIAM = ['preado', 'adolescente', 'adulta'];
+const PERSONAJES_VIDEO = ['sofia', 'miriam'];
 // Cosas que caen en las zonas de lluvia (texturas 'obj-*'). Si alguna es también un coleccionable, ya se carga con ellos
 const LLUVIA = ['pelota', 'libros'];
 const ESCENARIO = ['vela-on', 'vela-off', 'vela-cuerpo', 'atril-off', 'atril-on', 'caja-juguete', 'caja-madera', 'caja-carton', 'caja-libros', 'mueble', 'pinchos', 'marco-foto', 'nota-azul', 'nota-dorada', 'nota-rosa', 'nota-verde', 'campana', 'meta', 'puerta', 'tarta', 'cartel-continuara', 'candado', 'icono-objeto', 'clave', 'boton-izq', 'boton-der', 'boton-saltar', 'boton-cantar', 'boton-pausa'];
 
-// [clave de textura y animación, datos] de cada animación del índice de fotogramas
-function animacionesFotogramas(indice) {
+// [clave de textura y animación, datos] de cada animación del índice de fotogramas de un personaje
+function animacionesFotogramas(indice, personaje) {
   const lista = [];
   for (const [etapa, modos] of Object.entries(indice || {})) {
     if (etapa.startsWith('_')) continue;
     for (const [modo, m] of Object.entries(modos)) {
-      for (const [anim, a] of Object.entries(m.animaciones)) lista.push([claveFotogramas(etapa, modo, anim), { ...a, ancho: m.ancho, alto: m.alto }]);
+      for (const [anim, a] of Object.entries(m.animaciones)) lista.push([claveFotogramas(etapa, modo, anim, personaje), { ...a, ancho: m.ancho, alto: m.alto }]);
     }
   }
   return lista;
@@ -55,13 +57,15 @@ export class BootScene extends Phaser.Scene {
         for (const pieza of Object.keys(rig.etapas[e].piezas)) this.load.svg(`sofia-${e}-${pieza}`, `sprites/sofia/${e}/${pieza}.svg`, S);
       }
     });
-    // Animaciones sacadas de los vídeos (tools/video-a-sprites.mjs); las etapas sin vídeo se dibujan con el SVG por piezas
-    this.load.json('fotogramas-sofia', 'sprites/sofia/fotogramas.json');
-    this.load.once('filecomplete-json-fotogramas-sofia', (k, t, indice) => {
-      for (const [clave, info] of animacionesFotogramas(indice)) {
-        this.load.spritesheet(clave, `sprites/sofia/${info.archivo}`, { frameWidth: info.ancho, frameHeight: info.alto });
-      }
-    });
+    // Animaciones sacadas de los vídeos (tools/video-a-sprites.mjs); las etapas sin vídeo se dibujan con SVG
+    for (const p of PERSONAJES_VIDEO) {
+      this.load.json(`fotogramas-${p}`, `sprites/${p}/fotogramas.json`);
+      this.load.once(`filecomplete-json-fotogramas-${p}`, (k, t, indice) => {
+        for (const [clave, info] of animacionesFotogramas(indice, p)) {
+          this.load.spritesheet(clave, `sprites/${p}/${info.archivo}`, { frameWidth: info.ancho, frameHeight: info.alto });
+        }
+      });
+    }
     for (const e of ETAPAS_MIRIAM) this.load.svg(`miriam-${e}`, `sprites/miriam/${e}/cuerpo.svg`, S);
     for (const n of Object.keys(ENEMIGOS)) this.load.svg(n, `sprites/enemigos/${n}.svg`, S);
     for (const n of ESCENARIO) this.load.svg(n, `sprites/escenario/${n}.svg`, S);
@@ -89,15 +93,17 @@ export class BootScene extends Phaser.Scene {
       const p = this.cache.json.get(`musica-${clave}`);
       if (p) PISTAS[clave] = p;
     }
-    for (const [clave, info] of animacionesFotogramas(this.cache.json.get('fotogramas-sofia'))) {
-      if (!this.textures.exists(clave) || this.anims.exists(clave)) continue;
-      this.anims.create({
-        key: clave,
-        frames: this.anims.generateFrameNumbers(clave, { start: 0, end: info.fotogramas - 1 }),
-        frameRate: info.fps,
-        repeat: info.bucle ? -1 : 0,
-        yoyo: !!info.vaiven,
-      });
+    for (const p of PERSONAJES_VIDEO) {
+      for (const [clave, info] of animacionesFotogramas(this.cache.json.get(`fotogramas-${p}`), p)) {
+        if (!this.textures.exists(clave) || this.anims.exists(clave)) continue;
+        this.anims.create({
+          key: clave,
+          frames: this.anims.generateFrameNumbers(clave, { start: 0, end: info.fotogramas - 1 }),
+          frameRate: info.fps,
+          repeat: info.bucle ? -1 : 0,
+          yoyo: !!info.vaiven,
+        });
+      }
     }
     // La llama de vela-on.svg sola (las 28 primeras filas de su textura), para encender velas de cualquier altura
     const velaOn = this.textures.get('vela-on');

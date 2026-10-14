@@ -1,8 +1,9 @@
-// Convierte los vídeos de Sofía (docs/videos, fondo verde croma) en hojas de sprites para el juego.
-// Uso: npm run fotogramas
-// Lee tools/fotogramas-sofia.json (qué fotogramas van a cada animación) y genera:
-//   assets/sprites/sofia/<etapa>/fotogramas/<modo>-<animacion>.png  (rejilla de fotogramas)
-//   assets/sprites/sofia/fotogramas.json                              (índice que carga el juego)
+// Convierte los vídeos de los personajes (docs/videos, fondo verde croma) en hojas de sprites para el juego.
+// Uso: npm run fotogramas              (Sofía y Miriam)
+//      npm run fotogramas -- miriam    (solo un personaje)
+// Lee tools/fotogramas-<personaje>.json (qué fotogramas van a cada animación) y genera:
+//   assets/sprites/<personaje>/<etapa>/fotogramas/<modo>-<animacion>.png  (rejilla de fotogramas)
+//   assets/sprites/<personaje>/fotogramas.json                              (índice que carga el juego)
 // Todos los fotogramas de un mismo modo (p. ej. bebé a gatas) comparten tamaño y punto de apoyo (los pies),
 // así el personaje no baila al cambiar de animación, aunque vengan de vídeos distintos: cada vídeo se calibra
 // con su propia pose de referencia.
@@ -16,12 +17,11 @@ import sharp from 'sharp';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 const VIDEOS = join(RAIZ, 'docs', 'videos');
-const SALIDA = join(RAIZ, 'assets', 'sprites', 'sofia');
 const ESCALA_TEX = 2; // como en src/entities/Sofia.js: las texturas van al doble de resolución
 const ANCHO_MAX = 2048; // ancho máximo de textura seguro en móviles
 const MARGEN = 6; // píxeles de vídeo alrededor del personaje
 
-const config = JSON.parse(readFileSync(join(RAIZ, 'tools', 'fotogramas-sofia.json'), 'utf8'));
+const PERSONAJES = ['sofia', 'miriam'];
 
 // Color del fondo: la mediana de los píxeles del borde del fotograma (no todos los vídeos salen con el verde puro)
 function colorFondo(data, W, H) {
@@ -194,7 +194,7 @@ async function procesarVideo(nombreVideo, cfg, alto) {
   }
 }
 
-async function procesarModo(etapa, modo, cfg, indice) {
+async function procesarModo(salida, etapa, modo, cfg, indice) {
   // 1. Fotogramas de todos los vídeos del modo
   const anims = {};
   for (const [nombreVideo, cv] of Object.entries(cfg.videos)) {
@@ -221,9 +221,9 @@ async function procesarModo(etapa, modo, cfg, indice) {
   const origen = [Math.round((-L / fw) * 1000) / 1000, Math.round((-T / fh) * 1000) / 1000];
 
   // 3. Una rejilla por animación
-  const dirSalida = join(SALIDA, etapa, 'fotogramas');
+  const dirSalida = join(salida, etapa, 'fotogramas');
   mkdirSync(dirSalida, { recursive: true });
-  // altoJuego: lo que mide Sofía en el juego en la pose neutra (sirve para su cuerpo físico)
+  // altoJuego: lo que mide el personaje en el juego en la pose neutra (sirve para su cuerpo físico)
   const info = { ancho: fw, alto: fh, origen, altoJuego: cfg.alto, animaciones: {} };
   for (const [nombre, a] of Object.entries(anims)) {
     const total = a.lista.length;
@@ -250,13 +250,20 @@ async function procesarModo(etapa, modo, cfg, indice) {
   indice[etapa][modo] = info;
 }
 
-const indice = { _comentario: 'Generado por tools/video-a-sprites.mjs a partir de tools/fotogramas-sofia.json.' };
-for (const [etapa, modos] of Object.entries(config)) {
-  if (etapa.startsWith('_')) continue;
-  for (const [modo, cfg] of Object.entries(modos)) {
-    console.log(`${etapa} (${modo})`);
-    await procesarModo(etapa, modo, cfg, indice);
+const pedidos = process.argv.slice(2);
+for (const personaje of PERSONAJES) {
+  if (pedidos.length && !pedidos.includes(personaje)) continue;
+  const nombreConfig = `fotogramas-${personaje}.json`;
+  const config = JSON.parse(readFileSync(join(RAIZ, 'tools', nombreConfig), 'utf8'));
+  const salida = join(RAIZ, 'assets', 'sprites', personaje);
+  const indice = { _comentario: `Generado por tools/video-a-sprites.mjs a partir de tools/${nombreConfig}.` };
+  for (const [etapa, modos] of Object.entries(config)) {
+    if (etapa.startsWith('_')) continue;
+    for (const [modo, cfg] of Object.entries(modos)) {
+      console.log(`${personaje}: ${etapa} (${modo})`);
+      await procesarModo(salida, etapa, modo, cfg, indice);
+    }
   }
+  writeFileSync(join(salida, 'fotogramas.json'), JSON.stringify(indice, null, 2) + '\n');
+  console.log(`Índice escrito en assets/sprites/${personaje}/fotogramas.json`);
 }
-writeFileSync(join(SALIDA, 'fotogramas.json'), JSON.stringify(indice, null, 2) + '\n');
-console.log('Índice escrito en assets/sprites/sofia/fotogramas.json');

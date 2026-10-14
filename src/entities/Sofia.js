@@ -48,7 +48,8 @@ const ANIM_FOTOGRAMAS = {
   cantar: ['cantar'],
   soplar: ['soplar'],
 };
-export const claveFotogramas = (etapa, modo, anim) => `sofiaf-${etapa}-${modo}-${anim}`;
+// Clave de textura y animación de los fotogramas de vídeo (también los de Miriam)
+export const claveFotogramas = (etapa, modo, anim, personaje = 'sofia') => `${personaje}f-${etapa}-${modo}-${anim}`;
 const TEXTURA = { 'pierna-atras': 'pierna', 'pierna-delante': 'pierna', 'brazo-atras': 'brazo', 'brazo-delante': 'brazo', boca: 'boca-sonrisa' };
 
 export class Sofia extends Phaser.GameObjects.Container {
