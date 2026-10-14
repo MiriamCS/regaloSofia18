@@ -615,7 +615,7 @@ export class Bocadillo {
   }
 }
 
-// Miriam: mira hacia Sofía y le habla con un bocadillo. Las edades con vídeo (la niña) se animan con sus fotogramas:
+// Miriam: mira hacia Sofía y le habla con un bocadillo. Las edades con vídeo (niña y preadolescente) se animan con sus fotogramas:
 // callada o hablando hacia el lado de Sofía y, si Sofía se pasa al otro lado, se gira pasando por la vista de frente.
 // Las demás son un dibujo SVG que se voltea.
 export class Miriam {
@@ -654,12 +654,14 @@ export class Miriam {
     if (!this.lado) this.lado = lado;
     if (this.girando) return;
     if (lado !== this.lado) {
-      // el vídeo gira de derecha a izquierda; al revés se reproduce hacia atrás
+      // cada vídeo trae el giro en un solo sentido ('girar-izq' o 'girar-der', por el lado en el que acaba);
+      // el otro sentido es el mismo giro hacia atrás
       this.lado = lado;
       this.girando = true;
       this.animActual = 'girar';
-      if (lado === 'izq') this.img.play(this.clave('girar'));
-      else this.img.playReverse(this.clave('girar'));
+      const otro = lado === 'izq' ? 'der' : 'izq';
+      if (this.scene.anims.exists(this.clave(`girar-${lado}`))) this.img.play(this.clave(`girar-${lado}`));
+      else this.img.playReverse(this.clave(`girar-${otro}`));
       return;
     }
     // mueve la boca mientras se escribe el bocadillo; después se queda callada mirando a Sofía

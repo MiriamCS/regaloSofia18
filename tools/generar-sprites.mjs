@@ -39,7 +39,7 @@ function exportarRig(nombre, etapas, generador) {
 }
 
 exportarRig('sofia', Object.keys(ETAPAS), piezasSofia);
-exportarRig('miriam', ['preado', 'adolescente', 'adulta'], piezasMiriam);
+exportarRig('miriam', ['adolescente', 'adulta'], piezasMiriam);
 
 // Los enemigos y casi todo el escenario son dibujos de Miriam (originales/ -> npm run imagenes); aquí
 // solo se generan los botones táctiles, para no sobrescribirlos.

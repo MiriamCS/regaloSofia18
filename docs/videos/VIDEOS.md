@@ -231,7 +231,8 @@ niña, con esta descripción (la falda se mueve al correr y al saltar).
    (golpe), `celebrar` y `soplar`. Los ciclos (`bucle: true`) deben empezar y acabar en la misma postura.
    Opciones para arreglar vídeos imperfectos: `recorte` (zona del vídeo que se usa, para quitar suelos o dibujos
    que se cuelan), `limpiar` (en una zona borra todo menos los colores indicados: quita la caja que empuja y deja
-   las manos), `sin` (tramo de fotogramas que se salta), `vaiven` (el bucle va y vuelve, para tramos que no acaban
+   las manos), `sin` (tramo de fotogramas que se salta), `sueltos` (borra los trozos pequeños sueltos del cuerpo, como un rizo suelto: `0.02` = menores que el 2 % del
+   dibujo), `vaiven` (el bucle va y vuelve, para tramos que no acaban
    en la postura en que empiezan), `anclar: "pies"` (en los saltos, los pies al suelo:
    la altura la pone el juego), `anclar: "centro"` (voltereta) y `centrar` (si en ese tramo se ha desplazado).
 3. `npm run fotogramas`: quita el verde, alinea los pies, escala al tamaño del juego y genera las hojas en
@@ -243,9 +244,10 @@ niña, con esta descripción (la falda se mueve al correr y al saltar).
    caja). Con gafas también se usa el SVG.
 6. **Miriam:** sus vídeos se configuran igual, en [`tools/fotogramas-miriam.json`](../../tools/fotogramas-miriam.json)
    (`npm run fotogramas -- miriam` para generar solo los suyos). Miriam no se mueve: necesita `callada-der`,
-   `habla-der`, `habla-izq`, `callada-izq` y `girar` (de derecha a izquierda pasando por la vista de frente; al
-   revés el juego lo reproduce hacia atrás). Mira siempre hacia Sofía y mueve la boca mientras se escribe su
-   bocadillo. De momento solo la niña (`nina_Miriam.mp4`, niveles 0-2) va con vídeo; las demás edades siguen en SVG.
+   `habla-der`, `habla-izq`, `callada-izq` y un giro pasando por la vista de frente, con el nombre del lado en el que
+   acaba (`girar-izq` o `girar-der`; el otro sentido el juego lo reproduce hacia atrás). Mira siempre hacia Sofía y mueve la boca mientras se escribe su
+   bocadillo. Van con vídeo la niña (`nina_Miriam.mp4`, niveles 0-2) y la preadolescente (`preado-Miriam.mp4`, niveles 3-7);
+   la adolescente y la adulta siguen en SVG.
 
 ## 7. Consejos al generar
 

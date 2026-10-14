@@ -17,8 +17,8 @@ export const ANCHO_VELA = 16;
 export const altoVela = (n) => 120 + n * 12;
 export const claveVela = (n) => `vela-alto-${n}`;
 const VELAS_NIVELES = 19;
-// Edades de Miriam dibujadas en SVG (la niña va con los fotogramas de su vídeo)
-const ETAPAS_MIRIAM = ['preado', 'adolescente', 'adulta'];
+// Edades de Miriam dibujadas en SVG (niña y preadolescente van con los fotogramas de sus vídeos)
+const ETAPAS_MIRIAM = ['adolescente', 'adulta'];
 const PERSONAJES_VIDEO = ['sofia', 'miriam'];
 // Sofía de frente, recortada de su hoja de personaje (tools/sofia-frente.mjs): textura 'sofia-frente-<edad>'
 const ETAPAS_FRENTE = ['bebe', 'nina', 'preado', 'adolescente', 'adulta'];

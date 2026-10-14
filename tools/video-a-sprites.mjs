@@ -98,6 +98,34 @@ function limpiar(data, W, H, { zona: [x0, y0, x1, y1], conservar, tolerancia = 6
   }
 }
 
+// 'sueltos': borra los trozos que no están unidos al cuerpo y son pequeños (menos de esa fracción del trozo más
+// grande), p. ej. un rizo que el vídeo dibuja suelto junto a la coleta
+function quitarSueltos(data, W, H, fraccion) {
+  const marca = new Int32Array(W * H).fill(-1);
+  const tamanos = [];
+  const pila = [];
+  for (let i = 0; i < W * H; i++) {
+    if (marca[i] !== -1 || data[i * 4 + 3] < 40) continue;
+    const id = tamanos.length;
+    let n = 0;
+    marca[i] = id;
+    pila.push(i);
+    while (pila.length) {
+      const p = pila.pop();
+      n++;
+      const x = p % W;
+      for (const q of [x > 0 ? p - 1 : -1, x < W - 1 ? p + 1 : -1, p - W, p + W]) {
+        if (q < 0 || q >= W * H || marca[q] !== -1 || data[q * 4 + 3] < 40) continue;
+        marca[q] = id;
+        pila.push(q);
+      }
+    }
+    tamanos.push(n);
+  }
+  const minimo = Math.max(...tamanos, 0) * fraccion;
+  for (let i = 0; i < W * H; i++) if (marca[i] !== -1 && tamanos[marca[i]] < minimo) data[i * 4 + 3] = 0;
+}
+
 const mediana = (v) => [...v].sort((a, b) => a - b)[Math.floor(v.length / 2)];
 
 // Fotogramas de una animación: de 'de' a 'a' cada 'paso', sin el tramo 'sin' ([desde, hasta]) si lo hay
@@ -140,6 +168,7 @@ async function procesarVideo(nombreVideo, cfg, alto) {
       quitarVerde(data, W, H);
       if (cfg.recorte) recortar(data, W, H, cfg.recorte);
       if (cfg.limpiar) limpiar(data, W, H, cfg.limpiar);
+      if (cfg.sueltos) quitarSueltos(data, W, H, cfg.sueltos);
       fot.set(n, { data, caja: cajaOpaca(data, W, H) });
     }
 
