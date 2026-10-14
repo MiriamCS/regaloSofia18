@@ -85,5 +85,38 @@
         }
       }
     }
+  },
+  "preado": {
+    "pie": {
+      "alto": 96,
+      "videos": {
+        "preado-1-andar-correr.mp4": {
+          "referencia": [0, 26],
+          "animaciones": {
+            "reposo": { "de": 0, "a": 26, "fps": 8, "bucle": true },
+            "andar": { "de": 41, "a": 67, "fps": 24, "bucle": true, "centrar": true },
+            "correr": { "de": 100, "a": 123, "fps": 24, "bucle": true, "centrar": true }
+          }
+        },
+        "preado-2-saltos.mp4": {
+          "referencia": [117, 128],
+          "animaciones": {
+            "saltar": { "de": 36, "a": 54, "fps": 30, "bucle": false, "anclar": "pies" },
+            "caer": { "de": 90, "a": 97, "fps": 24, "bucle": false, "anclar": "pies" },
+            "doble": { "de": 129, "a": 180, "paso": 2, "fps": 40, "bucle": false, "anclar": "centro" }
+          }
+        },
+        "preado-3-acciones.mp4": {
+          "limpiar": { "zona": [860, 505, 960, 600], "conservar": [[230, 158, 110]], "tolerancia": 60 },
+          "referencia": [38, 46],
+          "animaciones": {
+            "empujar": { "de": 0, "a": 23, "paso": 2, "fps": 12, "bucle": true },
+            "cantar": { "de": 53, "a": 99, "paso": 2, "fps": 12, "bucle": true, "vaiven": true },
+            "danio": { "de": 100, "a": 118, "fps": 30, "bucle": false },
+            "celebrar": { "de": 160, "a": 175, "fps": 24, "bucle": true, "anclar": "pies" }
+          }
+        }
+      }
+    }
   }
 }

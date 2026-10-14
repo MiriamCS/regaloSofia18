@@ -264,5 +264,93 @@
         }
       }
     }
+  },
+  "preado": {
+    "pie": {
+      "ancho": 177,
+      "alto": 204,
+      "origen": [
+        0.446,
+        0.975
+      ],
+      "altoJuego": 96,
+      "animaciones": {
+        "reposo": {
+          "archivo": "preado/fotogramas/pie-reposo.png",
+          "fotogramas": 27,
+          "fps": 8,
+          "bucle": true
+        },
+        "andar": {
+          "archivo": "preado/fotogramas/pie-andar.png",
+          "fotogramas": 27,
+          "fps": 24,
+          "bucle": true
+        },
+        "correr": {
+          "archivo": "preado/fotogramas/pie-correr.png",
+          "fotogramas": 24,
+          "fps": 24,
+          "bucle": true
+        },
+        "saltar": {
+          "archivo": "preado/fotogramas/pie-saltar.png",
+          "fotogramas": 19,
+          "fps": 30,
+          "bucle": false
+        },
+        "caer": {
+          "archivo": "preado/fotogramas/pie-caer.png",
+          "fotogramas": 8,
+          "fps": 24,
+          "bucle": false
+        },
+        "doble": {
+          "archivo": "preado/fotogramas/pie-doble.png",
+          "fotogramas": 26,
+          "fps": 40,
+          "bucle": false
+        },
+        "empujar": {
+          "archivo": "preado/fotogramas/pie-empujar.png",
+          "fotogramas": 12,
+          "fps": 12,
+          "bucle": true,
+          "alcance": [
+            47.9,
+            47.8,
+            47.8,
+            47.8,
+            47.8,
+            47.8,
+            47.8,
+            47.8,
+            47.8,
+            47.8,
+            47.8,
+            47.8
+          ]
+        },
+        "cantar": {
+          "archivo": "preado/fotogramas/pie-cantar.png",
+          "fotogramas": 24,
+          "fps": 12,
+          "bucle": true,
+          "vaiven": true
+        },
+        "danio": {
+          "archivo": "preado/fotogramas/pie-danio.png",
+          "fotogramas": 19,
+          "fps": 30,
+          "bucle": false
+        },
+        "celebrar": {
+          "archivo": "preado/fotogramas/pie-celebrar.png",
+          "fotogramas": 16,
+          "fps": 24,
+          "bucle": true
+        }
+      }
+    }
   }
 }

@@ -50,7 +50,7 @@ export class BootScene extends Phaser.Scene {
     this.load.json('rig-miriam', 'sprites/miriam/rig.json');
     this.load.json('indice-musica', 'music/indice.json');
     this.load.once('filecomplete-json-rig-sofia', (k, t, rig) => {
-      // el bebé no tiene piezas: va solo con fotogramas de vídeo
+      // el bebé, la niña y la preadolescente no tienen piezas: van solo con fotogramas de vídeo
       for (const e of Object.keys(rig.etapas)) {
         for (const pieza of Object.keys(rig.etapas[e].piezas)) this.load.svg(`sofia-${e}-${pieza}`, `sprites/sofia/${e}/${pieza}.svg`, S);
       }
@@ -96,6 +96,7 @@ export class BootScene extends Phaser.Scene {
         frames: this.anims.generateFrameNumbers(clave, { start: 0, end: info.fotogramas - 1 }),
         frameRate: info.fps,
         repeat: info.bucle ? -1 : 0,
+        yoyo: !!info.vaiven,
       });
     }
     // La llama de vela-on.svg sola (las 28 primeras filas de su textura), para encender velas de cualquier altura

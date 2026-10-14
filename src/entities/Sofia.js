@@ -1,4 +1,4 @@
-// Sofía: personaje por piezas SVG animado por código (cinemática directa), o, en las etapas con vídeo (bebé y niña),
+// Sofía: personaje por piezas SVG animado por código (cinemática directa), o, en las etapas con vídeo (bebé, niña y preadolescente),
 // solo con los fotogramas sacados de sus vídeos.
 // El contenedor tiene el origen en los pies; el cuerpo físico es un rectángulo encima.
 import Phaser from 'phaser';
@@ -34,7 +34,7 @@ function profundidad(nombre) {
 }
 // Desplazamiento lateral de las extremidades en reposo
 const DX = { 'pierna-atras': -4, 'pierna-delante': 4, 'brazo-atras': -8, 'brazo-delante': 9 };
-// Etapas con vídeo (bebé y niña): animación de fotogramas de cada estado, por orden de preferencia; si no hay ninguna, reposo
+// Etapas con vídeo (bebé, niña y preadolescente): animación de fotogramas de cada estado, por orden de preferencia; si no hay ninguna, reposo
 const ANIM_FOTOGRAMAS = {
   andar: ['andar'],
   correr: ['correr', 'andar'],

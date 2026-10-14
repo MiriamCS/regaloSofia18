@@ -4,7 +4,7 @@ La animación de Sofía se saca de vídeos generados con IA (Flow/Veo, Sora, Kli
 personaje de [`docs/concept-art/sofia`](../concept-art/sofia). De cada vídeo se extraen los fotogramas, se quita
 el fondo verde y se montan las hojas de sprites del juego (`tools/video-a-sprites.mjs`).
 
-El bebé y la niña se animan **solo** con los fotogramas de sus vídeos (ya no tienen personaje SVG). Las demás
+El bebé, la niña y la preadolescente se animan **solo** con los fotogramas de sus vídeos (ya no tienen personaje SVG). Las demás
 edades se siguen dibujando con el personaje SVG por piezas hasta que tengan sus vídeos. Qué tramo de cada vídeo va a cada
 animación se decide en `tools/fotogramas-sofia.json`.
 
@@ -42,6 +42,9 @@ animación se decide en `tools/fotogramas-sofia.json`.
 | `nina-1-andar-correr` | ✅ En el juego: reposo, andar y correr. Se recorta la franja gris del suelo y la clave de sol que aparece a la izquierda |
 | `nina-2-saltos` | ✅ En el juego: saltar, caer y la voltereta del doble salto (sin los fotogramas 130-140, que salen mal) |
 | `nina-3-acciones` | ✅ En el juego: empujar (contra una caja que sale en el vídeo y se borra), cantar, golpe y celebrar |
+| `preado-1-andar-correr` | ✅ En el juego: reposo, andar y correr |
+| `preado-2-saltos` | ✅ En el juego: saltar, caer y la voltereta del doble salto (el vídeo va a 30 fps y la voltereta empieza ya girada) |
+| `preado-3-acciones` | ✅ En el juego: empujar (se borra una raya que sale bajo las manos), cantar (en vaivén), golpe y celebrar. No tiene pose neutra: la referencia es el principio del canto |
 | Resto de edades | ⏳ |
 
 ---
@@ -223,12 +226,13 @@ niña, con esta descripción (la falda se mueve al correr y al saltar).
 
 1. Deja el clip en `docs/videos` con su nombre.
 2. En [`tools/fotogramas-sofia.json`](../../tools/fotogramas-sofia.json), apunta qué fotogramas van a cada
-   animación (se cuentan desde 0, a 24 por segundo). Animaciones que entiende el juego: `reposo`, `andar`,
+   animación (se cuentan desde 0, a los fotogramas por segundo del vídeo: casi siempre 24). Animaciones que entiende el juego: `reposo`, `andar`,
    `correr`, `saltar` (subida), `caer` (bajada), `doble` (voltereta del doble salto), `empujar`, `cantar`, `danio`
    (golpe), `celebrar` y `soplar`. Los ciclos (`bucle: true`) deben empezar y acabar en la misma postura.
    Opciones para arreglar vídeos imperfectos: `recorte` (zona del vídeo que se usa, para quitar suelos o dibujos
    que se cuelan), `limpiar` (en una zona borra todo menos los colores indicados: quita la caja que empuja y deja
-   las manos), `sin` (tramo de fotogramas que se salta), `anclar: "pies"` (en los saltos, los pies al suelo:
+   las manos), `sin` (tramo de fotogramas que se salta), `vaiven` (el bucle va y vuelve, para tramos que no acaban
+   en la postura en que empiezan), `anclar: "pies"` (en los saltos, los pies al suelo:
    la altura la pone el juego), `anclar: "centro"` (voltereta) y `centrar` (si en ese tramo se ha desplazado).
 3. `npm run fotogramas`: quita el verde, alinea los pies, escala al tamaño del juego y genera las hojas en
    `assets/sprites/sofia/<edad>/fotogramas` y el índice `assets/sprites/sofia/fotogramas.json`.

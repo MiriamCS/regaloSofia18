@@ -19,17 +19,10 @@ const BOCA = '#7a2a26';
 const LENGUA = '#d9606a';
 const LUNAR = '#3a2018';
 const DORADO = '#e8b84a';
-const FLOR_CENTRO = '#f5d26b';
 
 // Las medidas (piernas, torso, cabeza) no cambian respecto al diseño provisional: la física de los niveles depende de ellas.
-// El bebé y la niña no están aquí: se animan solo con los fotogramas de sus vídeos (tools/video-a-sprites.mjs).
+// El bebé, la niña y la preadolescente no están aquí: se animan solo con los fotogramas de sus vídeos (tools/video-a-sprites.mjs).
 export const ETAPAS = {
-  // S3: vestido de flores con rebeca azul marino, medias y botas con hebilla; melena ondulada con raya al medio
-  preado: {
-    piernas: 32, torso: 32, anchoTorso: 27, cabeza: 36,
-    pelo: { estilo: 'ondulado', largo: 'pecho' },
-    traje: 'rebeca',
-  },
   // S1: camiseta azul marino con estrella, vaqueros anchos y zapatillas blancas; melena muy rizada hasta la cintura
   adolescente: {
     piernas: 36, torso: 34, anchoTorso: 27, cabeza: 36,
@@ -46,7 +39,6 @@ export const ETAPAS = {
 
 // Colores de cada traje
 const ROPA = {
-  rebeca: { tela: '#1d2850', claro: '#2c3a6c', vestido: '#26325f', flores: ['#a99be8', '#7f9be6', '#c3b4f2'], medias: '#2b2d3f', bota: '#1b1d27', hebilla: '#aeb6c6' },
   camiseta: { tela: '#273461', claro: '#33427a', estrella: '#86a3c6', vaquero: '#283a58', costura: '#41587e', zapa: '#eef0f4', zapaDetalle: '#93afd3' },
   gala: { tela: '#1e2a55', claro: '#2b3a70', zapato: '#1d2853' },
 };
@@ -215,7 +207,7 @@ function texturaPelo(e, pts, semilla, vertical) {
     t += mechones(xs, () => y0 + 2, () => y1, paso, ancho, semilla);
     t += mechones(xs.map((x) => x + sep / 2), () => y0 + 6, () => y1, paso, ancho * 0.8, semilla + 1, PELO_OSCURO, 1.1);
   }
-  if (estilo !== 'ondulado') t += bucles(pts, estilo === 'rizado' ? 0.45 : 0.7, semilla + 2, PELO_BRILLO, 1.1);
+  t += bucles(pts, estilo === 'rizado' ? 0.45 : 0.7, semilla + 2, PELO_BRILLO, 1.1);
   return t;
 }
 
@@ -231,19 +223,7 @@ function pierna(e) {
   const L = e.piernas;
   let w = 10.5;
   let cuerpo = '';
-  if (e.traje === 'rebeca') {
-    const c = ROPA.rebeca;
-    const x0 = -w / 2;
-    const caña = 13;
-    cuerpo += `<rect x="${f(x0)}" y="${f(caderaY - 2)}" width="${f(w)}" height="${f(L - 2)}" rx="${f(w / 2)}" fill="${c.medias}" ${trazo()}/>`;
-    // bota: caña + pie
-    cuerpo += `<path d="M ${f(x0 - 1)} ${f(-caña)} L ${f(x0 + w + 1)} ${f(-caña)} L ${f(x0 + w + 1)} -6 L ${f(x0 - 1)} -6 Z" fill="${c.bota}" ${trazo()}/>`;
-    cuerpo += pie(x0, 16, c.bota, 9);
-    cuerpo += `<path d="M ${f(x0 + 1)} -1.8 L ${f(x0 + 17)} -1.8" stroke="#3a3f55" stroke-width="1.3" stroke-linecap="round"/>`;
-    // correa con hebilla
-    cuerpo += `<path d="M ${f(x0 - 0.5)} ${f(-caña + 4)} L ${f(x0 + w + 0.5)} ${f(-caña + 4)}" stroke="#2c2f3d" stroke-width="2.4"/>`;
-    cuerpo += `<rect x="${f(x0 + w - 3.5)}" y="${f(-caña + 2.4)}" width="3.4" height="3.2" fill="none" stroke="${c.hebilla}" stroke-width="1.1"/>`;
-  } else if (e.traje === 'camiseta') {
+  if (e.traje === 'camiseta') {
     const c = ROPA.camiseta;
     const x0 = -w / 2;
     // zapatilla blanca con detalle azul claro
@@ -282,14 +262,7 @@ function brazo(e) {
   let cuerpo = '';
   const manga = (color, largo) => `<path d="M ${-w / 2 - 1} ${f(hombroY - 3)} h ${w + 2} v ${f(largo)} q ${f(-(w + 2) / 2)} 2 ${-w - 2} 0 Z" fill="${color}" ${trazo()}/>`;
   const brazoPiel = `<rect x="${-w / 2}" y="${f(hombroY - 3)}" width="${w}" height="${f(L - 2)}" rx="${w / 2}" fill="${PIEL}" ${trazo()}/>`;
-  const largaEntera = (color) => `<rect x="${-w / 2}" y="${f(hombroY - 3)}" width="${w}" height="${f(L - 3)}" rx="${w / 2}" fill="${color}" ${trazo()}/>`;
-  if (e.traje === 'rebeca') {
-    const c = ROPA.rebeca;
-    cuerpo += largaEntera(c.tela);
-    cuerpo += mano(yMano);
-    cuerpo += `<rect x="${-w / 2 - 0.5}" y="${f(yMano - 8)}" width="${w + 1}" height="4" rx="1.5" fill="${c.claro}" ${trazo(1.4)}/>`;
-    cuerpo += `<path d="M -2.5 ${f(yMano - 7.5)} v 3 M 0 ${f(yMano - 7.5)} v 3 M 2.5 ${f(yMano - 7.5)} v 3" stroke="${c.tela}" stroke-width="0.8"/>`;
-  } else if (e.traje === 'camiseta') {
+  if (e.traje === 'camiseta') {
     cuerpo += brazoPiel;
     cuerpo += manga(ROPA.camiseta.tela, L * 0.36);
     cuerpo += mano(yMano);
@@ -307,36 +280,6 @@ function tronco(W, arriba, abajo, relleno, ancho = ANCHO_TRAZO) {
   return `<path d="M ${f(-W / 2 + 3)} ${f(arriba)} Q ${f(-W / 2 - 1)} ${f(arriba + 2)} ${f(-W / 2)} ${f(arriba + 9)} L ${f(-W / 2 + 1)} ${f(abajo)} L ${f(W / 2 - 1)} ${f(abajo)} L ${f(W / 2)} ${f(arriba + 9)} Q ${f(W / 2 + 1)} ${f(arriba + 2)} ${f(W / 2 - 3)} ${f(arriba)} Z" fill="${relleno}" ${trazo(ancho)}/>`;
 }
 
-function florecita(x, y, r, color) {
-  let s = '';
-  for (let i = 0; i < 5; i++) {
-    const a = (i / 5) * Math.PI * 2 - Math.PI / 2;
-    s += `<circle cx="${f(x + Math.cos(a) * r)}" cy="${f(y + Math.sin(a) * r)}" r="${f(r * 0.75)}" fill="${color}"/>`;
-  }
-  return s + `<circle cx="${f(x)}" cy="${f(y)}" r="${f(r * 0.5)}" fill="${FLOR_CENTRO}"/>`;
-}
-
-// Estampado de flores pequeñas dentro de un polígono
-function estampado(pts, n, colores, semilla, r = 1.1) {
-  const rnd = azar(semilla);
-  const [x0, y0, x1, y1] = caja(pts);
-  let s = '';
-  let puestos = 0;
-  for (let i = 0; i < n * 6 && puestos < n; i++) {
-    const x = x0 + rnd() * (x1 - x0);
-    const y = y0 + rnd() * (y1 - y0);
-    if (!dentro(pts, x, y)) continue;
-    s += florecita(x, y, r, colores[Math.floor(rnd() * colores.length)]);
-    puestos++;
-  }
-  return s;
-}
-
-// Falda acampanada: de la cintura (y0) al bajo (y1), con el bajo ligeramente curvo
-function poligonoFalda(W, y0, y1, vuelo) {
-  return [[-W / 2 + 1, y0], [W / 2 - 1, y0], [W / 2 + vuelo, y1], [0, y1 + 3], [-W / 2 - vuelo, y1]];
-}
-
 function caminoFalda(W, y0, y1, vuelo) {
   return `M ${f(-W / 2 + 1)} ${f(y0)} L ${f(W / 2 - 1)} ${f(y0)} L ${f(W / 2 + vuelo)} ${f(y1)} Q 0 ${f(y1 + 5)} ${f(-W / 2 - vuelo)} ${f(y1)} Z`;
 }
@@ -351,22 +294,7 @@ function torso(e) {
   cuerpo += `<rect x="-5" y="${f(cuelloY - 4)}" width="10" height="10" fill="${PIEL_SOMBRA}" ${trazo()}/>`;
   let bajoFalda = abajoY;
 
-  if (e.traje === 'rebeca') {
-    const c = ROPA.rebeca;
-    // falda del vestido de flores
-    const y0 = caderaY - 5;
-    const y1 = caderaY + e.piernas * 0.45;
-    bajoFalda = y1 + 5;
-    cuerpo += `<path d="${caminoFalda(W, y0, y1, 5)}" fill="${c.vestido}" ${trazo()}/>`;
-    cuerpo += estampado(poligonoFalda(W, y0 + 1, y1 - 1, 4), 9, c.flores, 61, 1.1);
-    // rebeca abierta: se ve el vestido por el centro
-    cuerpo += tronco(W, arriba, caderaY - 1, c.tela);
-    const panel = [[-3, arriba + 1], [6, arriba + 1], [7, caderaY - 1], [-4, caderaY - 1]];
-    cuerpo += `<path d="M -3 ${f(arriba + 1)} Q 1.5 ${f(arriba + 4)} 6 ${f(arriba + 1)} L 7 ${f(caderaY - 1)} L -4 ${f(caderaY - 1)} Z" fill="${c.vestido}" ${trazo(1.4)}/>`;
-    cuerpo += estampado(panel, 4, c.flores, 67, 1);
-    cuerpo += `<path d="M ${f(-W / 2 + 1)} ${f(caderaY - 2.5)} L -4 ${f(caderaY - 2.5)} M 7 ${f(caderaY - 2.5)} L ${f(W / 2 - 1)} ${f(caderaY - 2.5)}" stroke="${c.claro}" stroke-width="2.6"/>`;
-    for (const dy of [9, 16]) cuerpo += `<circle cx="-5.2" cy="${f(arriba + dy)}" r="1" fill="${c.claro}"/>`;
-  } else if (e.traje === 'camiseta') {
+  if (e.traje === 'camiseta') {
     const c = ROPA.camiseta;
     // cadera del vaquero (entre las dos piernas)
     cuerpo += `<rect x="${f(-W / 2 + 1)}" y="${f(caderaY - 4)}" width="${f(W - 2)}" height="${f(abajoY - caderaY + 4)}" rx="3" fill="${c.vaquero}" ${trazo()}/>`;
@@ -535,7 +463,6 @@ function bajoMelena(e) {
   const { hombroY, caderaY, cabezaCY, cabezaR: R } = medidas(e);
   const l = e.pelo.largo;
   if (l === 'cintura') return caderaY - 1;
-  if (l === 'pecho') return hombroY + e.torso * 0.5;
   return cabezaCY + R * 0.7;
 }
 
@@ -585,7 +512,7 @@ function peloDelante(e) {
   const H = (dx, dy) => [dx, cabezaCY + dy];
   const rizado = estilo === 'rizado';
   // hasta dónde baja el mechón del lado lejano (por delante del hombro)
-  const mechon = largo === 'cintura' ? cuelloY + 16 - cabezaCY : largo === 'pecho' ? cuelloY + 10 - cabezaCY : R * 0.45;
+  const mechon = largo === 'cintura' ? cuelloY + 16 - cabezaCY : R * 0.45;
   const ext = rizado ? 3 : 1.5;
   const lineaPelo = [H(R * 0.62, -R * 0.42), H(R * 0.25, -R * 0.62), H(2, -R * 0.7), H(-R * 0.3, -R * 0.6), H(-R * 0.75, -R * 0.32)];
   const base = [
@@ -612,7 +539,7 @@ function peloDelante(e) {
   }
   textura += `<path d="${d}" fill="none" stroke="${PELO_BRILLO}" stroke-width="1.3" stroke-linecap="round"/>`;
   textura += mechones([R * 0.85, R + 3.5], () => cabezaCY, () => cabezaCY + mechon, rizado ? 5 : 10, 2.2, 31);
-  if (estilo !== 'ondulado') textura += bucles(pts, 0.35, 41);
+  textura += bucles(pts, 0.35, 41);
   let cuerpo = masaPelo(pts, ampl, 404, textura);
   // la raya al medio
   cuerpo += `<path d="M 2 ${f(cabezaTop + 1.5)} Q 1.6 ${f(cabezaTop + 4)} 2 ${f(cabezaCY - R * 0.68)}" fill="none" stroke="${PIEL_SOMBRA}" stroke-width="1.3" stroke-linecap="round"/>`;

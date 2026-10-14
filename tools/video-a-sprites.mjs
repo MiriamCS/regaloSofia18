@@ -186,7 +186,7 @@ async function procesarVideo(nombreVideo, cfg, alto) {
       }
       // alcance: hasta dónde llega por delante en cada fotograma (las manos al empujar), en unidades del juego
       // desde el centro de los pies
-      animaciones[nombre] = { lista, fps: a.fps, bucle: !!a.bucle, alcance: frentes.map((x) => Math.round((x / ESCALA_TEX) * 10) / 10) };
+      animaciones[nombre] = { lista, fps: a.fps, bucle: !!a.bucle, vaiven: !!a.vaiven, alcance: frentes.map((x) => Math.round((x / ESCALA_TEX) * 10) / 10) };
     }
     return animaciones;
   } finally {
@@ -242,6 +242,8 @@ async function procesarModo(etapa, modo, cfg, indice) {
     info.animaciones[nombre] = { archivo: `${etapa}/fotogramas/${archivo}`, fotogramas: total, fps: a.fps, bucle: a.bucle };
     // el juego retrasa el dibujo al empujar para que las manos se queden en el borde de la caja
     if (nombre === 'empujar') info.animaciones[nombre].alcance = a.alcance;
+    // 'vaiven': el bucle va y vuelve (para tramos que no acaban en la misma postura en que empiezan)
+    if (a.vaiven) info.animaciones[nombre].vaiven = true;
     console.log(`  ${etapa}/${archivo}: ${total} fotogramas de ${fw}x${fh}`);
   }
   indice[etapa] = indice[etapa] || {};
