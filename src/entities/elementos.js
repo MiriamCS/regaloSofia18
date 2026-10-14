@@ -617,13 +617,22 @@ export class Bocadillo {
 
 // Miriam: mira hacia Sofía y le habla con un bocadillo. Las edades con vídeo (niña y preadolescente) se animan con sus fotogramas:
 // callada o hablando hacia el lado de Sofía y, si Sofía se pasa al otro lado, se gira pasando por la vista de frente.
-// Las demás son un dibujo SVG que se voltea.
+// Las demás son un dibujo SVG que se voltea. Con 'sprite' en la leyenda (p. ej. 'carton') es una figura fija que ni se
+// gira ni respira: solo se tambalea un poco.
 export class Miriam {
   constructor(scene, o, etapa, textoPista) {
     this.scene = scene;
     this.x = o.pieX;
     this.y = o.pieY;
     this.etapa = etapa;
+    if (o.p.sprite) {
+      this.fija = true;
+      this.img = scene.add.image(this.x, this.y, `miriam-${o.p.sprite}`).setOrigin(0.5, 1).setScale(ESC).setDepth(45);
+      this.bocadillo = new Bocadillo(scene, this.x, this.y - this.img.displayHeight - 12, textoPista);
+      this.radio = o.p.radio || 170;
+      scene.tweens.add({ targets: this.img, angle: { from: -1.5, to: 1.5 }, duration: 1400, yoyo: true, repeat: -1, ease: 'Sine.inOut' });
+      return;
+    }
     const info = scene.cache.json.get('fotogramas-miriam')?.[etapa]?.pie;
     this.fotos = !!info && scene.anims.exists(this.clave('callada-der'));
     if (this.fotos) {
@@ -644,6 +653,7 @@ export class Miriam {
   actualizar(sofia, dt, hablando) {
     this.bocadillo.mostrar(hablando);
     this.bocadillo.actualizar(dt);
+    if (this.fija) return;
     if (!this.fotos) {
       this.img.setFlipX(sofia.x < this.x);
       return;

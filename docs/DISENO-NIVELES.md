@@ -396,7 +396,7 @@ Los objetos con posición exacta o tamaño especial van en `objetos: [{ tipo, x,
 | `lluvia` | `intervalo` (ms), `texturas`, `velocidad`, `danio` |
 | `peligro-movil` | `dir` (`arriba`/`derecha`), `velocidad` (px/s), `desdeX` (casilla que lo activa; no se ve ni mata hasta entonces), `hastaX`/`hastaY` (casilla donde se para), `margen`, `color`, `danio` |
 | `meta-falsa` | `dx` (casillas que huye), `pista` (lo que dice) |
-| `miriam`, `cartel` | `pista` (clave en `config/texts.json` → `niveles[N].pistas`), `radio` |
+| `miriam`, `cartel` | `pista` (clave en `config/texts.json` → `niveles[N].pistas`), `radio`; Miriam además admite `sprite` (figura fija de `sprites/miriam/<sprite>/cuerpo.png`, p. ej. `carton` en el nivel 15) |
 | `aviso` | zona que muestra un texto una vez: `pista`, `duracion` |
 | `invertir` | zona de controles invertidos |
 | `gravedad` | zona con `factor` (0,4 = gravedad baja; −1 = invertida) |

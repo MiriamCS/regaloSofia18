@@ -2389,6 +2389,11 @@
        "name": "pista",
        "type": "string",
        "value": "cuenta"
+      },
+      {
+       "name": "sprite",
+       "type": "string",
+       "value": "carton"
       }
      ]
     },

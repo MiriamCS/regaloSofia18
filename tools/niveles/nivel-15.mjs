@@ -7,11 +7,11 @@
 // Broma: el metrónomo desafinado no invierte los controles: si le cantas se acelera («cambia el tempo»).
 // Foto: en el palco, subiendo por plataformas a contratiempo. Objeto (entrada): en el sótano del escenario, tras
 // una pared falsa a la que se llega dejándose caer a una cornisa del foso.
-// Miriam: entre bastidores («cuenta...») y junto a la puerta.
+// Miriam: entre bastidores, de cartón porque la de verdad está de Erasmus («cuenta...»), y junto a la puerta, ya de vuelta.
 export default {
   props: { tema: 'concierto', edad: 15, gafas: true },
   leyenda: {
-    M: { tipo: 'miriam', pista: 'cuenta' },
+    M: { tipo: 'miriam', pista: 'cuenta', sprite: 'carton' }, // la de cartón: la de verdad está de Erasmus
     N: { tipo: 'miriam', pista: 'puerta' },
     // negras: 2 pulsos encendida, 2 apagada; 'a' y 'b' se alternan
     a: { tipo: 'plataforma-temporizada', capa: 'solidos', fusion: 'h', ritmo: true, on: 2, off: 2, desfase: 0 },

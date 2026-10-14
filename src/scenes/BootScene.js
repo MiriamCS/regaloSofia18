@@ -19,6 +19,8 @@ export const claveVela = (n) => `vela-alto-${n}`;
 const VELAS_NIVELES = 19;
 // Edades de Miriam dibujadas en SVG (niña y preadolescente van con los fotogramas de sus vídeos)
 const ETAPAS_MIRIAM = ['adolescente', 'adulta'];
+// Miriams de una sola aparición, en PNG (la de cartón del nivel 15, mientras la de verdad está de Erasmus)
+const MIRIAM_ESPECIALES = ['carton'];
 const PERSONAJES_VIDEO = ['sofia', 'miriam'];
 // Sofía de frente, recortada de su hoja de personaje (tools/sofia-frente.mjs): textura 'sofia-frente-<edad>'
 const ETAPAS_FRENTE = ['bebe', 'nina', 'preado', 'adolescente', 'adulta'];
@@ -70,6 +72,7 @@ export class BootScene extends Phaser.Scene {
     }
     for (const e of ETAPAS_FRENTE) this.load.image(`sofia-frente-${e}`, `sprites/sofia/${e}/frente.png`);
     for (const e of ETAPAS_MIRIAM) this.load.svg(`miriam-${e}`, `sprites/miriam/${e}/cuerpo.svg`, S);
+    for (const e of MIRIAM_ESPECIALES) this.load.image(`miriam-${e}`, `sprites/miriam/${e}/cuerpo.png`);
     for (const n of Object.keys(ENEMIGOS)) this.load.svg(n, `sprites/enemigos/${n}.svg`, S);
     for (const n of ESCENARIO) this.load.svg(n, `sprites/escenario/${n}.svg`, S);
     for (const o of OBJETOS.objetos) {
