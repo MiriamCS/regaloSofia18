@@ -13,6 +13,7 @@ import { JuegoScene } from './scenes/JuegoScene.js';
 import { InterfazScene, PausaScene } from './scenes/InterfazScene.js';
 import { TartaScene } from './scenes/TartaScene.js';
 import { PosesScene } from './scenes/PosesScene.js';
+import { ControlesScene } from './scenes/ControlesScene.js';
 
 // Alto fijo de 720 y ancho según la proporción de la pantalla (móviles muy alargados incluidos)
 function anchoJuego() {
@@ -36,7 +37,7 @@ const juego = new Phaser.Game({
   input: { activePointers: 4 },
   audio: { noAudio: true }, // el audio lo gestiona src/audio (Web Audio propio)
   fps: { target: 60 },
-  scene: [FirmaScene, BootScene, MenuScene, NivelesScene, AlbumesScene, AlbumScene, VitrinaScene, MonstruosScene, OpcionesScene, PrologoScene, TransicionScene, JuegoScene, InterfazScene, PausaScene, TartaScene, CreditosScene, PosesScene],
+  scene: [FirmaScene, BootScene, MenuScene, NivelesScene, AlbumesScene, AlbumScene, VitrinaScene, MonstruosScene, OpcionesScene, ControlesScene, PrologoScene, TransicionScene, JuegoScene, InterfazScene, PausaScene, TartaScene, CreditosScene, PosesScene],
 });
 
 // Dibujar con los píxeles reales de la pantalla para que letras y trazos se vean nítidos

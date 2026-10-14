@@ -1,5 +1,6 @@
 // Pantalla de inicio: a la izquierda el escenario con el logo y Sofía bajo un foco; a la derecha el programa de mano
-// con las 18 velas (una por año cumplido) y Jugar/Continuar, Niveles, Álbumes, Configuración (y la tarta si se ha visto).
+// con las 18 velas (una por año cumplido) y Jugar/Continuar, Niveles, Álbumes, Controles, Configuración (y la tarta si
+// se ha visto).
 import Phaser from 'phaser';
 import { texto, NUM_NIVELES, etapaDeNivel } from '../config.js';
 import { fondoMenu, insignia, icono, hacerPulsable, ALTO_TABLADO } from '../ui/Boton.js';
@@ -56,7 +57,7 @@ export class MenuScene extends Phaser.Scene {
     const xi = x0 + relleno;
     const xf = x0 + ancho - relleno;
     const tarta = Guardado.datos.tartaVista;
-    const alto = 466 + (tarta ? 60 : 0);
+    const alto = 526 + (tarta ? 60 : 0);
     const y0 = Math.max(24, (suelo - alto) / 2);
     const papel = this.add.graphics();
     papel.fillStyle(HEX.papel, 1).fillRoundedRect(x0, y0, ancho, alto, radio);
@@ -78,6 +79,7 @@ export class MenuScene extends Phaser.Scene {
       { clave: 'menu.niveles', icono: 'niveles', dato: `${hechos} / ${NUM_NIVELES}`, ir: () => this.scene.start('Niveles') },
       // Álbumes lleva la joya si alguna colección tiene algo conseguido sin abrir todavía
       { clave: 'menu.albumes', icono: 'albumes', dato: `${col.conseguidos} / ${col.total}`, joya: COLECCIONES.some((c) => Guardado.hayNuevos(c.coleccion)), ir: () => this.scene.start('Albumes') },
+      { clave: 'menu.controles', icono: 'controles', ir: () => this.scene.start('Controles') },
       { clave: 'menu.opciones', icono: 'ajustes', ir: () => this.scene.start('Opciones') },
     ];
     if (tarta) filas.push({ clave: 'menu.tarta', icono: 'tarta', ir: () => this.scene.start('Tarta', { desdeMenu: true }) });

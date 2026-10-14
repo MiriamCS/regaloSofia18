@@ -7,11 +7,44 @@
     "continuar": "Continuar",
     "niveles": "Niveles",
     "albumes": "Álbumes",
+    "controles": "Controles",
     "opciones": "Configuración",
     "tarta": "La tarta",
     "programa": "Programa",
     "velas": "{n} de 18 velas encendidas",
     "tocaParaEmpezar": "Toca para empezar."
+  },
+  "controles": {
+    "titulo": "Controles",
+    "accion": "Acción",
+    "movil": "En el móvil",
+    "ordenador": "En el ordenador",
+    "nivel": "Nivel {n}",
+    "niveles": "Niveles {a} a {b}",
+    "desdeNivel": "desde el nivel {n}",
+    "etapas": {
+      "gatas": "Bebé gateando",
+      "bebe": "Bebé de pie",
+      "nina": "Niña",
+      "preado": "Preadolescente",
+      "adolescente": "Adolescente",
+      "adulta": "Adulta"
+    },
+    "acciones": {
+      "gatear": "Gatear",
+      "andar": "Andar",
+      "correr": "Correr",
+      "saltar": "Saltar",
+      "dobleSalto": "Doble salto",
+      "empujar": "Empujar cajas",
+      "cantar": "Cantar",
+      "pausa": "Pausa"
+    },
+    "o": "o",
+    "mantenFlecha": "mantén la flecha",
+    "mantenFlechaO": "mantén la flecha o",
+    "otraVezAire": "otra vez en el aire",
+    "contraCaja": "anda contra la caja"
   },
   "prologo": {
     "encontrada": "¡Has encontrado una foto!",

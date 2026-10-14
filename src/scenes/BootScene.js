@@ -9,7 +9,7 @@ import { ANCHO_CORONA, FUNDIDO, RGB_TINTA, corona, joyaSaltarina } from '../ui/M
 import { svgVela } from '../ui/velaSvg.js';
 
 // Iconos de línea de los menús (blancos, se tiñen al usarlos): textura 'ic-<nombre>'
-export const ICONOS = ['play', 'niveles', 'albumes', 'ajustes', 'volver', 'tarta'];
+export const ICONOS = ['play', 'niveles', 'albumes', 'controles', 'ajustes', 'volver', 'tarta'];
 
 // Velas de la pantalla de Niveles: cuerpo y mecha dibujados a la altura de cada año (las rayas se repiten, no se
 // estiran) y sin márgenes a los lados. La llama es la de vela-on.svg.
@@ -127,6 +127,10 @@ export class BootScene extends Phaser.Scene {
     }
     if (params.has('poses')) {
       this.scene.start('Poses');
+      return;
+    }
+    if (params.has('controles')) {
+      this.scene.start('Controles');
       return;
     }
     if (params.has('tarta')) {
