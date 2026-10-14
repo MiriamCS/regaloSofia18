@@ -20,6 +20,8 @@ const VELAS_NIVELES = 19;
 // Edades de Miriam dibujadas en SVG (la niña va con los fotogramas de su vídeo)
 const ETAPAS_MIRIAM = ['preado', 'adolescente', 'adulta'];
 const PERSONAJES_VIDEO = ['sofia', 'miriam'];
+// Sofía de frente, recortada de su hoja de personaje (tools/sofia-frente.mjs): textura 'sofia-frente-<edad>'
+const ETAPAS_FRENTE = ['bebe', 'nina', 'preado', 'adolescente', 'adulta'];
 // Cosas que caen en las zonas de lluvia (texturas 'obj-*'). Si alguna es también un coleccionable, ya se carga con ellos
 const LLUVIA = ['pelota', 'libros'];
 const ESCENARIO = ['vela-on', 'vela-off', 'vela-cuerpo', 'atril-off', 'atril-on', 'caja-juguete', 'caja-madera', 'caja-carton', 'caja-libros', 'mueble', 'pinchos', 'marco-foto', 'nota-azul', 'nota-dorada', 'nota-rosa', 'nota-verde', 'campana', 'meta', 'puerta', 'tarta', 'cartel-continuara', 'candado', 'icono-objeto', 'clave', 'boton-izq', 'boton-der', 'boton-saltar', 'boton-cantar', 'boton-pausa'];
@@ -66,6 +68,7 @@ export class BootScene extends Phaser.Scene {
         }
       });
     }
+    for (const e of ETAPAS_FRENTE) this.load.image(`sofia-frente-${e}`, `sprites/sofia/${e}/frente.png`);
     for (const e of ETAPAS_MIRIAM) this.load.svg(`miriam-${e}`, `sprites/miriam/${e}/cuerpo.svg`, S);
     for (const n of Object.keys(ENEMIGOS)) this.load.svg(n, `sprites/enemigos/${n}.svg`, S);
     for (const n of ESCENARIO) this.load.svg(n, `sprites/escenario/${n}.svg`, S);

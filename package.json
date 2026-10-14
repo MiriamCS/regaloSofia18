@@ -10,6 +10,7 @@
     "preview": "vite preview --host",
     "sprites": "node tools/generar-sprites.mjs",
     "fotogramas": "node tools/video-a-sprites.mjs",
+    "frente": "node tools/sofia-frente.mjs",
     "imagenes": "node tools/preparar-imagenes.mjs",
     "iconos": "node tools/generar-iconos.mjs",
     "velas": "node tools/generar-velas.mjs",

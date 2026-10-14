@@ -272,10 +272,25 @@ export class Sofia extends Phaser.GameObjects.Container {
     else if (vx > 20) estado = this.corriendo ? 'correr' : 'andar';
     else estado = 'reposo';
     this.estado = estado;
-    if (this.fotos) this.elegirFotogramas(estado, vx);
-    else this.animarPiezas(estado, tiempo, dt, vx);
+    // de frente (pantalla de Controles): el dibujo de la hoja de personaje; a gatas no hay, y se queda de lado en reposo
+    const deFrente = estado === 'frente' && !this.gatas && this.scene.textures.exists(`sofia-frente-${this.etapa}`);
+    this.verDeFrente(deFrente);
+    if (deFrente) this.frente.setScale(1 / ESCALA_TEX, (1 + Math.sin(tiempo / 600) * 0.01) / ESCALA_TEX); // respira
+    else if (this.fotos) this.elegirFotogramas(estado === 'frente' ? 'reposo' : estado, vx);
+    else this.animarPiezas(estado === 'frente' ? 'reposo' : estado, tiempo, dt, vx);
     this.transformar(tiempo, dt);
     this.ajustarEmpuje(estado, dt);
+  }
+
+  // Cambia entre el dibujo de frente y el de lado (fotogramas o piezas)
+  verDeFrente(si) {
+    if (si === !!this.deFrente) return;
+    this.deFrente = si;
+    if (si && !this.frente) {
+      this.frente = this.scene.add.image(0, this.medio, `sofia-frente-${this.etapa}`).setOrigin(0.5, 1);
+      this.visual.add(this.frente);
+    }
+    for (const hijo of this.visual.list) hijo.setVisible(hijo === this.frente ? si : !si);
   }
 
   // Al empujar, el dibujo se retrasa para que las manos se queden en el borde de la caja en vez de traspasarla.
