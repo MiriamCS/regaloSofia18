@@ -10,7 +10,7 @@
  "tileheight": 48,
  "infinite": false,
  "nextlayerid": 4,
- "nextobjectid": 161,
+ "nextobjectid": 164,
  "properties": [
   {
    "name": "nivel",
@@ -158,7 +158,7 @@
      "type": "solido",
      "x": 288,
      "y": 336,
-     "width": 2112,
+     "width": 384,
      "height": 48,
      "rotation": 0,
      "visible": true,
@@ -166,6 +166,18 @@
     },
     {
      "id": 14,
+     "name": "",
+     "type": "solido",
+     "x": 768,
+     "y": 336,
+     "width": 1632,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 15,
      "name": "",
      "type": "nube",
      "x": 2400,
@@ -177,7 +189,7 @@
      "properties": []
     },
     {
-     "id": 15,
+     "id": 16,
      "name": "",
      "type": "solido",
      "x": 2496,
@@ -189,7 +201,7 @@
      "properties": []
     },
     {
-     "id": 16,
+     "id": 17,
      "name": "",
      "type": "plataforma-temporizada",
      "x": 2880,
@@ -217,7 +229,7 @@
      ]
     },
     {
-     "id": 17,
+     "id": 18,
      "name": "",
      "type": "plataforma-temporizada",
      "x": 3024,
@@ -245,7 +257,7 @@
      ]
     },
     {
-     "id": 18,
+     "id": 19,
      "name": "",
      "type": "solido",
      "x": 3168,
@@ -257,7 +269,7 @@
      "properties": []
     },
     {
-     "id": 19,
+     "id": 20,
      "name": "",
      "type": "puerta",
      "x": 6192,
@@ -285,7 +297,7 @@
      ]
     },
     {
-     "id": 21,
+     "id": 22,
      "name": "",
      "type": "solido",
      "x": 0,
@@ -297,7 +309,7 @@
      "properties": []
     },
     {
-     "id": 22,
+     "id": 23,
      "name": "",
      "type": "nube",
      "x": 192,
@@ -309,7 +321,7 @@
      "properties": []
     },
     {
-     "id": 23,
+     "id": 24,
      "name": "",
      "type": "plataforma-falsa",
      "x": 2016,
@@ -327,7 +339,7 @@
      ]
     },
     {
-     "id": 24,
+     "id": 25,
      "name": "",
      "type": "nube",
      "x": 2400,
@@ -339,7 +351,7 @@
      "properties": []
     },
     {
-     "id": 25,
+     "id": 26,
      "name": "",
      "type": "solido",
      "x": 3792,
@@ -351,7 +363,7 @@
      "properties": []
     },
     {
-     "id": 26,
+     "id": 27,
      "name": "",
      "type": "plataforma-musical",
      "x": 4224,
@@ -369,7 +381,7 @@
      ]
     },
     {
-     "id": 27,
+     "id": 28,
      "name": "",
      "type": "solido",
      "x": 5904,
@@ -381,7 +393,7 @@
      "properties": []
     },
     {
-     "id": 28,
+     "id": 29,
      "name": "",
      "type": "tecla",
      "x": 5952,
@@ -404,7 +416,7 @@
      ]
     },
     {
-     "id": 29,
+     "id": 30,
      "name": "",
      "type": "solido",
      "x": 6000,
@@ -416,7 +428,7 @@
      "properties": []
     },
     {
-     "id": 30,
+     "id": 31,
      "name": "",
      "type": "tecla",
      "x": 6048,
@@ -439,7 +451,7 @@
      ]
     },
     {
-     "id": 31,
+     "id": 32,
      "name": "",
      "type": "solido",
      "x": 6096,
@@ -451,7 +463,7 @@
      "properties": []
     },
     {
-     "id": 32,
+     "id": 33,
      "name": "",
      "type": "tecla",
      "x": 6144,
@@ -474,7 +486,7 @@
      ]
     },
     {
-     "id": 33,
+     "id": 34,
      "name": "",
      "type": "solido",
      "x": 6192,
@@ -486,7 +498,7 @@
      "properties": []
     },
     {
-     "id": 34,
+     "id": 35,
      "name": "",
      "type": "plataforma-falsa",
      "x": 2016,
@@ -504,7 +516,7 @@
      ]
     },
     {
-     "id": 35,
+     "id": 36,
      "name": "",
      "type": "plataforma-musical",
      "x": 4464,
@@ -522,7 +534,7 @@
      ]
     },
     {
-     "id": 38,
+     "id": 39,
      "name": "",
      "type": "solido",
      "x": 6288,
@@ -534,7 +546,7 @@
      "properties": []
     },
     {
-     "id": 39,
+     "id": 40,
      "name": "",
      "type": "solido",
      "x": 7584,
@@ -546,7 +558,7 @@
      "properties": []
     },
     {
-     "id": 40,
+     "id": 41,
      "name": "",
      "type": "plataforma-temporizada",
      "x": 7968,
@@ -574,7 +586,7 @@
      ]
     },
     {
-     "id": 41,
+     "id": 42,
      "name": "",
      "type": "solido",
      "x": 8112,
@@ -586,7 +598,7 @@
      "properties": []
     },
     {
-     "id": 42,
+     "id": 43,
      "name": "",
      "type": "solido",
      "x": 8352,
@@ -598,7 +610,7 @@
      "properties": []
     },
     {
-     "id": 43,
+     "id": 44,
      "name": "",
      "type": "nube",
      "x": 192,
@@ -610,7 +622,7 @@
      "properties": []
     },
     {
-     "id": 44,
+     "id": 45,
      "name": "",
      "type": "plataforma-falsa",
      "x": 2016,
@@ -628,7 +640,7 @@
      ]
     },
     {
-     "id": 45,
+     "id": 46,
      "name": "",
      "type": "nube",
      "x": 2400,
@@ -640,7 +652,7 @@
      "properties": []
     },
     {
-     "id": 46,
+     "id": 47,
      "name": "",
      "type": "plataforma-musical",
      "x": 4704,
@@ -658,7 +670,7 @@
      ]
     },
     {
-     "id": 47,
+     "id": 48,
      "name": "",
      "type": "nube",
      "x": 5808,
@@ -670,7 +682,7 @@
      "properties": []
     },
     {
-     "id": 49,
+     "id": 50,
      "name": "",
      "type": "plataforma-falsa",
      "x": 2016,
@@ -688,7 +700,7 @@
      ]
     },
     {
-     "id": 51,
+     "id": 52,
      "name": "",
      "type": "nube",
      "x": 192,
@@ -700,7 +712,7 @@
      "properties": []
     },
     {
-     "id": 52,
+     "id": 53,
      "name": "",
      "type": "plataforma-temporizada",
      "x": 1392,
@@ -728,7 +740,7 @@
      ]
     },
     {
-     "id": 53,
+     "id": 54,
      "name": "",
      "type": "plataforma-temporizada",
      "x": 1536,
@@ -756,7 +768,7 @@
      ]
     },
     {
-     "id": 54,
+     "id": 55,
      "name": "",
      "type": "plataforma-temporizada",
      "x": 1680,
@@ -784,7 +796,7 @@
      ]
     },
     {
-     "id": 55,
+     "id": 56,
      "name": "",
      "type": "plataforma-falsa",
      "x": 2016,
@@ -802,7 +814,7 @@
      ]
     },
     {
-     "id": 56,
+     "id": 57,
      "name": "",
      "type": "nube",
      "x": 2400,
@@ -814,7 +826,7 @@
      "properties": []
     },
     {
-     "id": 57,
+     "id": 58,
      "name": "",
      "type": "plataforma-temporizada",
      "x": 5664,
@@ -842,7 +854,7 @@
      ]
     },
     {
-     "id": 60,
+     "id": 61,
      "name": "",
      "type": "plataforma-falsa",
      "x": 2016,
@@ -860,7 +872,7 @@
      ]
     },
     {
-     "id": 63,
+     "id": 64,
      "name": "",
      "type": "plataforma-musical",
      "x": 5424,
@@ -878,7 +890,7 @@
      ]
     },
     {
-     "id": 64,
+     "id": 65,
      "name": "",
      "type": "nube",
      "x": 5952,
@@ -890,7 +902,7 @@
      "properties": []
     },
     {
-     "id": 65,
+     "id": 66,
      "name": "",
      "type": "solido",
      "x": 0,
@@ -902,7 +914,7 @@
      "properties": []
     },
     {
-     "id": 66,
+     "id": 67,
      "name": "",
      "type": "nube",
      "x": 1200,
@@ -914,7 +926,7 @@
      "properties": []
     },
     {
-     "id": 67,
+     "id": 68,
      "name": "",
      "type": "solido",
      "x": 1296,
@@ -926,7 +938,7 @@
      "properties": []
     },
     {
-     "id": 68,
+     "id": 69,
      "name": "",
      "type": "plataforma-falsa",
      "x": 2016,
@@ -944,7 +956,7 @@
      ]
     },
     {
-     "id": 69,
+     "id": 70,
      "name": "",
      "type": "solido",
      "x": 2304,
@@ -956,7 +968,7 @@
      "properties": []
     },
     {
-     "id": 70,
+     "id": 71,
      "name": "",
      "type": "nube",
      "x": 3360,
@@ -968,7 +980,7 @@
      "properties": []
     },
     {
-     "id": 71,
+     "id": 72,
      "name": "",
      "type": "solido",
      "x": 3456,
@@ -980,7 +992,7 @@
      "properties": []
     },
     {
-     "id": 72,
+     "id": 73,
      "name": "",
      "type": "nube",
      "x": 5040,
@@ -992,7 +1004,7 @@
      "properties": []
     },
     {
-     "id": 73,
+     "id": 74,
      "name": "",
      "type": "solido",
      "x": 0,
@@ -1004,7 +1016,7 @@
      "properties": []
     },
     {
-     "id": 74,
+     "id": 75,
      "name": "",
      "type": "plataforma-falsa",
      "x": 2016,
@@ -1022,7 +1034,7 @@
      ]
     },
     {
-     "id": 75,
+     "id": 76,
      "name": "",
      "type": "nube",
      "x": 3360,
@@ -1034,7 +1046,7 @@
      "properties": []
     },
     {
-     "id": 76,
+     "id": 77,
      "name": "",
      "type": "solido",
      "x": 3792,
@@ -1046,7 +1058,7 @@
      "properties": []
     },
     {
-     "id": 77,
+     "id": 78,
      "name": "",
      "type": "plataforma-musical",
      "x": 5232,
@@ -1064,7 +1076,7 @@
      ]
     },
     {
-     "id": 78,
+     "id": 79,
      "name": "",
      "type": "nube",
      "x": 1200,
@@ -1076,29 +1088,11 @@
      "properties": []
     },
     {
-     "id": 79,
-     "name": "",
-     "type": "plataforma-falsa",
-     "x": 2016,
-     "y": 768,
-     "width": 288,
-     "height": 48,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "modo",
-       "type": "string",
-       "value": "fantasma"
-      }
-     ]
-    },
-    {
      "id": 80,
      "name": "",
      "type": "plataforma-falsa",
      "x": 2016,
-     "y": 816,
+     "y": 768,
      "width": 288,
      "height": 48,
      "rotation": 0,
@@ -1114,6 +1108,24 @@
     {
      "id": 81,
      "name": "",
+     "type": "plataforma-falsa",
+     "x": 2016,
+     "y": 816,
+     "width": 288,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "modo",
+       "type": "string",
+       "value": "fantasma"
+      }
+     ]
+    },
+    {
+     "id": 82,
+     "name": "",
      "type": "nube",
      "x": 3360,
      "y": 816,
@@ -1124,7 +1136,7 @@
      "properties": []
     },
     {
-     "id": 85,
+     "id": 86,
      "name": "",
      "type": "puerta",
      "x": 6288,
@@ -1147,7 +1159,7 @@
      ]
     },
     {
-     "id": 92,
+     "id": 93,
      "name": "",
      "type": "plataforma-falsa",
      "x": 2016,
@@ -1165,7 +1177,7 @@
      ]
     },
     {
-     "id": 93,
+     "id": 94,
      "name": "",
      "type": "solido",
      "x": 4896,
@@ -1177,7 +1189,7 @@
      "properties": []
     },
     {
-     "id": 94,
+     "id": 95,
      "name": "",
      "type": "plataforma-temporizada",
      "x": 6768,
@@ -1205,7 +1217,7 @@
      ]
     },
     {
-     "id": 95,
+     "id": 96,
      "name": "",
      "type": "plataforma-temporizada",
      "x": 6960,
@@ -1233,7 +1245,7 @@
      ]
     },
     {
-     "id": 96,
+     "id": 97,
      "name": "",
      "type": "plataforma-temporizada",
      "x": 7152,
@@ -1261,7 +1273,7 @@
      ]
     },
     {
-     "id": 97,
+     "id": 98,
      "name": "",
      "type": "solido",
      "x": 7296,
@@ -1273,7 +1285,7 @@
      "properties": []
     },
     {
-     "id": 98,
+     "id": 99,
      "name": "",
      "type": "plataforma-cae",
      "x": 8688,
@@ -1285,7 +1297,7 @@
      "properties": []
     },
     {
-     "id": 99,
+     "id": 100,
      "name": "",
      "type": "plataforma-cae",
      "x": 8928,
@@ -1297,7 +1309,7 @@
      "properties": []
     },
     {
-     "id": 100,
+     "id": 101,
      "name": "",
      "type": "solido",
      "x": 9120,
@@ -1309,7 +1321,7 @@
      "properties": []
     },
     {
-     "id": 101,
+     "id": 102,
      "name": "",
      "type": "solido",
      "x": 9456,
@@ -1321,7 +1333,7 @@
      "properties": []
     },
     {
-     "id": 102,
+     "id": 103,
      "name": "",
      "type": "plataforma-falsa",
      "x": 2016,
@@ -1339,7 +1351,7 @@
      ]
     },
     {
-     "id": 103,
+     "id": 104,
      "name": "",
      "type": "nube",
      "x": 3360,
@@ -1351,7 +1363,7 @@
      "properties": []
     },
     {
-     "id": 107,
+     "id": 108,
      "name": "",
      "type": "plataforma-falsa",
      "x": 2016,
@@ -1369,7 +1381,7 @@
      ]
     },
     {
-     "id": 109,
+     "id": 110,
      "name": "",
      "type": "solido",
      "x": 9840,
@@ -1381,7 +1393,7 @@
      "properties": []
     },
     {
-     "id": 110,
+     "id": 111,
      "name": "",
      "type": "solido",
      "x": 11136,
@@ -1393,7 +1405,7 @@
      "properties": []
     },
     {
-     "id": 111,
+     "id": 112,
      "name": "",
      "type": "solido",
      "x": 11952,
@@ -1405,7 +1417,7 @@
      "properties": []
     },
     {
-     "id": 112,
+     "id": 113,
      "name": "",
      "type": "solido",
      "x": 0,
@@ -1417,7 +1429,7 @@
      "properties": []
     },
     {
-     "id": 113,
+     "id": 114,
      "name": "",
      "type": "nube",
      "x": 480,
@@ -1429,7 +1441,7 @@
      "properties": []
     },
     {
-     "id": 114,
+     "id": 115,
      "name": "",
      "type": "solido",
      "x": 576,
@@ -1441,7 +1453,7 @@
      "properties": []
     },
     {
-     "id": 115,
+     "id": 116,
      "name": "",
      "type": "plataforma-falsa",
      "x": 2736,
@@ -1453,7 +1465,7 @@
      "properties": []
     },
     {
-     "id": 116,
+     "id": 117,
      "name": "",
      "type": "solido",
      "x": 2928,
@@ -1465,7 +1477,7 @@
      "properties": []
     },
     {
-     "id": 117,
+     "id": 118,
      "name": "",
      "type": "nube",
      "x": 3648,
@@ -1477,7 +1489,7 @@
      "properties": []
     },
     {
-     "id": 118,
+     "id": 119,
      "name": "",
      "type": "solido",
      "x": 3744,
@@ -1489,7 +1501,7 @@
      "properties": []
     },
     {
-     "id": 119,
+     "id": 120,
      "name": "",
      "type": "solido",
      "x": 0,
@@ -1501,7 +1513,7 @@
      "properties": []
     },
     {
-     "id": 120,
+     "id": 121,
      "name": "",
      "type": "nube",
      "x": 480,
@@ -1513,7 +1525,7 @@
      "properties": []
     },
     {
-     "id": 121,
+     "id": 122,
      "name": "",
      "type": "solido",
      "x": 1488,
@@ -1525,7 +1537,7 @@
      "properties": []
     },
     {
-     "id": 122,
+     "id": 123,
      "name": "",
      "type": "nube",
      "x": 3648,
@@ -1537,7 +1549,7 @@
      "properties": []
     },
     {
-     "id": 123,
+     "id": 124,
      "name": "",
      "type": "solido",
      "x": 3792,
@@ -1549,7 +1561,7 @@
      "properties": []
     },
     {
-     "id": 126,
+     "id": 127,
      "name": "",
      "type": "nube",
      "x": 480,
@@ -1561,7 +1573,7 @@
      "properties": []
     },
     {
-     "id": 127,
+     "id": 128,
      "name": "",
      "type": "nube",
      "x": 3648,
@@ -1573,7 +1585,7 @@
      "properties": []
     },
     {
-     "id": 135,
+     "id": 136,
      "name": "",
      "type": "puerta",
      "x": 9840,
@@ -1596,7 +1608,7 @@
      ]
     },
     {
-     "id": 136,
+     "id": 137,
      "name": "",
      "type": "puerta",
      "x": 11136,
@@ -1619,7 +1631,7 @@
      ]
     },
     {
-     "id": 140,
+     "id": 141,
      "name": "",
      "type": "solido",
      "x": 0,
@@ -1631,7 +1643,7 @@
      "properties": []
     },
     {
-     "id": 141,
+     "id": 142,
      "name": "",
      "type": "plataforma-cae",
      "x": 9984,
@@ -1643,7 +1655,7 @@
      "properties": []
     },
     {
-     "id": 142,
+     "id": 143,
      "name": "",
      "type": "plataforma-cae",
      "x": 10176,
@@ -1655,7 +1667,7 @@
      "properties": []
     },
     {
-     "id": 143,
+     "id": 144,
      "name": "",
      "type": "plataforma-cae",
      "x": 10368,
@@ -1667,7 +1679,7 @@
      "properties": []
     },
     {
-     "id": 144,
+     "id": 145,
      "name": "",
      "type": "solido",
      "x": 10560,
@@ -1679,7 +1691,7 @@
      "properties": []
     },
     {
-     "id": 145,
+     "id": 146,
      "name": "",
      "type": "tecla",
      "x": 10608,
@@ -1702,7 +1714,7 @@
      ]
     },
     {
-     "id": 146,
+     "id": 147,
      "name": "",
      "type": "tecla",
      "x": 10704,
@@ -1725,7 +1737,7 @@
      ]
     },
     {
-     "id": 147,
+     "id": 148,
      "name": "",
      "type": "tecla",
      "x": 10800,
@@ -1748,7 +1760,7 @@
      ]
     },
     {
-     "id": 148,
+     "id": 149,
      "name": "",
      "type": "tecla",
      "x": 10896,
@@ -1771,7 +1783,7 @@
      ]
     },
     {
-     "id": 149,
+     "id": 150,
      "name": "",
      "type": "tecla",
      "x": 10992,
@@ -1794,7 +1806,7 @@
      ]
     },
     {
-     "id": 150,
+     "id": 151,
      "name": "",
      "type": "solido",
      "x": 11088,
@@ -1806,7 +1818,7 @@
      "properties": []
     },
     {
-     "id": 151,
+     "id": 152,
      "name": "",
      "type": "solido",
      "x": 10560,
@@ -1878,7 +1890,7 @@
      ]
     },
     {
-     "id": 20,
+     "id": 21,
      "name": "",
      "type": "objeto",
      "x": 6384,
@@ -1890,7 +1902,7 @@
      "properties": []
     },
     {
-     "id": 36,
+     "id": 37,
      "name": "",
      "type": "campana",
      "x": 5472,
@@ -1913,7 +1925,7 @@
      ]
     },
     {
-     "id": 37,
+     "id": 38,
      "name": "",
      "type": "campana",
      "x": 5712,
@@ -1936,7 +1948,7 @@
      ]
     },
     {
-     "id": 48,
+     "id": 49,
      "name": "",
      "type": "campana",
      "x": 6000,
@@ -1959,7 +1971,7 @@
      ]
     },
     {
-     "id": 50,
+     "id": 51,
      "name": "",
      "type": "campana",
      "x": 5088,
@@ -1982,7 +1994,7 @@
      ]
     },
     {
-     "id": 59,
+     "id": 60,
      "name": "",
      "type": "foto",
      "x": 1920,
@@ -1994,7 +2006,7 @@
      "properties": []
     },
     {
-     "id": 82,
+     "id": 83,
      "name": "",
      "type": "miriam",
      "x": 4944,
@@ -2012,7 +2024,7 @@
      ]
     },
     {
-     "id": 83,
+     "id": 84,
      "name": "",
      "type": "enemigo",
      "x": 5568,
@@ -2050,7 +2062,7 @@
      ]
     },
     {
-     "id": 84,
+     "id": 85,
      "name": "",
      "type": "caja",
      "x": 5808,
@@ -2062,7 +2074,7 @@
      "properties": []
     },
     {
-     "id": 86,
+     "id": 87,
      "name": "",
      "type": "checkpoint",
      "x": 6432,
@@ -2074,7 +2086,7 @@
      "properties": []
     },
     {
-     "id": 87,
+     "id": 88,
      "name": "",
      "type": "cartel",
      "x": 6528,
@@ -2092,7 +2104,7 @@
      ]
     },
     {
-     "id": 88,
+     "id": 89,
      "name": "",
      "type": "enemigo",
      "x": 7440,
@@ -2120,7 +2132,7 @@
      ]
     },
     {
-     "id": 90,
+     "id": 91,
      "name": "",
      "type": "checkpoint",
      "x": 9168,
@@ -2132,7 +2144,7 @@
      "properties": []
     },
     {
-     "id": 91,
+     "id": 92,
      "name": "",
      "type": "miriam",
      "x": 9264,
@@ -2150,7 +2162,7 @@
      ]
     },
     {
-     "id": 104,
+     "id": 105,
      "name": "",
      "type": "caja",
      "x": 912,
@@ -2162,7 +2174,7 @@
      "properties": []
     },
     {
-     "id": 105,
+     "id": 106,
      "name": "",
      "type": "enemigo",
      "x": 1584,
@@ -2195,7 +2207,7 @@
      ]
     },
     {
-     "id": 106,
+     "id": 107,
      "name": "",
      "type": "cartel",
      "x": 1872,
@@ -2213,7 +2225,7 @@
      ]
     },
     {
-     "id": 108,
+     "id": 109,
      "name": "",
      "type": "checkpoint",
      "x": 2448,
@@ -2225,7 +2237,7 @@
      "properties": []
     },
     {
-     "id": 124,
+     "id": 125,
      "name": "",
      "type": "campana",
      "x": 9552,
@@ -2248,7 +2260,7 @@
      ]
     },
     {
-     "id": 125,
+     "id": 126,
      "name": "",
      "type": "campana",
      "x": 9696,
@@ -2271,7 +2283,7 @@
      ]
     },
     {
-     "id": 128,
+     "id": 129,
      "name": "",
      "type": "inicio",
      "x": 96,
@@ -2283,7 +2295,7 @@
      "properties": []
     },
     {
-     "id": 129,
+     "id": 130,
      "name": "",
      "type": "miriam",
      "x": 288,
@@ -2301,7 +2313,7 @@
      ]
     },
     {
-     "id": 130,
+     "id": 131,
      "name": "",
      "type": "cartel",
      "x": 1344,
@@ -2319,7 +2331,7 @@
      ]
     },
     {
-     "id": 138,
+     "id": 139,
      "name": "",
      "type": "cartel",
      "x": 11664,
@@ -2337,7 +2349,7 @@
      ]
     },
     {
-     "id": 139,
+     "id": 140,
      "name": "",
      "type": "meta",
      "x": 11808,
@@ -2349,7 +2361,7 @@
      "properties": []
     },
     {
-     "id": 152,
+     "id": 153,
      "name": "",
      "type": "gravedad",
      "x": 7584,
@@ -2367,7 +2379,7 @@
      ]
     },
     {
-     "id": 153,
+     "id": 154,
      "name": "",
      "type": "invertir",
      "x": 8208,
@@ -2379,7 +2391,7 @@
      "properties": []
     },
     {
-     "id": 154,
+     "id": 155,
      "name": "",
      "type": "aviso",
      "x": 7296,
@@ -2402,7 +2414,7 @@
      ]
     },
     {
-     "id": 155,
+     "id": 156,
      "name": "",
      "type": "peligro-movil",
      "x": 8832,
@@ -2445,7 +2457,43 @@
      ]
     },
     {
-     "id": 156,
+     "id": 157,
+     "name": "",
+     "type": "muerte",
+     "x": 4128,
+     "y": 1104,
+     "width": 768,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 2
+      }
+     ]
+    },
+    {
+     "id": 158,
+     "name": "",
+     "type": "muerte",
+     "x": 6672,
+     "y": 1104,
+     "width": 624,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "danio",
+       "type": "int",
+       "value": 2
+      }
+     ]
+    },
+    {
+     "id": 159,
      "name": "",
      "type": "enemigo",
      "x": 2880,
@@ -2483,7 +2531,7 @@
      ]
     },
     {
-     "id": 157,
+     "id": 160,
      "name": "",
      "type": "enemigo",
      "x": 1632,
@@ -2521,7 +2569,7 @@
      ]
     },
     {
-     "id": 158,
+     "id": 161,
      "name": "",
      "type": "enemigo",
      "x": 6912,
@@ -2559,7 +2607,7 @@
      ]
     },
     {
-     "id": 159,
+     "id": 162,
      "name": "",
      "type": "enemigo",
      "x": 7200,
@@ -2602,7 +2650,7 @@
      ]
     },
     {
-     "id": 160,
+     "id": 163,
      "name": "",
      "type": "enemigo",
      "x": 8400,
@@ -2652,7 +2700,7 @@
    "y": 0,
    "objects": [
     {
-     "id": 58,
+     "id": 59,
      "name": "",
      "type": "pinchos",
      "x": 1344,
@@ -2670,7 +2718,7 @@
      ]
     },
     {
-     "id": 61,
+     "id": 62,
      "name": "",
      "type": "pinchos",
      "x": 2784,
@@ -2688,7 +2736,7 @@
      ]
     },
     {
-     "id": 62,
+     "id": 63,
      "name": "",
      "type": "pinchos",
      "x": 3072,
@@ -2706,7 +2754,7 @@
      ]
     },
     {
-     "id": 89,
+     "id": 90,
      "name": "",
      "type": "pinchos",
      "x": 7680,
@@ -2724,7 +2772,7 @@
      ]
     },
     {
-     "id": 131,
+     "id": 132,
      "name": "",
      "type": "pinchos",
      "x": 2496,
@@ -2742,7 +2790,7 @@
      ]
     },
     {
-     "id": 132,
+     "id": 133,
      "name": "",
      "type": "pinchos",
      "x": 4128,
@@ -2760,7 +2808,7 @@
      ]
     },
     {
-     "id": 133,
+     "id": 134,
      "name": "",
      "type": "pinchos",
      "x": 6672,
@@ -2778,7 +2826,7 @@
      ]
     },
     {
-     "id": 134,
+     "id": 135,
      "name": "",
      "type": "pinchos",
      "x": 8688,
@@ -2796,7 +2844,7 @@
      ]
     },
     {
-     "id": 137,
+     "id": 138,
      "name": "",
      "type": "pinchos",
      "x": 11328,

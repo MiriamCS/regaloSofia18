@@ -10,7 +10,7 @@
  "tileheight": 48,
  "infinite": false,
  "nextlayerid": 4,
- "nextobjectid": 52,
+ "nextobjectid": 54,
  "properties": [
   {
    "name": "nivel",
@@ -196,7 +196,19 @@
      "properties": []
     },
     {
-     "id": 20,
+     "id": 17,
+     "name": "",
+     "type": "nube",
+     "x": 7344,
+     "y": 384,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 21,
      "name": "",
      "type": "solido",
      "x": 6720,
@@ -208,7 +220,7 @@
      "properties": []
     },
     {
-     "id": 21,
+     "id": 22,
      "name": "",
      "type": "solido",
      "x": 9600,
@@ -220,7 +232,7 @@
      "properties": []
     },
     {
-     "id": 22,
+     "id": 23,
      "name": "",
      "type": "plataforma-cae",
      "x": 9888,
@@ -232,7 +244,7 @@
      "properties": []
     },
     {
-     "id": 23,
+     "id": 24,
      "name": "",
      "type": "solido",
      "x": 10176,
@@ -244,7 +256,7 @@
      "properties": []
     },
     {
-     "id": 25,
+     "id": 26,
      "name": "",
      "type": "nube",
      "x": 5040,
@@ -256,7 +268,19 @@
      "properties": []
     },
     {
-     "id": 26,
+     "id": 27,
+     "name": "",
+     "type": "nube",
+     "x": 7536,
+     "y": 480,
+     "width": 96,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 28,
      "name": "",
      "type": "solido",
      "x": 8832,
@@ -268,7 +292,7 @@
      "properties": []
     },
     {
-     "id": 27,
+     "id": 29,
      "name": "",
      "type": "solido",
      "x": 9264,
@@ -280,7 +304,7 @@
      "properties": []
     },
     {
-     "id": 31,
+     "id": 33,
      "name": "",
      "type": "solido",
      "x": 864,
@@ -292,7 +316,7 @@
      "properties": []
     },
     {
-     "id": 33,
+     "id": 35,
      "name": "",
      "type": "solido",
      "x": 2640,
@@ -304,7 +328,7 @@
      "properties": []
     },
     {
-     "id": 40,
+     "id": 42,
      "name": "",
      "type": "solido",
      "x": 8496,
@@ -316,7 +340,7 @@
      "properties": []
     },
     {
-     "id": 41,
+     "id": 43,
      "name": "",
      "type": "solido",
      "x": 0,
@@ -328,7 +352,7 @@
      "properties": []
     },
     {
-     "id": 42,
+     "id": 44,
      "name": "",
      "type": "solido",
      "x": 1344,
@@ -340,7 +364,7 @@
      "properties": []
     },
     {
-     "id": 43,
+     "id": 45,
      "name": "",
      "type": "solido",
      "x": 2112,
@@ -352,7 +376,7 @@
      "properties": []
     },
     {
-     "id": 44,
+     "id": 46,
      "name": "",
      "type": "solido",
      "x": 2640,
@@ -364,7 +388,7 @@
      "properties": []
     },
     {
-     "id": 45,
+     "id": 47,
      "name": "",
      "type": "solido",
      "x": 4176,
@@ -376,7 +400,7 @@
      "properties": []
     },
     {
-     "id": 46,
+     "id": 48,
      "name": "",
      "type": "solido",
      "x": 4944,
@@ -436,7 +460,7 @@
      "properties": []
     },
     {
-     "id": 17,
+     "id": 18,
      "name": "",
      "type": "cartel",
      "x": 10272,
@@ -454,7 +478,7 @@
      ]
     },
     {
-     "id": 18,
+     "id": 19,
      "name": "",
      "type": "enemigo",
      "x": 10608,
@@ -487,7 +511,7 @@
      ]
     },
     {
-     "id": 19,
+     "id": 20,
      "name": "",
      "type": "meta",
      "x": 10896,
@@ -499,7 +523,7 @@
      "properties": []
     },
     {
-     "id": 24,
+     "id": 25,
      "name": "",
      "type": "checkpoint",
      "x": 2784,
@@ -511,7 +535,7 @@
      "properties": []
     },
     {
-     "id": 28,
+     "id": 30,
      "name": "",
      "type": "inicio",
      "x": 96,
@@ -523,7 +547,7 @@
      "properties": []
     },
     {
-     "id": 29,
+     "id": 31,
      "name": "",
      "type": "miriam",
      "x": 192,
@@ -541,7 +565,7 @@
      ]
     },
     {
-     "id": 30,
+     "id": 32,
      "name": "",
      "type": "cartel",
      "x": 336,
@@ -559,7 +583,7 @@
      ]
     },
     {
-     "id": 32,
+     "id": 34,
      "name": "",
      "type": "cartel",
      "x": 1728,
@@ -577,7 +601,7 @@
      ]
     },
     {
-     "id": 34,
+     "id": 36,
      "name": "",
      "type": "cartel",
      "x": 3168,
@@ -595,7 +619,7 @@
      ]
     },
     {
-     "id": 35,
+     "id": 37,
      "name": "",
      "type": "checkpoint",
      "x": 6096,
@@ -607,7 +631,7 @@
      "properties": []
     },
     {
-     "id": 36,
+     "id": 38,
      "name": "",
      "type": "miriam",
      "x": 6240,
@@ -630,7 +654,7 @@
      ]
     },
     {
-     "id": 37,
+     "id": 39,
      "name": "",
      "type": "caja",
      "x": 6480,
@@ -642,7 +666,7 @@
      "properties": []
     },
     {
-     "id": 38,
+     "id": 40,
      "name": "",
      "type": "checkpoint",
      "x": 7968,
@@ -654,7 +678,7 @@
      "properties": []
     },
     {
-     "id": 39,
+     "id": 41,
      "name": "",
      "type": "cartel",
      "x": 8064,
@@ -672,7 +696,7 @@
      ]
     },
     {
-     "id": 47,
+     "id": 49,
      "name": "",
      "type": "lluvia",
      "x": 3216,
@@ -695,7 +719,7 @@
      ]
     },
     {
-     "id": 48,
+     "id": 50,
      "name": "",
      "type": "lluvia",
      "x": 3888,
@@ -718,7 +742,7 @@
      ]
     },
     {
-     "id": 49,
+     "id": 51,
      "name": "",
      "type": "lluvia",
      "x": 4656,
@@ -741,7 +765,7 @@
      ]
     },
     {
-     "id": 50,
+     "id": 52,
      "name": "",
      "type": "lluvia",
      "x": 5520,
@@ -764,7 +788,7 @@
      ]
     },
     {
-     "id": 51,
+     "id": 53,
      "name": "",
      "type": "lluvia",
      "x": 10224,

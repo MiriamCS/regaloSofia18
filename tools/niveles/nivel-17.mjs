@@ -60,6 +60,10 @@ export default {
     { tipo: 'aviso', x: 152, y: 12, w: 2, h: 6, pista: 'vuelta', duracion: 2600 },
     // la nota: la marea de apuntes espera en el foso de las plataformas que caen y avanza por el pasillo de abajo
     { tipo: 'peligro-movil', x: 184, y: 20, w: 2, h: 6, dir: 'derecha', velocidad: 100, desdeX: 196, margen: 6, color: '#e8ecf8', danio: 2 },
+    // los fosos de pinchos bajo el puente musical y las temporizadas son demasiado hondos para salir:
+    // caer en ellos cuenta como caída (quita velas y devuelve al último suelo firme)
+    { tipo: 'muerte', x: 86, y: 23, w: 16, h: 1, danio: 2 },
+    { tipo: 'muerte', x: 139, y: 23, w: 13, h: 1, danio: 2 },
     // notificaciones del móvil
     { tipo: 'enemigo', x: 60, y: 10, clase: 'volador', sprite: 'notificacion', rango: 3, velocidad: 60, amplitud: 1 },
     { tipo: 'enemigo', x: 34, y: 9, clase: 'volador', sprite: 'notificacion', rango: 3, velocidad: 50, amplitud: 1 },
@@ -75,7 +79,7 @@ export default {
 #                                           ####                                                                                 ###########                                                                                                             #
 #                                           ####                                                                                           #                                                                                                             #
 #                             o             ####                                  C h                                                      #                                                                                                             #
-####==############################################==########tt yy ####################                                           Q   O     #                                                                                                             #
+####==########  ##################################==########tt yy ####################                                           Q   O     #                                                                                                             #
 #   ==                                    HHHHHH  ==                           #######  uuu                                #k#l#j###########                                                                                                             #
 #                                         HHHHHH                               #######       uuu                  2    3           #                          ########TTT###  ####                                                                       #
 #   ==                                    HHHHHH  ==                           #######            uuu                    ==  4     #                                                                                                                     #

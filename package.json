@@ -14,7 +14,8 @@
     "iconos": "node tools/generar-iconos.mjs",
     "velas": "node tools/generar-velas.mjs",
     "niveles": "node tools/generar-niveles.mjs",
-    "validar": "node tools/validar-niveles.mjs"
+    "validar": "node tools/validar-niveles.mjs",
+    "alcance": "node tools/alcance-niveles.mjs"
   },
   "dependencies": {
     "phaser": "^3.90.0"
