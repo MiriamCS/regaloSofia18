@@ -1467,8 +1467,8 @@
      "id": 85,
      "name": "",
      "type": "enemigo",
-     "x": 7824,
-     "y": 288,
+     "x": 7872,
+     "y": 240,
      "width": 48,
      "height": 48,
      "rotation": 0,
@@ -1487,7 +1487,7 @@
       {
        "name": "velocidad",
        "type": "int",
-       "value": 60
+       "value": 50
       },
       {
        "name": "rango",
@@ -1496,13 +1496,13 @@
       },
       {
        "name": "amplitud",
-       "type": "float",
-       "value": 1.5
+       "type": "int",
+       "value": 1
       },
       {
        "name": "periodo",
        "type": "int",
-       "value": 1700
+       "value": 2000
       }
      ]
     },

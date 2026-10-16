@@ -33,14 +33,16 @@ export class MenuScene extends Phaser.Scene {
     // Logo (assets/logo.png, se genera con npm run iconos) y el subtítulo justo debajo
     const logo = this.add.image(xs, 24, 'logo').setOrigin(0.5, 0);
     logo.setScale(Math.min((W * 0.44) / logo.width, (H * 0.3) / logo.height));
-    this.add.text(xs, logo.y + logo.displayHeight + 6, texto('subtitulo'), { fontFamily: FUENTE, fontSize: '28px', color: COLOR.hielo }).setOrigin(0.5, 0);
+    const subtitulo = this.add.text(xs, logo.y + logo.displayHeight + 6, texto('subtitulo'), { fontFamily: FUENTE, fontSize: '28px', color: COLOR.hielo }).setOrigin(0.5, 0);
 
     // Sofía aparece con la edad del siguiente nivel por jugar, de pie sobre el tablado
     const etapa = Guardado.completado(NUM_NIVELES - 1) ? 'adulta' : etapaDeNivel(Guardado.siguienteNivel());
     this.sofia = new Sofia(this, xs, suelo, etapa, {});
     this.sofia.body.setAllowGravity(false);
-    this.sofia.setScale(1.9);
     this.sofia.body.enable = false;
+    // grande y del mismo alto a cualquier edad: llena el hueco entre el subtítulo y el tablado
+    this.altoSofia = suelo - (subtitulo.y + subtitulo.height + 24);
+    this.sofia.setScale(this.altoSofia / this.sofia.alto);
 
     this.programa(W, suelo);
 

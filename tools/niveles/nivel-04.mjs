@@ -1,6 +1,6 @@
 // Nivel 4 — 4 años: de excursión, primero a la nieve y luego a la playa. Foco: doble salto y suelos que se hunden. 4 velas.
 // Tramos: (1) montones de nieve con huecos de 5-7 casillas | (2) el lago helado: placas de hielo que se hunden
-// | (3) en la playa: castillos de arena que se desmoronan y mosquitos | (4) las rocas: subida en zigzag por nubes.
+// | (3) en la playa (con atril nada más llegar): castillos de arena que se desmoronan y mosquitos | (4) las rocas: subida en zigzag por nubes.
 // El fondo pasa de nieve a playa en la col. 137 (zona 'fondo'), justo antes del cartel del mosquito.
 // El agua es el vacío: caer = una vela. Foto: flota sobre una nube alta encima del lago (col. 91); se coge
 // con un doble salto rápido HACIA ATRÁS desde la placa de las col. 94-95 antes de que se hunda.
@@ -17,8 +17,8 @@ export default {
     k: { tipo: 'plataforma-cae', capa: 'solidos', fusion: 'h', modo: 'cae', retardo: 550 },
     p: { tipo: 'enemigo', clase: 'patrullero', sprite: 'pato', rango: 2, velocidad: 70 },
     q: { tipo: 'enemigo', clase: 'patrullero', sprite: 'pato', rango: 1, velocidad: 60 },
-    z: { tipo: 'enemigo', clase: 'volador', sprite: 'mosquito', rango: 2, amplitud: 1, periodo: 1700, velocidad: 55 },
-    Z: { tipo: 'enemigo', clase: 'volador', sprite: 'mosquito', rango: 1.5, velocidad: 45, amplitud: 1.5, periodo: 2400 },
+    z: { tipo: 'enemigo', clase: 'volador', sprite: 'mosquito', rango: 2, amplitud: 1, periodo: 2400, velocidad: 40 },
+    Z: { tipo: 'enemigo', clase: 'volador', sprite: 'mosquito', rango: 1.5, velocidad: 35, amplitud: 1, periodo: 2800 },
     1: { tipo: 'cartel', pista: 'doble' },
     2: { tipo: 'cartel', pista: 'mosquito' },
     3: { tipo: 'cartel', pista: 'toalla' },
@@ -29,9 +29,9 @@ export default {
     // el mosquito gigante (broma): es un decorado, no hace nada
     { tipo: 'decorado', x: 142, y: 6, sprite: 'mosquito', escala: 1.6, angulo: -8 },
     // más mosquitos sobre los saltos largos, siempre después del cartel que los presenta (col. 140)
-    { tipo: 'enemigo', clase: 'volador', sprite: 'mosquito', x: 147, y: 5, rango: 2, amplitud: 1.5, periodo: 2000, velocidad: 45 },
-    { tipo: 'enemigo', clase: 'volador', sprite: 'mosquito', x: 171, y: 6, rango: 3, amplitud: 1.5, periodo: 2200, velocidad: 50 },
-    { tipo: 'enemigo', clase: 'volador', sprite: 'mosquito', x: 200, y: 8, rango: 2, amplitud: 1, periodo: 1800, velocidad: 55 },
+    // (solo cinco en toda la playa, lentos y con poco vaivén: es el primer monstruo que apaga velas)
+    { tipo: 'enemigo', clase: 'volador', sprite: 'mosquito', x: 147, y: 5, rango: 2, amplitud: 1, periodo: 2600, velocidad: 35 },
+    { tipo: 'enemigo', clase: 'volador', sprite: 'mosquito', x: 200, y: 8, rango: 2, amplitud: 1, periodo: 2400, velocidad: 40 },
   ],
   mapa: `
 #                                                                                                                                                                                                                                                        #
@@ -40,12 +40,12 @@ export default {
 #                                                                                                                                  rr                                                                             ##                                     #
 #                                                                                          ==                                                                                                          ===        ##        z                            #
 #                                                                                                                              rr                                                                                 ##    ##                               #
-#                                                                                                                                                             Z                                            Z      ##    ##        z                      #
-#                                                                                                                          rr                            Z                            z                     ===   ##    ##    ##                         #
+#                                                                                                                                                             Z                                                   ##    ##                               #
+#                                                                                                                          rr                                                         z                     ===   ##    ##    ##                         #
 #                                                                                             tt                                                                     kk           q                               ##    ##    ##                         #
 #                           ######           q                               ttt    ##                    ##        C                                      kk                   ####                              ##    ##    ##    ##                   #
 #                           ######       #######                  ttt   tt          ##   tt         ttt   ##  ############                            kk        kk              ####                   ===        ##    ##    ##    ##                   #
-#  S   1                 ^^ ######       #######         M  C                       ##                    ##    #      #     ##    ##      2                                    ####         C                    ##    ##    ##    ##       3       G   #
+#  S   1                 ^^ ######       #######         M  C                       ##                    ##    #      #     ##    ##      2    C                               ####         C                    ##    ##    ##    ##       3       G   #
 ###############     ##############       #######      #########                     ##                    ##    #      #     ##    ##    ##########                       ##########      ############            ##    ##    ##    ##   #################
 ###############     ##############       #######      #########                     ##                    ##    #      #     ##    ##    ##########                       ##########      ############            ##    ##    ##    ##   #################
 ###############     ##############       #######      #########                     ##                    ##    #      #     ##    ##    ##########                       ##########      ############            ##    ##    ##    ##   #################

@@ -229,7 +229,7 @@ export class PlataformaCae extends Bloque {
   }
   actualizar(t, dt) {
     if (this.modo === 'hunde') {
-      const pisando = t - (this.pisadaEn || -1e9) < 80;
+      const pisando = t - (this.pisadaEn || -1e9) < 150;
       const objetivo = pisando ? this.o.y + (this.o.p.profundidad || 4) * TILE : this.o.y;
       const vel = pisando ? (this.o.p.velocidad || 70) : 110;
       if (Math.abs(objetivo - this.y) < vel * dt) this.y = objetivo;

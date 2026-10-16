@@ -29,7 +29,9 @@ export default {
     c: { tipo: 'enemigo', clase: 'patrullero', sprite: 'cochecito', rango: 3, velocidad: 80 },
   },
   objetos: [
-    { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', x: 163, y: 6, velocidad: 60, rango: 2, amplitud: 1.5, periodo: 1700 },
+    // el primero, junto al atril, vuela algo más alto: de pie en el suelo no te da (antes bajaba hasta la cabeza
+    // de Sofía encima del hueco y, del golpe, se caía una y otra vez)
+    { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', x: 164, y: 5, velocidad: 50, rango: 2, amplitud: 1, periodo: 2000 },
     { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', x: 176, y: 5, velocidad: 70, rango: 2, amplitud: 2, periodo: 1500 },
     { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', x: 189, y: 4, velocidad: 60, rango: 2, amplitud: 2.5, periodo: 1900 },
     { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', x: 201, y: 4, velocidad: 60, rango: 3, amplitud: 1, periodo: 1300 },

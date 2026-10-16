@@ -10,7 +10,7 @@
  "tileheight": 48,
  "infinite": false,
  "nextlayerid": 4,
- "nextobjectid": 68,
+ "nextobjectid": 65,
  "properties": [
   {
    "name": "nivel",
@@ -208,7 +208,7 @@
      "properties": []
     },
     {
-     "id": 17,
+     "id": 15,
      "name": "",
      "type": "plataforma-cae",
      "x": 5904,
@@ -236,7 +236,7 @@
      ]
     },
     {
-     "id": 20,
+     "id": 17,
      "name": "",
      "type": "nube",
      "x": 9792,
@@ -248,7 +248,7 @@
      "properties": []
     },
     {
-     "id": 21,
+     "id": 18,
      "name": "",
      "type": "solido",
      "x": 10656,
@@ -260,7 +260,7 @@
      "properties": []
     },
     {
-     "id": 22,
+     "id": 19,
      "name": "",
      "type": "plataforma-cae",
      "x": 4512,
@@ -288,7 +288,7 @@
      ]
     },
     {
-     "id": 23,
+     "id": 20,
      "name": "",
      "type": "plataforma-cae",
      "x": 7920,
@@ -311,7 +311,7 @@
      ]
     },
     {
-     "id": 25,
+     "id": 22,
      "name": "",
      "type": "solido",
      "x": 1344,
@@ -323,7 +323,7 @@
      "properties": []
     },
     {
-     "id": 27,
+     "id": 24,
      "name": "",
      "type": "plataforma-cae",
      "x": 3696,
@@ -351,7 +351,7 @@
      ]
     },
     {
-     "id": 28,
+     "id": 25,
      "name": "",
      "type": "solido",
      "x": 4032,
@@ -363,7 +363,7 @@
      "properties": []
     },
     {
-     "id": 29,
+     "id": 26,
      "name": "",
      "type": "solido",
      "x": 5088,
@@ -375,7 +375,7 @@
      "properties": []
     },
     {
-     "id": 31,
+     "id": 28,
      "name": "",
      "type": "plataforma-cae",
      "x": 7440,
@@ -398,7 +398,7 @@
      ]
     },
     {
-     "id": 32,
+     "id": 29,
      "name": "",
      "type": "solido",
      "x": 8448,
@@ -410,7 +410,7 @@
      "properties": []
     },
     {
-     "id": 33,
+     "id": 30,
      "name": "",
      "type": "solido",
      "x": 10944,
@@ -422,7 +422,7 @@
      "properties": []
     },
     {
-     "id": 34,
+     "id": 31,
      "name": "",
      "type": "solido",
      "x": 1968,
@@ -434,7 +434,7 @@
      "properties": []
     },
     {
-     "id": 35,
+     "id": 32,
      "name": "",
      "type": "plataforma-cae",
      "x": 3168,
@@ -462,7 +462,7 @@
      ]
     },
     {
-     "id": 36,
+     "id": 33,
      "name": "",
      "type": "plataforma-cae",
      "x": 3456,
@@ -490,7 +490,7 @@
      ]
     },
     {
-     "id": 37,
+     "id": 34,
      "name": "",
      "type": "plataforma-cae",
      "x": 4272,
@@ -518,7 +518,7 @@
      ]
     },
     {
-     "id": 38,
+     "id": 35,
      "name": "",
      "type": "plataforma-cae",
      "x": 4800,
@@ -546,7 +546,7 @@
      ]
     },
     {
-     "id": 39,
+     "id": 36,
      "name": "",
      "type": "solido",
      "x": 5280,
@@ -558,7 +558,7 @@
      "properties": []
     },
     {
-     "id": 40,
+     "id": 37,
      "name": "",
      "type": "plataforma-cae",
      "x": 7200,
@@ -581,7 +581,7 @@
      ]
     },
     {
-     "id": 41,
+     "id": 38,
      "name": "",
      "type": "plataforma-cae",
      "x": 7680,
@@ -604,7 +604,7 @@
      ]
     },
     {
-     "id": 42,
+     "id": 39,
      "name": "",
      "type": "nube",
      "x": 9552,
@@ -616,7 +616,7 @@
      "properties": []
     },
     {
-     "id": 48,
+     "id": 45,
      "name": "",
      "type": "solido",
      "x": 5376,
@@ -628,7 +628,7 @@
      "properties": []
     },
     {
-     "id": 49,
+     "id": 46,
      "name": "",
      "type": "solido",
      "x": 5712,
@@ -640,7 +640,7 @@
      "properties": []
     },
     {
-     "id": 50,
+     "id": 47,
      "name": "",
      "type": "solido",
      "x": 6000,
@@ -652,7 +652,7 @@
      "properties": []
     },
     {
-     "id": 51,
+     "id": 48,
      "name": "",
      "type": "solido",
      "x": 6288,
@@ -664,7 +664,7 @@
      "properties": []
     },
     {
-     "id": 56,
+     "id": 54,
      "name": "",
      "type": "solido",
      "x": 0,
@@ -676,7 +676,7 @@
      "properties": []
     },
     {
-     "id": 57,
+     "id": 55,
      "name": "",
      "type": "solido",
      "x": 960,
@@ -688,7 +688,7 @@
      "properties": []
     },
     {
-     "id": 58,
+     "id": 56,
      "name": "",
      "type": "solido",
      "x": 2592,
@@ -700,7 +700,7 @@
      "properties": []
     },
     {
-     "id": 59,
+     "id": 57,
      "name": "",
      "type": "solido",
      "x": 6576,
@@ -712,7 +712,7 @@
      "properties": []
     },
     {
-     "id": 60,
+     "id": 58,
      "name": "",
      "type": "solido",
      "x": 8160,
@@ -724,7 +724,7 @@
      "properties": []
     },
     {
-     "id": 61,
+     "id": 59,
      "name": "",
      "type": "solido",
      "x": 8928,
@@ -736,7 +736,7 @@
      "properties": []
     },
     {
-     "id": 62,
+     "id": 60,
      "name": "",
      "type": "solido",
      "x": 11184,
@@ -817,12 +817,12 @@
       {
        "name": "periodo",
        "type": "int",
-       "value": 1700
+       "value": 2400
       },
       {
        "name": "velocidad",
        "type": "int",
-       "value": 55
+       "value": 40
       }
      ]
     },
@@ -855,88 +855,7 @@
       {
        "name": "velocidad",
        "type": "int",
-       "value": 45
-      },
-      {
-       "name": "amplitud",
-       "type": "float",
-       "value": 1.5
-      },
-      {
-       "name": "periodo",
-       "type": "int",
-       "value": 2400
-      }
-     ]
-    },
-    {
-     "id": 15,
-     "name": "",
-     "type": "enemigo",
-     "x": 9744,
-     "y": 288,
-     "width": 48,
-     "height": 48,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "clase",
-       "type": "string",
-       "value": "volador"
-      },
-      {
-       "name": "sprite",
-       "type": "string",
-       "value": "mosquito"
-      },
-      {
-       "name": "rango",
-       "type": "float",
-       "value": 1.5
-      },
-      {
-       "name": "velocidad",
-       "type": "int",
-       "value": 45
-      },
-      {
-       "name": "amplitud",
-       "type": "float",
-       "value": 1.5
-      },
-      {
-       "name": "periodo",
-       "type": "int",
-       "value": 2400
-      }
-     ]
-    },
-    {
-     "id": 16,
-     "name": "",
-     "type": "enemigo",
-     "x": 10848,
-     "y": 288,
-     "width": 48,
-     "height": 48,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "clase",
-       "type": "string",
-       "value": "volador"
-      },
-      {
-       "name": "sprite",
-       "type": "string",
-       "value": "mosquito"
-      },
-      {
-       "name": "rango",
-       "type": "int",
-       "value": 2
+       "value": 35
       },
       {
        "name": "amplitud",
@@ -946,60 +865,12 @@
       {
        "name": "periodo",
        "type": "int",
-       "value": 1700
-      },
-      {
-       "name": "velocidad",
-       "type": "int",
-       "value": 55
+       "value": 2800
       }
      ]
     },
     {
-     "id": 18,
-     "name": "",
-     "type": "enemigo",
-     "x": 7344,
-     "y": 336,
-     "width": 48,
-     "height": 48,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "clase",
-       "type": "string",
-       "value": "volador"
-      },
-      {
-       "name": "sprite",
-       "type": "string",
-       "value": "mosquito"
-      },
-      {
-       "name": "rango",
-       "type": "float",
-       "value": 1.5
-      },
-      {
-       "name": "velocidad",
-       "type": "int",
-       "value": 45
-      },
-      {
-       "name": "amplitud",
-       "type": "float",
-       "value": 1.5
-      },
-      {
-       "name": "periodo",
-       "type": "int",
-       "value": 2400
-      }
-     ]
-    },
-    {
-     "id": 19,
+     "id": 16,
      "name": "",
      "type": "enemigo",
      "x": 8736,
@@ -1032,17 +903,17 @@
       {
        "name": "periodo",
        "type": "int",
-       "value": 1700
+       "value": 2400
       },
       {
        "name": "velocidad",
        "type": "int",
-       "value": 55
+       "value": 40
       }
      ]
     },
     {
-     "id": 24,
+     "id": 21,
      "name": "",
      "type": "enemigo",
      "x": 8544,
@@ -1075,7 +946,7 @@
      ]
     },
     {
-     "id": 26,
+     "id": 23,
      "name": "",
      "type": "enemigo",
      "x": 2160,
@@ -1108,7 +979,7 @@
      ]
     },
     {
-     "id": 30,
+     "id": 27,
      "name": "",
      "type": "checkpoint",
      "x": 5568,
@@ -1120,7 +991,7 @@
      "properties": []
     },
     {
-     "id": 43,
+     "id": 40,
      "name": "",
      "type": "inicio",
      "x": 144,
@@ -1132,7 +1003,7 @@
      "properties": []
     },
     {
-     "id": 44,
+     "id": 41,
      "name": "",
      "type": "cartel",
      "x": 336,
@@ -1150,7 +1021,7 @@
      ]
     },
     {
-     "id": 46,
+     "id": 43,
      "name": "",
      "type": "miriam",
      "x": 2736,
@@ -1168,7 +1039,7 @@
      ]
     },
     {
-     "id": 47,
+     "id": 44,
      "name": "",
      "type": "checkpoint",
      "x": 2880,
@@ -1180,7 +1051,7 @@
      "properties": []
     },
     {
-     "id": 52,
+     "id": 49,
      "name": "",
      "type": "cartel",
      "x": 6672,
@@ -1198,7 +1069,19 @@
      ]
     },
     {
-     "id": 53,
+     "id": 50,
+     "name": "",
+     "type": "checkpoint",
+     "x": 6912,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 51,
      "name": "",
      "type": "checkpoint",
      "x": 9072,
@@ -1210,7 +1093,7 @@
      "properties": []
     },
     {
-     "id": 54,
+     "id": 52,
      "name": "",
      "type": "cartel",
      "x": 11376,
@@ -1228,7 +1111,7 @@
      ]
     },
     {
-     "id": 55,
+     "id": 53,
      "name": "",
      "type": "meta",
      "x": 11760,
@@ -1240,7 +1123,7 @@
      "properties": []
     },
     {
-     "id": 63,
+     "id": 61,
      "name": "",
      "type": "fondo",
      "x": 6576,
@@ -1258,7 +1141,7 @@
      ]
     },
     {
-     "id": 64,
+     "id": 62,
      "name": "",
      "type": "decorado",
      "x": 6816,
@@ -1286,7 +1169,7 @@
      ]
     },
     {
-     "id": 65,
+     "id": 63,
      "name": "",
      "type": "enemigo",
      "x": 7056,
@@ -1313,66 +1196,23 @@
       },
       {
        "name": "amplitud",
-       "type": "float",
-       "value": 1.5
+       "type": "int",
+       "value": 1
       },
       {
        "name": "periodo",
        "type": "int",
-       "value": 2000
+       "value": 2600
       },
       {
        "name": "velocidad",
        "type": "int",
-       "value": 45
+       "value": 35
       }
      ]
     },
     {
-     "id": 66,
-     "name": "",
-     "type": "enemigo",
-     "x": 8208,
-     "y": 288,
-     "width": 48,
-     "height": 48,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "clase",
-       "type": "string",
-       "value": "volador"
-      },
-      {
-       "name": "sprite",
-       "type": "string",
-       "value": "mosquito"
-      },
-      {
-       "name": "rango",
-       "type": "int",
-       "value": 3
-      },
-      {
-       "name": "amplitud",
-       "type": "float",
-       "value": 1.5
-      },
-      {
-       "name": "periodo",
-       "type": "int",
-       "value": 2200
-      },
-      {
-       "name": "velocidad",
-       "type": "int",
-       "value": 50
-      }
-     ]
-    },
-    {
-     "id": 67,
+     "id": 64,
      "name": "",
      "type": "enemigo",
      "x": 9600,
@@ -1405,12 +1245,12 @@
       {
        "name": "periodo",
        "type": "int",
-       "value": 1800
+       "value": 2400
       },
       {
        "name": "velocidad",
        "type": "int",
-       "value": 55
+       "value": 40
       }
      ]
     }
@@ -1427,7 +1267,7 @@
    "y": 0,
    "objects": [
     {
-     "id": 45,
+     "id": 42,
      "name": "",
      "type": "pinchos",
      "x": 1200,

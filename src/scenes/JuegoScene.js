@@ -372,7 +372,9 @@ export class JuegoScene extends Phaser.Scene {
       const b = s.body;
       const cb = caja.body;
       const vertical = b.prev.y + b.height <= cb.prev.y + 8 || b.prev.y >= cb.prev.y + cb.height - 8;
-      cb.immovable = caja.fija || vertical;
+      // una caja que tiene detrás a un monstruo contra la pared no se mueve más hacia ese lado
+      const tope = caja.tope && this.time.now - caja.tope.t < 120 && Math.sign(cb.center.x - b.center.x) === caja.tope.lado;
+      cb.immovable = caja.fija || vertical || tope;
       return true;
     };
     fis.add.collider(s, this.cajas, empujar, soloDeLado);
@@ -391,11 +393,43 @@ export class JuegoScene extends Phaser.Scene {
       const [c, z] = ordenar(a, b);
       return esNube(z) ? unaDireccionMovil(c, z) : true;
     });
+    // Monstruos y cajas no se empujan de lado: la caja es una pared para el monstruo y el monstruo, para la caja.
+    // (con la separación de Arcade, una urraca apartaba las cajas o, encerrada entre una caja y un muro, se
+    // colaba dentro del muro). Se separan a mano y se marca 'blocked', que es lo que hace darse la vuelta.
+    const enemigoContraCaja = (a, bb) => {
+      const [en, caja] = this.cajas.contains(a) ? [bb, a] : [a, bb];
+      const eb = en.body;
+      const cb = caja.body;
+      if (eb.prev.y + eb.height <= cb.prev.y + 8) {
+        // un monstruo de pie encima de una caja no la hunde en el suelo
+        cb.immovable = true;
+        return true;
+      }
+      if (eb.prev.y >= cb.prev.y + cb.height - 8 || caja.fija || en.tipo === 'bloqueador') return true;
+      const lado = cb.center.x > eb.center.x ? 1 : -1; // lado del monstruo en el que está la caja
+      const solape = lado > 0 ? eb.right - cb.left : cb.right - eb.left;
+      if (solape <= 0) return false;
+      // ¿cabe el monstruo si retrocede? (el muro no siempre lo marca en 'blocked': puede que ya no lo esté tocando)
+      const sinSitio = (lado > 0 ? eb.blocked.left : eb.blocked.right)
+        || fis.overlapRect(eb.x - lado * (solape + 2), eb.y, eb.width, eb.height - 4, false, true).some((c) => this.solidos.contains(c.gameObject));
+      if (sinSitio) {
+        // el monstruo está contra una pared: se aparta la caja (y quien la empuje se queda quieto)
+        const vx = cb.velocity.x * lado < 0 ? 0 : null;
+        cb.processX(lado * solape, vx, lado > 0, lado < 0);
+        caja.tope = { t: this.time.now, lado: -lado };
+        if (lado > 0) eb.blocked.right = true;
+        else eb.blocked.left = true;
+      } else {
+        const vx = eb.velocity.x * lado > 0 ? 0 : null;
+        eb.processX(-lado * solape, vx, lado < 0, lado > 0);
+      }
+      return false;
+    };
     for (const e of this.enemigos) {
       fis.add.collider(e, this.solidos);
       fis.add.collider(e, this.nubes, null, unaDireccion);
       fis.add.collider(e, zonasEspeciales);
-      fis.add.collider(e, this.cajas, (en, caja) => this.cajaSobreEnemigo(caja, en));
+      fis.add.collider(e, this.cajas, (en, caja) => this.cajaSobreEnemigo(caja, en), enemigoContraCaja);
       // los que se dejan empujar (pila de exámenes) son como una caja pesada
       if (e.tipo === 'bloqueador' && e.def.empujable) fis.add.collider(s, e, empujar, soloDeLado);
       else if (e.tipo === 'bloqueador') fis.add.collider(s, e, contacto);
@@ -508,6 +542,10 @@ export class JuegoScene extends Phaser.Scene {
     if (this.sobrePlataforma) {
       const p = this.sobrePlataforma;
       if (p.deltaX) s.x += p.deltaX;
+      // al bajar, Sofía baja con ella: si no, se queda un instante en el aire, la plataforma cree que ya no la
+      // pisan, vuelve a subir, la lanza hacia arriba... y Sofía rebota sin parar (saltar también cambia vy, después)
+      const vp = p.zona.body.velocity.y;
+      if (vp > s.body.velocity.y) s.body.setVelocityY(vp);
       this.sobrePlataforma = null;
     }
 
@@ -791,7 +829,10 @@ export class JuegoScene extends Phaser.Scene {
     if (z.elemento || !(b.blocked.down || b.touching.down) || this.muriendo || this.time.now < this.sofia.invulnerableHasta) return;
     const zb = z.body;
     if (zb.right - zb.left < 60) return;
-    this.ultimoSuelo = { x: Phaser.Math.Clamp(this.sofia.x, zb.left + 30, zb.right - 30), y: zb.top, zona: z };
+    // se vuelve un poco lejos del borde: justo en el borde, con la flecha aún pulsada (o un avión pasando), se
+    // volvía a caer una y otra vez
+    const margen = Math.min(90, (zb.right - zb.left) / 2);
+    this.ultimoSuelo = { x: Phaser.Math.Clamp(this.sofia.x, zb.left + margen, zb.right - margen), y: zb.top, zona: z };
   }
 
   reaparecer() {

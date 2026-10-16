@@ -106,9 +106,18 @@ export class Enemigo extends Phaser.Physics.Arcade.Image {
       return;
     }
     const enfado = this.enfadadoHasta > t ? 2.2 : 1;
+    // encerrado entre dos paredes (o entre una caja y un muro): se queda quieto en vez de darse la vuelta sin parar
+    const patrulla = this.tipo === 'patrullero' || this.tipo === 'desafinado' || (this.tipo === 'ladron' && !this.botin);
+    this.encerrado = patrulla && (this.encerrado || b.blocked.left || b.blocked.right) && this.sinSitio(-1) && this.sinSitio(1);
+    const encerrado = this.encerrado;
     switch (this.tipo) {
       case 'patrullero':
       case 'desafinado': {
+        if (encerrado) {
+          b.setVelocityX(0);
+          this.mirarHacia(sofia.x - this.x);
+          break;
+        }
         if (b.blocked.left) this.dir = 1;
         else if (b.blocked.right) this.dir = -1;
         else if (this.rango && Math.abs(this.x - this.inicioX) > this.rango) this.dir = this.x > this.inicioX ? -1 : 1;
@@ -151,6 +160,9 @@ export class Enemigo extends Phaser.Physics.Arcade.Image {
           if ((b.blocked.left || b.blocked.right || !this.haySueloDelante(lejos)) && b.blocked.down) b.setVelocityY(-620);
           this.mirarHacia(lejos);
           this.iconoBotin.setPosition(this.x, this.y - this.displayHeight - 8);
+        } else if (encerrado) {
+          b.setVelocityX(0);
+          this.mirarHacia(sofia.x - this.x);
         } else {
           if (b.blocked.left) this.dir = 1;
           else if (b.blocked.right) this.dir = -1;
@@ -187,6 +199,15 @@ export class Enemigo extends Phaser.Physics.Arcade.Image {
 
   tienesCerca(sofia, radio) {
     return Phaser.Math.Distance.Between(sofia.x, sofia.y - 30, this.x, this.y - this.displayHeight / 2) < radio;
+  }
+
+  // ¿hay una pared o una caja pegada a ese lado?
+  sinSitio(dir) {
+    const b = this.body;
+    const x = dir > 0 ? b.right : b.left - 4;
+    const escena = this.scene;
+    return escena.physics.overlapRect(x, b.y, 4, b.height - 4, true, true)
+      .some((c) => c.gameObject !== this && (escena.solidos.contains(c.gameObject) || escena.cajas.contains(c.gameObject)));
   }
 
   haySueloDelante(dir = this.dir) {

@@ -3,7 +3,8 @@
 // Tramos: (1) el camino del jardín: la foto sale enseguida (en el tocón) y hay urracas por todo el camino; los muros
 // de 3 las acorralan | (2) el estanque: plataformas móviles e islas con urraca y tronco | (3) los árboles del jardín:
 // subida vertical por ramas (nubes) con mosquitos y camino por las copas con ramas que se caen | (4) el patio del
-// restaurante: urraca rápida que acaba acorralada contra el muro; hay que empujar una caja hasta el muro para salir.
+// restaurante: urraca rápida que acaba acorralada contra el muro; el muro (4 de alto) se sube cómodo empujando una caja
+// hasta él. Las urracas no mueven las cajas: solo Sofía.
 // Foto: en el tocón del principio. Objeto (rosario): en la copa más alta, encima del atril de los árboles.
 // Broma: la urraca de la rama roba... un calcetín imaginario (zona 'aviso': no hay robos de mentira en el motor).
 // Las urracas ya se presentaron en el nivel 2: aquí son más rápidas (huyen más deprisa de lo que anda Sofía) y el
@@ -56,8 +57,8 @@ export default {
 #                                                                                                q                                      ##====    ##                                      ##                                                               #
 #                                                                                                                                       ##   m    ##                                      ##                                                               #
 #                 F                                                                                                                     ##        ##                                      ##                                                               #
-#                ===                                                                                       #  ccc                       ##    ====##                                      ##                                                        G      #
-#      k                                                                                #                  #                                      ##                                      ##                                             ###################
+#                ===                                                                                       #  ccc                       ##    ====##                                      ##                                                               #
+#      k                                                                                #                  #                                      ##                                      ##                                                        G      #
 #     ===                                    u               ##                         #  bb          u   #                                      ##                                      ##                                             ###################
 #                              ##         ########   ##      ##                    u    #            #######       dd                     ====    ##                                      ##                                             ###################
 #         ##  ##               ##         #      #   ##      ##       aaa        ########            #######                                      ##                                      ##                                             ###################

@@ -58,7 +58,7 @@
      "x": 12048,
      "y": 0,
      "width": 48,
-     "height": 1152,
+     "height": 1200,
      "rotation": 0,
      "visible": true,
      "properties": []
@@ -351,7 +351,7 @@
      "properties": []
     },
     {
-     "id": 34,
+     "id": 33,
      "name": "",
      "type": "solido",
      "x": 4224,
@@ -365,18 +365,6 @@
     {
      "id": 35,
      "name": "",
-     "type": "solido",
-     "x": 11184,
-     "y": 1152,
-     "width": 912,
-     "height": 240,
-     "rotation": 0,
-     "visible": true,
-     "properties": []
-    },
-    {
-     "id": 36,
-     "name": "",
      "type": "nube",
      "x": 288,
      "y": 1200,
@@ -387,7 +375,7 @@
      "properties": []
     },
     {
-     "id": 38,
+     "id": 37,
      "name": "",
      "type": "solido",
      "x": 2928,
@@ -399,7 +387,7 @@
      "properties": []
     },
     {
-     "id": 39,
+     "id": 38,
      "name": "",
      "type": "plataforma-movil",
      "x": 4368,
@@ -425,6 +413,18 @@
        "value": 600
       }
      ]
+    },
+    {
+     "id": 40,
+     "name": "",
+     "type": "solido",
+     "x": 11184,
+     "y": 1200,
+     "width": 912,
+     "height": 192,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
     },
     {
      "id": 41,
@@ -911,18 +911,6 @@
     {
      "id": 32,
      "name": "",
-     "type": "meta",
-     "x": 11712,
-     "y": 1104,
-     "width": 48,
-     "height": 48,
-     "rotation": 0,
-     "visible": true,
-     "properties": []
-    },
-    {
-     "id": 33,
-     "name": "",
      "type": "decorado",
      "x": 336,
      "y": 1152,
@@ -944,7 +932,19 @@
      ]
     },
     {
-     "id": 37,
+     "id": 34,
+     "name": "",
+     "type": "meta",
+     "x": 11712,
+     "y": 1152,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 36,
      "name": "",
      "type": "enemigo",
      "x": 2160,
@@ -977,7 +977,7 @@
      ]
     },
     {
-     "id": 40,
+     "id": 39,
      "name": "",
      "type": "enemigo",
      "x": 4944,
