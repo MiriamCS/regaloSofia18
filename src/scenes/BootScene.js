@@ -17,8 +17,6 @@ export const ANCHO_VELA = 16;
 export const altoVela = (n) => 120 + n * 12;
 export const claveVela = (n) => `vela-alto-${n}`;
 const VELAS_NIVELES = 19;
-// Edades de Miriam dibujadas en SVG (niña y preadolescente van con los fotogramas de sus vídeos)
-const ETAPAS_MIRIAM = ['adolescente', 'adulta'];
 // Miriams de una sola aparición, en PNG (la de cartón del nivel 15, mientras la de verdad está de Erasmus)
 const MIRIAM_ESPECIALES = ['carton'];
 const PERSONAJES_VIDEO = ['sofia', 'miriam'];
@@ -53,7 +51,6 @@ export class BootScene extends Phaser.Scene {
 
     const S = { scale: ESCALA_TEXTURAS };
     this.load.json('rig-sofia', 'sprites/sofia/rig.json');
-    this.load.json('rig-miriam', 'sprites/miriam/rig.json');
     this.load.json('indice-musica', 'music/indice.json');
     this.load.once('filecomplete-json-rig-sofia', (k, t, rig) => {
       // el bebé, la niña y la preadolescente no tienen piezas: van solo con fotogramas de vídeo
@@ -61,7 +58,8 @@ export class BootScene extends Phaser.Scene {
         for (const pieza of Object.keys(rig.etapas[e].piezas)) this.load.svg(`sofia-${e}-${pieza}`, `sprites/sofia/${e}/${pieza}.svg`, S);
       }
     });
-    // Animaciones sacadas de los vídeos (tools/video-a-sprites.mjs); las etapas sin vídeo se dibujan con SVG
+    // Animaciones sacadas de los vídeos (tools/video-a-sprites.mjs). Miriam va siempre con vídeo; Sofía, en las edades
+    // sin vídeo, con el SVG por piezas
     for (const p of PERSONAJES_VIDEO) {
       this.load.json(`fotogramas-${p}`, `sprites/${p}/fotogramas.json`);
       this.load.once(`filecomplete-json-fotogramas-${p}`, (k, t, indice) => {
@@ -71,7 +69,6 @@ export class BootScene extends Phaser.Scene {
       });
     }
     for (const e of ETAPAS_FRENTE) this.load.image(`sofia-frente-${e}`, `sprites/sofia/${e}/frente.png`);
-    for (const e of ETAPAS_MIRIAM) this.load.svg(`miriam-${e}`, `sprites/miriam/${e}/cuerpo.svg`, S);
     for (const e of MIRIAM_ESPECIALES) this.load.image(`miriam-${e}`, `sprites/miriam/${e}/cuerpo.png`);
     for (const n of Object.keys(ENEMIGOS)) this.load.svg(n, `sprites/enemigos/${n}.svg`, S);
     for (const n of ESCENARIO) this.load.svg(n, `sprites/escenario/${n}.svg`, S);

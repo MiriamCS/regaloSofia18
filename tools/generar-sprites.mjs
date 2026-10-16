@@ -6,7 +6,6 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { svg, f } from './arte/comun.mjs';
 import { ETAPAS, piezasSofia } from './arte/sofia.mjs';
-import { piezasMiriam } from './arte/miriam.mjs';
 import { spritesObjetos } from './arte/objetos.mjs';
 import { spritesEscenario } from './arte/escenario.mjs';
 
@@ -39,7 +38,6 @@ function exportarRig(nombre, etapas, generador) {
 }
 
 exportarRig('sofia', Object.keys(ETAPAS), piezasSofia);
-exportarRig('miriam', ['adolescente', 'adulta'], piezasMiriam);
 
 // Los enemigos y casi todo el escenario son dibujos de Miriam (originales/ -> npm run imagenes); aquí
 // solo se generan los botones táctiles, para no sobrescribirlos.

@@ -92,5 +92,70 @@
         }
       }
     }
+  },
+  "adolescente": {
+    "pie": {
+      "ancho": 86,
+      "alto": 232,
+      "origen": [
+        0.5,
+        0.974
+      ],
+      "altoJuego": 112,
+      "animaciones": {
+        "callada": {
+          "archivo": "adolescente/fotogramas/pie-callada.png",
+          "fotogramas": 29,
+          "fps": 12,
+          "bucle": true,
+          "vaiven": true
+        },
+        "volverse-der": {
+          "archivo": "adolescente/fotogramas/pie-volverse-der.png",
+          "fotogramas": 22,
+          "fps": 24,
+          "bucle": false
+        },
+        "habla-der": {
+          "archivo": "adolescente/fotogramas/pie-habla-der.png",
+          "fotogramas": 29,
+          "fps": 24,
+          "bucle": true
+        }
+      }
+    }
+  },
+  "adulta": {
+    "pie": {
+      "ancho": 82,
+      "alto": 236,
+      "origen": [
+        0.463,
+        0.987
+      ],
+      "altoJuego": 116,
+      "animaciones": {
+        "callada": {
+          "archivo": "adulta/fotogramas/pie-callada.png",
+          "fotogramas": 21,
+          "fps": 12,
+          "bucle": true,
+          "vaiven": true
+        },
+        "volverse-izq": {
+          "archivo": "adulta/fotogramas/pie-volverse-izq.png",
+          "fotogramas": 15,
+          "fps": 24,
+          "bucle": false
+        },
+        "habla-izq": {
+          "archivo": "adulta/fotogramas/pie-habla-izq.png",
+          "fotogramas": 44,
+          "fps": 20,
+          "bucle": true,
+          "vaiven": true
+        }
+      }
+    }
   }
 }

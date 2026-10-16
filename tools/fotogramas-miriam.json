@@ -1,5 +1,5 @@
 {
-  "_comentario": "Qué fotogramas de cada vídeo de docs/videos se usan para cada animación de Miriam (mismo formato que fotogramas-sofia.json). Miriam no se mueve: mira y habla hacia el lado en el que está Sofía y, al cambiar de lado, se gira pasando por la vista de frente. 'callada' y 'habla' van por lado (der: mirando a la derecha; izq: a la izquierda). El giro se llama por el lado en el que acaba ('girar-izq': de derecha a izquierda; 'girar-der': de izquierda a derecha); basta con uno, el otro sentido se reproduce al revés. Uso: npm run fotogramas -- miriam",
+  "_comentario": "Qué fotogramas de cada vídeo de docs/videos se usan para cada animación de Miriam (mismo formato que fotogramas-sofia.json). Miriam no se mueve: mira y habla hacia el lado en el que está Sofía y, al cambiar de lado, se gira pasando por la vista de frente. 'callada' y 'habla' van por lado (der: mirando a la derecha; izq: a la izquierda). El giro se llama por el lado en el que acaba ('girar-izq': de derecha a izquierda; 'girar-der': de izquierda a derecha); basta con uno, el otro sentido se reproduce al revés. Si el vídeo no tiene las dos vistas de lado (adolescente y adulta), 'callada' va de frente, 'volverse-der' o 'volverse-izq' gira del frente hacia ese lado al empezar a hablar (al acabar se reproduce al revés) y lo que solo existe hacia un lado se voltea para el otro. Uso: npm run fotogramas -- miriam",
   "nina": {
     "pie": {
       "alto": 95,
@@ -30,6 +30,36 @@
             "girar-der": { "de": 137, "a": 151, "fps": 24, "bucle": false },
             "habla-der": { "de": 150, "a": 172, "fps": 20, "bucle": true, "vaiven": true },
             "callada-der": { "de": 172, "a": 186, "fps": 12, "bucle": true, "vaiven": true }
+          }
+        }
+      }
+    }
+  },
+  "adolescente": {
+    "pie": {
+      "alto": 112,
+      "videos": {
+        "ado-Miriam.mp4": {
+          "referencia": [0, 20],
+          "animaciones": {
+            "callada": { "de": 168, "a": 196, "fps": 12, "bucle": true, "vaiven": true },
+            "volverse-der": { "de": 21, "a": 42, "fps": 24, "bucle": false },
+            "habla-der": { "de": 43, "a": 71, "fps": 24, "bucle": true }
+          }
+        }
+      }
+    }
+  },
+  "adulta": {
+    "pie": {
+      "alto": 116,
+      "videos": {
+        "adulta-Miriam.mp4": {
+          "referencia": [0, 20],
+          "animaciones": {
+            "callada": { "de": 0, "a": 20, "fps": 12, "bucle": true, "vaiven": true },
+            "volverse-izq": { "de": 104, "a": 118, "fps": 24, "bucle": false },
+            "habla-izq": { "de": 119, "a": 162, "fps": 20, "bucle": true, "vaiven": true }
           }
         }
       }

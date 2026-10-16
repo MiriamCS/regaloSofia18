@@ -245,9 +245,14 @@ niña, con esta descripción (la falda se mueve al correr y al saltar).
 6. **Miriam:** sus vídeos se configuran igual, en [`tools/fotogramas-miriam.json`](../../tools/fotogramas-miriam.json)
    (`npm run fotogramas -- miriam` para generar solo los suyos). Miriam no se mueve: necesita `callada-der`,
    `habla-der`, `habla-izq`, `callada-izq` y un giro pasando por la vista de frente, con el nombre del lado en el que
-   acaba (`girar-izq` o `girar-der`; el otro sentido el juego lo reproduce hacia atrás). Mira siempre hacia Sofía y mueve la boca mientras se escribe su
-   bocadillo. Van con vídeo la niña (`nina_Miriam.mp4`, niveles 0-2) y la preadolescente (`preado-Miriam.mp4`, niveles 3-7);
-   la adolescente y la adulta siguen en SVG.
+   acaba (`girar-izq` o `girar-der`; el otro sentido el juego lo reproduce hacia atrás). Mira siempre hacia Sofía y
+   mueve la boca mientras se escribe su bocadillo. Todas sus edades van con vídeo (ya no hay Miriam en SVG): niña
+   (`nina_Miriam.mp4`, niveles 0-2), preadolescente (`preado-Miriam.mp4`, 3-7), adolescente (`ado-Miriam.mp4`, 8-12) y
+   adulta (`adulta-Miriam.mp4`, 13-18). La única excepción es la Miriam de cartón del nivel 15, un PNG fijo
+   (`assets/sprites/miriam/carton/cuerpo.png`).
+   Los vídeos de la adolescente y la adulta solo se giran hacia un lado: calla de frente (`callada`), al empezar a
+   hablar se vuelve hacia ese lado (`volverse-der` o `volverse-izq`; al acabar, al revés) y habla con `habla-der` o
+   `habla-izq`, que se voltea cuando Sofía está al otro lado (el lunar cambia de lado).
 
 ## 7. Consejos al generar
 

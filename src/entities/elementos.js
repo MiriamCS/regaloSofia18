@@ -615,10 +615,10 @@ export class Bocadillo {
   }
 }
 
-// Miriam: mira hacia Sofía y le habla con un bocadillo. Las edades con vídeo (niña y preadolescente) se animan con sus fotogramas:
-// callada o hablando hacia el lado de Sofía y, si Sofía se pasa al otro lado, se gira pasando por la vista de frente.
-// Las demás son un dibujo SVG que se voltea. Con 'sprite' en la leyenda (p. ej. 'carton') es una figura fija que ni se
-// gira ni respira: solo se tambalea un poco.
+// Miriam: mira hacia Sofía y le habla con un bocadillo. Se anima con los fotogramas del vídeo de su edad: callada o
+// hablando hacia el lado de Sofía y, si Sofía se pasa al otro lado, se gira pasando por la vista de frente. Si el vídeo no
+// tiene las dos vistas de lado (adolescente y adulta), calla de frente y se vuelve hacia Sofía para hablar. Con 'sprite'
+// en la leyenda (p. ej. 'carton') es una figura fija que ni se gira ni respira: solo se tambalea un poco.
 export class Miriam {
   constructor(scene, o, etapa, textoPista) {
     this.scene = scene;
@@ -633,16 +633,12 @@ export class Miriam {
       scene.tweens.add({ targets: this.img, angle: { from: -1.5, to: 1.5 }, duration: 1400, yoyo: true, repeat: -1, ease: 'Sine.inOut' });
       return;
     }
-    const info = scene.cache.json.get('fotogramas-miriam')?.[etapa]?.pie;
-    this.fotos = !!info && scene.anims.exists(this.clave('callada-der'));
-    if (this.fotos) {
-      this.img = scene.add.sprite(this.x, this.y, this.clave('callada-der')).setOrigin(info.origen[0], info.origen[1]);
-      this.img.on('animationcomplete', () => (this.girando = false));
-    } else {
-      this.img = scene.add.image(this.x, this.y, `miriam-${etapa}`).setOrigin(0.5, 1);
-    }
-    this.img.setScale(ESC).setDepth(45);
-    const alto = this.fotos ? info.altoJuego : this.img.displayHeight;
+    const info = scene.cache.json.get('fotogramas-miriam')[etapa].pie;
+    const inicial = ['callada-der', 'callada'].find((a) => scene.anims.exists(this.clave(a)));
+    this.hablaba = false;
+    this.img = scene.add.sprite(this.x, this.y, this.clave(inicial)).setOrigin(info.origen[0], info.origen[1]).setScale(ESC).setDepth(45);
+    this.img.on('animationcomplete', () => (this.girando = false));
+    const alto = info.altoJuego;
     this.bocadillo = new Bocadillo(scene, this.x, this.y - alto - 12, textoPista);
     this.radio = o.p.radio || 170;
     scene.tweens.add({ targets: this.img, scaleY: ESC * 1.03, duration: 800, yoyo: true, repeat: -1, ease: 'Sine.inOut' });
@@ -650,37 +646,61 @@ export class Miriam {
   clave(anim) {
     return claveFotogramas(this.etapa, 'pie', anim, 'miriam');
   }
+  existe(anim) {
+    return this.scene.anims.exists(this.clave(anim));
+  }
+  // Pone la animación 'base' hacia el lado de Sofía: la de ese lado, la del otro lado volteada o la de frente
+  reproducir(base) {
+    const otro = this.lado === 'izq' ? 'der' : 'izq';
+    const [anim, voltear] = [[`${base}-${this.lado}`, false], [`${base}-${otro}`, true], [base, false]].find(([a]) => this.existe(a));
+    this.img.setFlipX(voltear);
+    if (anim !== this.animActual) {
+      this.animActual = anim;
+      this.img.play(this.clave(anim));
+    }
+  }
   actualizar(sofia, dt, hablando) {
     this.bocadillo.mostrar(hablando);
     this.bocadillo.actualizar(dt);
     if (this.fija) return;
-    if (!this.fotos) {
-      this.img.setFlipX(sofia.x < this.x);
-      return;
-    }
     // lado de Sofía (con un margen para no girarse sin parar si Sofía está justo encima)
     const dx = sofia.x - this.x;
     const lado = dx < -12 ? 'izq' : dx > 12 ? 'der' : this.lado || 'der';
     if (!this.lado) this.lado = lado;
     if (this.girando) return;
     if (lado !== this.lado) {
-      // cada vídeo trae el giro en un solo sentido ('girar-izq' o 'girar-der', por el lado en el que acaba);
-      // el otro sentido es el mismo giro hacia atrás
       this.lado = lado;
-      this.girando = true;
-      this.animActual = 'girar';
+      // cada vídeo trae el giro en un solo sentido ('girar-izq' o 'girar-der', por el lado en el que acaba);
+      // el otro sentido es el mismo giro hacia atrás. Sin giro, la animación del otro lado se voltea sin más.
       const otro = lado === 'izq' ? 'der' : 'izq';
-      if (this.scene.anims.exists(this.clave(`girar-${lado}`))) this.img.play(this.clave(`girar-${lado}`));
-      else this.img.playReverse(this.clave(`girar-${otro}`));
-      return;
+      const giro = [`girar-${lado}`, `girar-${otro}`].find((a) => this.existe(a));
+      if (giro) {
+        this.girando = true;
+        this.animActual = 'girar';
+        this.img.setFlipX(false);
+        if (giro === `girar-${lado}`) this.img.play(this.clave(giro));
+        else this.img.playReverse(this.clave(giro));
+        return;
+      }
     }
     // mueve la boca mientras se escribe el bocadillo; después se queda callada mirando a Sofía
     const b = this.bocadillo;
-    const anim = `${hablando && b.mostrado < b.completo.length ? 'habla' : 'callada'}-${this.lado}`;
-    if (anim !== this.animActual) {
-      this.animActual = anim;
-      this.img.play(this.clave(anim));
+    const habla = hablando && b.mostrado < b.completo.length;
+    const otro = this.lado === 'izq' ? 'der' : 'izq';
+    const volverse = [`volverse-${this.lado}`, `volverse-${otro}`].find((a) => this.existe(a));
+    if (habla !== this.hablaba && volverse) {
+      // calla de frente: se vuelve hacia Sofía al empezar a hablar y vuelve al frente al acabar. 'volverse-izq' o
+      // 'volverse-der' va del frente hacia ese lado; hacia el otro lado se voltea
+      this.hablaba = habla;
+      this.girando = true;
+      this.animActual = 'volverse';
+      this.img.setFlipX(volverse !== `volverse-${this.lado}`);
+      if (habla) this.img.play(this.clave(volverse));
+      else this.img.playReverse(this.clave(volverse));
+      return;
     }
+    this.hablaba = habla;
+    this.reproducir(habla ? 'habla' : 'callada');
   }
 }
 
