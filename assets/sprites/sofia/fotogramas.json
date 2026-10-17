@@ -352,5 +352,108 @@
         }
       }
     }
+  },
+  "adulta": {
+    "pie": {
+      "ancho": 158,
+      "alto": 216,
+      "origen": [
+        0.494,
+        0.986
+      ],
+      "altoJuego": 105,
+      "animaciones": {
+        "reposo": {
+          "archivo": "adulta/fotogramas/pie-reposo.png",
+          "fotogramas": 31,
+          "fps": 8,
+          "bucle": true,
+          "vaiven": true
+        },
+        "andar": {
+          "archivo": "adulta/fotogramas/pie-andar.png",
+          "fotogramas": 31,
+          "fps": 24,
+          "bucle": true
+        },
+        "correr": {
+          "archivo": "adulta/fotogramas/pie-correr.png",
+          "fotogramas": 28,
+          "fps": 24,
+          "bucle": true
+        },
+        "saltar": {
+          "archivo": "adulta/fotogramas/pie-saltar.png",
+          "fotogramas": 16,
+          "fps": 24,
+          "bucle": false
+        },
+        "caer": {
+          "archivo": "adulta/fotogramas/pie-caer.png",
+          "fotogramas": 9,
+          "fps": 20,
+          "bucle": false
+        },
+        "doble": {
+          "archivo": "adulta/fotogramas/pie-doble.png",
+          "fotogramas": 22,
+          "fps": 32,
+          "bucle": false
+        },
+        "empujar": {
+          "archivo": "adulta/fotogramas/pie-empujar.png",
+          "fotogramas": 17,
+          "fps": 12,
+          "bucle": true,
+          "alcance": [
+            35.9,
+            35.9,
+            36.2,
+            36.5,
+            37.1,
+            37.8,
+            38.4,
+            38.8,
+            38.9,
+            38.8,
+            38.4,
+            38.1,
+            37.8,
+            37.8,
+            37.8,
+            38.1,
+            38.1
+          ],
+          "vaiven": true
+        },
+        "cantar": {
+          "archivo": "adulta/fotogramas/pie-cantar.png",
+          "fotogramas": 22,
+          "fps": 12,
+          "bucle": true,
+          "vaiven": true
+        },
+        "danio": {
+          "archivo": "adulta/fotogramas/pie-danio.png",
+          "fotogramas": 17,
+          "fps": 28,
+          "bucle": false
+        },
+        "celebrar": {
+          "archivo": "adulta/fotogramas/pie-celebrar.png",
+          "fotogramas": 37,
+          "fps": 24,
+          "bucle": true,
+          "vaiven": true
+        },
+        "soplar": {
+          "archivo": "adulta/fotogramas/pie-soplar.png",
+          "fotogramas": 17,
+          "fps": 14,
+          "bucle": true,
+          "vaiven": true
+        }
+      }
+    }
   }
 }

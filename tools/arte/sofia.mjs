@@ -21,7 +21,7 @@ const LUNAR = '#3a2018';
 const DORADO = '#e8b84a';
 
 // Las medidas (piernas, torso, cabeza) no cambian respecto al diseño provisional: la física de los niveles depende de ellas.
-// El bebé, la niña y la preadolescente no están aquí: se animan solo con los fotogramas de sus vídeos (tools/video-a-sprites.mjs).
+// El bebé, la niña, la preadolescente y la adulta no están aquí: se animan solo con los fotogramas de sus vídeos (tools/video-a-sprites.mjs).
 export const ETAPAS = {
   // S1: camiseta azul marino con estrella, vaqueros anchos y zapatillas blancas; melena muy rizada hasta la cintura
   adolescente: {
@@ -29,18 +29,11 @@ export const ETAPAS = {
     pelo: { estilo: 'rizado', largo: 'cintura' },
     traje: 'camiseta',
   },
-  // S2: vestido de concierto azul noche con cinturón dorado y pentagrama en el bajo, tacones con pulsera
-  adulta: {
-    piernas: 37, torso: 36, anchoTorso: 26, cabeza: 36,
-    pelo: { estilo: 'rizado', largo: 'cintura' },
-    traje: 'gala',
-  },
 };
 
 // Colores de cada traje
 const ROPA = {
   camiseta: { tela: '#273461', claro: '#33427a', estrella: '#86a3c6', vaquero: '#283a58', costura: '#41587e', zapa: '#eef0f4', zapaDetalle: '#93afd3' },
-  gala: { tela: '#1e2a55', claro: '#2b3a70', zapato: '#1d2853' },
 };
 
 function medidas(e) {
@@ -221,7 +214,7 @@ function pie(x0, ancho, relleno, alto = 8.5) {
 function pierna(e) {
   const { caderaY } = medidas(e);
   const L = e.piernas;
-  let w = 10.5;
+  const w = 10.5;
   let cuerpo = '';
   if (e.traje === 'camiseta') {
     const c = ROPA.camiseta;
@@ -235,14 +228,6 @@ function pierna(e) {
     cuerpo += `<path d="M ${f(x0 - 0.5)} ${f(caderaY - 2)} L ${f(x0 + w + 0.5)} ${f(caderaY - 2)} L ${f(x0 + w + 3)} ${f(bajo)} Q ${f(x0 + w / 2)} ${f(bajo + 1.6)} ${f(x0 - 3)} ${f(bajo)} Z" fill="${c.vaquero}" ${trazo()}/>`;
     cuerpo += `<path d="M ${f(x0 + w / 2 + 1)} ${f(caderaY + 2)} L ${f(x0 + w / 2 + 2.2)} ${f(bajo - 1.5)}" stroke="${c.costura}" stroke-width="1.2" stroke-linecap="round"/>`;
     cuerpo += `<path d="M ${f(x0 - 2.6)} ${f(bajo - 2.2)} Q ${f(x0 + w / 2)} ${f(bajo - 0.8)} ${f(x0 + w + 2.6)} ${f(bajo - 2.2)}" fill="none" stroke="${c.costura}" stroke-width="1.1"/>`;
-  } else if (e.traje === 'gala') {
-    const c = ROPA.gala;
-    w = 9;
-    const x0 = -w / 2;
-    cuerpo += `<rect x="${f(x0)}" y="${f(caderaY - 2)}" width="${f(w)}" height="${f(L - 1)}" rx="${f(w / 2)}" fill="${PIEL}" ${trazo()}/>`;
-    // zapato de tacón con pulsera: el talón queda levantado y el tacón apoya detrás
-    cuerpo += `<path d="M ${f(x0 - 0.5)} -5 Q ${f(x0 + 3)} -6.5 ${f(x0 + 7)} -4.6 Q ${f(x0 + 12)} -3.2 ${f(x0 + 16)} -3 Q ${f(x0 + 18.5)} -2.6 ${f(x0 + 18)} 0.5 L ${f(x0 + 7)} 0.5 Q ${f(x0 + 4)} -2.5 ${f(x0 + 1.8)} -2.2 L ${f(x0 + 1.8)} 0.5 L ${f(x0 - 1)} 0.5 Z" fill="${c.zapato}" ${trazo(2)}/>`;
-    cuerpo += `<path d="M ${f(x0 - 0.4)} -7.6 L ${f(x0 + w + 0.4)} -7.6" stroke="${c.zapato}" stroke-width="1.8" stroke-linecap="round"/>`;
   }
   const x0 = -w / 2;
   return { cuerpo, caja: [x0 - 6, caderaY - 4, 16 + w + 12, L + 8], pivote: [0, caderaY] };
@@ -266,10 +251,6 @@ function brazo(e) {
     cuerpo += brazoPiel;
     cuerpo += manga(ROPA.camiseta.tela, L * 0.36);
     cuerpo += mano(yMano);
-  } else {
-    // vestido sin mangas: brazo al aire
-    cuerpo += brazoPiel;
-    cuerpo += mano(yMano);
   }
   return { cuerpo, caja: [-10, hombroY - 7, 20, L + 14], pivote: [0, hombroY] };
 }
@@ -280,10 +261,6 @@ function tronco(W, arriba, abajo, relleno, ancho = ANCHO_TRAZO) {
   return `<path d="M ${f(-W / 2 + 3)} ${f(arriba)} Q ${f(-W / 2 - 1)} ${f(arriba + 2)} ${f(-W / 2)} ${f(arriba + 9)} L ${f(-W / 2 + 1)} ${f(abajo)} L ${f(W / 2 - 1)} ${f(abajo)} L ${f(W / 2)} ${f(arriba + 9)} Q ${f(W / 2 + 1)} ${f(arriba + 2)} ${f(W / 2 - 3)} ${f(arriba)} Z" fill="${relleno}" ${trazo(ancho)}/>`;
 }
 
-function caminoFalda(W, y0, y1, vuelo) {
-  return `M ${f(-W / 2 + 1)} ${f(y0)} L ${f(W / 2 - 1)} ${f(y0)} L ${f(W / 2 + vuelo)} ${f(y1)} Q 0 ${f(y1 + 5)} ${f(-W / 2 - vuelo)} ${f(y1)} Z`;
-}
-
 function torso(e) {
   const { caderaY, cuelloY } = medidas(e);
   const W = e.anchoTorso;
@@ -292,7 +269,6 @@ function torso(e) {
   let cuerpo = '';
   // cuello
   cuerpo += `<rect x="-5" y="${f(cuelloY - 4)}" width="10" height="10" fill="${PIEL_SOMBRA}" ${trazo()}/>`;
-  let bajoFalda = abajoY;
 
   if (e.traje === 'camiseta') {
     const c = ROPA.camiseta;
@@ -310,32 +286,8 @@ function torso(e) {
       d += `${i ? 'L' : 'M'} ${f(cx + Math.cos(a) * r)} ${f(cy + Math.sin(a) * r)} `;
     }
     cuerpo += `<path d="${d}Z" fill="${c.estrella}" stroke-linejoin="round"/>`;
-  } else if (e.traje === 'gala') {
-    const c = ROPA.gala;
-    const cintura = caderaY - 6;
-    // falda hasta la rodilla con pentagrama dorado en el bajo
-    const y1 = caderaY + e.piernas * 0.55;
-    bajoFalda = y1 + 6;
-    cuerpo += `<path d="${caminoFalda(W, cintura, y1, 8)}" fill="${c.tela}" ${trazo()}/>`;
-    for (let i = 0; i < 3; i++) {
-      const y = y1 - 7 + i * 1.8;
-      cuerpo += `<path d="M ${f(-W / 2 - 4.5)} ${f(y)} q 6 -2.4 12 0 t 12 0 t 10 0" fill="none" stroke="${DORADO}" stroke-width="0.7" opacity="0.9"/>`;
-    }
-    for (const [nx, ny] of [[-10, y1 - 5.8], [-1, y1 - 6.8], [8, y1 - 5]]) {
-      cuerpo += `<ellipse cx="${nx}" cy="${f(ny)}" rx="1.5" ry="1.1" fill="${DORADO}" transform="rotate(-20 ${nx} ${f(ny)})"/>`;
-      cuerpo += `<path d="M ${nx + 1.3} ${f(ny)} v -5" stroke="${DORADO}" stroke-width="0.8"/>`;
-    }
-    cuerpo += `<path d="M ${f(W / 2 + 7)} ${f(y1 - 1)} Q 0 ${f(y1 + 3.6)} ${f(-W / 2 - 7)} ${f(y1 - 1)}" fill="none" stroke="${DORADO}" stroke-width="1.4"/>`;
-    // hombros y escote al aire
-    cuerpo += tronco(W, arriba, cintura + 2, PIEL);
-    // cuerpo del vestido con escote corazón y tirantes
-    const top = arriba + 8;
-    cuerpo += `<path d="M ${f(-W / 2 + 0.2)} ${f(top - 1)} Q -6 ${f(top - 3.5)} -2 ${f(top - 0.5)} Q 1.5 ${f(top + 2.6)} 1.5 ${f(top + 2.6)} Q 2 ${f(top - 0.5)} 6 ${f(top - 3)} Q ${f(W / 2 - 2)} ${f(top - 3)} ${f(W / 2 - 0.2)} ${f(top - 1)} L ${f(W / 2 - 0.5)} ${f(cintura + 1)} L ${f(-W / 2 + 0.5)} ${f(cintura + 1)} Z" fill="${c.tela}" ${trazo()}/>`;
-    cuerpo += `<path d="M ${f(-W / 2 + 4.5)} ${f(top - 2.5)} L ${f(-W / 2 + 4)} ${f(arriba + 0.5)} M ${f(W / 2 - 4)} ${f(top - 2.5)} L ${f(W / 2 - 4)} ${f(arriba + 0.5)}" stroke="${c.tela}" stroke-width="2.2" stroke-linecap="round"/>`;
-    // cinturón dorado
-    cuerpo += `<rect x="${f(-W / 2 + 0.4)}" y="${f(cintura - 0.5)}" width="${f(W - 0.8)}" height="2.8" fill="${DORADO}" ${trazo(1.2)}/>`;
   }
-  const alto = bajoFalda - (cuelloY - 6) + 4;
+  const alto = abajoY - (cuelloY - 6) + 4;
   return { cuerpo, caja: [-W / 2 - 14, cuelloY - 6, W + 28, alto], pivote: [0, caderaY] };
 }
 

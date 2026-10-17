@@ -118,5 +118,43 @@
         }
       }
     }
+  },
+  "adulta": {
+    "pie": {
+      "alto": 105,
+      "videos": {
+        "adulta-1-andar-correr.mp4": {
+          "referencia": [0, 26],
+          "animaciones": {
+            "reposo": { "de": 0, "a": 30, "fps": 8, "bucle": true, "vaiven": true },
+            "andar": { "de": 52, "a": 82, "fps": 24, "bucle": true, "centrar": true },
+            "correr": { "de": 165, "a": 192, "fps": 24, "bucle": true, "centrar": true }
+          }
+        },
+        "adulta-2-saltos.mp4": {
+          "referencia": [160, 200],
+          "animaciones": {
+            "saltar": { "de": 14, "a": 29, "fps": 24, "bucle": false, "anclar": "pies" },
+            "caer": { "de": 30, "a": 38, "fps": 20, "bucle": false, "anclar": "pies" },
+            "doble": { "de": 106, "a": 127, "fps": 32, "bucle": false, "anclar": "centro" }
+          }
+        },
+        "adulta-3-acciones.mp4": {
+          "referencia": [200, 230],
+          "animaciones": {
+            "empujar": { "de": 26, "a": 58, "paso": 2, "fps": 12, "bucle": true, "vaiven": true },
+            "cantar": { "de": 72, "a": 115, "paso": 2, "fps": 12, "bucle": true, "vaiven": true },
+            "danio": { "de": 116, "a": 142, "sin": [120, 129], "fps": 28, "bucle": false },
+            "celebrar": { "de": 150, "a": 186, "fps": 24, "bucle": true, "vaiven": true, "anclar": "pies" }
+          }
+        },
+        "adulta-4-tarta.mp4": {
+          "referencia": [0, 30],
+          "animaciones": {
+            "soplar": { "de": 44, "a": 60, "fps": 14, "bucle": true, "vaiven": true }
+          }
+        }
+      }
+    }
   }
 }

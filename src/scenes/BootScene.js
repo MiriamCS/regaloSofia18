@@ -53,7 +53,7 @@ export class BootScene extends Phaser.Scene {
     this.load.json('rig-sofia', 'sprites/sofia/rig.json');
     this.load.json('indice-musica', 'music/indice.json');
     this.load.once('filecomplete-json-rig-sofia', (k, t, rig) => {
-      // el bebé, la niña y la preadolescente no tienen piezas: van solo con fotogramas de vídeo
+      // solo la adolescente tiene piezas: el resto de edades va solo con fotogramas de vídeo
       for (const e of Object.keys(rig.etapas)) {
         for (const pieza of Object.keys(rig.etapas[e].piezas)) this.load.svg(`sofia-${e}-${pieza}`, `sprites/sofia/${e}/${pieza}.svg`, S);
       }
