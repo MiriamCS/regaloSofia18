@@ -62,7 +62,7 @@ export class JuegoScene extends Phaser.Scene {
 
     // zonas 'fondo': a partir de su x el fondo cambia de tema (niveles con escenarios por tramos)
     const tramosFondo = mundo.objetos.filter((o) => o.tipo === 'fondo' && o.p.tema).map((o) => ({ x: o.x, tema: o.p.tema }));
-    this.fondo = new Fondo(this, this.etapa, this.tema, mundo, tramosFondo);
+    this.fondo = new Fondo(this, this.etapa, this.tema, mundo, tramosFondo, !!props.mundos);
 
     this.solidos = this.physics.add.staticGroup();
     this.nubes = [];
@@ -715,6 +715,8 @@ export class JuegoScene extends Phaser.Scene {
       }
       if (objeto.g) this.tweens.add({ targets: objeto.g, alpha: activo ? 1 : 0.12, duration: 250 });
     }
+    // el fondo también: A = día, B = noche
+    this.fondo.ponerDia(this.mundoActual === 'A');
     this.cameras.main.flash(200, 255, 255, 255, false);
   }
 

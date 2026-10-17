@@ -704,16 +704,19 @@ const DECORADOS = {
     }
   },
   // ---- la cita ----
-  farolas(g, h, color, r) {
+  farolas(g, h, color, r, { apagadas = false } = {}) {
     const b = h * SUELO;
     for (let x = 80; x < ANCHO_PATRON; x += 384) {
       g.fillStyle(color, 1);
       g.fillRect(x, b - 220, 10, 220);
       g.fillRect(x - 14, b - 230, 38, 12);
-      g.fillStyle(0xfff3a0, 1);
+      // apagadas (de día): la bombilla sin luz ni halo
+      g.fillStyle(apagadas ? Phaser.Display.Color.ValueToColor(color).lighten(15).color : 0xfff3a0, 1);
       g.fillCircle(x + 5, b - 214, 12);
-      g.fillStyle(0xfff3a0, 0.15);
-      g.fillCircle(x + 5, b - 180, 80);
+      if (!apagadas) {
+        g.fillStyle(0xfff3a0, 0.15);
+        g.fillCircle(x + 5, b - 180, 80);
+      }
       // banco
       g.fillStyle(color, 1);
       g.fillRect(x + 120, b - 50, 130, 10);
@@ -1015,7 +1018,12 @@ const TEMAS = {
   viaje: { lejos: [['nubes'], ['montanas']], medio: [['arboles', { n: 6 }]] },
   biblioteca: { lejos: [['estanterias']], medio: [['estanterias', { base: 1 }]] },
   escenario: { lejos: [['focosColor'], ['telonRojo']], medio: [['publico']] },
-  cita: { lejos: [['estrellas'], ['luna'], ['edificios', { base: 0.92 }]], medio: [['farolas']] },
+  cita: {
+    lejos: [['estrellas'], ['luna'], ['edificios', { base: 0.92 }]],
+    medio: [['farolas']],
+    // de día (niveles con mundos: A = día): los mismos edificios y farolas (apagadas), con nubes y sol en vez de estrellas y luna
+    dia: { cielo: [0x6fb6ff, 0xffd9b8], lejos: 0x5b8fe0, medio: 0x3f6fcf, cambia: { estrellas: ['nubes'], luna: ['sol'], farolas: ['farolas', { apagadas: true }] } },
+  },
   nieve: { lejos: [['montanasNevadas'], ['copos']], medio: [['pinos']] },
   patinaje: { lejos: [['bombillas'], ['bolaDisco'], ['gradas']], medio: [['barandilla']] },
   danza: { lejos: [['espejos']], medio: [['barra']] },
@@ -1028,11 +1036,24 @@ const TEMAS = {
   blanco: { lejos: [], medio: [] },
 };
 
-function texturaCapa(scene, clave, h, elementos, color, semilla) {
+// Lienzo que no pinta nada: sirve para gastar los números al azar de un decorado sin dibujarlo
+const NULO = new Proxy({}, { get: () => () => {} });
+
+// 'cambia': { decorado: [otro, op] } dibuja 'otro' en su lugar, sin alterar cómo salen los demás decorados
+function texturaCapa(scene, clave, h, elementos, color, semilla, cambia = {}) {
   if (scene.textures.exists(clave)) return clave;
   const g = graficoSuave(scene.make.graphics({ x: 0, y: 0 }, false), color);
   const r = rnd(semilla);
-  for (const [nombre, op] of elementos) DECORADOS[nombre]?.(g, h, color, r, op || {});
+  const r2 = rnd(semilla + 99);
+  for (const [nombre, op] of elementos) {
+    const otro = cambia[nombre];
+    if (!otro) {
+      DECORADOS[nombre]?.(g, h, color, r, op || {});
+      continue;
+    }
+    DECORADOS[nombre]?.(NULO, h, color, r, op || {});
+    DECORADOS[otro[0]]?.(g, h, color, r2, otro[1] || {});
+  }
   g.generateTexture(clave, ANCHO_PATRON, h);
   g.destroy();
   return clave;
@@ -1045,7 +1066,8 @@ const INTENSIDAD = JUEGO.fondo?.intensidad ?? 0.4;
 
 export class Fondo {
   // 'tramos': [{ x, tema }] (zonas 'fondo' del mapa): a partir de x, el fondo pasa a ese tema con un fundido suave
-  constructor(scene, etapa, tema, mundo, tramos = []) {
+  // 'diaNoche': el fondo tiene versión de día y de noche (niveles con mundos), y se cambia con ponerDia()
+  constructor(scene, etapa, tema, mundo, tramos = [], diaNoche = false) {
     this.scene = scene;
     const cam = scene.cameras.main;
     const W = cam.width;
@@ -1062,18 +1084,35 @@ export class Fondo {
       const def = TEMAS[t] || TEMAS.parque;
       const semilla = [...String(t)].reduce((a, c) => a + c.charCodeAt(0), 0);
       const capas = [];
-      if (def.lejos.length) {
-        const k = texturaCapa(scene, `fondo-${etapa}-${t}-lejos`, H, def.lejos, pal.lejos, semilla);
-        capas.push({ s: scene.add.tileSprite(0, 0, W, H, k).setOrigin(0).setScrollFactor(0).setDepth(-90).setAlpha(INTENSIDAD), f: 0.15, alfa: INTENSIDAD });
-      }
-      if (def.medio.length) {
-        const k = texturaCapa(scene, `fondo-${etapa}-${t}-medio`, H, def.medio, pal.medio, semilla + 7);
-        capas.push({ s: scene.add.tileSprite(0, 0, W, H, k).setOrigin(0).setScrollFactor(0).setDepth(-80).setAlpha(INTENSIDAD), f: 0.4, alfa: INTENSIDAD });
+      // con día y noche, cada capa tiene su versión de día ('dia': true) y la de siempre, que es la de noche
+      const versiones = diaNoche && def.dia ? [[false, pal, {}, ''], [true, def.dia, def.dia.cambia, '-dia']] : [[undefined, pal, {}, '']];
+      for (const [dia, colores, cambia, sufijo] of versiones) {
+        if (def.lejos.length) {
+          const k = texturaCapa(scene, `fondo-${etapa}-${t}-lejos${sufijo}`, H, def.lejos, colores.lejos, semilla, cambia);
+          capas.push({ s: scene.add.tileSprite(0, 0, W, H, k).setOrigin(0).setScrollFactor(0).setDepth(-90).setAlpha(INTENSIDAD), f: 0.15, alfa: INTENSIDAD, dia });
+        }
+        if (def.medio.length) {
+          const k = texturaCapa(scene, `fondo-${etapa}-${t}-medio${sufijo}`, H, def.medio, colores.medio, semilla + 7, cambia);
+          capas.push({ s: scene.add.tileSprite(0, 0, W, H, k).setOrigin(0).setScrollFactor(0).setDepth(-80).setAlpha(INTENSIDAD), f: 0.4, alfa: INTENSIDAD, dia });
+        }
+        if (dia && !this.cieloDia) {
+          this.cieloDia = scene.add.graphics().setScrollFactor(0).setDepth(-99);
+          this.cieloDia.fillGradientStyle(colores.cielo[0], colores.cielo[0], colores.cielo[1], colores.cielo[1], 1);
+          this.cieloDia.fillRect(0, 0, W, H);
+        }
       }
       this.porTema[t] = capas;
       this.capas.push(...capas);
     }
     this.multiple = this.tramos.length > 1;
+    // 1 = de día, 0 = de noche (se funde entre los dos al cambiar)
+    this.dia = 1;
+  }
+
+  ponerDia(esDia, duracion = 600) {
+    if (!this.cieloDia) return;
+    this.scene.tweens.killTweensOf(this);
+    this.scene.tweens.add({ targets: this, dia: esDia ? 1 : 0, duration: duracion, ease: 'Sine.inOut' });
   }
 
   // Peso de cada tema según por dónde va la cámara (1 = se ve entero)
@@ -1095,16 +1134,20 @@ export class Fondo {
       c.s.tilePositionX = cam.scrollX * c.f;
       c.s.y = Math.max(-60, (fondoY - cam.scrollY) * c.f * 0.5);
     }
-    if (!this.multiple || this.desvaneciendo) return;
-    const pesos = this.pesos(cam.scrollX + cam.width / 2);
+    if ((!this.multiple && !this.cieloDia) || this.desvaneciendo) return;
+    const pesos = this.multiple ? this.pesos(cam.scrollX + cam.width / 2) : { [this.tramos[0].tema]: 1 };
     for (const [t, capas] of Object.entries(this.porTema)) {
-      for (const c of capas) c.s.setVisible(pesos[t] > 0).setAlpha(c.alfa * pesos[t]);
+      for (const c of capas) {
+        const k = pesos[t] * (c.dia === undefined ? 1 : c.dia ? this.dia : 1 - this.dia);
+        c.s.setVisible(k > 0).setAlpha(c.alfa * k);
+      }
     }
+    if (this.cieloDia) this.cieloDia.setAlpha(this.dia);
   }
 
   desvanecer(duracion) {
     this.desvaneciendo = true;
-    const objetivos = [this.cielo, ...this.capas.map((c) => c.s)];
+    const objetivos = [this.cielo, ...(this.cieloDia ? [this.cieloDia] : []), ...this.capas.map((c) => c.s)];
     this.scene.tweens.add({ targets: objetivos, alpha: 0, duration: duracion });
   }
 }
