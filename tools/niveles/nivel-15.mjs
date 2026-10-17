@@ -10,7 +10,7 @@
 // puede haber metrónomos (no se saltan ni se aplastan sin cajas); lo guarda un avión de papel, que huye si le cantas.
 // Miriam: entre bastidores, de cartón porque la de verdad está de Erasmus («cuenta...»), y junto a la puerta, ya de vuelta.
 export default {
-  props: { tema: 'concierto', edad: 15, gafas: true },
+  props: { tema: 'concierto', edad: 15, gafas: 'objeto' }, // se pone las gafas al cogerlas
   leyenda: {
     M: { tipo: 'miriam', pista: 'cuenta', sprite: 'carton' }, // la de cartón: la de verdad está de Erasmus
     N: { tipo: 'miriam', pista: 'puerta' },

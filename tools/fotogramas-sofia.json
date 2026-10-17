@@ -119,6 +119,69 @@
       }
     }
   },
+  "adolescente": {
+    "pie": {
+      "alto": 102,
+      "videos": {
+        "adolescente-1-andar-correr.mp4": {
+          "referencia": [0, 26],
+          "animaciones": {
+            "reposo": { "de": 0, "a": 30, "fps": 8, "bucle": true, "vaiven": true },
+            "andar": { "de": 58, "a": 90, "fps": 24, "bucle": true, "centrar": true },
+            "correr": { "de": 136, "a": 163, "fps": 24, "bucle": true, "centrar": true }
+          }
+        },
+        "adolescente-2-saltos.mp4": {
+          "referencia": [200, 230],
+          "animaciones": {
+            "saltar": { "de": 26, "a": 43, "fps": 24, "bucle": false, "anclar": "pies" },
+            "caer": { "de": 44, "a": 56, "fps": 24, "bucle": false, "anclar": "pies" },
+            "doble": { "de": 140, "a": 174, "fps": 40, "bucle": false, "anclar": "centro" }
+          }
+        },
+        "adolescente-3-acciones.mp4": {
+          "sueltos": 0.05,
+          "referencia": [200, 230],
+          "animaciones": {
+            "empujar": { "de": 23, "a": 55, "paso": 2, "fps": 12, "bucle": true },
+            "cantar": { "de": 64, "a": 118, "paso": 2, "fps": 12, "bucle": true, "vaiven": true },
+            "danio": { "de": 128, "a": 142, "fps": 24, "bucle": false },
+            "celebrar": { "de": 152, "a": 180, "fps": 24, "bucle": true, "vaiven": true, "anclar": "pies" }
+          }
+        }
+      }
+    },
+    "gafas": {
+      "alto": 102,
+      "videos": {
+        "adolescente-4-gafas.mp4": {
+          "referencia": [0, 26],
+          "animaciones": {
+            "reposo": { "de": 0, "a": 30, "fps": 8, "bucle": true, "vaiven": true },
+            "andar": { "de": 57, "a": 89, "fps": 24, "bucle": true, "centrar": true },
+            "correr": { "de": 132, "a": 154, "fps": 24, "bucle": true, "centrar": true }
+          }
+        },
+        "adolescente-5-gafas-saltos.mp4": {
+          "referencia": [70, 91],
+          "animaciones": {
+            "saltar": { "de": 27, "a": 42, "fps": 24, "bucle": false, "anclar": "pies" },
+            "caer": { "de": 43, "a": 57, "fps": 24, "bucle": false, "anclar": "pies" },
+            "doble": { "de": 106, "a": 146, "paso": 2, "fps": 32, "bucle": false, "anclar": "centro" }
+          }
+        },
+        "adolescente-6-gafas-acciones.mp4": {
+          "referencia": [64, 84],
+          "animaciones": {
+            "empujar": { "de": 27, "a": 56, "paso": 2, "fps": 12, "bucle": true },
+            "cantar": { "de": 88, "a": 140, "paso": 2, "fps": 12, "bucle": true, "vaiven": true },
+            "danio": { "de": 168, "a": 190, "fps": 28, "bucle": false },
+            "celebrar": { "de": 204, "a": 232, "fps": 24, "bucle": true, "vaiven": true, "anclar": "pies" }
+          }
+        }
+      }
+    }
+  },
   "adulta": {
     "pie": {
       "alto": 105,

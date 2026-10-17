@@ -6,15 +6,6 @@ export function svg(w, h, cuerpo, extra = '') {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"${extra}>\n${cuerpo}\n</svg>\n`;
 }
 
-// Generador pseudoaleatorio con semilla: los rizos salen siempre iguales.
-export function azar(semilla) {
-  let s = semilla >>> 0;
-  return () => {
-    s = (s * 1664525 + 1013904223) >>> 0;
-    return s / 4294967296;
-  };
-}
-
 export function f(n) {
   return Math.round(n * 100) / 100;
 }

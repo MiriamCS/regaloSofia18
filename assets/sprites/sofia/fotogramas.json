@@ -353,6 +353,192 @@
       }
     }
   },
+  "adolescente": {
+    "pie": {
+      "ancho": 180,
+      "alto": 215,
+      "origen": [
+        0.511,
+        0.981
+      ],
+      "altoJuego": 102,
+      "animaciones": {
+        "reposo": {
+          "archivo": "adolescente/fotogramas/pie-reposo.png",
+          "fotogramas": 31,
+          "fps": 8,
+          "bucle": true,
+          "vaiven": true
+        },
+        "andar": {
+          "archivo": "adolescente/fotogramas/pie-andar.png",
+          "fotogramas": 33,
+          "fps": 24,
+          "bucle": true
+        },
+        "correr": {
+          "archivo": "adolescente/fotogramas/pie-correr.png",
+          "fotogramas": 28,
+          "fps": 24,
+          "bucle": true
+        },
+        "saltar": {
+          "archivo": "adolescente/fotogramas/pie-saltar.png",
+          "fotogramas": 18,
+          "fps": 24,
+          "bucle": false
+        },
+        "caer": {
+          "archivo": "adolescente/fotogramas/pie-caer.png",
+          "fotogramas": 13,
+          "fps": 24,
+          "bucle": false
+        },
+        "doble": {
+          "archivo": "adolescente/fotogramas/pie-doble.png",
+          "fotogramas": 35,
+          "fps": 40,
+          "bucle": false
+        },
+        "empujar": {
+          "archivo": "adolescente/fotogramas/pie-empujar.png",
+          "fotogramas": 17,
+          "fps": 12,
+          "bucle": true,
+          "alcance": [
+            33.5,
+            33.5,
+            33.5,
+            33.7,
+            33.7,
+            33.5,
+            33.7,
+            33.5,
+            33.5,
+            33.7,
+            33.7,
+            33.5,
+            33.5,
+            33.5,
+            33.5,
+            33.7,
+            33.7
+          ]
+        },
+        "cantar": {
+          "archivo": "adolescente/fotogramas/pie-cantar.png",
+          "fotogramas": 28,
+          "fps": 12,
+          "bucle": true,
+          "vaiven": true
+        },
+        "danio": {
+          "archivo": "adolescente/fotogramas/pie-danio.png",
+          "fotogramas": 15,
+          "fps": 24,
+          "bucle": false
+        },
+        "celebrar": {
+          "archivo": "adolescente/fotogramas/pie-celebrar.png",
+          "fotogramas": 29,
+          "fps": 24,
+          "bucle": true,
+          "vaiven": true
+        }
+      }
+    },
+    "gafas": {
+      "ancho": 154,
+      "alto": 213,
+      "origen": [
+        0.474,
+        0.986
+      ],
+      "altoJuego": 102,
+      "animaciones": {
+        "reposo": {
+          "archivo": "adolescente/fotogramas/gafas-reposo.png",
+          "fotogramas": 31,
+          "fps": 8,
+          "bucle": true,
+          "vaiven": true
+        },
+        "andar": {
+          "archivo": "adolescente/fotogramas/gafas-andar.png",
+          "fotogramas": 33,
+          "fps": 24,
+          "bucle": true
+        },
+        "correr": {
+          "archivo": "adolescente/fotogramas/gafas-correr.png",
+          "fotogramas": 23,
+          "fps": 24,
+          "bucle": true
+        },
+        "saltar": {
+          "archivo": "adolescente/fotogramas/gafas-saltar.png",
+          "fotogramas": 16,
+          "fps": 24,
+          "bucle": false
+        },
+        "caer": {
+          "archivo": "adolescente/fotogramas/gafas-caer.png",
+          "fotogramas": 15,
+          "fps": 24,
+          "bucle": false
+        },
+        "doble": {
+          "archivo": "adolescente/fotogramas/gafas-doble.png",
+          "fotogramas": 21,
+          "fps": 32,
+          "bucle": false
+        },
+        "empujar": {
+          "archivo": "adolescente/fotogramas/gafas-empujar.png",
+          "fotogramas": 15,
+          "fps": 12,
+          "bucle": true,
+          "alcance": [
+            33.9,
+            34.8,
+            35.5,
+            36.1,
+            36.7,
+            37.1,
+            37.5,
+            38,
+            38.4,
+            38.5,
+            38.5,
+            38.5,
+            38.5,
+            38.5,
+            38.5
+          ]
+        },
+        "cantar": {
+          "archivo": "adolescente/fotogramas/gafas-cantar.png",
+          "fotogramas": 27,
+          "fps": 12,
+          "bucle": true,
+          "vaiven": true
+        },
+        "danio": {
+          "archivo": "adolescente/fotogramas/gafas-danio.png",
+          "fotogramas": 23,
+          "fps": 28,
+          "bucle": false
+        },
+        "celebrar": {
+          "archivo": "adolescente/fotogramas/gafas-celebrar.png",
+          "fotogramas": 29,
+          "fps": 24,
+          "bucle": true,
+          "vaiven": true
+        }
+      }
+    }
+  },
   "adulta": {
     "pie": {
       "ancho": 158,

@@ -4,8 +4,7 @@ La animación de Sofía se saca de vídeos generados con IA (Flow/Veo, Sora, Kli
 personaje de [`docs/concept-art/sofia`](../concept-art/sofia). De cada vídeo se extraen los fotogramas, se quita
 el fondo verde y se montan las hojas de sprites del juego (`tools/video-a-sprites.mjs`).
 
-El bebé, la niña y la preadolescente se animan **solo** con los fotogramas de sus vídeos (ya no tienen personaje SVG). Las demás
-edades se siguen dibujando con el personaje SVG por piezas hasta que tengan sus vídeos. Qué tramo de cada vídeo va a cada
+Todas las edades se animan **solo** con los fotogramas de sus vídeos (ya no hay Sofía en SVG por piezas). Qué tramo de cada vídeo va a cada
 animación se decide en `tools/fotogramas-sofia.json`.
 
 ---
@@ -20,7 +19,7 @@ animación se decide en `tools/fotogramas-sofia.json`.
 | Bebé | 0-2 | `bebe-A-gatas` · `bebe-B-gatas-acciones` · `bebe-C-pie` · `bebe-D-pie-acciones` · `bebe-E-pie-correr` |
 | Niña | 3-7 | `nina-1-andar-correr` · `nina-2-saltos` · `nina-3-acciones` |
 | Preadolescente | 8-12 | `preado-1-andar-correr` · `preado-2-saltos` · `preado-3-acciones` |
-| Adolescente | 13-17 | `adolescente-1-andar-correr` · `adolescente-2-saltos` · `adolescente-3-acciones` · `adolescente-4-gafas` |
+| Adolescente | 13-17 | `adolescente-1-andar-correr` · `adolescente-2-saltos` · `adolescente-3-acciones` · con gafas: `adolescente-4-gafas` · `adolescente-5-gafas-saltos` · `adolescente-6-gafas-acciones` |
 | Adulta | 18 | `adulta-1-andar-correr` · `adulta-2-saltos` · `adulta-3-acciones` · `adulta-4-tarta` |
 
 - **saltos** = saltar, caer y doble salto. **acciones** = empujar, cantar, recibir un golpe y celebrar
@@ -45,7 +44,14 @@ animación se decide en `tools/fotogramas-sofia.json`.
 | `preado-1-andar-correr` | ✅ En el juego: reposo, andar y correr |
 | `preado-2-saltos` | ✅ En el juego: saltar, caer y la voltereta del doble salto (el vídeo va a 30 fps y la voltereta empieza ya girada) |
 | `preado-3-acciones` | ✅ En el juego: empujar (se borra una raya que sale bajo las manos), cantar (en vaivén), golpe y celebrar. No tiene pose neutra: la referencia es el principio del canto |
-| Resto de edades | ⏳ |
+| `adolescente-1-andar-correr` | ✅ En el juego: reposo (en vaivén), andar y correr |
+| `adolescente-2-saltos` | ✅ En el juego: saltar, caer y la voltereta del doble salto |
+| `adolescente-3-acciones` | ✅ En el juego: empujar, cantar (en vaivén), golpe (desde el fotograma 128, tras el cartel «OW!» y los destellos; `sueltos` borra lo que queda del cartel) y celebrar. Acaba de frente: esa es la referencia |
+| `adolescente-4-gafas` · `-5-gafas-saltos` · `-6-gafas-acciones` | ✅ En el juego: lo mismo, con gafas (modo `gafas`). El 5 es vertical (720x1280); la herramienta lo escala igual por su referencia |
+| `adulta-1-andar-correr` | ✅ En el juego: reposo (en vaivén), andar y correr |
+| `adulta-2-saltos` | ✅ En el juego: saltar, caer y la voltereta del doble salto (sin el polvo blanco al aterrizar) |
+| `adulta-3-acciones` | ✅ En el juego: empujar y cantar (en vaivén), golpe (sin los fotogramas 120-129, con destellos blancos) y celebrar |
+| `adulta-4-tarta` | ✅ En el juego: soplar las velas (la nube de aire verde claro se va con el fondo). La reverencia no se usa |
 
 ---
 
@@ -56,7 +62,7 @@ animación se decide en `tools/fotogramas-sofia.json`.
 | Bebé | A gatas (nivel 0): reposo, gatear, saltito, empujar, golpe. De pie (niveles 1 y 2): reposo, andar torpe, saltito, empujar, golpe, celebrar. En el nivel 2 ya corre; todavía no hace doble salto ni canta. |
 | Niña | Reposo, andar, correr, saltar, caer, doble salto (desde el 4), empujar, cantar (desde el 6), golpe, celebrar. |
 | Preadolescente | Todas las de la niña. |
-| Adolescente | Todas, más la versión con gafas (niveles 15 y 17). |
+| Adolescente | Todas, más la versión con gafas: todo el nivel 17, y en el 15 desde que coge el objeto de las gafas (si se lo roban, se las quita). |
 | Adulta | Todas, más soplar las velas y la reverencia final. |
 
 ---
@@ -197,8 +203,9 @@ niña, con esta descripción. En `preado-3-acciones`, el canto como en S7 (la ma
 los de la niña, con esta descripción. Andar y correr como en S7; cantar con la mano en el pecho como en S7; golpe
 con la mueca de dientes apretados y un ojo cerrado como en S6.
 
-**`adolescente-4-gafas`** (niveles 15 y 17): el texto de `adolescente-1-andar-correr` añadiendo «*lleva unas gafas
-redondas de montura negra, como en la hoja de expresiones*». Si no se hace, en esos dos niveles sale sin gafas.
+**`adolescente-4-gafas`**, **`adolescente-5-gafas-saltos`** y **`adolescente-6-gafas-acciones`** (nivel 17, y el 15
+desde que coge las gafas): los textos de los tres anteriores añadiendo «*lleva unas gafas redondas de montura negra, como
+en la hoja de expresiones*».
 
 ### Adulta (18 años)
 
@@ -240,8 +247,8 @@ niña, con esta descripción (la falda se mueve al correr y al saltar).
 4. **Empujar:** la herramienta mide en cada fotograma hasta dónde llegan las manos, y el juego retrasa el dibujo
    para que se apoyen justo en el borde de la caja (sin traspasarla). Por eso, en el tramo de empujar las manos
    tienen que ser lo más adelantado del dibujo, y si en el vídeo sale una caja hay que borrarla con `limpiar`.
-5. Las edades sin vídeo se dibujan con el personaje SVG por piezas (al empujar, las manos se apoyan igual en la
-   caja). Con gafas también se usa el SVG.
+5. **Modos:** cada edad tiene sus animaciones en `pie`; el bebé, también en `gatas`, y la adolescente, en `gafas`
+   (en `tools/niveles`, `gafas: true` las lleva todo el nivel y `gafas: 'objeto'` solo mientras tiene el objeto del nivel).
 6. **Miriam:** sus vídeos se configuran igual, en [`tools/fotogramas-miriam.json`](../../tools/fotogramas-miriam.json)
    (`npm run fotogramas -- miriam` para generar solo los suyos). Miriam no se mueve: necesita `callada-der`,
    `habla-der`, `habla-izq`, `callada-izq` y un giro pasando por la vista de frente, con el nombre del lado en el que

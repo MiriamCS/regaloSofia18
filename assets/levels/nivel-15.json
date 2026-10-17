@@ -29,8 +29,8 @@
   },
   {
    "name": "gafas",
-   "type": "bool",
-   "value": true
+   "type": "string",
+   "value": "objeto"
   }
  ],
  "layers": [

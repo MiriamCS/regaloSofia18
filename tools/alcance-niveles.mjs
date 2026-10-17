@@ -14,7 +14,6 @@ import { fileURLToPath } from 'node:url';
 const raiz = join(dirname(fileURLToPath(import.meta.url)), '..');
 const JUEGO = JSON.parse(readFileSync(join(raiz, 'config', 'juego.json'), 'utf8'));
 const FOTOS = JSON.parse(readFileSync(join(raiz, 'assets', 'sprites', 'sofia', 'fotogramas.json'), 'utf8'));
-const RIG = JSON.parse(readFileSync(join(raiz, 'assets', 'sprites', 'sofia', 'rig.json'), 'utf8')).etapas;
 const F = JUEGO.fisica;
 const T = 48;
 const DT = 1 / 60;
@@ -119,8 +118,7 @@ function analizar(n) {
 
   const etapa = props.etapa || etapaDeNivel(n);
   const gatas = !!props.gatas;
-  const info = FOTOS[etapa]?.[gatas ? 'gatas' : 'pie'];
-  const alto = info ? info.altoJuego : RIG[etapa].medidas.alto;
+  const alto = FOTOS[etapa][gatas ? 'gatas' : 'pie'].altoJuego;
   const BW = gatas ? 46 : 26;
   const BH = gatas ? 40 : Math.round(alto * 0.9);
   const hab = JUEGO.habilidades;

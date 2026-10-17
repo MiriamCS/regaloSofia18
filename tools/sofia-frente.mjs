@@ -19,8 +19,7 @@ const HOJAS = {
 
 // Lo que mide cada edad en el juego (el mismo alto que de lado)
 const fotos = JSON.parse(readFileSync(join(RAIZ, 'assets/sprites/sofia/fotogramas.json'), 'utf8'));
-const rig = JSON.parse(readFileSync(join(RAIZ, 'assets/sprites/sofia/rig.json'), 'utf8'));
-const altoJuego = (e) => fotos[e]?.pie?.altoJuego ?? rig.etapas[e].medidas.alto;
+const altoJuego = (e) => fotos[e].pie.altoJuego;
 
 const esFondo = (d, i) => {
   const r = d[i], g = d[i + 1], b = d[i + 2];

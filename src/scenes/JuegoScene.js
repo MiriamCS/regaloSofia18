@@ -101,7 +101,9 @@ export class JuegoScene extends Phaser.Scene {
       dobleSalto: tieneHabilidad(n, 'dobleSalto'),
       cantar: tieneHabilidad(n, 'cantar'),
     };
-    this.sofia = new Sofia(this, inicio.pieX, inicio.pieY, this.etapa, { gatas: !!props.gatas, habilidades, gafas: !!props.gafas });
+    this.sofia = new Sofia(this, inicio.pieX, inicio.pieY, this.etapa, { gatas: !!props.gatas, habilidades, gafas: props.gafas === true });
+    // gafas: true, con gafas todo el nivel; 'objeto', solo mientras tiene el objeto del nivel (las gafas del 15)
+    this.gafasConObjeto = props.gafas === 'objeto';
     this.sofia.on('canta', () => this.cantar());
     this.sofia.on('dobleSalto', () => this.nubeDeNotas(this.sofia.x, this.sofia.y, 6, 0xffffff));
 
@@ -491,6 +493,7 @@ export class JuegoScene extends Phaser.Scene {
         const b = e.soltarBotin();
         if (b === 'foto') this.tieneFoto = true;
         else this.tieneObjeto = true;
+        this.actualizarGafas();
         Audio.efecto('coleccionable');
         this.mostrarAviso(texto('juego.recuperado'));
         if (pisando) s.body.setVelocityY(-520);
@@ -501,6 +504,7 @@ export class JuegoScene extends Phaser.Scene {
         const tipo = this.tieneFoto ? 'foto' : 'objeto';
         if (tipo === 'foto') this.tieneFoto = false;
         else this.tieneObjeto = false;
+        this.actualizarGafas();
         e.robar(tipo);
         e.cooldownRobo = t + 800;
         this.mostrarAviso(texto(tipo === 'foto' ? 'juego.fotoRobada' : 'juego.objetoRobado'));
@@ -753,9 +757,14 @@ export class JuegoScene extends Phaser.Scene {
     c.coger();
     if (tipo === 'foto') this.tieneFoto = true;
     else this.tieneObjeto = true;
+    this.actualizarGafas();
     Audio.efecto('coleccionable');
     this.nubeDeNotas(c.x, c.y, 12);
     this.mostrarAviso(texto(tipo === 'foto' ? 'juego.fotoConseguida' : 'juego.objetoConseguido'));
+  }
+
+  actualizarGafas() {
+    if (this.gafasConObjeto) this.sofia.ponerGafas(this.tieneObjeto);
   }
 
   morir(danio = 1, desdeX, caida = false) {

@@ -17,7 +17,7 @@ Cuando me lo pases, lo meto en el juego.
 | Pies de foto | ✅ Fotos puestas: nacimiento y años 0-17 (el 18 no tiene foto, solo objeto). Faltan todos los pies | 31 oct | `originales/fotos/SofiaN.jpg` (+ `npm run imagenes`) y `config/photos.json` |
 | Mensaje final de la tarta | Lo que aparece al apagar las 18 velas | 1 nov | `config/mensaje-final.txt` |
 | Archivos MIDI de las obras | Desde este entorno no se puede descargar de Mutopia/IMSLP. Bájalos tú (comprobando que la licencia sea libre) y te los convierto | cuando puedas | `assets/music` (con `tools/midi-a-json.mjs`) |
-| ~~Concept art de Sofía~~ | ✅ Hojas S1-S7 en `docs/concept-art/sofia` y Sofía redibujada en SVG (`tools/arte/sofia.mjs`) | — | — |
+| ~~Concept art de Sofía~~ | ✅ Hojas S1-S7 en `docs/concept-art/sofia` y Sofía animada con sus vídeos en todas las edades (`tools/fotogramas-sofia.json`) | — | — |
 | ~~Concept art de Miriam~~ | ✅ Sustituido por sus vídeos (ya no hay Miriam en SVG) | — | — |
 
 **MIDI que hacen falta** (SPEC §8): Debussy *Clair de lune* (inicio); Schumann *Escenas de niños*

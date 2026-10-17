@@ -50,16 +50,8 @@ export class BootScene extends Phaser.Scene {
     this.joya = joyaSaltarina(this, corona(this, W / 2, H / 2, ANCHO_CORONA));
 
     const S = { scale: ESCALA_TEXTURAS };
-    this.load.json('rig-sofia', 'sprites/sofia/rig.json');
     this.load.json('indice-musica', 'music/indice.json');
-    this.load.once('filecomplete-json-rig-sofia', (k, t, rig) => {
-      // solo la adolescente tiene piezas: el resto de edades va solo con fotogramas de vídeo
-      for (const e of Object.keys(rig.etapas)) {
-        for (const pieza of Object.keys(rig.etapas[e].piezas)) this.load.svg(`sofia-${e}-${pieza}`, `sprites/sofia/${e}/${pieza}.svg`, S);
-      }
-    });
-    // Animaciones sacadas de los vídeos (tools/video-a-sprites.mjs). Miriam va siempre con vídeo; Sofía, en las edades
-    // sin vídeo, con el SVG por piezas
+    // Sofía y Miriam se animan con los fotogramas sacados de sus vídeos (tools/video-a-sprites.mjs)
     for (const p of PERSONAJES_VIDEO) {
       this.load.json(`fotogramas-${p}`, `sprites/${p}/fotogramas.json`);
       this.load.once(`filecomplete-json-fotogramas-${p}`, (k, t, indice) => {
