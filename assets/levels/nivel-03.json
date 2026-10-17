@@ -10,7 +10,7 @@
  "tileheight": 48,
  "infinite": false,
  "nextlayerid": 4,
- "nextobjectid": 60,
+ "nextobjectid": 62,
  "properties": [
   {
    "name": "nivel",
@@ -957,6 +957,30 @@
        "value": 1
       }
      ]
+    },
+    {
+     "id": 60,
+     "name": "",
+     "type": "devolver-cajas",
+     "x": 672,
+     "y": 480,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    },
+    {
+     "id": 61,
+     "name": "",
+     "type": "devolver-cajas",
+     "x": 1632,
+     "y": 528,
+     "width": 48,
+     "height": 48,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
     }
    ]
   }

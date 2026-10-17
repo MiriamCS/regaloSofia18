@@ -10,7 +10,7 @@
  "tileheight": 48,
  "infinite": false,
  "nextlayerid": 4,
- "nextobjectid": 42,
+ "nextobjectid": 43,
  "properties": [
   {
    "name": "nivel",
@@ -646,7 +646,20 @@
    "visible": true,
    "x": 0,
    "y": 0,
-   "objects": []
+   "objects": [
+    {
+     "id": 42,
+     "name": "",
+     "type": "devolver-cajas",
+     "x": 3936,
+     "y": 528,
+     "width": 864,
+     "height": 144,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
+    }
+   ]
   }
  ],
  "tilesets": []

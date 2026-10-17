@@ -154,10 +154,11 @@ export class Enemigo extends Phaser.Physics.Arcade.Image {
       }
       case 'ladron': {
         if (this.botin) {
-          // huye de Sofía, saltando si choca
+          // huye de Sofía, saltando si choca; al borde de un hueco se queda acorralada (si salta, se cae al vacío con lo robado)
           const lejos = Math.sign(this.x - sofia.x) || 1;
-          b.setVelocityX(lejos * this.vel * 1.6 * enfado);
-          if ((b.blocked.left || b.blocked.right || !this.haySueloDelante(lejos)) && b.blocked.down) b.setVelocityY(-620);
+          const borde = b.blocked.down && !this.haySueloDelante(lejos);
+          b.setVelocityX(borde ? 0 : lejos * this.vel * 1.6 * enfado);
+          if ((b.blocked.left || b.blocked.right) && b.blocked.down) b.setVelocityY(-620);
           this.mirarHacia(lejos);
           this.iconoBotin.setPosition(this.x, this.y - this.displayHeight - 8);
         } else if (encerrado) {

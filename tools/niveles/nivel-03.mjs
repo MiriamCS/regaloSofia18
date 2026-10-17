@@ -20,6 +20,12 @@ export default {
     4: { tipo: 'cartel', pista: 'mueble' },
     5: { tipo: 'cartel', pista: 'final' },
   },
+  objetos: [
+    // cajas empujadas contra una pared sin sitio para ponerse al otro lado: vuelven a su sitio
+    // (tramo 1: contra el escalón de la col. 13; tramo 2: contra el muro de la col. 33)
+    { tipo: 'devolver-cajas', capa: 'zonas', x: 14, y: 10, w: 1, h: 1 },
+    { tipo: 'devolver-cajas', capa: 'zonas', x: 34, y: 11, w: 1, h: 1 },
+  ],
   mapa: `
 #                                                        ########                                                                                                                                                  #
 #                                                        ########                                                                                                                                                  #

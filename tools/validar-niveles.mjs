@@ -18,7 +18,7 @@ for (const [sprite, e] of Object.entries(ENEMIGOS)) {
   presentados[e.presenta] = sprite;
 }
 const vistosEn = {};
-const TIPOS = new Set(['solido', 'nube', 'plataforma-movil', 'plataforma-cae', 'plataforma-falsa', 'plataforma-temporizada', 'plataforma-musical', 'tecla', 'campana', 'puerta', 'checkpoint', 'foto', 'objeto', 'meta', 'meta-falsa', 'miriam', 'cartel', 'caja', 'mueble', 'enemigo', 'pinchos', 'lluvia', 'peligro-movil', 'muerte', 'invertir', 'gravedad', 'final', 'aviso', 'decorado', 'inicio', 'fondo']);
+const TIPOS = new Set(['solido', 'nube', 'plataforma-movil', 'plataforma-cae', 'plataforma-falsa', 'plataforma-temporizada', 'plataforma-musical', 'tecla', 'campana', 'puerta', 'checkpoint', 'foto', 'objeto', 'meta', 'meta-falsa', 'miriam', 'cartel', 'caja', 'mueble', 'enemigo', 'pinchos', 'lluvia', 'peligro-movil', 'muerte', 'invertir', 'gravedad', 'final', 'aviso', 'decorado', 'inicio', 'fondo', 'devolver-cajas']);
 
 const pedidos = process.argv.slice(2).map(Number);
 let errores = 0;

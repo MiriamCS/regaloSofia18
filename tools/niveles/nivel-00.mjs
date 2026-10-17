@@ -16,6 +16,11 @@ export default {
     6: { tipo: 'cartel', pista: 'seguro' },
     7: { tipo: 'cartel', pista: 'meta' },
   },
+  objetos: [
+    // la caja de arriba del puzle final, tirada al suelo de la izquierda (o al foso del suelo falso), ya no puede
+    // volver al pedestal: vuelve a su sitio
+    { tipo: 'devolver-cajas', capa: 'zonas', x: 82, y: 11, w: 18, h: 3 },
+  ],
   mapa: `
 #                                                                                                                                                    #
 #                                                                                                                                                    #

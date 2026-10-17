@@ -73,6 +73,7 @@ export class JuegoScene extends Phaser.Scene {
     this.peligros = this.physics.add.group({ allowGravity: true });
     this.zonasPeligro = [];
     this.zonasEspeciales = [];
+    this.zonasCajas = []; // zonas 'devolver-cajas': una caja que entra ya no sirve y vuelve a su sitio
     this.checkpoints = [];
     this.campanas = [];
     this.musicales = [];
@@ -326,6 +327,10 @@ export class JuegoScene extends Phaser.Scene {
         this.zonasEspeciales.push(z);
         break;
       }
+      case 'devolver-cajas':
+        // donde una caja se quedaría inservible (contra una pared o en un foso): vuelve a su sitio
+        this.zonasCajas.push(new Phaser.Geom.Rectangle(o.x, o.y, o.w, o.h));
+        break;
       case 'decorado': {
         // imagen decorativa sin física (sprite de assets/sprites)
         const img = this.add.image(o.pieX, o.pieY, o.p.sprite || 'nota-azul').setOrigin(0.5, 1).setScale(o.p.escala || 0.5).setDepth(o.p.delante ? 60 : 15);
@@ -602,11 +607,19 @@ export class JuegoScene extends Phaser.Scene {
 
     // caída al vacío
     if ((s.y > this.datos.alto + 120 || s.y < -300) && !this.muriendo) this.morir(1, undefined, true);
-    // cajas caídas al vacío vuelven a su sitio
+    // cajas caídas al vacío o metidas en una zona 'devolver-cajas' vuelven a su sitio
     for (const c of this.cajas.getChildren()) {
       c.body.immovable = c.fija; // solo es inamovible durante el choque vertical con Sofía
       c.vyAntes = c.body.velocity.y;
       if (c.y > this.datos.alto + 200) this.recolocarCaja(c);
+      else if (this.zonasCajas.some((z) => z.contains(c.body.center.x, c.body.center.y)) && !this.sofiaEnInicioCaja(c)) this.recolocarCaja(c);
+    }
+    // una urraca que se cae fuera del mapa con lo robado lo devuelve a su sitio (si no, se perdería hasta reiniciar)
+    for (const e of this.enemigos) {
+      if (e.tipo !== 'ladron' || !e.botin || e.y < this.datos.alto + 200) continue;
+      const c = e.soltarBotin() === 'foto' ? this.foto : this.objeto;
+      c?.devolver();
+      e.derrotar();
     }
 
     // música más rápida con una sola vela
@@ -745,6 +758,8 @@ export class JuegoScene extends Phaser.Scene {
   // ---- Checkpoints, coleccionables, muerte -----------------------------------------
 
   activarCheckpoint(c) {
+    // sin velas (o volviendo tras una caída) no se activa: con 0 velas guardadas se reiniciaría el nivel entero
+    if (this.muriendo || this.velas <= 0) return;
     if (c.activar()) {
       this.puntoReaparicion = { x: c.x + 30, y: c.y };
       this.velasCheckpoint = this.velas;
@@ -833,6 +848,8 @@ export class JuegoScene extends Phaser.Scene {
     s.g = 1;
     this.muriendo = false;
     for (const pm of this.peligrosMoviles || []) pm.reiniciar(p);
+    // los suelos falsos que ya se hundieron vuelven: si uno era el único paso, no hay que perder todas las velas
+    for (const pl of this.pisables) if (pl instanceof PlataformaFalsa) pl.reiniciar();
     this.cameras.main.centerOn(s.x, s.y);
   }
 
@@ -846,7 +863,11 @@ export class JuegoScene extends Phaser.Scene {
     // se vuelve un poco lejos del borde: justo en el borde, con la flecha aún pulsada (o un avión pasando), se
     // volvía a caer una y otra vez
     const margen = Math.min(90, (zb.right - zb.left) / 2);
-    this.ultimoSuelo = { x: Phaser.Math.Clamp(this.sofia.x, zb.left + margen, zb.right - margen), y: zb.top, zona: z };
+    const x = Phaser.Math.Clamp(this.sofia.x, zb.left + margen, zb.right - margen);
+    // nunca encima de unos pinchos (si se queda en ellos más de lo que dura el parpadeo, se volvería ahí tras una caída)
+    const r = new Phaser.Geom.Rectangle(x - b.width / 2 - 4, zb.top - b.height, b.width + 8, b.height);
+    if (this.zonasPeligro.some((p) => p.body?.enable && !p.avanza && Phaser.Geom.Intersects.RectangleToRectangle(r, p.getBounds()))) return;
+    this.ultimoSuelo = { x, y: zb.top, zona: z };
   }
 
   reaparecer() {
@@ -860,7 +881,7 @@ export class JuegoScene extends Phaser.Scene {
     for (const p of this.pisables) p.reiniciar?.();
     // las cajas que empiezan por delante del atril vuelven a su sitio (evita partidas bloqueadas)
     for (const c of this.cajas.getChildren()) if (c.inicio.x > this.puntoReaparicion.x - 48) this.recolocarCaja(c);
-    for (const pm of this.peligrosMoviles || []) pm.reiniciar(this.puntoReaparicion);
+    for (const pm of this.peligrosMoviles || []) pm.reiniciar(this.puntoReaparicion, true);
     s.g = 1;
     for (const e of this.enemigos) {
       if (!e.vivo && e.derrotadoEn >= this.momentoCheckpoint) e.revivir();
@@ -869,6 +890,14 @@ export class JuegoScene extends Phaser.Scene {
       }
     }
     this.cameras.main.centerOn(s.x, s.y);
+  }
+
+  // ¿está Sofía donde reaparecería la caja? (se espera a que se aparte para no meterla dentro de la caja)
+  sofiaEnInicioCaja(c) {
+    const b = this.sofia.body;
+    const w = c.body.width;
+    const h = c.body.height;
+    return b.right > c.inicio.x - w / 2 && b.left < c.inicio.x + w / 2 && b.bottom > c.inicio.y - h && b.top < c.inicio.y;
   }
 
   recolocarCaja(c) {

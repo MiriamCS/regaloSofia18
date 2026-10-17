@@ -34,6 +34,8 @@ export default {
     P: { tipo: 'puerta', capa: 'solidos', grupo: 'feliz', secuencia: 'G4,G4,A4,G4,C5,B4,G4,G4,A4,G4,D5,C5', h: 3 },
   },
   objetos: [
+    // la caja del principio, empujada contra la pared de la izquierda, ya no se puede mover: vuelve a su sitio
+    { tipo: 'devolver-cajas', capa: 'zonas', x: 1, y: 12, w: 1, h: 1 },
     // la facultad y la sala de conciertos se van turnando
     { tipo: 'fondo', x: 57, y: 0, w: 1, h: 1, tema: 'escenario' },
     { tipo: 'fondo', x: 120, y: 0, w: 1, h: 1, tema: 'universidad' },

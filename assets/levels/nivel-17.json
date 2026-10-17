@@ -10,7 +10,7 @@
  "tileheight": 48,
  "infinite": false,
  "nextlayerid": 4,
- "nextobjectid": 164,
+ "nextobjectid": 165,
  "properties": [
   {
    "name": "nivel",
@@ -2361,7 +2361,7 @@
      "properties": []
     },
     {
-     "id": 153,
+     "id": 154,
      "name": "",
      "type": "gravedad",
      "x": 7584,
@@ -2379,7 +2379,7 @@
      ]
     },
     {
-     "id": 154,
+     "id": 155,
      "name": "",
      "type": "invertir",
      "x": 8208,
@@ -2391,7 +2391,7 @@
      "properties": []
     },
     {
-     "id": 155,
+     "id": 156,
      "name": "",
      "type": "aviso",
      "x": 7296,
@@ -2414,7 +2414,7 @@
      ]
     },
     {
-     "id": 156,
+     "id": 157,
      "name": "",
      "type": "peligro-movil",
      "x": 8832,
@@ -2457,7 +2457,7 @@
      ]
     },
     {
-     "id": 157,
+     "id": 158,
      "name": "",
      "type": "muerte",
      "x": 4128,
@@ -2475,7 +2475,7 @@
      ]
     },
     {
-     "id": 158,
+     "id": 159,
      "name": "",
      "type": "muerte",
      "x": 6672,
@@ -2493,7 +2493,7 @@
      ]
     },
     {
-     "id": 159,
+     "id": 160,
      "name": "",
      "type": "enemigo",
      "x": 2880,
@@ -2531,7 +2531,7 @@
      ]
     },
     {
-     "id": 160,
+     "id": 161,
      "name": "",
      "type": "enemigo",
      "x": 1632,
@@ -2569,7 +2569,7 @@
      ]
     },
     {
-     "id": 161,
+     "id": 162,
      "name": "",
      "type": "enemigo",
      "x": 6912,
@@ -2607,7 +2607,7 @@
      ]
     },
     {
-     "id": 162,
+     "id": 163,
      "name": "",
      "type": "enemigo",
      "x": 7200,
@@ -2650,7 +2650,7 @@
      ]
     },
     {
-     "id": 163,
+     "id": 164,
      "name": "",
      "type": "enemigo",
      "x": 8400,
@@ -2860,6 +2860,18 @@
        "value": 3
       }
      ]
+    },
+    {
+     "id": 153,
+     "name": "",
+     "type": "devolver-cajas",
+     "x": 4128,
+     "y": 912,
+     "width": 768,
+     "height": 336,
+     "rotation": 0,
+     "visible": true,
+     "properties": []
     }
    ]
   }

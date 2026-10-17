@@ -394,13 +394,14 @@ Los objetos con posición exacta o tamaño especial van en `objetos: [{ tipo, x,
 | `enemigo` | `clase` (`patrullero`/`volador`/`bloqueador`/`ladron`/`desafinado`), `sprite`, `velocidad`, `rango`, `amplitud`, `periodo`, `eliminable` (`salto,caja,canto`), `canto` (`dormir`/`huir`/`enfadar`/`apartar`/`invertir`/`nada`), `danio`, `escala` |
 | `pinchos` | `danio`: 1 hasta el nivel 9; 2 desde el 10 (ya no hay de 1); 3 desde el 13 |
 | `lluvia` | `intervalo` (ms), `texturas`, `velocidad`, `danio` |
-| `peligro-movil` | `dir` (`arriba`/`derecha`), `velocidad` (px/s), `desdeX` (casilla que lo activa; no se ve ni mata hasta entonces), `hastaX`/`hastaY` (casilla donde se para), `margen`, `color`, `danio` |
+| `peligro-movil` | `dir` (`arriba`/`derecha`), `velocidad` (px/s), `desdeX` (casilla que lo activa; no se ve ni mata hasta entonces; si Sofía reaparece en un atril anterior, vuelve a esperar), `hastaX`/`hastaY` (casilla donde se para), `margen`, `color`, `danio` |
 | `meta-falsa` | `dx` (casillas que huye), `pista` (lo que dice) |
 | `miriam`, `cartel` | `pista` (clave en `config/texts.json` → `niveles[N].pistas`), `radio`; Miriam además admite `sprite` (figura fija de `sprites/miriam/<sprite>/cuerpo.png`, p. ej. `carton` en el nivel 15) |
 | `aviso` | zona que muestra un texto una vez: `pista`, `duracion` |
 | `invertir` | zona de controles invertidos |
 | `gravedad` | zona con `factor` (0,4 = gravedad baja; −1 = invertida) |
 | `muerte` | zona que quita `danio` velas |
+| `devolver-cajas` | una caja que entra vuelve a su sitio: se pone donde una caja se quedaría inservible (contra una pared sin sitio para empujarla de vuelta, en un foso del que no sale). Solo afecta a las cajas |
 | `final` | (solo nivel 18) empieza el camino blanco; su borde inferior marca la altura del suelo |
 | `decorado` | `sprite`, `escala`, `angulo`, `delante` |
 | `fondo` | `tema`: desde su x, el fondo pasa a ese tema (fundido suave) |

@@ -802,7 +802,16 @@ export class PeligroMovil {
     }
     this.dibujar(t);
   }
-  reiniciar(punto) {
+  reiniciar(punto, alAtril = false) {
+    // al reaparecer en un atril que está antes de donde arranca, vuelve a esperar a que Sofía pase por allí
+    // (si no, seguía avanzando mientras ella estaba en el atril y se le adelantaba)
+    if (alAtril && this.o.p.desdeX !== undefined && punto.x < this.o.p.desdeX * TILE) {
+      this.activo = false;
+      this.zona.body.enable = false;
+      this.pos = { x: this.o.x, y: this.o.y };
+      this.zona.body.reset(this.pos.x + this.o.w / 2, this.pos.y + this.o.h / 2);
+      return;
+    }
     // vuelve a quedar a 'margen' de donde reaparece Sofía (nunca más adelante de su inicio)
     if (this.dir === 'arriba') this.pos.y = Math.max(this.pos.y, Math.min(this.o.y, punto.y + this.margen));
     else this.pos.x = Math.min(this.pos.x, Math.max(this.o.x, punto.x - this.margen - this.o.w));

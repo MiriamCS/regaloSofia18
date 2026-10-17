@@ -54,6 +54,8 @@ export default {
     U: { tipo: 'puerta', capa: 'solidos', grupo: 'nota2', secuencia: 'G5,E5,C5', h: 3 },
   },
   objetos: [
+    // la caja del aula de examen, si cae al foso de pinchos de la izquierda, vuelve a su sitio
+    { tipo: 'devolver-cajas', capa: 'zonas', x: 86, y: 19, w: 16, h: 7 },
     // el examen: gravedad invertida (con controles invertidos en el centro) y un aviso
     { tipo: 'gravedad', x: 158, y: 0, w: 20, h: 17, factor: -1 },
     { tipo: 'invertir', x: 171, y: 0, w: 7, h: 17 },

@@ -36,6 +36,11 @@ export default {
     R: { tipo: 'puerta', capa: 'solidos', grupo: 'atardecer', secuencia: 'C5,E5,D5,G5,A5', h: 3 },
   },
   objetos: [
+    // cajas que se quedarían inservibles: la del estante, si cae a la piscina de buceo; la de la foto, contra la
+    // barra o contra la pared del fondo. Vuelven a su sitio
+    { tipo: 'devolver-cajas', capa: 'zonas', x: 59, y: 13, w: 15, h: 5 },
+    { tipo: 'devolver-cajas', capa: 'zonas', x: 106, y: 11, w: 1, h: 1 },
+    { tipo: 'devolver-cajas', capa: 'zonas', x: 126, y: 11, w: 1, h: 1 },
     { tipo: 'peligro-movil', x: 11, y: 13, w: 22, h: 6, dir: 'arriba', velocidad: 0.001, color: '#4fc3e8', margen: 0 },
     { tipo: 'peligro-movil', x: 38, y: 13, w: 2, h: 6, dir: 'arriba', velocidad: 0.001, color: '#4fc3e8', margen: 0 },
     { tipo: 'peligro-movil', x: 51, y: 13, w: 2, h: 6, dir: 'arriba', velocidad: 0.001, color: '#4fc3e8', margen: 0 },
