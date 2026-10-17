@@ -195,7 +195,7 @@ El nivel 18 nunca termina, porque Sofía acaba de cumplir esa edad. La secuencia
 6. Al llegar a la tarta, la cámara se acerca. Sofía sopla deslizando el dedo por la pantalla: por donde pasa el dedo sale una ráfaga de aire que apaga las velas que toca.
 7. Con las 18 velas apagadas, sale confeti de notas musicales y aparece el mensaje personal de Miriam.
 
-- El mensaje de Miriam se guarda en un archivo de texto aparte para poder escribirlo al final. Pendiente de Miriam.
+- El mensaje de Miriam se guarda en un archivo de texto aparte para poder escribirlo al final. Escrito el 17 oct.
 - Tras el mensaje, la escena de la tarta queda accesible desde la pantalla de inicio para volver a verla.
 - Opcional: soplar también con el micrófono del móvil. Requiere permiso del navegador, así que solo se añade como extra si sobra tiempo.
 
@@ -330,11 +330,11 @@ Si la fase 3 se retrasa más de 2 días, los niveles 1-9 se acortan a 5-6 minuto
 
 ### Fechas límite para Miriam
 
-- [ ] Foto o descripción de Miriam para su caricatura: 14 oct
-- [ ] Recuerdos de los años que tengan historia propia: 19 oct
+- [x] Foto o descripción de Miriam para su caricatura: 14 oct
+- [x] Recuerdos de los años que tengan historia propia: 19 oct
 - [ ] Lista de objetos por año: 26 oct
-- [ ] 19 fotos reales con pie de foto: 31 oct
-- [ ] Mensaje final de la tarta: 1 nov
+- [x] 19 fotos reales con pie de foto: 31 oct
+- [x] Mensaje final de la tarta: 1 nov
 
 ## 12. Criterios de aceptación y pendientes
 
