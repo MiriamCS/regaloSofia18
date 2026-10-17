@@ -491,9 +491,11 @@ export class Sofia extends Phaser.GameObjects.Container {
       sx *= 1 - this.estirar * 0.06;
     }
     const g = this.g || 1;
-    this.visual.setScale(this.mirando * sx, sy * g);
+    // 'crecer': solo agranda el dibujo, desde los pies (el cuerpo físico no cambia); lo usa el camino blanco del final
+    const c = this.crecer || 1;
+    this.visual.setScale(this.mirando * sx * c, sy * g * c);
     // boca abajo, los pies tocan la parte de arriba del cuerpo físico
-    this.visual.y = g > 0 ? -this.medio * sy : this.medio * sy - this.body.height;
+    this.visual.y = g > 0 ? -this.medio * sy * c : this.medio * sy * c - this.body.height;
     this.visual.rotation = rrot * this.mirando;
     // parpadeo de invulnerabilidad
     this.alpha = tiempo < this.invulnerableHasta ? (Math.floor(tiempo / 80) % 2 ? 0.35 : 1) : 1;

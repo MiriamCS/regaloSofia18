@@ -1,6 +1,6 @@
 // La tarta: 18 velas que se apagan deslizando el dedo, confeti de notas y el mensaje de Miriam.
 import Phaser from 'phaser';
-import { MENSAJE_FINAL, texto } from '../config.js';
+import { JUEGO, MENSAJE_FINAL, texto } from '../config.js';
 import { Audio } from '../audio/Audio.js';
 import { PISTAS } from '../audio/musica.js';
 import { Guardado } from '../systems/Guardado.js';
@@ -13,6 +13,47 @@ const NUM_VELAS = 18;
 // Superficie de arriba de la tarta, en px del lienzo de tarta.svg (480x340): las velas se reparten
 // en dos filas (la de atrás y la de delante) sobre esta elipse. Si cambia el dibujo, hay que ajustarla.
 const SUPERFICIE = { x: 240, y: 60, filaAtras: { rx: 100, ry: 10, dy: -6 }, filaDelante: { rx: 114, ry: 14, dy: 10 } };
+
+// Escala de la tarta en esta escena; la de las velas y las llamas va en proporción
+const ESCALA_TARTA = 0.72;
+
+export function crearTexturaLlama(scene) {
+  if (scene.textures.exists('llama')) return;
+  const g = scene.make.graphics({ x: 0, y: 0 }, false);
+  g.fillStyle(0xffe08a, 0.35).fillCircle(20, 26, 18);
+  g.fillStyle(0xffb300, 1).fillEllipse(20, 30, 16, 28);
+  g.fillStyle(0xfff3b0, 1).fillEllipse(20, 34, 8, 14);
+  g.generateTexture('llama', 40, 46);
+  g.destroy();
+}
+
+// Pone las 18 velas encendidas en dos filas sobre una imagen 'tarta' (origen abajo en el centro). La usan esta
+// escena y el final del nivel 18, para que la tarta tenga sus velas desde que aparece en el camino.
+export function velasSobreTarta(scene, tarta) {
+  crearTexturaLlama(scene);
+  const k = tarta.scaleX / ESCALA_TARTA;
+  const tw = tarta.displayWidth;
+  const th = tarta.displayHeight;
+  const ox = tarta.x - tw / 2;
+  const oy = tarta.y - th;
+  const svgAPantalla = (sx, sy) => ({ x: ox + (sx / 480) * tw, y: oy + (sy / 340) * th });
+  const velas = [];
+  for (let i = 0; i < NUM_VELAS; i++) {
+    const fila = i < 9 ? 0 : 1;
+    const j = fila === 0 ? i : i - 9;
+    const a = Math.PI * (0.12 + (j / 8) * 0.76);
+    const f = fila === 0 ? SUPERFICIE.filaAtras : SUPERFICIE.filaDelante;
+    const sx = SUPERFICIE.x - Math.cos(a) * f.rx;
+    const sy = SUPERFICIE.y + f.dy + (fila === 0 ? -1 : 1) * Math.sin(a) * f.ry;
+    const p = svgAPantalla(sx, sy);
+    const cuerpo = scene.add.image(p.x, p.y + 4 * k, 'vela-cuerpo').setOrigin(0.5, 1).setScale(0.62 * k).setDepth(tarta.depth + (fila === 0 ? 1 : 3));
+    const yLlama = p.y + (4 + 6) * k - cuerpo.displayHeight;
+    const llama = scene.add.image(p.x, yLlama, 'llama').setOrigin(0.5, 1).setScale(k).setDepth(tarta.depth + (fila === 0 ? 2 : 4));
+    scene.tweens.add({ targets: llama, scaleX: { from: 0.9 * k, to: 1.1 * k }, scaleY: { from: 1.05 * k, to: 0.9 * k }, duration: 120 + Math.random() * 120, yoyo: true, repeat: -1 });
+    velas.push({ cuerpo, llama, x: p.x, y: yLlama - 14 * k, encendida: true });
+  }
+  return velas;
+}
 
 function distanciaASegmento(p, a, b) {
   const dx = b.x - a.x;
@@ -32,7 +73,6 @@ export class TartaScene extends Phaser.Scene {
     this.cameras.main.setBackgroundColor('#ffffff');
     this.cameras.main.fadeIn(900, 255, 255, 255);
     Audio.pararMusica();
-    this.crearTexturaLlama();
     // la corona de M. Llorens como pie (versión para fondo claro), por encima del velo del mensaje final
     pieMarca(this, true).setDepth(60);
 
@@ -41,36 +81,15 @@ export class TartaScene extends Phaser.Scene {
     g.fillStyle(0xf2f4f8, 1).fillRect(0, H * 0.9, W, H * 0.1);
     g.lineStyle(3, 0xd5dbe8, 1).lineBetween(0, H * 0.9, W, H * 0.9);
 
-    // tarta grande (la cámara "se ha acercado")
-    const k = 0.72; // escala de la textura (rasterizada al doble)
-    this.tarta = this.add.image(W * 0.56, H * 0.9 + 4, 'tarta').setOrigin(0.5, 1).setScale(k);
-    const tw = 480 * k * 2;
-    const th = 340 * k * 2;
-    const ox = this.tarta.x - tw / 2;
-    const oy = this.tarta.y - th;
-    const svgAPantalla = (sx, sy) => ({ x: ox + (sx / 480) * tw, y: oy + (sy / 340) * th });
-
-    // 18 velas en dos filas sobre la superficie de la tarta
-    this.velas = [];
-    for (let i = 0; i < NUM_VELAS; i++) {
-      const fila = i < 9 ? 0 : 1;
-      const j = fila === 0 ? i : i - 9;
-      const a = Math.PI * (0.12 + (j / 8) * 0.76);
-      const f = fila === 0 ? SUPERFICIE.filaAtras : SUPERFICIE.filaDelante;
-      const sx = SUPERFICIE.x - Math.cos(a) * f.rx;
-      const sy = SUPERFICIE.y + f.dy + (fila === 0 ? -1 : 1) * Math.sin(a) * f.ry;
-      const p = svgAPantalla(sx, sy);
-      const cuerpo = this.add.image(p.x, p.y + 4, 'vela-cuerpo').setOrigin(0.5, 1).setScale(0.62).setDepth(fila === 0 ? 1 : 3);
-      const yLlama = p.y + 4 - cuerpo.displayHeight + 6;
-      const llama = this.add.image(p.x, yLlama, 'llama').setOrigin(0.5, 1).setDepth(fila === 0 ? 2 : 4);
-      this.tweens.add({ targets: llama, scaleX: { from: 0.9, to: 1.1 }, scaleY: { from: 1.05, to: 0.9 }, duration: 120 + Math.random() * 120, yoyo: true, repeat: -1 });
-      this.velas.push({ llama, x: p.x, y: yLlama - 14, encendida: true });
-    }
+    // tarta grande (la cámara "se ha acercado"), ya con sus velas encendidas
+    this.tarta = this.add.image(W * 0.56, H * 0.9 + 4, 'tarta').setOrigin(0.5, 1).setScale(ESCALA_TARTA);
+    this.velas = velasSobreTarta(this, this.tarta);
 
     // Sofía adulta al lado de la tarta
     this.sofia = new Sofia(this, W * 0.2, H * 0.9, 'adulta', {});
     this.sofia.body.enable = false;
-    this.sofia.setScale(2.2);
+    // del mismo tamaño que al llegar por el camino blanco, en el que ha ido creciendo hasta la altura de las velas
+    this.sofia.setScale(2.2 * (JUEGO.final.crecerSofia || 1));
     this.sofia.mirando = 1;
 
     this.instruccion = this.add.text(W / 2, H * 0.09, texto('final.soplar'), { fontFamily: FUENTE, fontSize: '30px', color: '#1e4fa3', fontStyle: 'bold' }).setOrigin(0.5);
@@ -89,16 +108,6 @@ export class TartaScene extends Phaser.Scene {
       this.anterior = { x: p.x, y: p.y };
     });
     this.input.on('pointerup', () => (this.anterior = null));
-  }
-
-  crearTexturaLlama() {
-    if (this.textures.exists('llama')) return;
-    const g = this.make.graphics({ x: 0, y: 0 }, false);
-    g.fillStyle(0xffe08a, 0.35).fillCircle(20, 26, 18);
-    g.fillStyle(0xffb300, 1).fillEllipse(20, 30, 16, 28);
-    g.fillStyle(0xfff3b0, 1).fillEllipse(20, 34, 8, 14);
-    g.generateTexture('llama', 40, 46);
-    g.destroy();
   }
 
   soplar(a, b) {

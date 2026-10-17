@@ -16,8 +16,11 @@ import {
   TeclaPiano, Campana, PuertaMelodia, Checkpoint, Coleccionable, Meta, MetaFalsa, PeligroMovil, Miriam, Cartel, LluviaObjetos,
 } from '../entities/elementos.js';
 import { claveNivel } from './TransicionScene.js';
+import { velasSobreTarta } from './TartaScene.js';
 
 const NOTAS_CANTO = ['C5', 'D5', 'E5', 'G5', 'A5', 'C6'];
+// dónde se para Sofía antes de la tarta (px): a la misma distancia a la que está en la escena de soplar las velas
+const DISTANCIA_SOFIA_TARTA = 210;
 
 export class JuegoScene extends Phaser.Scene {
   constructor() {
@@ -941,20 +944,26 @@ export class JuegoScene extends Phaser.Scene {
     this.solidos.refresh();
 
     this.cartel = this.add.image(this.finalInfo.cartelX, sueloY + 4, 'cartel-continuara').setOrigin(0.5, 1).setScale(0.5).setDepth(15);
+    // la tarta ya lleva sus 18 velas encendidas, colocadas igual que en la escena de soplarlas
     this.tartaFinal = this.add.image(this.finalInfo.tartaX, sueloY + 2, 'tarta').setOrigin(0.5, 1).setScale(0.32).setDepth(15);
+    velasSobreTarta(this, this.tartaFinal);
     void s;
   }
 
   actualizarFinal() {
     const f = this.finalInfo;
     const s = this.sofia;
+    // Sofía crece poco a poco por el camino hasta la altura de las velas de la tarta
+    const parada = f.tartaX - DISTANCIA_SOFIA_TARTA;
+    const avance = Phaser.Math.Clamp((s.x - f.inicioX) / (parada - f.inicioX), 0, 1);
+    s.crecer = 1 + ((JUEGO.final.crecerSofia || 1) - 1) * Phaser.Math.Easing.Sine.InOut(avance);
     if (!f.continuado && s.x > f.cartelX) {
       f.continuado = true;
       // El nivel se marca como completado y se guarda
       Guardado.completarNivel(this.nivel, { foto: this.tieneFoto, objeto: this.tieneObjeto });
       Audio.piano('E5', { dur: 1.5, vel: 0.4 });
     }
-    if (!f.tarta && s.x > f.tartaX - 150) {
+    if (!f.tarta && s.x > parada) {
       f.tarta = true;
       this.terminado = true;
       s.body.setVelocityX(0);
@@ -962,7 +971,8 @@ export class JuegoScene extends Phaser.Scene {
       Audio.fundirMusica(1.5);
       const cam = this.cameras.main;
       cam.stopFollow();
-      cam.pan(f.tartaX - 60, f.sueloY - 80, 1600, 'Sine.easeInOut');
+      // el encuadre con el que empieza la escena de la tarta (zoom 2,2; la tarta al 56 % del ancho, el suelo al 90 % del alto)
+      cam.pan(f.tartaX - 35, f.sueloY - 131, 1600, 'Sine.easeInOut');
       cam.zoomTo(2.2, 1800, 'Sine.easeInOut');
       this.time.delayedCall(2000, () => {
         cam.fadeOut(600, 255, 255, 255);

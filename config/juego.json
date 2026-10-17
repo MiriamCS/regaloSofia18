@@ -53,8 +53,10 @@
     "aceleracionUltimaVela": 1.12
   },
   "final": {
-    "segundosCaminoBlanco": 75,
-    "distanciaCartelATarta": 2400
+    "_comentario": "Camino blanco del nivel 18: segundos andando hasta «Continuará...», px desde el cartel hasta la tarta y cuánto ha crecido Sofía al llegar (para soplar las velas a su altura).",
+    "segundosCaminoBlanco": 20,
+    "distanciaCartelATarta": 1000,
+    "crecerSofia": 2.05
   },
   "fondo": {
     "_comentario": "Intensidad de los dibujos del fondo sobre el cielo (0 = no se ven, 1 = color pleno). La misma para todos los niveles, baja para que se distingan bien Sofía y los enemigos.",
