@@ -6,7 +6,8 @@
 // la puerta pide mi-sol-la-do (hay una campana «si» de despiste) | (4) la ovación: carrera a ritmo sobre pinchos de 3 velas, con aviones.
 // Broma: el metrónomo desafinado no invierte los controles: si le cantas se acelera («cambia el tempo»).
 // Foto: en el palco, subiendo por plataformas a contratiempo. Objeto (entrada): en el sótano del escenario, tras
-// una pared falsa a la que se llega dejándose caer a una cornisa del foso.
+// una pared falsa a la que se llega dejándose caer a una cornisa del foso. El sótano solo mide 3 de alto: ahí no
+// puede haber metrónomos (no se saltan ni se aplastan sin cajas); lo guarda un avión de papel, que huye si le cantas.
 // Miriam: entre bastidores, de cartón porque la de verdad está de Erasmus («cuenta...»), y junto a la puerta, ya de vuelta.
 export default {
   props: { tema: 'concierto', edad: 15, gafas: true },
@@ -29,7 +30,6 @@ export default {
     w: { tipo: 'pinchos', capa: 'zonas', fusion: 'h', danio: 3 },
     H: { tipo: 'plataforma-falsa', capa: 'solidos', fusion: 'h', modo: 'fantasma' },
     k: { tipo: 'enemigo', clase: 'desafinado', sprite: 'metronomo', velocidad: 40, rango: 2, canto: 'enfadar' },
-    q: { tipo: 'enemigo', clase: 'desafinado', sprite: 'metronomo', velocidad: 35, rango: 1.5, canto: 'enfadar' },
     p: { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', velocidad: 80, rango: 3, amplitud: 1, periodo: 2000 },
     r: { tipo: 'enemigo', clase: 'volador', sprite: 'avion-papel', velocidad: 90, rango: 4, amplitud: 0.3, periodo: 1500 },
     5: { tipo: 'campana', nota: 'E5', grupo: 'escenario' },
@@ -58,7 +58,7 @@ export default {
 #                 bb          ##        bb   aa                                     k             ####  ee  ee          ee                             #################### aa      aa      aa      aa                                                                         #
 # S   M       aa              ##                  bb    www k   C  1  cccccccccccc####dddddddddddd####                            k  wwwC              ##                ##                               N   P    C   wwww                                             2  G   #
 #############                 ##                       ###############            ####            ####                      #############################        r       HH                             ####################ggghhhggghhh##hhhggghhhggg##ggghhhggghhh############
-#############                 ##                       ###############            ####            ####                      ############################# O   q     q    HH                             ####################wwwwwwwwwwww##wwwwwwwwwwww##wwwwwwwwwwww############
+#############                 ##                       ###############            ####            ####                      ############################# O              HH                             ####################wwwwwwwwwwww##wwwwwwwwwwww##wwwwwwwwwwww############
 #############                 ##                       ###############            ####            ####                      ################################################                            ########################################################################
 `,
 };

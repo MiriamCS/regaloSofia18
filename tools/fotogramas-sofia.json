@@ -66,11 +66,11 @@
           }
         },
         "nina-2-saltos.mp4": {
-          "referencia": [165, 190],
+          "referencia": [72, 100],
           "animaciones": {
             "saltar": { "de": 24, "a": 38, "fps": 24, "bucle": false, "anclar": "pies" },
-            "caer": { "de": 50, "a": 61, "fps": 20, "bucle": false, "anclar": "pies" },
-            "doble": { "de": 96, "a": 149, "sin": [130, 140], "paso": 2, "fps": 40, "bucle": false, "anclar": "centro" }
+            "caer": { "de": 44, "a": 55, "fps": 20, "bucle": false, "anclar": "pies" },
+            "doble": { "de": 126, "a": 162, "paso": 2, "fps": 36, "bucle": false, "anclar": "centro" }
           }
         },
         "nina-3-acciones.mp4": {
@@ -99,11 +99,11 @@
           }
         },
         "preado-2-saltos.mp4": {
-          "referencia": [117, 128],
+          "referencia": [72, 95],
           "animaciones": {
-            "saltar": { "de": 36, "a": 54, "fps": 30, "bucle": false, "anclar": "pies" },
-            "caer": { "de": 90, "a": 97, "fps": 24, "bucle": false, "anclar": "pies" },
-            "doble": { "de": 129, "a": 180, "paso": 2, "fps": 40, "bucle": false, "anclar": "centro" }
+            "saltar": { "de": 22, "a": 36, "fps": 24, "bucle": false, "anclar": "pies" },
+            "caer": { "de": 38, "a": 45, "fps": 20, "bucle": false, "anclar": "pies" },
+            "doble": { "de": 124, "a": 150, "fps": 40, "bucle": false, "anclar": "centro" }
           }
         },
         "preado-3-acciones.mp4": {

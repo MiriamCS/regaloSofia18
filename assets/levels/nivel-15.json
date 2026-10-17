@@ -10,7 +10,7 @@
  "tileheight": 48,
  "infinite": false,
  "nextlayerid": 4,
- "nextobjectid": 104,
+ "nextobjectid": 102,
  "properties": [
   {
    "name": "nivel",
@@ -1628,7 +1628,7 @@
      "properties": []
     },
     {
-     "id": 97,
+     "id": 95,
      "name": "",
      "type": "plataforma-falsa",
      "x": 8112,
@@ -1646,7 +1646,7 @@
      ]
     },
     {
-     "id": 101,
+     "id": 99,
      "name": "",
      "type": "solido",
      "x": 5952,
@@ -1658,7 +1658,7 @@
      "properties": []
     },
     {
-     "id": 102,
+     "id": 100,
      "name": "",
      "type": "solido",
      "x": 9600,
@@ -2631,83 +2631,7 @@
      "properties": []
     },
     {
-     "id": 95,
-     "name": "",
-     "type": "enemigo",
-     "x": 7584,
-     "y": 624,
-     "width": 48,
-     "height": 48,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "clase",
-       "type": "string",
-       "value": "desafinado"
-      },
-      {
-       "name": "sprite",
-       "type": "string",
-       "value": "metronomo"
-      },
-      {
-       "name": "velocidad",
-       "type": "int",
-       "value": 35
-      },
-      {
-       "name": "rango",
-       "type": "float",
-       "value": 1.5
-      },
-      {
-       "name": "canto",
-       "type": "string",
-       "value": "enfadar"
-      }
-     ]
-    },
-    {
-     "id": 96,
-     "name": "",
-     "type": "enemigo",
-     "x": 7872,
-     "y": 624,
-     "width": 48,
-     "height": 48,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "clase",
-       "type": "string",
-       "value": "desafinado"
-      },
-      {
-       "name": "sprite",
-       "type": "string",
-       "value": "metronomo"
-      },
-      {
-       "name": "velocidad",
-       "type": "int",
-       "value": 35
-      },
-      {
-       "name": "rango",
-       "type": "float",
-       "value": 1.5
-      },
-      {
-       "name": "canto",
-       "type": "string",
-       "value": "enfadar"
-      }
-     ]
-    },
-    {
-     "id": 103,
+     "id": 101,
      "name": "",
      "type": "aviso",
      "x": 10416,
@@ -2796,7 +2720,7 @@
      ]
     },
     {
-     "id": 98,
+     "id": 96,
      "name": "",
      "type": "pinchos",
      "x": 10560,
@@ -2814,7 +2738,7 @@
      ]
     },
     {
-     "id": 99,
+     "id": 97,
      "name": "",
      "type": "pinchos",
      "x": 11232,
@@ -2832,7 +2756,7 @@
      ]
     },
     {
-     "id": 100,
+     "id": 98,
      "name": "",
      "type": "pinchos",
      "x": 11904,

@@ -177,10 +177,10 @@
   },
   "nina": {
     "pie": {
-      "ancho": 200,
-      "alto": 183,
+      "ancho": 173,
+      "alto": 182,
       "origen": [
-        0.425,
+        0.335,
         0.973
       ],
       "altoJuego": 87,
@@ -217,8 +217,8 @@
         },
         "doble": {
           "archivo": "nina/fotogramas/pie-doble.png",
-          "fotogramas": 21,
-          "fps": 40,
+          "fotogramas": 19,
+          "fps": 36,
           "bucle": false
         },
         "empujar": {
@@ -267,10 +267,10 @@
   },
   "preado": {
     "pie": {
-      "ancho": 177,
+      "ancho": 173,
       "alto": 204,
       "origen": [
-        0.446,
+        0.434,
         0.975
       ],
       "altoJuego": 96,
@@ -295,19 +295,19 @@
         },
         "saltar": {
           "archivo": "preado/fotogramas/pie-saltar.png",
-          "fotogramas": 19,
-          "fps": 30,
+          "fotogramas": 15,
+          "fps": 24,
           "bucle": false
         },
         "caer": {
           "archivo": "preado/fotogramas/pie-caer.png",
           "fotogramas": 8,
-          "fps": 24,
+          "fps": 20,
           "bucle": false
         },
         "doble": {
           "archivo": "preado/fotogramas/pie-doble.png",
-          "fotogramas": 26,
+          "fotogramas": 27,
           "fps": 40,
           "bucle": false
         },
